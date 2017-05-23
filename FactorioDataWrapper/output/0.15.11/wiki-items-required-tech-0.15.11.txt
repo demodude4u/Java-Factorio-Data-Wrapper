@@ -1,0 +1,450 @@
+Accumulator
+|required-technologies = Electric energy accumulators
+
+Advanced circuit
+|required-technologies = Advanced electronics
+
+Arithmetic combinator
+|required-technologies = Circuit network
+
+Assembling machine 1
+|required-technologies = Automation
+
+Assembling machine 2
+|required-technologies = Automation 2, 2
+
+Assembling machine 3
+|required-technologies = Automation 3, 3
+
+Atomic bomb
+|required-technologies = Atomic bomb
+
+Battery
+|required-technologies = Battery
+
+Battery MK1
+|required-technologies = Battery equipment
+
+Battery MK2
+|required-technologies = Battery MK2 equipment
+
+Beacon
+|required-technologies = Effect transmission
+
+Big electric pole
+|required-technologies = Electric energy distribution 1, 1
+
+Cannon shell
+|required-technologies = Tanks
+
+Car
+|required-technologies = Automobilism
+
+Cargo wagon
+|required-technologies = Railway
+
+Centrifuge
+|required-technologies = Nuclear power
+
+Chemical plant
+|required-technologies = Oil processing
+
+Cluster grenade
+|required-technologies = Cluster grenade
+
+Combat shotgun
+|required-technologies = Military 3, 3
+
+Concrete
+|required-technologies = Concrete
+
+Constant combinator
+|required-technologies = Circuit network
+
+Construction robot
+|required-technologies = Construction robotics
+
+Crude oil barrel
+|required-technologies = Fluid handling
+
+Decider combinator
+|required-technologies = Circuit network
+
+Defender capsule
+|required-technologies = Combat robotics
+
+Destroyer capsule
+|required-technologies = Combat robotics 3, 3
+
+Discharge defense
+|required-technologies = Discharge defense
+
+Discharge defense remote
+|required-technologies = Discharge defense
+
+Distractor capsule
+|required-technologies = Combat robotics 2, 2
+
+Efficiency module
+|required-technologies = Efficiency module
+
+Efficiency module 2
+|required-technologies = Efficiency module 2, 2
+
+Efficiency module 3
+|required-technologies = Efficiency module 3, 3
+
+Electric engine unit
+|required-technologies = Electric engine
+
+Electric furnace
+|required-technologies = Advanced material processing 2, 2
+
+Empty barrel
+|required-technologies = Fluid handling
+
+Energy shield
+|required-technologies = Energy shield equipment
+
+Energy shield MK2
+|required-technologies = Energy shield MK2 equipment
+
+Engine unit
+|required-technologies = Engine
+
+Exoskeleton
+|required-technologies = Exoskeleton equipment
+
+Explosive cannon shell
+|required-technologies = Tanks
+
+Explosive rocket
+|required-technologies = Explosive rocketry
+
+Explosive uranium cannon shell
+|required-technologies = Uranium ammo
+
+Explosives
+|required-technologies = Explosives
+
+Express splitter
+|required-technologies = Logistics 3, 3
+
+Express transport belt
+|required-technologies = Logistics 3, 3
+
+Express underground belt
+|required-technologies = Logistics 3, 3
+
+Fast inserter
+|required-technologies = Logistics
+
+Fast splitter
+|required-technologies = Logistics 2, 2
+
+Fast transport belt
+|required-technologies = Logistics 2, 2
+
+Fast underground belt
+|required-technologies = Logistics 2, 2
+
+Filter inserter
+|required-technologies = Electronics
+
+Flamethrower
+|required-technologies = Flamethrower
+
+Flamethrower ammo
+|required-technologies = Flamethrower
+
+Flamethrower turret
+|required-technologies = Flamethrower
+
+Fluid wagon
+|required-technologies = Fluid wagon
+
+Flying robot frame
+|required-technologies = Robotics
+
+Portable fusion reactor
+|required-technologies = Portable fusion reactor
+
+Gate
+|required-technologies = Gates
+
+Green wire
+|required-technologies = Circuit network
+
+Grenade
+|required-technologies = Military 2, 2
+
+Gun turret
+|required-technologies = Turrets
+
+Hazard concrete
+|required-technologies = Concrete
+
+Heat exchanger
+|required-technologies = Nuclear power
+
+Heat pipe
+|required-technologies = Nuclear power
+
+Heavy armor
+|required-technologies = Heavy armor
+
+Heavy oil barrel
+|required-technologies = Fluid handling
+
+High tech science pack
+|required-technologies = Advanced electronics 2, 2
+
+Land mine
+|required-technologies = Landmines
+
+Landfill
+|required-technologies = Landfill
+
+Laser turret
+|required-technologies = Laser turrets
+
+Light oil barrel
+|required-technologies = Fluid handling
+
+Locomotive
+|required-technologies = Railway
+
+Active provider chest
+|required-technologies = Logistic system
+
+Passive provider chest
+|required-technologies = Construction robotics + Logistic robotics
+
+Requester chest
+|required-technologies = Logistic system
+
+Storage chest
+|required-technologies = Construction robotics + Logistic robotics
+
+Logistic robot
+|required-technologies = Logistic robotics
+
+Long handed inserter
+|required-technologies = Automation
+
+Low density structure
+|required-technologies = Rocket silo
+
+Lubricant barrel
+|required-technologies = Fluid handling
+
+Medium electric pole
+|required-technologies = Electric energy distribution 1, 1
+
+Military science pack
+|required-technologies = Military 2, 2
+
+Modular armor
+|required-technologies = Modular armor
+
+Nightvision
+|required-technologies = Nightvision equipment
+
+Nuclear reactor
+|required-technologies = Nuclear power
+
+Oil refinery
+|required-technologies = Oil processing
+
+Personal laser defense
+|required-technologies = Personal laser defense
+
+Personal roboport
+|required-technologies = Personal roboport
+
+Personal roboport MK2
+|required-technologies = Personal roboport 2, 2
+
+Petroleum gas barrel
+|required-technologies = Fluid handling
+
+Piercing rounds magazine
+|required-technologies = Military 2, 2
+
+Piercing shotgun shells
+|required-technologies = Military 4, 4
+
+Plastic bar
+|required-technologies = Plastics
+
+Poison capsule
+|required-technologies = Military 3, 3
+
+Power armor
+|required-technologies = Power armor
+
+Power armor MK2
+|required-technologies = Power armor 2, 2
+
+Power switch
+|required-technologies = Circuit network
+
+Processing unit
+|required-technologies = Advanced electronics 2, 2
+
+Production science pack
+|required-technologies = Advanced material processing 2, 2
+
+Productivity module
+|required-technologies = Productivity module
+
+Productivity module 2
+|required-technologies = Productivity module 2, 2
+
+Productivity module 3
+|required-technologies = Productivity module 3, 3
+
+Programmable speaker
+|required-technologies = Circuit network
+
+Pump
+|required-technologies = Engine
+
+Pumpjack
+|required-technologies = Oil processing
+
+Rail chain signal
+|required-technologies = Rail signals
+
+Rail signal
+|required-technologies = Rail signals
+
+Red wire
+|required-technologies = Circuit network
+
+Roboport
+|required-technologies = Construction robotics + Logistic robotics
+
+Rocket
+|required-technologies = Rocketry
+
+Rocket control unit
+|required-technologies = Rocket silo
+
+Rocket fuel
+|required-technologies = Rocket silo
+
+Rocket launcher
+|required-technologies = Rocketry
+
+Rocket part
+|required-technologies = Rocket silo
+
+Rocket silo
+|required-technologies = Rocket silo
+
+Satellite
+|required-technologies = Rocket silo
+
+Science pack 3
+|required-technologies = Advanced electronics
+
+Shotgun
+|required-technologies = Military
+
+Shotgun shells
+|required-technologies = Military
+
+Slowdown capsule
+|required-technologies = Military 3, 3
+
+Lamp
+|required-technologies = Optics
+
+Solar panel
+|required-technologies = Solar energy
+
+Portable solar panel
+|required-technologies = Portable solar panel
+
+Solid fuel
+|required-technologies = Oil processing
+
+Speed module
+|required-technologies = Speed module
+
+Speed module 2
+|required-technologies = Speed module 2, 2
+
+Speed module 3
+|required-technologies = Speed module 3, 3
+
+Splitter
+|required-technologies = Logistics
+
+Stack filter inserter
+|required-technologies = Stack inserter
+
+Stack inserter
+|required-technologies = Stack inserter
+
+Steam turbine
+|required-technologies = Nuclear power
+
+Steel axe
+|required-technologies = Steel processing
+
+Steel chest
+|required-technologies = Steel processing
+
+Steel furnace
+|required-technologies = Advanced material processing
+
+Steel plate
+|required-technologies = Steel processing
+
+Stone wall
+|required-technologies = Stone walls
+
+Storage tank
+|required-technologies = Fluid handling
+
+Submachine gun
+|required-technologies = Military
+
+Substation
+|required-technologies = Electric energy distribution 2, 2
+
+Sulfur
+|required-technologies = Sulfur processing
+
+Sulfuric acid barrel
+|required-technologies = Fluid handling
+
+Tank
+|required-technologies = Tanks
+
+Train stop
+|required-technologies = Automated rail transportation
+
+Underground belt
+|required-technologies = Logistics
+
+Uranium-235
+|required-technologies = Kovarex enrichment process + Nuclear power
+
+Uranium-238
+|required-technologies = Kovarex enrichment process + Nuclear fuel reprocessing + Nuclear power
+
+Uranium cannon shell
+|required-technologies = Uranium ammo
+
+Uranium fuel cell
+|required-technologies = Nuclear power
+
+Uranium rounds magazine
+|required-technologies = Uranium ammo
+
+Water barrel
+|required-technologies = Fluid handling
+

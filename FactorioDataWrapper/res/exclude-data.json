@@ -1,0 +1,22 @@
+{
+   "recipes-and-items":[
+      "loader",
+      "fast-loader",
+      "express-loader",
+      "small-plane",
+      "player-port",
+      "electric-energy-interface",
+      "railgun",
+      "railgun-dart",
+	  "belt-immunity-equipment",
+	  "coin",
+	  "computer",
+	  "dummy-selection-tool",
+	  "simple-entity-with-force",
+	  "simple-entity-with-owner",
+	  "tank-cannon",
+	  "tank-flamethrower",
+	  "tank-machine-gun",
+	  "vehicle-machine-gun"
+   ]
+}
