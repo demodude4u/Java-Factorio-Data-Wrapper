@@ -187,6 +187,7 @@ public class FactorioWikiMain {
 					Optional<IntUnaryOperator> countFormula = Optional.empty();
 					LinkedHashMap<String, Integer> ingredients = null;
 					List<TechPrototype.Effect> effects = null;
+					Map<String, Double> effectTypeSum = new LinkedHashMap<>();
 					for (int i = 1; i <= maxBonus; i++) {
 						Optional<TechPrototype> optTech = table.getTechnology(bonusName + "-" + i);
 						int count;
@@ -211,6 +212,12 @@ public class FactorioWikiMain {
 							count = countFormula.get().applyAsInt(i);
 						}
 
+						effects.forEach(e -> {
+							double sum = effectTypeSum.getOrDefault(e.getType(), 0.0);
+							sum += e.getModifier();
+							effectTypeSum.put(e.getType(), sum);
+						});
+
 						pw.println("{{Icontech|" + wikiBonusName + " (research)|" + i + "|" + wikiBonusName + "}} "
 								+ wikiBonusName + " " + i + " || "
 								+ ingredients.entrySet().stream()
@@ -222,7 +229,12 @@ public class FactorioWikiMain {
 								+ " <big>X " + count + "</big>" + (showFormula ? (" " + formula) : "") + " || "
 								+ effects.stream()
 										.map(e -> wiki_EffectModifierFormatter.getOrDefault(e.getType(), v -> "")
-												.apply(e.lua().get("modifier").todouble()))
+												.apply(e.getModifier()))
+										.filter(s -> !s.isEmpty()).distinct().collect(Collectors.joining(" "))
+								+ " || "
+								+ effectTypeSum.entrySet().stream()
+										.map(e -> wiki_EffectModifierFormatter.getOrDefault(e.getKey(), v -> "")
+												.apply(e.getValue()))
 										.filter(s -> !s.isEmpty()).distinct().collect(Collectors.joining(" ")));
 					}
 					pw.println();

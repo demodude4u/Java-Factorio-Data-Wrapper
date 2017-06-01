@@ -17,10 +17,22 @@ public class TechPrototype extends DataPrototype {
 	public static class Effect {
 		private final LuaValue lua;
 		private final String type;
+		private final double modifier;
 
 		public Effect(LuaValue lua) {
 			this.lua = lua;
 			type = lua.get("type").tojstring();
+			System.out.println(type);
+			LuaValue modifierLua = lua.get("modifier");
+			if (modifierLua.isnumber()) {
+				modifier = modifierLua.todouble();
+			} else {
+				modifier = 0;
+			}
+		}
+
+		public double getModifier() {
+			return modifier;
 		}
 
 		public String getType() {
