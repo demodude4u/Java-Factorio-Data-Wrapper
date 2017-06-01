@@ -3,8 +3,9 @@ package com.demod.factorio.prototype;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
+import java.util.function.IntUnaryOperator;
 
 import org.luaj.vm2.LuaTable;
 import org.luaj.vm2.LuaValue;
@@ -34,17 +35,21 @@ public class TechPrototype extends DataPrototype {
 	private final boolean upgrade;
 	private final List<String> prerequisites = new ArrayList<>();
 	private final List<Effect> effects = new ArrayList<>();
-	private final Map<String, Integer> ingredients = new LinkedHashMap<>();
+	private final LinkedHashMap<String, Integer> ingredients = new LinkedHashMap<>();
 	private int count;
 	private final double time;
 	private final String order;
 	private final List<String> recipeUnlocks = new ArrayList<>();
+	private final Optional<String> maxLevel;
+	private final boolean maxLevelInfinite;
 
 	private boolean firstBonus;
 	private boolean bonus;
 	private List<TechPrototype> bonusGroup;
 	private String bonusName;
 	private int bonusLevel;
+	private Optional<IntUnaryOperator> bonusCountFormula = Optional.empty();
+	private Optional<String> bonusCountFormulaVisual = Optional.empty();
 
 	public TechPrototype(LuaTable lua, String name, String type, Set<String> excludedRecipesAndItems) {
 		super(lua, name, type);
@@ -75,6 +80,24 @@ public class TechPrototype extends DataPrototype {
 				}
 			}
 		}
+
+		LuaValue maxLevelLua = lua.get("max_level");
+		if (!maxLevelLua.isnil()) {
+			String value = maxLevelLua.tojstring();
+			maxLevel = Optional.of(value);
+			maxLevelInfinite = value.equals("infinite");
+		} else {
+			maxLevel = Optional.empty();
+			maxLevelInfinite = false;
+		}
+	}
+
+	public Optional<IntUnaryOperator> getBonusCountFormula() {
+		return bonusCountFormula;
+	}
+
+	public Optional<String> getBonusCountFormulaVisual() {
+		return bonusCountFormulaVisual;
 	}
 
 	public List<TechPrototype> getBonusGroup() {
@@ -93,12 +116,21 @@ public class TechPrototype extends DataPrototype {
 		return count;
 	}
 
+	public int getEffectiveCount() {
+		return (isBonus() && getBonusCountFormula().isPresent())
+				? getBonusCountFormula().get().applyAsInt(getBonusLevel()) : getCount();
+	}
+
 	public List<Effect> getEffects() {
 		return effects;
 	}
 
-	public Map<String, Integer> getIngredients() {
+	public LinkedHashMap<String, Integer> getIngredients() {
 		return ingredients;
+	}
+
+	public Optional<String> getMaxLevel() {
+		return maxLevel;
 	}
 
 	public String getOrder() {
@@ -125,12 +157,22 @@ public class TechPrototype extends DataPrototype {
 		return firstBonus;
 	}
 
+	public boolean isMaxLevelInfinite() {
+		return maxLevelInfinite;
+	}
+
 	public boolean isUpgrade() {
 		return upgrade;
 	}
 
 	public void setBonus(boolean bonus) {
 		this.bonus = bonus;
+	}
+
+	public void setBonusFormula(Optional<String> bonusCountFormulaVisual,
+			Optional<IntUnaryOperator> bonusCountFormula) {
+		this.bonusCountFormulaVisual = bonusCountFormulaVisual;
+		this.bonusCountFormula = bonusCountFormula;
 	}
 
 	public void setBonusGroup(List<TechPrototype> bonusGroup) {

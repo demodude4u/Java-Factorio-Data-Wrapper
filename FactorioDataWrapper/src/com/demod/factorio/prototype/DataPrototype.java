@@ -4,7 +4,7 @@ import org.luaj.vm2.LuaTable;
 
 import com.demod.factorio.Utils;
 
-public class DataPrototype {
+public abstract class DataPrototype {
 	private final LuaTable lua;
 	private final String name;
 	private final String type;
@@ -15,9 +15,10 @@ public class DataPrototype {
 		this.type = type;
 	}
 
-	@Override
-	public int hashCode() {
-		return name.hashCode();
+	public void debugPrint() {
+		System.out.println();
+		System.out.println(name);
+		Utils.debugPrintLua(lua);
 	}
 
 	@Override
@@ -45,13 +46,12 @@ public class DataPrototype {
 		return type;
 	}
 
+	@Override
+	public int hashCode() {
+		return name.hashCode();
+	}
+
 	public LuaTable lua() {
 		return lua;
-	}
-	
-	public void debugPrint() {
-		System.out.println();
-		System.out.println(name);
-		Utils.debugPrintTable(lua);
 	}
 }

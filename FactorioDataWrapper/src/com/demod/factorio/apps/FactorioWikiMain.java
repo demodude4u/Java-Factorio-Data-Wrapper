@@ -13,6 +13,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Function;
+import java.util.function.IntUnaryOperator;
 import java.util.stream.Collectors;
 
 import javax.imageio.ImageIO;
@@ -25,12 +27,43 @@ import com.demod.factorio.FactorioData;
 import com.demod.factorio.ModInfo;
 import com.demod.factorio.Utils;
 import com.demod.factorio.prototype.RecipePrototype;
+import com.demod.factorio.prototype.TechPrototype;
 import com.google.common.collect.LinkedHashMultimap;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Sets;
 import com.google.common.primitives.Ints;
 
 public class FactorioWikiMain {
+
+	public static final Map<String, Integer> wiki_ScienceOrdering = new LinkedHashMap<>();
+	static {
+		wiki_ScienceOrdering.put("science-pack-1", 1);
+		wiki_ScienceOrdering.put("science-pack-2", 2);
+		wiki_ScienceOrdering.put("science-pack-3", 3);
+		wiki_ScienceOrdering.put("military-science-pack", 4);
+		wiki_ScienceOrdering.put("production-science-pack", 5);
+		wiki_ScienceOrdering.put("high-tech-science-pack", 6);
+		wiki_ScienceOrdering.put("space-science-pack", 7);
+	}
+
+	private static Map<String, Function<Double, String>> wiki_EffectModifierFormatter = new LinkedHashMap<>();
+	static {
+		Function<Double, String> fmtCount = v -> wiki_fmtDouble(v);
+		Function<Double, String> fmtPercent = v -> String.format("%.0f%%", v * 100);
+		Function<Double, String> fmtSlot = v -> "+" + wiki_fmtDouble(v) + " slots";
+
+		wiki_EffectModifierFormatter.put("ammo-damage", fmtPercent);
+		wiki_EffectModifierFormatter.put("character-logistic-slots", fmtSlot);
+		wiki_EffectModifierFormatter.put("character-logistic-trash-slots", fmtSlot);
+		wiki_EffectModifierFormatter.put("gun-speed", fmtPercent);
+		wiki_EffectModifierFormatter.put("laboratory-speed", fmtPercent);
+		wiki_EffectModifierFormatter.put("maximum-following-robots-count", fmtCount);
+		wiki_EffectModifierFormatter.put("mining-drill-productivity-bonus", fmtPercent);
+		wiki_EffectModifierFormatter.put("train-braking-force-bonus", fmtPercent);
+		wiki_EffectModifierFormatter.put("turret-attack", fmtPercent);
+		wiki_EffectModifierFormatter.put("worker-robot-speed", fmtPercent);
+		wiki_EffectModifierFormatter.put("worker-robot-storage", fmtCount);
+	}
 
 	public static void main(String[] args) throws JSONException, IOException {
 		DataTable table = FactorioData.getTable();
@@ -51,6 +84,11 @@ public class FactorioWikiMain {
 		}
 
 		try (PrintWriter pw = new PrintWriter(
+				new File(outputFolder, "wiki-formula-technologies-" + baseInfo.getVersion() + ".txt"))) {
+			wiki_FormulaTechnologies(table, nameMappingTechnologies, nameMappingItemsRecipes, pw);
+		}
+
+		try (PrintWriter pw = new PrintWriter(
 				new File(outputFolder, "wiki-recipes-totals-" + baseInfo.getVersion() + ".txt"))) {
 			wiki_RawTotals(table, nameMappingItemsRecipes, pw);
 		}
@@ -65,7 +103,7 @@ public class FactorioWikiMain {
 		// wiki_DefaultNameMapping(table, pw);
 		// }
 
-		wiki_GenerateTintedIcons(table, new File(outputFolder, "icons"));
+		// wiki_GenerateTintedIcons(table, new File(outputFolder, "icons"));
 
 		Desktop.getDesktop().open(outputFolder);
 	}
@@ -137,6 +175,61 @@ public class FactorioWikiMain {
 		return ret;
 	}
 
+	private static void wiki_FormulaTechnologies(DataTable table, JSONObject nameMappingTechnologies,
+			JSONObject nameMappingItemsRecipes, PrintWriter pw) {
+		table.getTechnologies().values().stream().filter(t -> t.isBonus()).map(t -> t.getBonusName()).distinct()
+				.sorted().forEach(bonusName -> {
+					String wikiBonusName = wiki_fmtName(bonusName, nameMappingTechnologies);
+					pw.println(wikiBonusName);
+					TechPrototype firstTech = table.getTechnology(bonusName + "-1").get();
+					int maxBonus = firstTech.getBonusGroup().stream().mapToInt(TechPrototype::getBonusLevel).max()
+							.getAsInt();
+					Optional<IntUnaryOperator> countFormula = Optional.empty();
+					LinkedHashMap<String, Integer> ingredients = null;
+					List<TechPrototype.Effect> effects = null;
+					for (int i = 1; i <= maxBonus; i++) {
+						Optional<TechPrototype> optTech = table.getTechnology(bonusName + "-" + i);
+						int count;
+						boolean showFormula = false;
+						String formula = null;
+						if (optTech.isPresent()) {
+							TechPrototype tech = optTech.get();
+
+							ingredients = tech.getIngredients();
+							effects = tech.getEffects();
+
+							if (tech.getBonusCountFormula().isPresent()) {
+								countFormula = tech.getBonusCountFormula();
+							}
+							count = tech.getEffectiveCount();
+
+							if (tech.isMaxLevelInfinite()) {
+								showFormula = true;
+								formula = tech.getBonusCountFormulaVisual().get().replace("L", "Level");
+							}
+						} else {
+							count = countFormula.get().applyAsInt(i);
+						}
+
+						pw.println("{{Icontech|" + wikiBonusName + " (research)|" + i + "|" + wikiBonusName + "}} "
+								+ wikiBonusName + " " + i + " || "
+								+ ingredients.entrySet().stream()
+										.sorted((e1, e2) -> Integer.compare(wiki_ScienceOrdering.get(e1.getKey()),
+												wiki_ScienceOrdering.get(e2.getKey())))
+										.map(e -> "{{Icon|" + wiki_fmtName(e.getKey(), nameMappingItemsRecipes) + "|"
+												+ e.getValue() + "}}")
+										.collect(Collectors.joining(" "))
+								+ " <big>X " + count + "</big>" + (showFormula ? (" " + formula) : "") + " || "
+								+ effects.stream()
+										.map(e -> wiki_EffectModifierFormatter.getOrDefault(e.getType(), v -> "")
+												.apply(e.lua().get("modifier").todouble()))
+										.filter(s -> !s.isEmpty()).distinct().collect(Collectors.joining(" ")));
+					}
+					pw.println();
+				});
+	}
+
+	@SuppressWarnings("unused")
 	private static void wiki_GenerateTintedIcons(DataTable table, File folder) {
 		folder.mkdirs();
 
@@ -144,7 +237,7 @@ public class FactorioWikiMain {
 			if (!recipe.lua().get("icons").isnil()) {
 				System.out.println();
 				System.out.println(recipe.getName());
-				Utils.debugPrintTable(recipe.lua().get("icons"));
+				Utils.debugPrintLua(recipe.lua().get("icons"));
 				try {
 					ImageIO.write(FactorioData.getIcon(recipe), "PNG", new File(folder, recipe.getName() + ".png"));
 				} catch (IOException e) {
@@ -156,7 +249,7 @@ public class FactorioWikiMain {
 			if (!item.lua().get("icons").isnil()) {
 				System.out.println();
 				System.out.println(item.getName());
-				Utils.debugPrintTable(item.lua().get("icons"));
+				Utils.debugPrintLua(item.lua().get("icons"));
 				try {
 					ImageIO.write(FactorioData.getIcon(item), "PNG", new File(folder, item.getName() + ".png"));
 				} catch (IOException e) {
@@ -387,8 +480,9 @@ public class FactorioWikiMain {
 							});
 					pw.println();
 
-					pw.println("|cost-multiplier = " + tech.getCount());
-					pw.println("|expensive-cost-multiplier = " + (tech.getCount() * 4));
+					int count = tech.getEffectiveCount();
+					pw.println("|cost-multiplier = " + count);
+					pw.println("|expensive-cost-multiplier = " + (count * 4));
 
 					if (!tech.getPrerequisites().isEmpty()) {
 						pw.println("|required-technologies = " + tech.getPrerequisites().stream().sorted()

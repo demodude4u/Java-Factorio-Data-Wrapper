@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.google.common.collect.ImmutableMap;
+
 /**
  * This is a port directly from factorio source code, for how formulas are
  * parsed and computed. Here is the source:
@@ -35,14 +37,15 @@ public final class SimpleMathFormula {
 		private static void finishExpression(String input, Box<Expression> firstThing, Box<Expression> result,
 				Box<Integer> readingNumber, int position) {
 			if (readingNumber.value != -1) {
-				double theNumber = Double.parseDouble(input.substring(readingNumber.value, position - 1));
+				String substring = input.substring(readingNumber.value, position - 1);
+				double theNumber = Double.parseDouble(substring);
 				addToMultiplication(new Box<>(new Numeric(theNumber)), firstThing, result);
 				readingNumber.value = -1;
 			}
 		}
 
 		public static Expression parse(String input, int position) throws InputException {
-			return parseInternal(input, new Box<>(position)).value;
+			return parseInternal(input + " ", new Box<>(position)).value;
 		}
 
 		private static Box<Expression> parseInternal(String input, Box<Integer> position) throws InputException {
@@ -149,7 +152,7 @@ public final class SimpleMathFormula {
 						if (firstThing.value == null) {
 							throw new InputException("Misplaced ^");
 						}
-						base = firstThing;
+						base.value = firstThing.value;
 						firstThing.value = null;
 					} else {
 						base = new Box<>(result.value.children.get(result.value.children.size() - 1));
@@ -271,6 +274,10 @@ public final class SimpleMathFormula {
 			}
 			return result;
 		}
+	}
+
+	public static void main(String[] args) throws InputException {
+		System.out.println(Expression.parse("2^(L-8)*1000", 0).evaluate(ImmutableMap.of("L", 8.0)));
 	}
 
 	private SimpleMathFormula() {

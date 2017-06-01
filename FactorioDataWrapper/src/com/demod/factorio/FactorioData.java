@@ -1,5 +1,6 @@
 package com.demod.factorio;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.RenderingHints;
@@ -18,6 +19,7 @@ import java.net.URL;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.IntUnaryOperator;
 import java.util.stream.Collectors;
 
@@ -104,18 +106,35 @@ public class FactorioData {
 	}
 
 	public static BufferedImage getModImage(LuaValue value) {
+		return getModImage(value, Optional.empty());
+	}
+
+	public static BufferedImage getModImage(LuaValue value, Color tint) {
+		return getModImage(value, Optional.of(tint));
+	}
+
+	private static BufferedImage getModImage(LuaValue value, Optional<Color> tint) {
 		String path = value.toString();
 		return modImageCache.computeIfAbsent(path, p -> {
 			String firstSegment = path.split("\\/")[0];
 			String mod = firstSegment.substring(2, firstSegment.length() - 2);
 			File modFolder = new File(factorio, "data/" + mod);
 			try {
-				return loadImage(new File(modFolder, path.replace(firstSegment, "").substring(1)));
+				BufferedImage image = loadImage(new File(modFolder, path.replace(firstSegment, "").substring(1)));
+				if (tint.isPresent()) {
+					image = Utils.tintImage(image, tint.get());
+				}
+				return image;
 			} catch (IOException e) {
 				e.printStackTrace();
 				throw new RuntimeException(e);
 			}
 		});
+	}
+
+	public static BufferedImage getShadowImage(LuaValue filename, Color color) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	public static synchronized DataTable getTable() throws JSONException, IOException {

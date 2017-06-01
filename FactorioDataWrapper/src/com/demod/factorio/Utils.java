@@ -45,9 +45,9 @@ public final class Utils {
 	private static void debugPrintJson(String prefix, JSONArray json) {
 		forEach(json, (i, v) -> {
 			if (v instanceof JSONArray) {
-				debugPrintJson(prefix + i + ".", (JSONArray) v);
+				debugPrintJson(prefix + "[" + i + "]", (JSONArray) v);
 			} else if (v instanceof JSONObject) {
-				debugPrintJson(prefix + i + ".", (JSONObject) v);
+				debugPrintJson(prefix + "[" + i + "].", (JSONObject) v);
 			} else {
 				System.out.println(prefix + i + " = " + v);
 			}
@@ -57,7 +57,7 @@ public final class Utils {
 	private static void debugPrintJson(String prefix, JSONObject json) {
 		forEach(json, (k, v) -> {
 			if (v instanceof JSONArray) {
-				debugPrintJson(prefix + k + ".", (JSONArray) v);
+				debugPrintJson(prefix + k, (JSONArray) v);
 			} else if (v instanceof JSONObject) {
 				debugPrintJson(prefix + k + ".", (JSONObject) v);
 			} else {
@@ -66,18 +66,22 @@ public final class Utils {
 		});
 	}
 
-	public static void debugPrintTable(LuaValue table) {
-		debugPrintTable("", table);
+	public static void debugPrintLua(LuaValue value) {
+		debugPrintLua("", value);
 	}
 
-	private static void debugPrintTable(String prefix, LuaValue table) {
-		forEach(table, (k, v) -> {
-			if (v.istable()) {
-				debugPrintTable(prefix + k + ".", v.checktable());
-			} else {
-				System.out.println(prefix + k + " = " + v);
-			}
-		});
+	private static void debugPrintLua(String prefix, LuaValue value) {
+		if (value.istable()) {
+			forEach(value, (k, v) -> {
+				if (v.istable()) {
+					debugPrintLua(prefix + k + ".", v);
+				} else {
+					System.out.println(prefix + k + " = " + v);
+				}
+			});
+		} else {
+			System.out.println(prefix.isEmpty() ? value : (prefix + " = " + value));
+		}
 	}
 
 	@SuppressWarnings("unchecked")
@@ -94,8 +98,9 @@ public final class Utils {
 		}
 	}
 
-	private static void forEach(JSONObject json, BiConsumer<String, Object> consumer) {
-		json.keySet().stream().sorted().forEach(k -> consumer.accept(k, json.get(k)));
+	@SuppressWarnings("unchecked")
+	public static <T> void forEach(JSONObject json, BiConsumer<String, T> consumer) {
+		json.keySet().stream().sorted().forEach(k -> consumer.accept(k, (T) json.get(k)));
 	}
 
 	public static void forEach(LuaValue table, BiConsumer<LuaValue, LuaValue> consumer) {
@@ -118,6 +123,20 @@ public final class Utils {
 			LuaValue v = n.arg(2);
 			consumer.accept(v);
 		}
+	}
+
+	public static Color getAverageColor(BufferedImage image) {
+		int[] pixels = image.getRGB(0, 0, image.getWidth(), image.getHeight(), null, 0, image.getWidth());
+		float sumR = 0, sumG = 0, sumB = 0, sumA = 0;
+		for (int pixel : pixels) {
+			float a = (pixel >> 24) & 0xFF;
+			float f = a / 255;
+			sumA += a;
+			sumR += ((pixel >> 16) & 0xFF) * f;
+			sumG += ((pixel >> 8) & 0xFF) * f;
+			sumB += ((pixel) & 0xFF) * f;
+		}
+		return new Color(sumR / sumA, sumG / sumA, sumB / sumA);
 	}
 
 	public static Color parseColor(LuaValue value) {
