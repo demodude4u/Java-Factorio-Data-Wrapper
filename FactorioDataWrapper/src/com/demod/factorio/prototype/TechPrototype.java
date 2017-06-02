@@ -22,7 +22,6 @@ public class TechPrototype extends DataPrototype {
 		public Effect(LuaValue lua) {
 			this.lua = lua;
 			type = lua.get("type").tojstring();
-			System.out.println(type);
 			LuaValue modifierLua = lua.get("modifier");
 			if (modifierLua.isnumber()) {
 				modifier = modifierLua.todouble();
