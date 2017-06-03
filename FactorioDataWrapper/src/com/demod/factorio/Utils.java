@@ -24,6 +24,11 @@ import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.Varargs;
 
 public final class Utils {
+	public static final BufferedImage EMPTY_IMAGE = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
+	static {
+		EMPTY_IMAGE.setRGB(0, 0, 0x00000000);
+	}
+
 	public static int compareRange(double min1, double max1, double min2, double max2) {
 		if (max1 <= min2) {
 			return -1;
