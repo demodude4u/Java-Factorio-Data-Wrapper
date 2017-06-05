@@ -184,10 +184,13 @@ public class FactorioWikiMain {
 					TechPrototype firstTech = table.getTechnology(bonusName + "-1").get();
 					int maxBonus = firstTech.getBonusGroup().stream().mapToInt(TechPrototype::getBonusLevel).max()
 							.getAsInt();
+
+					double time = 0;
 					Optional<IntUnaryOperator> countFormula = Optional.empty();
 					LinkedHashMap<String, Integer> ingredients = null;
 					List<TechPrototype.Effect> effects = null;
 					Map<String, Double> effectTypeSum = new LinkedHashMap<>();
+
 					for (int i = 1; i <= maxBonus; i++) {
 						Optional<TechPrototype> optTech = table.getTechnology(bonusName + "-" + i);
 						int count;
@@ -196,6 +199,7 @@ public class FactorioWikiMain {
 						if (optTech.isPresent()) {
 							TechPrototype tech = optTech.get();
 
+							time = tech.getTime();
 							ingredients = tech.getIngredients();
 							effects = tech.getEffects();
 
@@ -219,7 +223,7 @@ public class FactorioWikiMain {
 						});
 
 						pw.println("{{Icontech|" + wikiBonusName + " (research)|" + i + "|" + wikiBonusName + "}} "
-								+ wikiBonusName + " " + i + " || "
+								+ wikiBonusName + " " + i + " || {{Icon|Time|" + wiki_fmtDouble(time) + "|Time}} "
 								+ ingredients.entrySet().stream()
 										.sorted((e1, e2) -> Integer.compare(wiki_ScienceOrdering.get(e1.getKey()),
 												wiki_ScienceOrdering.get(e2.getKey())))
