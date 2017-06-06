@@ -76,6 +76,10 @@ public class FactorioData {
 	public static BufferedImage getIcon(DataPrototype prototype) {
 		String name = prototype.getName();
 		return modIconCache.computeIfAbsent(name, n -> {
+			LuaValue iconLua = prototype.lua().get("icon");
+			if (!iconLua.isnil()) {
+				return getModImage(iconLua);
+			}
 			LuaValue iconsLua = prototype.lua().get("icons");
 			BufferedImage icon = new BufferedImage(32, 32, BufferedImage.TYPE_INT_ARGB);
 			Graphics2D g = icon.createGraphics();
