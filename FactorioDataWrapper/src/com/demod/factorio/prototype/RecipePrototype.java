@@ -10,6 +10,7 @@ import com.demod.factorio.Utils;
 
 public class RecipePrototype extends DataPrototype {
 
+	private final String category;
 	private final Map<String, Integer> inputs = new LinkedHashMap<>();
 	private final Map<String, Integer> outputs = new LinkedHashMap<>();
 	private final double energyRequired;
@@ -51,7 +52,8 @@ public class RecipePrototype extends DataPrototype {
 		}
 
 		energyRequired = lua.get("energy_required").optdouble(0.5);
-		handCraftable = lua.get("category").isnil();
+		category = lua.get("category").optjstring("crafting");
+		handCraftable = category.equals("crafting");
 	}
 
 	public double getEnergyRequired() {

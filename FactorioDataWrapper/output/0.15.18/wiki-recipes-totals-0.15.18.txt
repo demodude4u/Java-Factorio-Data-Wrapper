@@ -918,9 +918,9 @@ Rocket launcher
 
 Rocket part
 |recipe = Time, 3 + Low density structure, 10 + Rocket control unit, 10 + Rocket fuel, 10
-|total-raw = Time, 3 + Low density structure, 10 + Rocket control unit, 10 + Rocket fuel, 10
+|total-raw = Time, 1590.5 + Copper plate, 375 + Iron plate, 150 + Plastic bar, 150 + Processing unit, 10 + Solid fuel, 100 + Steel plate, 100
 |expensive-recipe = Time, 3 + Low density structure, 10 + Rocket control unit, 10 + Rocket fuel, 10
-|expensive-total-raw = Time, 3 + Low density structure, 10 + Rocket control unit, 10 + Rocket fuel, 10
+|expensive-total-raw = Time, 1903 + Copper plate, 1050 + Iron plate, 300 + Plastic bar, 300 + Processing unit, 10 + Solid fuel, 100 + Steel plate, 100
 
 Rocket silo
 |recipe = Time, 30 + Concrete, 1000 + Electric engine unit, 200 + Pipe, 100 + Processing unit, 200 + Steel plate, 1000
@@ -930,9 +930,9 @@ Rocket silo
 
 Satellite
 |recipe = Time, 3 + Accumulator, 100 + Low density structure, 100 + Processing unit, 100 + Radar, 5 + Rocket fuel, 50 + Solar panel, 100
-|total-raw = Time, 3924.25 + Battery, 500 + Copper plate, 2787.5 + Iron plate, 1825 + Low density structure, 100 + Processing unit, 100 + Rocket fuel, 50 + Steel plate, 500
+|total-raw = Time, 8424.25 + Battery, 500 + Copper plate, 3287.5 + Iron plate, 1825 + Plastic bar, 500 + Processing unit, 100 + Solid fuel, 500 + Steel plate, 1500
 |expensive-recipe = Time, 3 + Accumulator, 100 + Low density structure, 100 + Processing unit, 100 + Radar, 5 + Rocket fuel, 50 + Solar panel, 100
-|expensive-total-raw = Time, 6593 + Battery, 500 + Copper plate, 8125 + Iron plate, 3400 + Low density structure, 100 + Processing unit, 100 + Rocket fuel, 50 + Steel plate, 500
+|expensive-total-raw = Time, 11093 + Battery, 500 + Copper plate, 9125 + Iron plate, 3400 + Plastic bar, 1000 + Processing unit, 100 + Solid fuel, 500 + Steel plate, 1500
 
 Science pack 1
 |recipe = Time, 5 + Copper plate, 1 + Iron gear wheel, 1
