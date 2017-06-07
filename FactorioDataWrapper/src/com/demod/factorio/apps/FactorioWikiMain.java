@@ -489,7 +489,8 @@ public class FactorioWikiMain {
 
 					pw.print("|cost = ");
 					pw.printf("Time, %s", wiki_fmtDouble(tech.getTime()));
-					tech.getIngredients().entrySet().stream().sorted((e1, e2) -> e1.getKey().compareTo(e2.getKey()))
+					tech.getIngredients().entrySet().stream().sorted((e1, e2) -> Integer
+							.compare(wiki_ScienceOrdering.get(e1.getKey()), wiki_ScienceOrdering.get(e2.getKey())))
 							.forEach(entry -> {
 								pw.printf(" + %s, %d", wiki_fmtName(entry.getKey(), nameMappingItemsRecipes),
 										entry.getValue());
