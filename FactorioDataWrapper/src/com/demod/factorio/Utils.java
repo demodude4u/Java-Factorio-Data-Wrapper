@@ -21,6 +21,9 @@ import org.luaj.vm2.LuaTable;
 import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.Varargs;
 
+import com.diffplug.common.base.Errors;
+import com.diffplug.common.base.Throwing;
+
 public final class Utils {
 
 	public static void debugPrintJson(JSONArray json) {
@@ -88,8 +91,9 @@ public final class Utils {
 	}
 
 	@SuppressWarnings("unchecked")
-	public static <T> void forEach(JSONObject json, BiConsumer<String, T> consumer) {
-		json.keySet().stream().sorted().forEach(k -> consumer.accept(k, (T) json.get(k)));
+	public static <T> void forEach(JSONObject json, Throwing.BiConsumer<String, T> consumer) {
+		json.keySet().stream().sorted()
+				.forEach(Errors.rethrow().wrap((String k) -> consumer.accept(k, (T) json.get(k))));
 	}
 
 	public static void forEach(LuaValue table, BiConsumer<LuaValue, LuaValue> consumer) {
