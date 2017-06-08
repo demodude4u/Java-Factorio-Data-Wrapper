@@ -10,7 +10,6 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
@@ -25,6 +24,7 @@ import org.json.JSONObject;
 import com.demod.factorio.DataTable;
 import com.demod.factorio.FactorioData;
 import com.demod.factorio.ModInfo;
+import com.demod.factorio.TotalRawCalculator;
 import com.demod.factorio.Utils;
 import com.demod.factorio.prototype.RecipePrototype;
 import com.demod.factorio.prototype.TechPrototype;
@@ -36,6 +36,7 @@ import com.google.common.primitives.Ints;
 public class FactorioWikiMain {
 
 	public static final Map<String, Integer> wiki_ScienceOrdering = new LinkedHashMap<>();
+
 	static {
 		wiki_ScienceOrdering.put("science-pack-1", 1);
 		wiki_ScienceOrdering.put("science-pack-2", 2);
@@ -45,8 +46,8 @@ public class FactorioWikiMain {
 		wiki_ScienceOrdering.put("high-tech-science-pack", 6);
 		wiki_ScienceOrdering.put("space-science-pack", 7);
 	}
-
 	private static Map<String, Function<Double, String>> wiki_EffectModifierFormatter = new LinkedHashMap<>();
+
 	static {
 		Function<Double, String> fmtCount = v -> wiki_fmtDouble(v);
 		Function<Double, String> fmtPercent = v -> String.format("%.0f%%", v * 100);
@@ -327,57 +328,11 @@ public class FactorioWikiMain {
 	private static void wiki_RawTotals(DataTable table, JSONObject nameMappingJson, PrintWriter pw)
 			throws FileNotFoundException {
 
-		class TotalRawCalculator {
-			Map<String, RecipePrototype> recipes;
-			Map<String, Map<String, Double>> recipeTotalRaws = new LinkedHashMap<>();
-
-			public Map<String, Double> compute(RecipePrototype recipe) {
-
-				// if (recipeTotalRaws.containsKey(recipe.getName())) {
-				// return recipeTotalRaws.get(recipe.getName());
-				// }
-
-				Map<String, Double> totalRaw = new LinkedHashMap<>();
-				recipeTotalRaws.put(recipe.getName(), totalRaw);
-				totalRaw.put(FactorioData.RAW_TIME, recipe.getEnergyRequired());
-
-				for (Entry<String, Integer> entry : recipe.getInputs().entrySet()) {
-					String input = entry.getKey();
-					Optional<RecipePrototype> findRecipe = recipes.values().stream()
-							.filter(r -> r.getOutputs().keySet().stream().anyMatch(i -> {
-								return i.equals(input);
-							})).findFirst();
-					if (findRecipe.filter(RecipePrototype::isHandCraftable).isPresent()) {
-						RecipePrototype inputRecipe = findRecipe.get();
-						Map<String, Double> inputTotalRaw = compute(inputRecipe);
-						Integer inputRunYield = inputRecipe.getOutputs().get(input);
-						double inputRunCount = entry.getValue() / (double) inputRunYield;
-						inputTotalRaw.forEach((k, v) -> {
-							totalRaw.put(k, totalRaw.getOrDefault(k, 0.0) + v * inputRunCount);
-						});
-					} else {
-						totalRaw.put(input, totalRaw.getOrDefault(input, 0.0) + entry.getValue());
-					}
-				}
-
-				// System.out.println(recipe);
-				// totalRaw.forEach((k, v) -> {
-				// System.out.println("\tRAW " + k + " " + v);
-				// });
-				// System.out.println();
-				// System.out.println();
-
-				return totalRaw;
-			}
-		}
-
 		Map<String, RecipePrototype> normalRecipes = table.getRecipes();
 		Map<String, RecipePrototype> expensiveRecipes = table.getExpensiveRecipes();
 
-		TotalRawCalculator normalTotalRawCalculator = new TotalRawCalculator();
-		normalTotalRawCalculator.recipes = normalRecipes;
-		TotalRawCalculator expensiveTotalRawCalculator = new TotalRawCalculator();
-		expensiveTotalRawCalculator.recipes = expensiveRecipes;
+		TotalRawCalculator normalTotalRawCalculator = new TotalRawCalculator(normalRecipes);
+		TotalRawCalculator expensiveTotalRawCalculator = new TotalRawCalculator(expensiveRecipes);
 
 		Sets.union(normalRecipes.keySet(), expensiveRecipes.keySet()).stream().sorted().forEach(name -> {
 			pw.println(wiki_fmtName(name, nameMappingJson));
@@ -406,8 +361,8 @@ public class FactorioWikiMain {
 					Map<String, Double> totalRaw = normalTotalRawCalculator.compute(recipe);
 
 					pw.print("|total-raw = ");
-					pw.printf("Time, %s", wiki_fmtDouble(totalRaw.get(FactorioData.RAW_TIME)));
-					totalRaw.entrySet().stream().filter(e -> !e.getKey().equals(FactorioData.RAW_TIME))
+					pw.printf("Time, %s", wiki_fmtDouble(totalRaw.get(TotalRawCalculator.RAW_TIME)));
+					totalRaw.entrySet().stream().filter(e -> !e.getKey().equals(TotalRawCalculator.RAW_TIME))
 							.sorted((e1, e2) -> e1.getKey().compareTo(e2.getKey())).forEach(entry -> {
 								pw.printf(" + %s, %s", wiki_fmtName(entry.getKey(), nameMappingJson),
 										wiki_fmtDouble(entry.getValue()));
@@ -439,8 +394,8 @@ public class FactorioWikiMain {
 					Map<String, Double> totalRaw = expensiveTotalRawCalculator.compute(recipe);
 
 					pw.print("|expensive-total-raw = ");
-					pw.printf("Time, %s", wiki_fmtDouble(totalRaw.get(FactorioData.RAW_TIME)));
-					totalRaw.entrySet().stream().filter(e -> !e.getKey().equals(FactorioData.RAW_TIME))
+					pw.printf("Time, %s", wiki_fmtDouble(totalRaw.get(TotalRawCalculator.RAW_TIME)));
+					totalRaw.entrySet().stream().filter(e -> !e.getKey().equals(TotalRawCalculator.RAW_TIME))
 							.sorted((e1, e2) -> e1.getKey().compareTo(e2.getKey())).forEach(entry -> {
 								pw.printf(" + %s, %s", wiki_fmtName(entry.getKey(), nameMappingJson),
 										wiki_fmtDouble(entry.getValue()));

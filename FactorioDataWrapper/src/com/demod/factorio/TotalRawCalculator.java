@@ -1,0 +1,45 @@
+package com.demod.factorio;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Optional;
+
+import com.demod.factorio.prototype.RecipePrototype;
+
+public class TotalRawCalculator {
+	private final Map<String, RecipePrototype> recipes;
+	private final Map<String, Map<String, Double>> recipeTotalRaws = new LinkedHashMap<>();
+	public static final String RAW_TIME = "_TIME_";
+
+	public TotalRawCalculator(Map<String, RecipePrototype> recipes) {
+		this.recipes = recipes;
+	}
+
+	public Map<String, Double> compute(RecipePrototype recipe) {
+		Map<String, Double> totalRaw = new LinkedHashMap<>();
+		recipeTotalRaws.put(recipe.getName(), totalRaw);
+		totalRaw.put(TotalRawCalculator.RAW_TIME, recipe.getEnergyRequired());
+
+		for (Entry<String, Integer> entry : recipe.getInputs().entrySet()) {
+			String input = entry.getKey();
+			Optional<RecipePrototype> findRecipe = recipes.values().stream()
+					.filter(r -> r.getOutputs().keySet().stream().anyMatch(i -> {
+						return i.equals(input);
+					})).findFirst();
+			if (findRecipe.filter(RecipePrototype::isHandCraftable).isPresent()) {
+				RecipePrototype inputRecipe = findRecipe.get();
+				Map<String, Double> inputTotalRaw = compute(inputRecipe);
+				Integer inputRunYield = inputRecipe.getOutputs().get(input);
+				double inputRunCount = entry.getValue() / (double) inputRunYield;
+				inputTotalRaw.forEach((k, v) -> {
+					totalRaw.put(k, totalRaw.getOrDefault(k, 0.0) + v * inputRunCount);
+				});
+			} else {
+				totalRaw.put(input, totalRaw.getOrDefault(input, 0.0) + entry.getValue());
+			}
+		}
+
+		return totalRaw;
+	}
+}

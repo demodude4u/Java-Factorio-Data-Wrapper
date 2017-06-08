@@ -43,7 +43,6 @@ public class FactorioData {
 
 	private static final String SEARCHJAR = "SEARCHJAR";
 
-	public static final String RAW_TIME = "_TIME_";
 	private static Map<String, BufferedImage> modImageCache = new HashMap<>();
 	private static Map<String, BufferedImage> modIconCache = new HashMap<>();
 
