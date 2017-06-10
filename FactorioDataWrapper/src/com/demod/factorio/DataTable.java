@@ -21,6 +21,8 @@ import com.demod.factorio.prototype.RecipePrototype;
 import com.demod.factorio.prototype.TechPrototype;
 
 public class DataTable {
+	private final LuaTable rawLua;
+
 	private final Map<String, EntityPrototype> entities = new LinkedHashMap<>();
 	private final Map<String, ItemPrototype> items = new LinkedHashMap<>();
 	private final Map<String, RecipePrototype> recipes = new LinkedHashMap<>();
@@ -33,7 +35,7 @@ public class DataTable {
 	public DataTable(TypeHiearchy typeHiearchy, LuaTable dataLua, JSONObject excludeDataJson) {
 		Set<String> excludedRecipesAndItems = asStringSet(excludeDataJson.getJSONArray("recipes-and-items"));
 
-		LuaTable rawLua = dataLua.get("raw").checktable();
+		rawLua = dataLua.get("raw").checktable();
 		Utils.forEach(rawLua, v -> {
 			Utils.forEach(v.checktable(), protoLua -> {
 				String type = protoLua.get("type").toString();
@@ -126,6 +128,10 @@ public class DataTable {
 
 	public Map<String, ItemPrototype> getItems() {
 		return items;
+	}
+
+	public LuaValue getRaw(String key) {
+		return rawLua.get(key);
 	}
 
 	public Optional<RecipePrototype> getRecipe(String name) {
