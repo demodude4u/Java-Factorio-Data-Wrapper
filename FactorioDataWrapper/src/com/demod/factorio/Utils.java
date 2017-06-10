@@ -8,6 +8,7 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintStream;
 import java.lang.reflect.Field;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
@@ -58,21 +59,25 @@ public final class Utils {
 		});
 	}
 
-	public static void debugPrintLua(LuaValue value) {
-		debugPrintLua("", value);
+	public static void debugPrintLua(LuaTable value, PrintStream ps) {
+		debugPrintLua("", value, ps);
 	}
 
-	private static void debugPrintLua(String prefix, LuaValue value) {
+	public static void debugPrintLua(LuaValue value) {
+		debugPrintLua("", value, System.out);
+	}
+
+	private static void debugPrintLua(String prefix, LuaValue value, PrintStream ps) {
 		if (value.istable()) {
 			forEach(value, (k, v) -> {
 				if (v.istable()) {
-					debugPrintLua(prefix + k + ".", v);
+					debugPrintLua(prefix + k + ".", v, ps);
 				} else {
-					System.out.println(prefix + k + " = " + v);
+					ps.println(prefix + k + " = " + v);
 				}
 			});
 		} else {
-			System.out.println(prefix.isEmpty() ? value : (prefix + " = " + value));
+			ps.println(prefix.isEmpty() ? value : (prefix + " = " + value));
 		}
 	}
 
