@@ -59,12 +59,12 @@ public final class Utils {
 		});
 	}
 
-	public static void debugPrintLua(LuaTable value, PrintStream ps) {
-		debugPrintLua("", value, ps);
-	}
-
 	public static void debugPrintLua(LuaValue value) {
 		debugPrintLua("", value, System.out);
+	}
+
+	public static void debugPrintLua(LuaValue value, PrintStream ps) {
+		debugPrintLua("", value, ps);
 	}
 
 	private static void debugPrintLua(String prefix, LuaValue value, PrintStream ps) {

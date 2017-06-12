@@ -130,8 +130,12 @@ public class DataTable {
 		return items;
 	}
 
-	public LuaValue getRaw(String key) {
-		return rawLua.get(key);
+	public Optional<LuaValue> getRaw(String key) {
+		LuaValue retLua = rawLua.get(key);
+		if (retLua.isnil()) {
+			return Optional.empty();
+		}
+		return Optional.of(retLua);
 	}
 
 	public Optional<RecipePrototype> getRecipe(String name) {
