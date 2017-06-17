@@ -15,6 +15,7 @@ import org.luaj.vm2.LuaValue;
 
 import com.demod.factorio.prototype.DataPrototype;
 import com.demod.factorio.prototype.EntityPrototype;
+import com.demod.factorio.prototype.EquipmentPrototype;
 import com.demod.factorio.prototype.FluidPrototype;
 import com.demod.factorio.prototype.ItemPrototype;
 import com.demod.factorio.prototype.RecipePrototype;
@@ -29,6 +30,7 @@ public class DataTable {
 	private final Map<String, RecipePrototype> expensiveRecipes = new LinkedHashMap<>();
 	private final Map<String, FluidPrototype> fluids = new LinkedHashMap<>();
 	private final Map<String, TechPrototype> technologies = new LinkedHashMap<>();
+	private final Map<String, EquipmentPrototype> equipments = new LinkedHashMap<>();
 
 	private final Set<String> worldInputs = new LinkedHashSet<>();
 
@@ -52,6 +54,8 @@ public class DataTable {
 				} else if (typeHiearchy.isAssignable("technology", type)) {
 					technologies.put(name,
 							new TechPrototype(protoLua.checktable(), name, type, excludedRecipesAndItems));
+				} else if (typeHiearchy.isAssignable("equipment", type)) {
+					equipments.put(name, new EquipmentPrototype(protoLua.checktable(), name, type));
 				}
 			});
 		});
@@ -104,6 +108,14 @@ public class DataTable {
 
 	public Optional<EntityPrototype> getEntity(String name) {
 		return Optional.ofNullable(entities.get(name));
+	}
+
+	public Optional<EquipmentPrototype> getEquipment(String name) {
+		return Optional.ofNullable(equipments.get(name));
+	}
+
+	public Map<String, EquipmentPrototype> getEquipments() {
+		return equipments;
 	}
 
 	public Optional<RecipePrototype> getExpensiveRecipe(String name) {
