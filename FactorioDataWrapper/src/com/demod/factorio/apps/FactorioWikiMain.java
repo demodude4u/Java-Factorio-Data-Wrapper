@@ -36,7 +36,6 @@ import com.google.common.primitives.Ints;
 public class FactorioWikiMain {
 
 	public static final Map<String, Integer> wiki_ScienceOrdering = new LinkedHashMap<>();
-
 	static {
 		wiki_ScienceOrdering.put("science-pack-1", 1);
 		wiki_ScienceOrdering.put("science-pack-2", 2);
@@ -46,6 +45,7 @@ public class FactorioWikiMain {
 		wiki_ScienceOrdering.put("high-tech-science-pack", 6);
 		wiki_ScienceOrdering.put("space-science-pack", 7);
 	}
+
 	private static Map<String, Function<Double, String>> wiki_EffectModifierFormatter = new LinkedHashMap<>();
 
 	static {
@@ -96,6 +96,10 @@ public class FactorioWikiMain {
 
 		try (PrintWriter pw = new PrintWriter(new File(outputFolder, "wiki-items-" + baseInfo.getVersion() + ".txt"))) {
 			wiki_Items(table, nameMappingTechnologies, nameMappingItemsRecipes, pw);
+		}
+
+		try (PrintWriter pw = new PrintWriter(new File(outputFolder, "wiki-types-" + baseInfo.getVersion() + ".txt"))) {
+			wiki_Types(table, nameMappingItemsRecipes, pw);
 		}
 
 		// try (PrintWriter pw = new PrintWriter(
@@ -481,5 +485,43 @@ public class FactorioWikiMain {
 
 					pw.println();
 				});
+	}
+
+	private static void wiki_Types(DataTable table, JSONObject nameMappingItemsRecipes, PrintWriter pw) {
+		class ProtoMatch {
+			boolean item = false, recipe = false, entity = false, equipment = false;
+		}
+
+		Map<String, ProtoMatch> protoMatches = new LinkedHashMap<>();
+		table.getItems().keySet()
+				.forEach(name -> protoMatches.computeIfAbsent(name, k -> new ProtoMatch()).item = true);
+		table.getRecipes().keySet()
+				.forEach(name -> protoMatches.computeIfAbsent(name, k -> new ProtoMatch()).recipe = true);
+		table.getEntities().keySet()
+				.forEach(name -> protoMatches.computeIfAbsent(name, k -> new ProtoMatch()).entity = true);
+		table.getEquipments().keySet()
+				.forEach(name -> protoMatches.computeIfAbsent(name, k -> new ProtoMatch()).equipment = true);
+
+		protoMatches.entrySet().stream().sorted((e1, e2) -> e1.getKey().compareTo(e2.getKey())).forEach(e -> {
+			String name = e.getKey();
+			ProtoMatch m = e.getValue();
+
+			String type = "???";
+			if (!m.item && !m.recipe) {
+				return;
+			} else if (m.equipment) {
+				type = table.getEquipment(name).get().getType();
+			} else if (m.entity) {
+				type = table.getEntity(name).get().getType();
+			} else if (m.item) {
+				type = "item";
+			} else if (m.recipe) {
+				type = "recipe";
+			}
+
+			pw.println(wiki_fmtName(name, nameMappingItemsRecipes));
+			pw.println("|prototype-type = " + type);
+			pw.println();
+		});
 	}
 }
