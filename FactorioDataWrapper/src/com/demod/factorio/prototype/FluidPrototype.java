@@ -5,6 +5,5 @@ import org.luaj.vm2.LuaTable;
 public class FluidPrototype extends DataPrototype {
 	public FluidPrototype(LuaTable lua, String name, String type) {
 		super(lua, name, type);
-		// TODO Auto-generated constructor stub
 	}
 }
