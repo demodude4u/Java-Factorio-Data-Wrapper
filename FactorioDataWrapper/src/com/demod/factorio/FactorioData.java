@@ -135,11 +135,6 @@ public class FactorioData {
 		});
 	}
 
-	public static BufferedImage getShadowImage(LuaValue filename, Color color) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	public static synchronized DataTable getTable() throws JSONException, IOException {
 		if (dataTable == null) {
 			dataTable = initializeDataTable();
