@@ -313,6 +313,9 @@ Iron plate
 Iron stick
 |prototype-type = item
 
+Item with tags
+|prototype-type = item
+
 Kovarex enrichment process
 |prototype-type = recipe
 
@@ -461,7 +464,7 @@ Radar
 |prototype-type = radar
 
 Rail
-|prototype-type = recipe
+|prototype-type = item
 
 Rail chain signal
 |prototype-type = rail-chain-signal

@@ -367,6 +367,9 @@ Iron stick
 |consumers = Iron axe + Rail + Lamp + Steel axe
 |stack-size = 100
 
+Item with tags
+|stack-size = 1
+
 Lab
 |stack-size = 10
 
@@ -552,6 +555,10 @@ Pumpjack
 Radar
 |consumers = Satellite
 |stack-size = 50
+
+Rail
+|stack-size = 100
+|required-technologies = Railway
 
 Rail chain signal
 |stack-size = 50
