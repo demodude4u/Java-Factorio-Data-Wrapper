@@ -15,7 +15,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -159,8 +158,8 @@ public class FactorioData {
 						.collect(Collectors.joining(";")).replace('\\', '/');
 		// System.out.println("LUA_PATH: " + luaPath);
 
-		TypeHiearchy typeHiearchy = new TypeHiearchy(
-				Utils.readJsonFromStream(new URL(Config.get().getString("type_schema")).openStream()));
+		TypeHiearchy typeHiearchy = new TypeHiearchy(Utils
+				.readJsonFromStream(FactorioData.class.getClassLoader().getResourceAsStream("type-hiearchy.json")));
 
 		globals = JsePlatform.standardGlobals();
 		globals.load(new BaseLib());
@@ -200,7 +199,6 @@ public class FactorioData {
 	private static BufferedImage loadImage(File file) throws IOException {
 		BufferedImage image = ImageIO.read(file);
 		if (image.getType() == BufferedImage.TYPE_CUSTOM) {
-			System.err.println("CUSTOM IMAGE: " + file.getAbsolutePath());
 			image = convertCustomImage(image);
 		}
 		return image;

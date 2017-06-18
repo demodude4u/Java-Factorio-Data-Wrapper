@@ -31,6 +31,7 @@ import com.demod.factorio.prototype.TechPrototype;
 import com.google.common.collect.LinkedHashMultimap;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Sets;
+import com.google.common.collect.Streams;
 import com.google.common.primitives.Ints;
 
 public class FactorioWikiMain {
@@ -100,6 +101,11 @@ public class FactorioWikiMain {
 
 		try (PrintWriter pw = new PrintWriter(new File(outputFolder, "wiki-types-" + baseInfo.getVersion() + ".txt"))) {
 			wiki_Types(table, nameMappingItemsRecipes, pw);
+		}
+
+		try (PrintWriter pw = new PrintWriter(
+				new File(outputFolder, "wiki-type-tree-" + baseInfo.getVersion() + ".txt"))) {
+			wiki_TypeTree(table, pw);
 		}
 
 		// try (PrintWriter pw = new PrintWriter(
@@ -522,6 +528,44 @@ public class FactorioWikiMain {
 			pw.println(wiki_fmtName(name, nameMappingItemsRecipes));
 			pw.println("|prototype-type = " + type);
 			pw.println();
+		});
+	}
+
+	private static void wiki_TypeTree(DataTable table, PrintWriter pw) {
+		Multimap<String, String> links = LinkedHashMultimap.create();
+		Multimap<String, String> leafs = LinkedHashMultimap.create();
+
+		table.getTypeHiearchy().getParents().forEach((n, p) -> {
+			links.put(p, n);
+		});
+		table.getTypeHiearchy().getRoots().forEach(n -> {
+			links.put("__ROOT__", n);
+		});
+
+		Utils.forEach(table.getRawLua(), v -> {
+			Utils.forEach(v.checktable(), protoLua -> {
+				String type = protoLua.get("type").tojstring();
+				String name = protoLua.get("name").tojstring();
+				leafs.put(type, name);
+				if (!table.getTypeHiearchy().getParents().containsKey(type)
+						&& !table.getTypeHiearchy().getRoots().contains(type)) {
+					System.err.println("MISSING PARENT FOR TYPE: " + type + " (" + name + ")");
+				}
+			});
+		});
+
+		wiki_TypeTree_RecursivePrint(links, leafs, pw, "*", "__ROOT__");
+	}
+
+	private static void wiki_TypeTree_RecursivePrint(Multimap<String, String> links, Multimap<String, String> leafs,
+			PrintWriter pw, String stars, String parent) {
+		Collection<String> types = links.get(parent);
+		Collection<String> names = leafs.get(parent);
+		Streams.concat(types.stream(), names.stream()).sorted().forEach(n -> {
+			pw.println(stars + " " + n);
+			if (types.contains(n)) {
+				wiki_TypeTree_RecursivePrint(links, leafs, pw, stars + "*", n);
+			}
 		});
 	}
 }

@@ -22,6 +22,7 @@ import com.demod.factorio.prototype.RecipePrototype;
 import com.demod.factorio.prototype.TechPrototype;
 
 public class DataTable {
+	private final TypeHiearchy typeHiearchy;
 	private final LuaTable rawLua;
 
 	private final Map<String, EntityPrototype> entities = new LinkedHashMap<>();
@@ -35,13 +36,15 @@ public class DataTable {
 	private final Set<String> worldInputs = new LinkedHashSet<>();
 
 	public DataTable(TypeHiearchy typeHiearchy, LuaTable dataLua, JSONObject excludeDataJson) {
+		this.typeHiearchy = typeHiearchy;
+		this.rawLua = dataLua.get("raw").checktable();
+
 		Set<String> excludedRecipesAndItems = asStringSet(excludeDataJson.getJSONArray("recipes-and-items"));
 
-		rawLua = dataLua.get("raw").checktable();
 		Utils.forEach(rawLua, v -> {
 			Utils.forEach(v.checktable(), protoLua -> {
-				String type = protoLua.get("type").toString();
-				String name = protoLua.get("name").toString();
+				String type = protoLua.get("type").tojstring();
+				String name = protoLua.get("name").tojstring();
 				if (typeHiearchy.isAssignable("item", type) && !excludedRecipesAndItems.contains(name)) {
 					items.put(name, new ItemPrototype(protoLua.checktable(), name, type));
 				} else if (typeHiearchy.isAssignable("recipe", type) && !excludedRecipesAndItems.contains(name)) {
@@ -150,6 +153,10 @@ public class DataTable {
 		return Optional.of(retLua);
 	}
 
+	public LuaTable getRawLua() {
+		return rawLua;
+	}
+
 	public Optional<RecipePrototype> getRecipe(String name) {
 		return Optional.ofNullable(recipes.get(name));
 	}
@@ -164,6 +171,10 @@ public class DataTable {
 
 	public Optional<TechPrototype> getTechnology(String name) {
 		return Optional.ofNullable(technologies.get(name));
+	}
+
+	public TypeHiearchy getTypeHiearchy() {
+		return typeHiearchy;
 	}
 
 	public Set<String> getWorldInputs() {
