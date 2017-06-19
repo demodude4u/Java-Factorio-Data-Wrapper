@@ -76,7 +76,7 @@ public class FactorioData {
 		return modIconCache.computeIfAbsent(name, n -> {
 			LuaValue iconLua = prototype.lua().get("icon");
 			if (!iconLua.isnil()) {
-				return getModImage(iconLua);
+				return getModImage(iconLua.tojstring());
 			}
 			LuaValue iconsLua = prototype.lua().get("icons");
 			BufferedImage icon = new BufferedImage(32, 32, BufferedImage.TYPE_INT_ARGB);
@@ -85,7 +85,7 @@ public class FactorioData {
 			g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
 			AffineTransform pat = g.getTransform();
 			Utils.forEach(iconsLua, l -> {
-				BufferedImage image = getModImage(l.get("icon"));
+				BufferedImage image = getModImage(l.get("icon").tojstring());
 
 				LuaValue tintLua = l.get("tint");
 				if (!tintLua.isnil()) {
@@ -107,20 +107,25 @@ public class FactorioData {
 		});
 	}
 
-	public static BufferedImage getModImage(LuaValue value) {
-		return getModImage(value, Optional.empty());
+	public static BufferedImage getModImage(String path) {
+		return getModImage(path, Optional.empty());
 	}
 
-	public static BufferedImage getModImage(LuaValue value, Color tint) {
-		return getModImage(value, Optional.of(tint));
+	public static BufferedImage getModImage(String path, Color tint) {
+		return getModImage(path, Optional.of(tint));
 	}
 
-	private static BufferedImage getModImage(LuaValue value, Optional<Color> tint) {
-		String path = value.toString();
+	private static BufferedImage getModImage(String path, Optional<Color> tint) {
 		return modImageCache.computeIfAbsent(path, p -> {
 			String firstSegment = path.split("\\/")[0];
+			if (firstSegment.length() < 4) {
+				throw new IllegalArgumentException("Path is not valid: \"" + path + "\"");
+			}
 			String mod = firstSegment.substring(2, firstSegment.length() - 2);
 			File modFolder = new File(factorio, "data/" + mod);
+			if (!modFolder.exists()) {
+				throw new IllegalStateException("Mod folder does not exist: " + modFolder.getAbsolutePath());
+			}
 			try {
 				BufferedImage image = loadImage(new File(modFolder, path.replace(firstSegment, "").substring(1)));
 				if (tint.isPresent()) {
