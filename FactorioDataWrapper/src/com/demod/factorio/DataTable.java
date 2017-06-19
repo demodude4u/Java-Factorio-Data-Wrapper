@@ -20,6 +20,7 @@ import com.demod.factorio.prototype.FluidPrototype;
 import com.demod.factorio.prototype.ItemPrototype;
 import com.demod.factorio.prototype.RecipePrototype;
 import com.demod.factorio.prototype.TechPrototype;
+import com.demod.factorio.prototype.TilePrototype;
 
 public class DataTable {
 	private final TypeHiearchy typeHiearchy;
@@ -32,6 +33,7 @@ public class DataTable {
 	private final Map<String, FluidPrototype> fluids = new LinkedHashMap<>();
 	private final Map<String, TechPrototype> technologies = new LinkedHashMap<>();
 	private final Map<String, EquipmentPrototype> equipments = new LinkedHashMap<>();
+	private final Map<String, TilePrototype> tiles = new LinkedHashMap<>();
 
 	private final Set<String> worldInputs = new LinkedHashSet<>();
 
@@ -59,6 +61,8 @@ public class DataTable {
 							new TechPrototype(protoLua.checktable(), name, type, excludedRecipesAndItems));
 				} else if (typeHiearchy.isAssignable("equipment", type)) {
 					equipments.put(name, new EquipmentPrototype(protoLua.checktable(), name, type));
+				} else if (typeHiearchy.isAssignable("tile", type)) {
+					tiles.put(name, new TilePrototype(protoLua.checktable(), name, type));
 				}
 			});
 		});
@@ -171,6 +175,14 @@ public class DataTable {
 
 	public Optional<TechPrototype> getTechnology(String name) {
 		return Optional.ofNullable(technologies.get(name));
+	}
+
+	public Optional<TilePrototype> getTile(String name) {
+		return Optional.ofNullable(tiles.get(name));
+	}
+
+	public Map<String, TilePrototype> getTiles() {
+		return tiles;
 	}
 
 	public TypeHiearchy getTypeHiearchy() {
