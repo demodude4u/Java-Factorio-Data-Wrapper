@@ -313,9 +313,6 @@ Iron plate
 Iron stick
 |prototype-type = item
 
-Item with tags
-|prototype-type = item
-
 Kovarex enrichment process
 |prototype-type = recipe
 

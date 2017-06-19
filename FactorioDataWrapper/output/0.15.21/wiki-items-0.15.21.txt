@@ -367,9 +367,6 @@ Iron stick
 |consumers = Iron axe + Rail + Lamp + Steel axe
 |stack-size = 100
 
-Item with tags
-|stack-size = 1
-
 Lab
 |stack-size = 10
 

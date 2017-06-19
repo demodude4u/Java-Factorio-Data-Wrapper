@@ -19,6 +19,7 @@
 	  "tank-machine-gun",
 	  "vehicle-machine-gun",
 	  "item-with-label",
-	  "item-with-inventory"
+	  "item-with-inventory",
+	  "item-with-tags"
    ]
 }
