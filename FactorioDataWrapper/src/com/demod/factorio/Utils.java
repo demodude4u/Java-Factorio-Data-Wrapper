@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.lang.reflect.Field;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
 import java.util.function.BiConsumer;
@@ -24,6 +25,9 @@ import org.luaj.vm2.Varargs;
 
 import com.diffplug.common.base.Errors;
 import com.diffplug.common.base.Throwing;
+import com.google.common.collect.Streams;
+
+import javafx.util.Pair;
 
 public final class Utils {
 
@@ -69,7 +73,7 @@ public final class Utils {
 
 	private static void debugPrintLua(String prefix, LuaValue value, PrintStream ps) {
 		if (value.istable()) {
-			forEach(value, (k, v) -> {
+			forEachSorted(value, (k, v) -> {
 				if (v.istable()) {
 					debugPrintLua(prefix + k + ".", v, ps);
 				} else {
@@ -121,6 +125,34 @@ public final class Utils {
 			LuaValue v = n.arg(2);
 			consumer.accept(v);
 		}
+	}
+
+	private static void forEachSorted(LuaValue table, BiConsumer<LuaValue, LuaValue> consumer) {
+		Streams.stream(new Iterator<Pair<LuaValue, LuaValue>>() {
+			LuaValue k = LuaValue.NIL;
+			Varargs next = null;
+
+			@Override
+			public boolean hasNext() {
+				if (next == null) {
+					next = table.next(k);
+					k = next.arg1();
+				}
+				return !k.isnil();
+			}
+
+			@Override
+			public Pair<LuaValue, LuaValue> next() {
+				if (next == null) {
+					next = table.next(k);
+					k = next.arg1();
+				}
+				Pair<LuaValue, LuaValue> ret = new Pair<>(k, next.arg(2));
+				next = null;
+				return ret;
+			}
+		}).sorted((p1, p2) -> p1.getKey().toString().compareTo(p2.getKey().toString()))
+				.forEach(p -> consumer.accept(p.getKey(), p.getValue()));
 	}
 
 	public static Color parseColor(LuaValue value) {
