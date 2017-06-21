@@ -1,5 +1,6 @@
 package com.demod.factorio;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -13,7 +14,6 @@ import org.json.JSONObject;
 import org.luaj.vm2.LuaTable;
 import org.luaj.vm2.LuaValue;
 
-import com.demod.factorio.prototype.DataPrototype;
 import com.demod.factorio.prototype.EntityPrototype;
 import com.demod.factorio.prototype.EquipmentPrototype;
 import com.demod.factorio.prototype.FluidPrototype;
@@ -23,18 +23,24 @@ import com.demod.factorio.prototype.TechPrototype;
 import com.demod.factorio.prototype.TilePrototype;
 
 public class DataTable {
+	private static Map<String, String> entityItemNameMapping = new HashMap<>();
+	static {
+		entityItemNameMapping.put("curved-rail", "rail");
+		entityItemNameMapping.put("straight-rail", "rail");
+	}
+
 	private final TypeHiearchy typeHiearchy;
 	private final LuaTable rawLua;
-
 	private final Map<String, EntityPrototype> entities = new LinkedHashMap<>();
 	private final Map<String, ItemPrototype> items = new LinkedHashMap<>();
 	private final Map<String, RecipePrototype> recipes = new LinkedHashMap<>();
 	private final Map<String, RecipePrototype> expensiveRecipes = new LinkedHashMap<>();
 	private final Map<String, FluidPrototype> fluids = new LinkedHashMap<>();
 	private final Map<String, TechPrototype> technologies = new LinkedHashMap<>();
-	private final Map<String, EquipmentPrototype> equipments = new LinkedHashMap<>();
-	private final Map<String, TilePrototype> tiles = new LinkedHashMap<>();
 
+	private final Map<String, EquipmentPrototype> equipments = new LinkedHashMap<>();
+
+	private final Map<String, TilePrototype> tiles = new LinkedHashMap<>();
 	private final Set<String> worldInputs = new LinkedHashSet<>();
 
 	public DataTable(TypeHiearchy typeHiearchy, LuaTable dataLua, JSONObject excludeDataJson) {
@@ -133,7 +139,7 @@ public class DataTable {
 		return expensiveRecipes;
 	}
 
-	public Optional<DataPrototype> getFluid(String name) {
+	public Optional<FluidPrototype> getFluid(String name) {
 		return Optional.ofNullable(fluids.get(name));
 	}
 
@@ -141,8 +147,16 @@ public class DataTable {
 		return fluids;
 	}
 
-	public Optional<DataPrototype> getItem(String name) {
+	public Optional<ItemPrototype> getItem(String name) {
 		return Optional.ofNullable(items.get(name));
+	}
+
+	public Optional<ItemPrototype> getItemForEntity(String entityName) {
+		Optional<ItemPrototype> item = getItem(entityName);
+		if (item.isPresent()) {
+			return item;
+		}
+		return Optional.ofNullable(entityItemNameMapping.get(entityName)).flatMap(this::getItem);
 	}
 
 	public Map<String, ItemPrototype> getItems() {
