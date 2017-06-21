@@ -1,6 +1,5 @@
 package com.demod.factorio;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -21,10 +20,16 @@ import com.demod.factorio.prototype.ItemPrototype;
 import com.demod.factorio.prototype.RecipePrototype;
 import com.demod.factorio.prototype.TechPrototype;
 import com.demod.factorio.prototype.TilePrototype;
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Multimap;
 
 public class DataTable {
-	private static Map<String, String> entityItemNameMapping = new HashMap<>();
+	private static Multimap<String, String> entityItemNameMapping = ArrayListMultimap.create();
 	static {
+		entityItemNameMapping.put("curved-rail", "rail");
+		entityItemNameMapping.put("curved-rail", "rail");
+		entityItemNameMapping.put("curved-rail", "rail");
 		entityItemNameMapping.put("curved-rail", "rail");
 		entityItemNameMapping.put("straight-rail", "rail");
 	}
@@ -151,16 +156,17 @@ public class DataTable {
 		return Optional.ofNullable(items.get(name));
 	}
 
-	public Optional<ItemPrototype> getItemForEntity(String entityName) {
-		Optional<ItemPrototype> item = getItem(entityName);
-		if (item.isPresent()) {
-			return item;
-		}
-		return Optional.ofNullable(entityItemNameMapping.get(entityName)).flatMap(this::getItem);
-	}
-
 	public Map<String, ItemPrototype> getItems() {
 		return items;
+	}
+
+	public List<ItemPrototype> getItemsForEntity(String entityName) {
+		Optional<ItemPrototype> item = getItem(entityName);
+		if (item.isPresent()) {
+			return ImmutableList.of(item.get());
+		}
+		return entityItemNameMapping.get(entityName).stream().map(this::getItem).map(Optional::get)
+				.collect(Collectors.toList());
 	}
 
 	public Optional<LuaValue> getRaw(String key) {
