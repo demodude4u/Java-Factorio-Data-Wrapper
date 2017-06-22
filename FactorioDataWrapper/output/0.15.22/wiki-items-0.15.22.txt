@@ -1,4 +1,5 @@
 Accumulator
+|type = accumulator
 |consumers = Satellite
 |stack-size = 50
 |required-technologies = Electric energy accumulators
@@ -9,20 +10,24 @@ Advanced circuit
 |required-technologies = Advanced electronics
 
 Arithmetic combinator
+|type = arithmetic-combinator
 |stack-size = 50
 |required-technologies = Circuit network
 
 Assembling machine 1
+|type = assembling-machine-1
 |consumers = Assembling machine 2 + Production science pack
 |stack-size = 50
 |required-technologies = Automation
 
 Assembling machine 2
+|type = assembling-machine-2
 |consumers = Assembling machine 3
 |stack-size = 50
 |required-technologies = Automation 2, 2
 
 Assembling machine 3
+|type = assembling-machine-3
 |stack-size = 50
 |required-technologies = Automation 3, 3
 
@@ -36,19 +41,23 @@ Battery
 |required-technologies = Battery
 
 Battery MK1
+|type = battery-equipment
 |consumers = Battery MK2
 |stack-size = 50
 |required-technologies = Battery equipment
 
 Battery MK2
+|type = battery-mk2-equipment
 |stack-size = 50
 |required-technologies = Battery MK2 equipment
 
 Beacon
+|type = beacon
 |stack-size = 10
 |required-technologies = Effect transmission
 
 Big electric pole
+|type = big-electric-pole
 |stack-size = 50
 |required-technologies = Electric energy distribution 1, 1
 
@@ -59,12 +68,15 @@ Blueprint book
 |stack-size = 1
 
 Boiler
+|type = boiler
 |stack-size = 50
 
 Burner inserter
+|type = burner-inserter
 |stack-size = 50
 
 Burner mining drill
+|type = burner-mining-drill
 |stack-size = 50
 
 Cannon shell
@@ -73,26 +85,32 @@ Cannon shell
 |required-technologies = Tanks
 
 Car
+|type = car
 |stack-size = 1
 |required-technologies = Automobilism
 
 Cargo wagon
+|type = cargo-wagon
 |stack-size = 5
 |required-technologies = Railway
 
 Centrifuge
+|type = centrifuge
 |stack-size = 50
 |required-technologies = Nuclear power
 
 Chemical plant
+|type = chemical-plant
 |stack-size = 10
 |required-technologies = Oil processing
 
 Cluster grenade
+|type = cluster-grenade
 |stack-size = 100
 |required-technologies = Cluster grenade
 
 Coal
+|type = coal
 |consumers = Coal liquefaction + Explosives + Grenade + Plastic bar + Poison capsule + Slowdown capsule
 |stack-size = 50
 
@@ -106,10 +124,12 @@ Concrete
 |required-technologies = Concrete
 
 Constant combinator
+|type = constant-combinator
 |stack-size = 50
 |required-technologies = Circuit network
 
 Construction robot
+|type = construction-robot
 |stack-size = 50
 |required-technologies = Construction robotics
 
@@ -118,6 +138,7 @@ Copper cable
 |stack-size = 200
 
 Copper ore
+|type = copper-ore
 |consumers = Copper plate
 |stack-size = 50
 
@@ -131,6 +152,7 @@ Crude oil barrel
 |required-technologies = Fluid handling
 
 Decider combinator
+|type = decider-combinator
 |stack-size = 50
 |required-technologies = Circuit network
 
@@ -138,15 +160,18 @@ Deconstruction planner
 |stack-size = 1
 
 Defender capsule
+|type = defender-capsule
 |consumers = Distractor capsule
 |stack-size = 100
 |required-technologies = Combat robotics
 
 Destroyer capsule
+|type = destroyer-capsule
 |stack-size = 100
 |required-technologies = Combat robotics 3, 3
 
 Discharge defense
+|type = discharge-defense-equipment
 |stack-size = 20
 |required-technologies = Discharge defense
 
@@ -155,6 +180,7 @@ Discharge defense remote
 |required-technologies = Discharge defense
 
 Distractor capsule
+|type = distractor-capsule
 |consumers = Destroyer capsule
 |stack-size = 100
 |required-technologies = Combat robotics 2, 2
@@ -180,11 +206,13 @@ Electric engine unit
 |required-technologies = Electric engine
 
 Electric furnace
+|type = electric-furnace
 |consumers = Production science pack
 |stack-size = 50
 |required-technologies = Advanced material processing 2, 2
 
 Electric mining drill
+|type = electric-mining-drill
 |consumers = Science pack 3
 |stack-size = 50
 
@@ -198,11 +226,13 @@ Empty barrel
 |required-technologies = Fluid handling
 
 Energy shield
+|type = energy-shield-equipment
 |consumers = Energy shield MK2
 |stack-size = 50
 |required-technologies = Energy shield equipment
 
 Energy shield MK2
+|type = energy-shield-mk2-equipment
 |stack-size = 50
 |required-technologies = Energy shield MK2 equipment
 
@@ -212,6 +242,7 @@ Engine unit
 |required-technologies = Engine
 
 Exoskeleton
+|type = exoskeleton-equipment
 |stack-size = 10
 |required-technologies = Exoskeleton equipment
 
@@ -221,6 +252,7 @@ Explosive cannon shell
 |required-technologies = Tanks
 
 Explosive rocket
+|type = explosive-rocket
 |stack-size = 200
 |required-technologies = Explosive rocketry
 
@@ -234,38 +266,46 @@ Explosives
 |required-technologies = Explosives
 
 Express splitter
+|type = express-splitter
 |stack-size = 50
 |required-technologies = Logistics 3, 3
 
 Express transport belt
+|type = express-transport-belt
 |stack-size = 100
 |required-technologies = Logistics 3, 3
 
 Express underground belt
+|type = express-underground-belt
 |stack-size = 50
 |required-technologies = Logistics 3, 3
 
 Fast inserter
+|type = fast-inserter
 |consumers = Filter inserter + Stack inserter
 |stack-size = 50
 |required-technologies = Logistics
 
 Fast splitter
+|type = fast-splitter
 |consumers = Express splitter
 |stack-size = 50
 |required-technologies = Logistics 2, 2
 
 Fast transport belt
+|type = fast-transport-belt
 |consumers = Express transport belt
 |stack-size = 100
 |required-technologies = Logistics 2, 2
 
 Fast underground belt
+|type = fast-underground-belt
 |consumers = Express underground belt
 |stack-size = 50
 |required-technologies = Logistics 2, 2
 
 Filter inserter
+|type = filter-inserter
 |stack-size = 50
 |required-technologies = Electronics
 
@@ -282,10 +322,12 @@ Flamethrower ammo
 |required-technologies = Flamethrower
 
 Flamethrower turret
+|type = flamethrower-turret
 |stack-size = 50
 |required-technologies = Flamethrower
 
 Fluid wagon
+|type = fluid-wagon
 |stack-size = 5
 |required-technologies = Fluid wagon
 
@@ -295,10 +337,12 @@ Flying robot frame
 |required-technologies = Robotics
 
 Portable fusion reactor
+|type = fusion-reactor-equipment
 |stack-size = 20
 |required-technologies = Portable fusion reactor
 
 Gate
+|type = gate
 |stack-size = 50
 |required-technologies = Gates
 
@@ -307,11 +351,13 @@ Green wire
 |required-technologies = Circuit network
 
 Grenade
+|type = grenade
 |consumers = Cluster grenade + Military science pack
 |stack-size = 100
 |required-technologies = Military 2, 2
 
 Gun turret
+|type = gun-turret
 |consumers = Military science pack
 |stack-size = 50
 |required-technologies = Turrets
@@ -321,10 +367,12 @@ Hazard concrete
 |required-technologies = Concrete
 
 Heat exchanger
+|type = heat-exchanger
 |stack-size = 50
 |required-technologies = Nuclear power
 
 Heat pipe
+|type = heat-pipe
 |stack-size = 50
 |required-technologies = Nuclear power
 
@@ -342,6 +390,7 @@ High tech science pack
 |required-technologies = Advanced electronics 2, 2
 
 Inserter
+|type = inserter
 |consumers = Fast inserter + Long handed inserter + Science pack 2
 |stack-size = 50
 
@@ -349,6 +398,7 @@ Iron axe
 |stack-size = 20
 
 Iron chest
+|type = iron-chest
 |stack-size = 50
 
 Iron gear wheel
@@ -356,6 +406,7 @@ Iron gear wheel
 |stack-size = 100
 
 Iron ore
+|type = iron-ore
 |consumers = Concrete + Iron plate
 |stack-size = 50
 
@@ -368,9 +419,11 @@ Iron stick
 |stack-size = 100
 
 Lab
+|type = lab
 |stack-size = 10
 
 Land mine
+|type = land-mine
 |stack-size = 100
 |required-technologies = Landmines
 
@@ -379,6 +432,7 @@ Landfill
 |required-technologies = Landfill
 
 Laser turret
+|type = laser-turret
 |consumers = Discharge defense + Personal laser defense
 |stack-size = 50
 |required-technologies = Laser turrets
@@ -392,30 +446,37 @@ Light oil barrel
 |required-technologies = Fluid handling
 
 Locomotive
+|type = locomotive
 |stack-size = 5
 |required-technologies = Railway
 
 Active provider chest
+|type = logistic-chest-active-provider
 |stack-size = 50
 |required-technologies = Logistic system
 
 Passive provider chest
+|type = logistic-chest-passive-provider
 |stack-size = 50
 |required-technologies = Construction robotics + Logistic robotics
 
 Requester chest
+|type = logistic-chest-requester
 |stack-size = 50
 |required-technologies = Logistic system
 
 Storage chest
+|type = logistic-chest-storage
 |stack-size = 50
 |required-technologies = Construction robotics + Logistic robotics
 
 Logistic robot
+|type = logistic-robot
 |stack-size = 50
 |required-technologies = Logistic robotics
 
 Long handed inserter
+|type = long-handed-inserter
 |stack-size = 50
 |required-technologies = Automation
 
@@ -430,6 +491,7 @@ Lubricant barrel
 |required-technologies = Fluid handling
 
 Medium electric pole
+|type = medium-electric-pole
 |stack-size = 50
 |required-technologies = Electric energy distribution 1, 1
 
@@ -442,30 +504,37 @@ Modular armor
 |required-technologies = Modular armor
 
 Nightvision
+|type = night-vision-equipment
 |stack-size = 20
 |required-technologies = Nightvision equipment
 
 Nuclear reactor
+|type = nuclear-reactor
 |stack-size = 50
 |required-technologies = Nuclear power
 
 Offshore pump
+|type = offshore-pump
 |stack-size = 20
 
 Oil refinery
+|type = oil-refinery
 |stack-size = 10
 |required-technologies = Oil processing
 
 Personal laser defense
+|type = personal-laser-defense-equipment
 |stack-size = 20
 |required-technologies = Personal laser defense
 
 Personal roboport
+|type = personal-roboport-equipment
 |consumers = Personal roboport MK2
 |stack-size = 5
 |required-technologies = Personal roboport
 
 Personal roboport MK2
+|type = personal-roboport-mk2-equipment
 |stack-size = 5
 |required-technologies = Personal roboport 2, 2
 
@@ -484,10 +553,12 @@ Piercing shotgun shells
 |required-technologies = Military 4, 4
 
 Pipe
+|type = pipe
 |consumers = Boiler + Chemical plant + Engine unit + Flamethrower turret + Fluid wagon + Heat exchanger + Offshore pump + Oil refinery + Pipe to ground + Pump + Pumpjack + Rocket silo + Steam engine + Steam turbine
 |stack-size = 100
 
 Pipe to ground
+|type = pipe-to-ground
 |stack-size = 50
 
 Pistol
@@ -499,6 +570,7 @@ Plastic bar
 |required-technologies = Plastics
 
 Poison capsule
+|type = poison-capsule
 |stack-size = 100
 |required-technologies = Military 3, 3
 
@@ -511,6 +583,7 @@ Power armor MK2
 |required-technologies = Power armor 2, 2
 
 Power switch
+|type = power-switch
 |stack-size = 50
 |required-technologies = Circuit network
 
@@ -538,18 +611,22 @@ Productivity module 3
 |required-technologies = Productivity module 3, 3
 
 Programmable speaker
+|type = programmable-speaker
 |stack-size = 50
 |required-technologies = Circuit network
 
 Pump
+|type = pump
 |stack-size = 50
 |required-technologies = Engine
 
 Pumpjack
+|type = pumpjack
 |stack-size = 20
 |required-technologies = Oil processing
 
 Radar
+|type = radar
 |consumers = Satellite
 |stack-size = 50
 
@@ -558,10 +635,12 @@ Rail
 |required-technologies = Railway
 
 Rail chain signal
+|type = rail-chain-signal
 |stack-size = 50
 |required-technologies = Rail signals
 
 Rail signal
+|type = rail-signal
 |stack-size = 50
 |required-technologies = Rail signals
 
@@ -580,10 +659,12 @@ Repair pack
 |stack-size = 100
 
 Roboport
+|type = roboport
 |stack-size = 5
 |required-technologies = Construction robotics + Logistic robotics
 
 Rocket
+|type = rocket
 |consumers = Explosive rocket
 |stack-size = 200
 |required-technologies = Rocketry
@@ -607,6 +688,7 @@ Rocket part
 |required-technologies = Rocket silo
 
 Rocket silo
+|type = rocket-silo
 |stack-size = 1
 |required-technologies = Rocket silo
 
@@ -634,22 +716,27 @@ Shotgun shells
 |required-technologies = Military
 
 Slowdown capsule
+|type = slowdown-capsule
 |stack-size = 100
 |required-technologies = Military 3, 3
 
 Small electric pole
+|type = small-electric-pole
 |stack-size = 50
 
 Lamp
+|type = small-lamp
 |stack-size = 50
 |required-technologies = Optics
 
 Solar panel
+|type = solar-panel
 |consumers = Satellite + Portable solar panel
 |stack-size = 50
 |required-technologies = Solar energy
 
 Portable solar panel
+|type = solar-panel-equipment
 |stack-size = 20
 |required-technologies = Portable solar panel
 
@@ -677,23 +764,28 @@ Speed module 3
 |required-technologies = Speed module 3, 3
 
 Splitter
+|type = splitter
 |consumers = Fast splitter
 |stack-size = 50
 |required-technologies = Logistics
 
 Stack filter inserter
+|type = stack-filter-inserter
 |stack-size = 50
 |required-technologies = Stack inserter
 
 Stack inserter
+|type = stack-inserter
 |consumers = Stack filter inserter
 |stack-size = 50
 |required-technologies = Stack inserter
 
 Steam engine
+|type = steam-engine
 |stack-size = 10
 
 Steam turbine
+|type = steam-turbine
 |stack-size = 10
 |required-technologies = Nuclear power
 
@@ -702,11 +794,13 @@ Steel axe
 |required-technologies = Steel processing
 
 Steel chest
+|type = steel-chest
 |consumers = Active provider chest + Passive provider chest + Requester chest + Storage chest
 |stack-size = 50
 |required-technologies = Steel processing
 
 Steel furnace
+|type = steel-furnace
 |stack-size = 50
 |required-technologies = Advanced material processing
 
@@ -716,6 +810,7 @@ Steel plate
 |required-technologies = Steel processing
 
 Stone
+|type = stone
 |consumers = Landfill + Rail + Stone brick + Stone furnace
 |stack-size = 50
 
@@ -724,15 +819,18 @@ Stone brick
 |stack-size = 100
 
 Stone furnace
+|type = stone-furnace
 |consumers = Boiler + Burner mining drill
 |stack-size = 50
 
 Stone wall
+|type = stone-wall
 |consumers = Gate
 |stack-size = 100
 |required-technologies = Stone walls
 
 Storage tank
+|type = storage-tank
 |consumers = Fluid wagon
 |stack-size = 50
 |required-technologies = Fluid handling
@@ -742,6 +840,7 @@ Submachine gun
 |required-technologies = Military
 
 Substation
+|type = substation
 |stack-size = 50
 |required-technologies = Electric energy distribution 2, 2
 
@@ -756,18 +855,22 @@ Sulfuric acid barrel
 |required-technologies = Fluid handling
 
 Tank
+|type = tank
 |stack-size = 1
 |required-technologies = Tanks
 
 Train stop
+|type = train-stop
 |stack-size = 10
 |required-technologies = Automated rail transportation
 
 Transport belt
+|type = transport-belt
 |consumers = Fast transport belt + Lab + Science pack 2 + Splitter + Underground belt
 |stack-size = 100
 
 Underground belt
+|type = underground-belt
 |consumers = Fast underground belt
 |stack-size = 50
 |required-technologies = Logistics
@@ -791,6 +894,7 @@ Uranium fuel cell
 |required-technologies = Nuclear power
 
 Uranium ore
+|type = uranium-ore
 |consumers = Uranium processing
 |stack-size = 50
 
@@ -812,5 +916,6 @@ Wood
 |stack-size = 50
 
 Wooden chest
+|type = wooden-chest
 |stack-size = 50
 

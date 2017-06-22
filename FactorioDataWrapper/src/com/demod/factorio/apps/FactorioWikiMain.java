@@ -20,6 +20,7 @@ import javax.imageio.ImageIO;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.luaj.vm2.LuaValue;
 
 import com.demod.factorio.DataTable;
 import com.demod.factorio.FactorioData;
@@ -36,7 +37,40 @@ import com.google.common.primitives.Ints;
 
 public class FactorioWikiMain {
 
+	private static class WikiTypeMatch {
+		boolean item = false, recipe = false, entity = false, equipment = false;
+		String entityName;
+		String equipmentName;
+
+		public void setEntity(String name) {
+			entity = true;
+			entityName = name;
+		}
+
+		public void setEquipment(String name) {
+			equipment = true;
+			equipmentName = name;
+		}
+
+		@Override
+		public String toString() {
+			if (!item && !recipe) {
+				return "N/A";
+			} else if (equipment) {
+				return equipmentName;
+			} else if (entity) {
+				return entityName;
+			} else if (item) {
+				return "item";
+			} else if (recipe) {
+				return "recipe";
+			}
+			return "???";
+		}
+	}
+
 	public static final Map<String, Integer> wiki_ScienceOrdering = new LinkedHashMap<>();
+
 	static {
 		wiki_ScienceOrdering.put("science-pack-1", 1);
 		wiki_ScienceOrdering.put("science-pack-2", 2);
@@ -95,12 +129,13 @@ public class FactorioWikiMain {
 			wiki_RawTotals(table, nameMappingItemsRecipes, pw);
 		}
 
-		try (PrintWriter pw = new PrintWriter(new File(outputFolder, "wiki-items-" + baseInfo.getVersion() + ".txt"))) {
-			wiki_Items(table, nameMappingTechnologies, nameMappingItemsRecipes, pw);
+		Map<String, WikiTypeMatch> wikiTypes;
+		try (PrintWriter pw = new PrintWriter(new File(outputFolder, "wiki-types-" + baseInfo.getVersion() + ".txt"))) {
+			wikiTypes = wiki_Types(table, nameMappingItemsRecipes, pw);
 		}
 
-		try (PrintWriter pw = new PrintWriter(new File(outputFolder, "wiki-types-" + baseInfo.getVersion() + ".txt"))) {
-			wiki_Types(table, nameMappingItemsRecipes, pw);
+		try (PrintWriter pw = new PrintWriter(new File(outputFolder, "wiki-items-" + baseInfo.getVersion() + ".txt"))) {
+			wiki_Items(table, wikiTypes, nameMappingTechnologies, nameMappingItemsRecipes, pw);
 		}
 
 		try (PrintWriter pw = new PrintWriter(
@@ -108,11 +143,10 @@ public class FactorioWikiMain {
 			wiki_TypeTree(table, pw);
 		}
 
-		// try (PrintWriter pw = new PrintWriter(
-		// new File(outputFolder, "wiki-default-naming-" + baseInfo.getVersion()
-		// + ".json"))) {
-		// wiki_DefaultNameMapping(table, pw);
-		// }
+		try (PrintWriter pw = new PrintWriter(
+				new File(outputFolder, "wiki-entities-mining-" + baseInfo.getVersion() + ".txt"))) {
+			wiki_EntitiesMining(table, wikiTypes, nameMappingItemsRecipes, pw);
+		}
 
 		// wiki_GenerateTintedIcons(table, new File(outputFolder, "icons"));
 
@@ -136,6 +170,22 @@ public class FactorioWikiMain {
 			ret.put(name, wiki_fmtDefaultName(name));
 		});
 		return ret;
+	}
+
+	private static void wiki_EntitiesMining(DataTable table, Map<String, WikiTypeMatch> wikiTypes,
+			JSONObject nameMappingItemsRecipes, PrintWriter pw) {
+		table.getEntities().values().stream().sorted((e1, e2) -> e1.getName().compareTo(e2.getName()))
+				.filter(e -> !wikiTypes.get(e.getName()).toString().equals("N/A")).forEach(e -> {
+					LuaValue minableLua = e.lua().get("minable");
+					if (!minableLua.isnil()) {
+						pw.println(wiki_fmtName(e.getName(), nameMappingItemsRecipes));
+
+						pw.println("|mining-hardness = " + wiki_fmtDouble(minableLua.get("hardness").todouble()));
+						pw.println("|mining-time = " + wiki_fmtDouble(minableLua.get("mining_time").todouble()));
+
+						pw.println();
+					}
+				});
 	}
 
 	/**
@@ -286,8 +336,8 @@ public class FactorioWikiMain {
 		});
 	}
 
-	private static void wiki_Items(DataTable table, JSONObject nameMappingTechnologies,
-			JSONObject nameMappingItemsRecipes, PrintWriter pw) {
+	private static void wiki_Items(DataTable table, Map<String, WikiTypeMatch> wikiTypes,
+			JSONObject nameMappingTechnologies, JSONObject nameMappingItemsRecipes, PrintWriter pw) {
 		Multimap<String, String> requiredTechnologies = LinkedHashMultimap.create();
 		table.getTechnologies().values()
 				.forEach(tech -> tech.getRecipeUnlocks().stream().map(table.getRecipes()::get)
@@ -296,6 +346,11 @@ public class FactorioWikiMain {
 
 		table.getItems().values().stream().sorted((i1, i2) -> i1.getName().compareTo(i2.getName())).forEach(item -> {
 			pw.println(wiki_fmtName(item.getName(), nameMappingItemsRecipes));
+
+			String wikiType = wikiTypes.get(item.getName()).toString();
+			if (!wikiType.equals("item")) {
+				pw.println("|type = " + wikiType);
+			}
 
 			List<String> names = table.getRecipes().values().stream()
 					.filter(r -> r.getInputs().containsKey(item.getName())).map(RecipePrototype::getName).sorted()
@@ -493,42 +548,34 @@ public class FactorioWikiMain {
 				});
 	}
 
-	private static void wiki_Types(DataTable table, JSONObject nameMappingItemsRecipes, PrintWriter pw) {
-		class ProtoMatch {
-			boolean item = false, recipe = false, entity = false, equipment = false;
-		}
+	private static Map<String, WikiTypeMatch> wiki_Types(DataTable table, JSONObject nameMappingItemsRecipes,
+			PrintWriter pw) {
 
-		Map<String, ProtoMatch> protoMatches = new LinkedHashMap<>();
+		Map<String, WikiTypeMatch> protoMatches = new LinkedHashMap<>();
 		table.getItems().keySet()
-				.forEach(name -> protoMatches.computeIfAbsent(name, k -> new ProtoMatch()).item = true);
+				.forEach(name -> protoMatches.computeIfAbsent(name, k -> new WikiTypeMatch()).item = true);
 		table.getRecipes().keySet()
-				.forEach(name -> protoMatches.computeIfAbsent(name, k -> new ProtoMatch()).recipe = true);
+				.forEach(name -> protoMatches.computeIfAbsent(name, k -> new WikiTypeMatch()).recipe = true);
 		table.getEntities().keySet()
-				.forEach(name -> protoMatches.computeIfAbsent(name, k -> new ProtoMatch()).entity = true);
+				.forEach(name -> protoMatches.computeIfAbsent(name, k -> new WikiTypeMatch()).setEntity(name));
 		table.getEquipments().keySet()
-				.forEach(name -> protoMatches.computeIfAbsent(name, k -> new ProtoMatch()).equipment = true);
+				.forEach(name -> protoMatches.computeIfAbsent(name, k -> new WikiTypeMatch()).setEquipment(name));
 
 		protoMatches.entrySet().stream().sorted((e1, e2) -> e1.getKey().compareTo(e2.getKey())).forEach(e -> {
 			String name = e.getKey();
-			ProtoMatch m = e.getValue();
+			WikiTypeMatch m = e.getValue();
+			String type = m.toString();
 
-			String type = "???";
 			if (!m.item && !m.recipe) {
 				return;
-			} else if (m.equipment) {
-				type = table.getEquipment(name).get().getType();
-			} else if (m.entity) {
-				type = table.getEntity(name).get().getType();
-			} else if (m.item) {
-				type = "item";
-			} else if (m.recipe) {
-				type = "recipe";
 			}
 
 			pw.println(wiki_fmtName(name, nameMappingItemsRecipes));
 			pw.println("|prototype-type = " + type);
 			pw.println();
 		});
+
+		return protoMatches;
 	}
 
 	private static void wiki_TypeTree(DataTable table, PrintWriter pw) {

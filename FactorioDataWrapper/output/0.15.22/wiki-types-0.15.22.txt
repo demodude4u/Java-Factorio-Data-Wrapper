@@ -11,13 +11,13 @@ Arithmetic combinator
 |prototype-type = arithmetic-combinator
 
 Assembling machine 1
-|prototype-type = assembling-machine
+|prototype-type = assembling-machine-1
 
 Assembling machine 2
-|prototype-type = assembling-machine
+|prototype-type = assembling-machine-2
 
 Assembling machine 3
-|prototype-type = assembling-machine
+|prototype-type = assembling-machine-3
 
 Atomic bomb
 |prototype-type = item
@@ -32,13 +32,13 @@ Battery MK1
 |prototype-type = battery-equipment
 
 Battery MK2
-|prototype-type = battery-equipment
+|prototype-type = battery-mk2-equipment
 
 Beacon
 |prototype-type = beacon
 
 Big electric pole
-|prototype-type = electric-pole
+|prototype-type = big-electric-pole
 
 Blueprint
 |prototype-type = item
@@ -50,10 +50,10 @@ Boiler
 |prototype-type = boiler
 
 Burner inserter
-|prototype-type = inserter
+|prototype-type = burner-inserter
 
 Burner mining drill
-|prototype-type = mining-drill
+|prototype-type = burner-mining-drill
 
 Cannon shell
 |prototype-type = item
@@ -65,16 +65,16 @@ Cargo wagon
 |prototype-type = cargo-wagon
 
 Centrifuge
-|prototype-type = assembling-machine
+|prototype-type = centrifuge
 
 Chemical plant
-|prototype-type = assembling-machine
+|prototype-type = chemical-plant
 
 Cluster grenade
-|prototype-type = projectile
+|prototype-type = cluster-grenade
 
 Coal
-|prototype-type = resource
+|prototype-type = coal
 
 Coal liquefaction
 |prototype-type = recipe
@@ -95,7 +95,7 @@ Copper cable
 |prototype-type = item
 
 Copper ore
-|prototype-type = resource
+|prototype-type = copper-ore
 
 Copper plate
 |prototype-type = item
@@ -110,19 +110,19 @@ Deconstruction planner
 |prototype-type = item
 
 Defender capsule
-|prototype-type = projectile
+|prototype-type = defender-capsule
 
 Destroyer capsule
-|prototype-type = projectile
+|prototype-type = destroyer-capsule
 
 Discharge defense
-|prototype-type = active-defense-equipment
+|prototype-type = discharge-defense-equipment
 
 Discharge defense remote
 |prototype-type = item
 
 Distractor capsule
-|prototype-type = projectile
+|prototype-type = distractor-capsule
 
 Efficiency module
 |prototype-type = item
@@ -137,10 +137,10 @@ Electric engine unit
 |prototype-type = item
 
 Electric furnace
-|prototype-type = furnace
+|prototype-type = electric-furnace
 
 Electric mining drill
-|prototype-type = mining-drill
+|prototype-type = electric-mining-drill
 
 Electronic circuit
 |prototype-type = item
@@ -173,19 +173,19 @@ Energy shield
 |prototype-type = energy-shield-equipment
 
 Energy shield MK2
-|prototype-type = energy-shield-equipment
+|prototype-type = energy-shield-mk2-equipment
 
 Engine unit
 |prototype-type = item
 
 Exoskeleton
-|prototype-type = movement-bonus-equipment
+|prototype-type = exoskeleton-equipment
 
 Explosive cannon shell
 |prototype-type = item
 
 Explosive rocket
-|prototype-type = projectile
+|prototype-type = explosive-rocket
 
 Explosive uranium cannon shell
 |prototype-type = item
@@ -194,25 +194,25 @@ Explosives
 |prototype-type = item
 
 Express splitter
-|prototype-type = splitter
+|prototype-type = express-splitter
 
 Express transport belt
-|prototype-type = transport-belt
+|prototype-type = express-transport-belt
 
 Express underground belt
-|prototype-type = underground-belt
+|prototype-type = express-underground-belt
 
 Fast inserter
-|prototype-type = inserter
+|prototype-type = fast-inserter
 
 Fast splitter
-|prototype-type = splitter
+|prototype-type = fast-splitter
 
 Fast transport belt
-|prototype-type = transport-belt
+|prototype-type = fast-transport-belt
 
 Fast underground belt
-|prototype-type = underground-belt
+|prototype-type = fast-underground-belt
 
 Fill crude oil barrel
 |prototype-type = recipe
@@ -236,7 +236,7 @@ Fill water barrel
 |prototype-type = recipe
 
 Filter inserter
-|prototype-type = inserter
+|prototype-type = filter-inserter
 
 Firearm magazine
 |prototype-type = item
@@ -248,7 +248,7 @@ Flamethrower ammo
 |prototype-type = item
 
 Flamethrower turret
-|prototype-type = fluid-turret
+|prototype-type = flamethrower-turret
 
 Fluid wagon
 |prototype-type = fluid-wagon
@@ -257,7 +257,7 @@ Flying robot frame
 |prototype-type = item
 
 Portable fusion reactor
-|prototype-type = generator-equipment
+|prototype-type = fusion-reactor-equipment
 
 Gate
 |prototype-type = gate
@@ -266,16 +266,16 @@ Green wire
 |prototype-type = item
 
 Grenade
-|prototype-type = projectile
+|prototype-type = grenade
 
 Gun turret
-|prototype-type = ammo-turret
+|prototype-type = gun-turret
 
 Hazard concrete
 |prototype-type = item
 
 Heat exchanger
-|prototype-type = boiler
+|prototype-type = heat-exchanger
 
 Heat pipe
 |prototype-type = heat-pipe
@@ -299,13 +299,13 @@ Iron axe
 |prototype-type = item
 
 Iron chest
-|prototype-type = container
+|prototype-type = iron-chest
 
 Iron gear wheel
 |prototype-type = item
 
 Iron ore
-|prototype-type = resource
+|prototype-type = iron-ore
 
 Iron plate
 |prototype-type = item
@@ -326,7 +326,7 @@ Landfill
 |prototype-type = item
 
 Laser turret
-|prototype-type = electric-turret
+|prototype-type = laser-turret
 
 Light armor
 |prototype-type = item
@@ -341,22 +341,22 @@ Locomotive
 |prototype-type = locomotive
 
 Active provider chest
-|prototype-type = logistic-container
+|prototype-type = logistic-chest-active-provider
 
 Passive provider chest
-|prototype-type = logistic-container
+|prototype-type = logistic-chest-passive-provider
 
 Requester chest
-|prototype-type = logistic-container
+|prototype-type = logistic-chest-requester
 
 Storage chest
-|prototype-type = logistic-container
+|prototype-type = logistic-chest-storage
 
 Logistic robot
 |prototype-type = logistic-robot
 
 Long handed inserter
-|prototype-type = inserter
+|prototype-type = long-handed-inserter
 
 Low density structure
 |prototype-type = item
@@ -368,7 +368,7 @@ Lubricant barrel
 |prototype-type = item
 
 Medium electric pole
-|prototype-type = electric-pole
+|prototype-type = medium-electric-pole
 
 Military science pack
 |prototype-type = item
@@ -383,22 +383,22 @@ Nuclear fuel reprocessing
 |prototype-type = recipe
 
 Nuclear reactor
-|prototype-type = reactor
+|prototype-type = nuclear-reactor
 
 Offshore pump
 |prototype-type = offshore-pump
 
 Oil refinery
-|prototype-type = assembling-machine
+|prototype-type = oil-refinery
 
 Personal laser defense
-|prototype-type = active-defense-equipment
+|prototype-type = personal-laser-defense-equipment
 
 Personal roboport
-|prototype-type = roboport-equipment
+|prototype-type = personal-roboport-equipment
 
 Personal roboport MK2
-|prototype-type = roboport-equipment
+|prototype-type = personal-roboport-mk2-equipment
 
 Petroleum gas barrel
 |prototype-type = item
@@ -422,7 +422,7 @@ Plastic bar
 |prototype-type = item
 
 Poison capsule
-|prototype-type = projectile
+|prototype-type = poison-capsule
 
 Power armor
 |prototype-type = item
@@ -455,7 +455,7 @@ Pump
 |prototype-type = pump
 
 Pumpjack
-|prototype-type = mining-drill
+|prototype-type = pumpjack
 
 Radar
 |prototype-type = radar
@@ -485,7 +485,7 @@ Roboport
 |prototype-type = roboport
 
 Rocket
-|prototype-type = projectile
+|prototype-type = rocket
 
 Rocket control unit
 |prototype-type = item
@@ -521,13 +521,13 @@ Shotgun shells
 |prototype-type = item
 
 Slowdown capsule
-|prototype-type = projectile
+|prototype-type = slowdown-capsule
 
 Small electric pole
-|prototype-type = electric-pole
+|prototype-type = small-electric-pole
 
 Lamp
-|prototype-type = lamp
+|prototype-type = small-lamp
 
 Solar panel
 |prototype-type = solar-panel
@@ -563,40 +563,40 @@ Splitter
 |prototype-type = splitter
 
 Stack filter inserter
-|prototype-type = inserter
+|prototype-type = stack-filter-inserter
 
 Stack inserter
-|prototype-type = inserter
+|prototype-type = stack-inserter
 
 Steam engine
-|prototype-type = generator
+|prototype-type = steam-engine
 
 Steam turbine
-|prototype-type = generator
+|prototype-type = steam-turbine
 
 Steel axe
 |prototype-type = item
 
 Steel chest
-|prototype-type = container
+|prototype-type = steel-chest
 
 Steel furnace
-|prototype-type = furnace
+|prototype-type = steel-furnace
 
 Steel plate
 |prototype-type = item
 
 Stone
-|prototype-type = resource
+|prototype-type = stone
 
 Stone brick
 |prototype-type = item
 
 Stone furnace
-|prototype-type = furnace
+|prototype-type = stone-furnace
 
 Stone wall
-|prototype-type = wall
+|prototype-type = stone-wall
 
 Storage tank
 |prototype-type = storage-tank
@@ -605,7 +605,7 @@ Submachine gun
 |prototype-type = item
 
 Substation
-|prototype-type = electric-pole
+|prototype-type = substation
 
 Sulfur
 |prototype-type = item
@@ -617,7 +617,7 @@ Sulfuric acid barrel
 |prototype-type = item
 
 Tank
-|prototype-type = car
+|prototype-type = tank
 
 Train stop
 |prototype-type = train-stop
@@ -641,7 +641,7 @@ Uranium fuel cell
 |prototype-type = item
 
 Uranium ore
-|prototype-type = resource
+|prototype-type = uranium-ore
 
 Uranium processing
 |prototype-type = recipe
@@ -659,5 +659,5 @@ Wood
 |prototype-type = item
 
 Wooden chest
-|prototype-type = container
+|prototype-type = wooden-chest
 
