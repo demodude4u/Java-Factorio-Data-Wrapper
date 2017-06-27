@@ -41,6 +41,7 @@ public final class Utils {
 				return (T) json;
 			} else {
 				JSONObject json = new JSONObject();
+				terribleHackToHaveOrderedJSONObject(json);
 				Utils.forEach(value, (k, v) -> {
 					json.put(k.tojstring(), Utils.<Object>convertLuaToJson(v));
 				});
