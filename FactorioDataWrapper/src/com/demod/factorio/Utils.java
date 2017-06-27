@@ -3,7 +3,6 @@ package com.demod.factorio;
 import java.awt.Color;
 import java.awt.Point;
 import java.awt.geom.Point2D;
-import java.awt.geom.Point2D.Double;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -30,6 +29,34 @@ import com.google.common.collect.Streams;
 import javafx.util.Pair;
 
 public final class Utils {
+
+	@SuppressWarnings("unchecked")
+	public static <T> T convertLuaToJson(LuaValue value) {
+		if (value.istable()) {
+			if (isLuaArray(value)) {
+				JSONArray json = new JSONArray();
+				Utils.forEach(value, (v) -> {
+					json.put(Utils.<Object>convertLuaToJson(v));
+				});
+				return (T) json;
+			} else {
+				JSONObject json = new JSONObject();
+				Utils.forEach(value, (k, v) -> {
+					json.put(k.tojstring(), Utils.<Object>convertLuaToJson(v));
+				});
+				return (T) json;
+			}
+		} else {
+			if (value.isnil()) {
+				return null;
+			} else if (value.isboolean()) {
+				return (T) (Boolean) value.toboolean();
+			} else if (value.isnumber()) {
+				return (T) (Double) value.todouble();
+			}
+			return (T) value.tojstring();
+		}
+	}
 
 	public static void debugPrintJson(JSONArray json) {
 		debugPrintJson("", json);
@@ -155,6 +182,24 @@ public final class Utils {
 				.forEach(p -> consumer.accept(p.getKey(), p.getValue()));
 	}
 
+	private static boolean isLuaArray(LuaValue value) {
+		if (value.istable()) {
+			LuaValue k = LuaValue.NIL;
+			int i = 0;
+			while (true) {
+				i++;
+				Varargs n = value.next(k);
+				if ((k = n.arg1()).isnil())
+					break;
+				if (!k.isnumber() || k.toint() != i) {
+					return false;
+				}
+			}
+			return true;
+		}
+		return false;
+	}
+
 	public static Color parseColor(LuaValue value) {
 		float red = value.get("r").tofloat();
 		float green = value.get("g").tofloat();
@@ -170,7 +215,7 @@ public final class Utils {
 		return new Point(value.get(1).checkint(), value.get(2).checkint());
 	}
 
-	public static Double parsePoint2D(LuaValue value) {
+	public static Point2D.Double parsePoint2D(LuaValue value) {
 		if (value.isnil()) {
 			return new Point2D.Double();
 		}
