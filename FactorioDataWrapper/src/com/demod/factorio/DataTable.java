@@ -169,10 +169,13 @@ public class DataTable {
 				.collect(Collectors.toList());
 	}
 
-	public Optional<LuaValue> getRaw(String key) {
-		LuaValue retLua = rawLua.get(key);
-		if (retLua.isnil()) {
-			return Optional.empty();
+	public Optional<LuaValue> getRaw(String... path) {
+		LuaValue retLua = rawLua;
+		for (String key : path) {
+			retLua = rawLua.get(key);
+			if (retLua.isnil()) {
+				return Optional.empty();
+			}
 		}
 		return Optional.of(retLua);
 	}
