@@ -38,9 +38,10 @@ import com.google.common.primitives.Ints;
 public class FactorioWikiMain {
 
 	private static class WikiTypeMatch {
-		boolean item = false, recipe = false, entity = false, equipment = false;
+		boolean item = false, recipe = false, entity = false, equipment = false, tile = false;
 		String entityName;
 		String equipmentName;
+		String itemType;
 
 		public void setEntity(String name) {
 			entity = true;
@@ -52,16 +53,23 @@ public class FactorioWikiMain {
 			equipmentName = name;
 		}
 
+		public void setItem(String type) {
+			item = true;
+			itemType = type;
+		}
+
 		@Override
 		public String toString() {
 			if (!item && !recipe) {
 				return "N/A";
 			} else if (equipment) {
 				return equipmentName;
+			} else if (tile) {
+				return "tile";
 			} else if (entity) {
 				return entityName;
 			} else if (item) {
-				return "item";
+				return itemType;
 			} else if (recipe) {
 				return "recipe";
 			}
@@ -135,7 +143,7 @@ public class FactorioWikiMain {
 		}
 
 		try (PrintWriter pw = new PrintWriter(new File(outputFolder, "wiki-items-" + baseInfo.getVersion() + ".txt"))) {
-			wiki_Items(table, wikiTypes, nameMappingTechnologies, nameMappingItemsRecipes, pw);
+			wiki_Items(table, nameMappingTechnologies, nameMappingItemsRecipes, pw);
 		}
 
 		try (PrintWriter pw = new PrintWriter(
@@ -336,8 +344,8 @@ public class FactorioWikiMain {
 		});
 	}
 
-	private static void wiki_Items(DataTable table, Map<String, WikiTypeMatch> wikiTypes,
-			JSONObject nameMappingTechnologies, JSONObject nameMappingItemsRecipes, PrintWriter pw) {
+	private static void wiki_Items(DataTable table, JSONObject nameMappingTechnologies,
+			JSONObject nameMappingItemsRecipes, PrintWriter pw) {
 		Multimap<String, String> requiredTechnologies = LinkedHashMultimap.create();
 		table.getTechnologies().values()
 				.forEach(tech -> tech.getRecipeUnlocks().stream().map(table.getRecipes()::get)
@@ -346,11 +354,6 @@ public class FactorioWikiMain {
 
 		table.getItems().values().stream().sorted((i1, i2) -> i1.getName().compareTo(i2.getName())).forEach(item -> {
 			pw.println(wiki_fmtName(item.getName(), nameMappingItemsRecipes));
-
-			String wikiType = wikiTypes.get(item.getName()).toString();
-			if (!wikiType.equals("item")) {
-				pw.println("|type = " + wikiType);
-			}
 
 			List<String> names = table.getRecipes().values().stream()
 					.filter(r -> r.getInputs().containsKey(item.getName())).map(RecipePrototype::getName).sorted()
@@ -552,10 +555,12 @@ public class FactorioWikiMain {
 			PrintWriter pw) {
 
 		Map<String, WikiTypeMatch> protoMatches = new LinkedHashMap<>();
-		table.getItems().keySet()
-				.forEach(name -> protoMatches.computeIfAbsent(name, k -> new WikiTypeMatch()).item = true);
+		table.getItems().entrySet().forEach(e -> protoMatches.computeIfAbsent(e.getKey(), k -> new WikiTypeMatch())
+				.setItem(e.getValue().getType()));
 		table.getRecipes().keySet()
 				.forEach(name -> protoMatches.computeIfAbsent(name, k -> new WikiTypeMatch()).recipe = true);
+		table.getTiles().keySet()
+				.forEach(name -> protoMatches.computeIfAbsent(name, k -> new WikiTypeMatch()).tile = true);
 		table.getEntities().keySet()
 				.forEach(name -> protoMatches.computeIfAbsent(name, k -> new WikiTypeMatch()).setEntity(name));
 		table.getEquipments().keySet()
@@ -565,6 +570,13 @@ public class FactorioWikiMain {
 			String name = e.getKey();
 			WikiTypeMatch m = e.getValue();
 			String type = m.toString();
+
+			// if (name.equals("iron-axe")) {
+			// System.out.println(name + ": entity=" + m.entity + " equipment="
+			// + m.equipment + " item=" + m.item
+			// + " recipe=" + m.recipe);
+			// System.exit(0);
+			// }
 
 			if (!m.item && !m.recipe) {
 				return;

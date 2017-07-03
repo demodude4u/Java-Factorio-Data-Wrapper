@@ -1,0 +1,663 @@
+Accumulator
+|prototype-type = accumulator
+
+Advanced circuit
+|prototype-type = item
+
+Advanced oil processing
+|prototype-type = recipe
+
+Arithmetic combinator
+|prototype-type = arithmetic-combinator
+
+Assembling machine 1
+|prototype-type = assembling-machine-1
+
+Assembling machine 2
+|prototype-type = assembling-machine-2
+
+Assembling machine 3
+|prototype-type = assembling-machine-3
+
+Atomic bomb
+|prototype-type = ammo
+
+Basic oil processing
+|prototype-type = recipe
+
+Battery
+|prototype-type = item
+
+Battery MK1
+|prototype-type = battery-equipment
+
+Battery MK2
+|prototype-type = battery-mk2-equipment
+
+Beacon
+|prototype-type = beacon
+
+Big electric pole
+|prototype-type = big-electric-pole
+
+Blueprint
+|prototype-type = blueprint
+
+Blueprint book
+|prototype-type = blueprint-book
+
+Boiler
+|prototype-type = boiler
+
+Burner inserter
+|prototype-type = burner-inserter
+
+Burner mining drill
+|prototype-type = burner-mining-drill
+
+Cannon shell
+|prototype-type = ammo
+
+Car
+|prototype-type = car
+
+Cargo wagon
+|prototype-type = cargo-wagon
+
+Centrifuge
+|prototype-type = centrifuge
+
+Chemical plant
+|prototype-type = chemical-plant
+
+Cluster grenade
+|prototype-type = cluster-grenade
+
+Coal
+|prototype-type = coal
+
+Coal liquefaction
+|prototype-type = recipe
+
+Combat shotgun
+|prototype-type = gun
+
+Concrete
+|prototype-type = tile
+
+Constant combinator
+|prototype-type = constant-combinator
+
+Construction robot
+|prototype-type = construction-robot
+
+Copper cable
+|prototype-type = item
+
+Copper ore
+|prototype-type = copper-ore
+
+Copper plate
+|prototype-type = item
+
+Crude oil barrel
+|prototype-type = item
+
+Decider combinator
+|prototype-type = decider-combinator
+
+Deconstruction planner
+|prototype-type = deconstruction-item
+
+Defender capsule
+|prototype-type = defender-capsule
+
+Destroyer capsule
+|prototype-type = destroyer-capsule
+
+Discharge defense
+|prototype-type = discharge-defense-equipment
+
+Discharge defense remote
+|prototype-type = capsule
+
+Distractor capsule
+|prototype-type = distractor-capsule
+
+Efficiency module
+|prototype-type = module
+
+Efficiency module 2
+|prototype-type = module
+
+Efficiency module 3
+|prototype-type = module
+
+Electric engine unit
+|prototype-type = item
+
+Electric furnace
+|prototype-type = electric-furnace
+
+Electric mining drill
+|prototype-type = electric-mining-drill
+
+Electronic circuit
+|prototype-type = item
+
+Empty barrel
+|prototype-type = item
+
+Empty crude oil barrel
+|prototype-type = recipe
+
+Empty heavy oil barrel
+|prototype-type = recipe
+
+Empty light oil barrel
+|prototype-type = recipe
+
+Empty lubricant barrel
+|prototype-type = recipe
+
+Empty petroleum gas barrel
+|prototype-type = recipe
+
+Empty sulfuric acid barrel
+|prototype-type = recipe
+
+Empty water barrel
+|prototype-type = recipe
+
+Energy shield
+|prototype-type = energy-shield-equipment
+
+Energy shield MK2
+|prototype-type = energy-shield-mk2-equipment
+
+Engine unit
+|prototype-type = item
+
+Exoskeleton
+|prototype-type = exoskeleton-equipment
+
+Explosive cannon shell
+|prototype-type = ammo
+
+Explosive rocket
+|prototype-type = explosive-rocket
+
+Explosive uranium cannon shell
+|prototype-type = ammo
+
+Explosives
+|prototype-type = item
+
+Express splitter
+|prototype-type = express-splitter
+
+Express transport belt
+|prototype-type = express-transport-belt
+
+Express underground belt
+|prototype-type = express-underground-belt
+
+Fast inserter
+|prototype-type = fast-inserter
+
+Fast splitter
+|prototype-type = fast-splitter
+
+Fast transport belt
+|prototype-type = fast-transport-belt
+
+Fast underground belt
+|prototype-type = fast-underground-belt
+
+Fill crude oil barrel
+|prototype-type = recipe
+
+Fill heavy oil barrel
+|prototype-type = recipe
+
+Fill light oil barrel
+|prototype-type = recipe
+
+Fill lubricant barrel
+|prototype-type = recipe
+
+Fill petroleum gas barrel
+|prototype-type = recipe
+
+Fill sulfuric acid barrel
+|prototype-type = recipe
+
+Fill water barrel
+|prototype-type = recipe
+
+Filter inserter
+|prototype-type = filter-inserter
+
+Firearm magazine
+|prototype-type = ammo
+
+Flamethrower
+|prototype-type = gun
+
+Flamethrower ammo
+|prototype-type = ammo
+
+Flamethrower turret
+|prototype-type = flamethrower-turret
+
+Fluid wagon
+|prototype-type = fluid-wagon
+
+Flying robot frame
+|prototype-type = item
+
+Portable fusion reactor
+|prototype-type = fusion-reactor-equipment
+
+Gate
+|prototype-type = gate
+
+Green wire
+|prototype-type = item
+
+Grenade
+|prototype-type = grenade
+
+Gun turret
+|prototype-type = gun-turret
+
+Hazard concrete
+|prototype-type = item
+
+Heat exchanger
+|prototype-type = heat-exchanger
+
+Heat pipe
+|prototype-type = heat-pipe
+
+Heavy armor
+|prototype-type = armor
+
+Heavy oil barrel
+|prototype-type = item
+
+Heavy oil cracking
+|prototype-type = recipe
+
+High tech science pack
+|prototype-type = tool
+
+Inserter
+|prototype-type = inserter
+
+Iron axe
+|prototype-type = mining-tool
+
+Iron chest
+|prototype-type = iron-chest
+
+Iron gear wheel
+|prototype-type = item
+
+Iron ore
+|prototype-type = iron-ore
+
+Iron plate
+|prototype-type = item
+
+Iron stick
+|prototype-type = item
+
+Kovarex enrichment process
+|prototype-type = recipe
+
+Lab
+|prototype-type = lab
+
+Land mine
+|prototype-type = land-mine
+
+Landfill
+|prototype-type = item
+
+Laser turret
+|prototype-type = laser-turret
+
+Light armor
+|prototype-type = armor
+
+Light oil barrel
+|prototype-type = item
+
+Light oil cracking
+|prototype-type = recipe
+
+Locomotive
+|prototype-type = locomotive
+
+Active provider chest
+|prototype-type = logistic-chest-active-provider
+
+Passive provider chest
+|prototype-type = logistic-chest-passive-provider
+
+Requester chest
+|prototype-type = logistic-chest-requester
+
+Storage chest
+|prototype-type = logistic-chest-storage
+
+Logistic robot
+|prototype-type = logistic-robot
+
+Long handed inserter
+|prototype-type = long-handed-inserter
+
+Low density structure
+|prototype-type = item
+
+Lubricant
+|prototype-type = recipe
+
+Lubricant barrel
+|prototype-type = item
+
+Medium electric pole
+|prototype-type = medium-electric-pole
+
+Military science pack
+|prototype-type = tool
+
+Modular armor
+|prototype-type = armor
+
+Nightvision
+|prototype-type = night-vision-equipment
+
+Nuclear fuel reprocessing
+|prototype-type = recipe
+
+Nuclear reactor
+|prototype-type = nuclear-reactor
+
+Offshore pump
+|prototype-type = offshore-pump
+
+Oil refinery
+|prototype-type = oil-refinery
+
+Personal laser defense
+|prototype-type = personal-laser-defense-equipment
+
+Personal roboport
+|prototype-type = personal-roboport-equipment
+
+Personal roboport MK2
+|prototype-type = personal-roboport-mk2-equipment
+
+Petroleum gas barrel
+|prototype-type = item
+
+Piercing rounds magazine
+|prototype-type = ammo
+
+Piercing shotgun shells
+|prototype-type = ammo
+
+Pipe
+|prototype-type = pipe
+
+Pipe to ground
+|prototype-type = pipe-to-ground
+
+Pistol
+|prototype-type = gun
+
+Plastic bar
+|prototype-type = item
+
+Poison capsule
+|prototype-type = poison-capsule
+
+Power armor
+|prototype-type = armor
+
+Power armor MK2
+|prototype-type = armor
+
+Power switch
+|prototype-type = power-switch
+
+Processing unit
+|prototype-type = item
+
+Production science pack
+|prototype-type = tool
+
+Productivity module
+|prototype-type = module
+
+Productivity module 2
+|prototype-type = module
+
+Productivity module 3
+|prototype-type = module
+
+Programmable speaker
+|prototype-type = programmable-speaker
+
+Pump
+|prototype-type = pump
+
+Pumpjack
+|prototype-type = pumpjack
+
+Radar
+|prototype-type = radar
+
+Rail
+|prototype-type = rail-planner
+
+Rail chain signal
+|prototype-type = rail-chain-signal
+
+Rail signal
+|prototype-type = rail-signal
+
+Raw fish
+|prototype-type = capsule
+
+Raw wood
+|prototype-type = item
+
+Red wire
+|prototype-type = item
+
+Repair pack
+|prototype-type = repair-tool
+
+Roboport
+|prototype-type = roboport
+
+Rocket
+|prototype-type = rocket
+
+Rocket control unit
+|prototype-type = item
+
+Rocket fuel
+|prototype-type = item
+
+Rocket launcher
+|prototype-type = gun
+
+Rocket part
+|prototype-type = item
+
+Rocket silo
+|prototype-type = rocket-silo
+
+Satellite
+|prototype-type = item
+
+Science pack 1
+|prototype-type = tool
+
+Science pack 2
+|prototype-type = tool
+
+Science pack 3
+|prototype-type = tool
+
+Shotgun
+|prototype-type = gun
+
+Shotgun shells
+|prototype-type = ammo
+
+Slowdown capsule
+|prototype-type = slowdown-capsule
+
+Small electric pole
+|prototype-type = small-electric-pole
+
+Lamp
+|prototype-type = small-lamp
+
+Solar panel
+|prototype-type = solar-panel
+
+Portable solar panel
+|prototype-type = solar-panel-equipment
+
+Solid fuel
+|prototype-type = item
+
+Solid fuel from heavy oil
+|prototype-type = recipe
+
+Solid fuel from light oil
+|prototype-type = recipe
+
+Solid fuel from petroleum gas
+|prototype-type = recipe
+
+Space science pack
+|prototype-type = tool
+
+Speed module
+|prototype-type = module
+
+Speed module 2
+|prototype-type = module
+
+Speed module 3
+|prototype-type = module
+
+Splitter
+|prototype-type = splitter
+
+Stack filter inserter
+|prototype-type = stack-filter-inserter
+
+Stack inserter
+|prototype-type = stack-inserter
+
+Steam engine
+|prototype-type = steam-engine
+
+Steam turbine
+|prototype-type = steam-turbine
+
+Steel axe
+|prototype-type = mining-tool
+
+Steel chest
+|prototype-type = steel-chest
+
+Steel furnace
+|prototype-type = steel-furnace
+
+Steel plate
+|prototype-type = item
+
+Stone
+|prototype-type = stone
+
+Stone brick
+|prototype-type = item
+
+Stone furnace
+|prototype-type = stone-furnace
+
+Stone wall
+|prototype-type = stone-wall
+
+Storage tank
+|prototype-type = storage-tank
+
+Submachine gun
+|prototype-type = gun
+
+Substation
+|prototype-type = substation
+
+Sulfur
+|prototype-type = item
+
+Sulfuric acid
+|prototype-type = recipe
+
+Sulfuric acid barrel
+|prototype-type = item
+
+Tank
+|prototype-type = tank
+
+Train stop
+|prototype-type = train-stop
+
+Transport belt
+|prototype-type = transport-belt
+
+Underground belt
+|prototype-type = underground-belt
+
+Uranium-235
+|prototype-type = item
+
+Uranium-238
+|prototype-type = item
+
+Uranium cannon shell
+|prototype-type = ammo
+
+Uranium fuel cell
+|prototype-type = item
+
+Uranium ore
+|prototype-type = uranium-ore
+
+Uranium processing
+|prototype-type = recipe
+
+Uranium rounds magazine
+|prototype-type = ammo
+
+Used up uranium fuel cell
+|prototype-type = item
+
+Water barrel
+|prototype-type = item
+
+Wood
+|prototype-type = item
+
+Wooden chest
+|prototype-type = wooden-chest
+
