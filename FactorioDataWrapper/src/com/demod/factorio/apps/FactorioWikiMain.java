@@ -39,18 +39,18 @@ public class FactorioWikiMain {
 
 	private static class WikiTypeMatch {
 		boolean item = false, recipe = false, entity = false, equipment = false, tile = false;
-		String entityName;
-		String equipmentName;
+		String entityType;
+		String equipmentType;
 		String itemType;
 
-		public void setEntity(String name) {
+		public void setEntity(String type) {
 			entity = true;
-			entityName = name;
+			entityType = type;
 		}
 
-		public void setEquipment(String name) {
+		public void setEquipment(String type) {
 			equipment = true;
-			equipmentName = name;
+			equipmentType = type;
 		}
 
 		public void setItem(String type) {
@@ -63,11 +63,11 @@ public class FactorioWikiMain {
 			if (!item && !recipe) {
 				return "N/A";
 			} else if (equipment) {
-				return equipmentName;
+				return equipmentType;
 			} else if (tile) {
 				return "tile";
 			} else if (entity) {
-				return entityName;
+				return entityType;
 			} else if (item) {
 				return itemType;
 			} else if (recipe) {
@@ -561,10 +561,10 @@ public class FactorioWikiMain {
 				.forEach(name -> protoMatches.computeIfAbsent(name, k -> new WikiTypeMatch()).recipe = true);
 		table.getTiles().keySet()
 				.forEach(name -> protoMatches.computeIfAbsent(name, k -> new WikiTypeMatch()).tile = true);
-		table.getEntities().keySet()
-				.forEach(name -> protoMatches.computeIfAbsent(name, k -> new WikiTypeMatch()).setEntity(name));
-		table.getEquipments().keySet()
-				.forEach(name -> protoMatches.computeIfAbsent(name, k -> new WikiTypeMatch()).setEquipment(name));
+		table.getEntities().entrySet().forEach(e -> protoMatches.computeIfAbsent(e.getKey(), k -> new WikiTypeMatch())
+				.setEntity(e.getValue().getType()));
+		table.getEquipments().entrySet().forEach(e -> protoMatches.computeIfAbsent(e.getKey(), k -> new WikiTypeMatch())
+				.setEquipment(e.getValue().getType()));
 
 		protoMatches.entrySet().stream().sorted((e1, e2) -> e1.getKey().compareTo(e2.getKey())).forEach(e -> {
 			String name = e.getKey();
