@@ -173,5 +173,6 @@
   "particle-source": "entity",
   "stream": "entity",
   "rail-planner": "item",
-  "beam": "entity"
+  "beam": "entity",
+  "god-controller": null
 }

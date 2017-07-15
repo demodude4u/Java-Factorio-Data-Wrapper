@@ -38,7 +38,7 @@ import com.google.common.primitives.Ints;
 public class FactorioWikiMain {
 
 	private static class WikiTypeMatch {
-		boolean item = false, recipe = false, entity = false, equipment = false, tile = false;
+		boolean item = false, recipe = false, entity = false, equipment = false, tile = false, fluid = false;
 		String entityType;
 		String equipmentType;
 		String itemType;
@@ -66,6 +66,8 @@ public class FactorioWikiMain {
 				return equipmentType;
 			} else if (tile) {
 				return "tile";
+			} else if (fluid) {
+				return "fluid";
 			} else if (entity) {
 				return entityType;
 			} else if (item) {
@@ -154,6 +156,11 @@ public class FactorioWikiMain {
 		try (PrintWriter pw = new PrintWriter(
 				new File(outputFolder, "wiki-entities-mining-" + baseInfo.getVersion() + ".txt"))) {
 			wiki_EntitiesMining(table, wikiTypes, nameMappingItemsRecipes, pw);
+		}
+
+		try (PrintWriter pw = new PrintWriter(
+				new File(outputFolder, "wiki-tech-names-" + baseInfo.getVersion() + ".txt"))) {
+			wiki_TechNames(table, nameMappingTechnologies, pw);
 		}
 
 		// wiki_GenerateTintedIcons(table, new File(outputFolder, "icons"));
@@ -309,6 +316,7 @@ public class FactorioWikiMain {
 										.map(e -> wiki_EffectModifierFormatter.getOrDefault(e.getKey(), v -> "")
 												.apply(e.getValue()))
 										.filter(s -> !s.isEmpty()).distinct().collect(Collectors.joining(" ")));
+						pw.println("|-");
 					}
 					pw.println();
 				});
@@ -476,6 +484,16 @@ public class FactorioWikiMain {
 		});
 	}
 
+	private static void wiki_TechNames(DataTable table, JSONObject nameMappingTechnologies, PrintWriter pw) {
+		table.getTechnologies().values().stream().sorted((t1, t2) -> t1.getName().compareTo(t2.getName()))
+				.filter(t -> !t.isBonus() || t.isFirstBonus()).forEach(tech -> {
+					pw.println(wiki_fmtName(tech.isBonus() ? tech.getBonusName() : tech.getName(),
+							nameMappingTechnologies));
+					pw.println("|internal-name = " + tech.getName());
+					pw.println();
+				});
+	}
+
 	/**
 	 * | cost = Time,30 + Science pack 1,1 + Science pack 2,1 + Science pack
 	 * 3,1<br>
@@ -561,6 +579,8 @@ public class FactorioWikiMain {
 				.forEach(name -> protoMatches.computeIfAbsent(name, k -> new WikiTypeMatch()).recipe = true);
 		table.getTiles().keySet()
 				.forEach(name -> protoMatches.computeIfAbsent(name, k -> new WikiTypeMatch()).tile = true);
+		table.getFluids().keySet()
+				.forEach(name -> protoMatches.computeIfAbsent(name, k -> new WikiTypeMatch()).fluid = true);
 		table.getEntities().entrySet().forEach(e -> protoMatches.computeIfAbsent(e.getKey(), k -> new WikiTypeMatch())
 				.setEntity(e.getValue().getType()));
 		table.getEquipments().entrySet().forEach(e -> protoMatches.computeIfAbsent(e.getKey(), k -> new WikiTypeMatch())
@@ -571,18 +591,12 @@ public class FactorioWikiMain {
 			WikiTypeMatch m = e.getValue();
 			String type = m.toString();
 
-			// if (name.equals("iron-axe")) {
-			// System.out.println(name + ": entity=" + m.entity + " equipment="
-			// + m.equipment + " item=" + m.item
-			// + " recipe=" + m.recipe);
-			// System.exit(0);
-			// }
-
 			if (!m.item && !m.recipe) {
 				return;
 			}
 
 			pw.println(wiki_fmtName(name, nameMappingItemsRecipes));
+			pw.println("|internal-name = " + name);
 			pw.println("|prototype-type = " + type);
 			pw.println();
 		});
@@ -613,7 +627,14 @@ public class FactorioWikiMain {
 			});
 		});
 
-		wiki_TypeTree_RecursivePrint(links, leafs, pw, "*", "__ROOT__");
+		Collection<String> rootTypes = links.get("__ROOT__");
+		rootTypes.stream().sorted().forEach(n -> {
+			pw.println("== " + n + " ==");
+			pw.println(
+					"<div class=\"factorio-list\" style=\"column-count:2;-moz-column-count:2;-webkit-column-count:2\">");
+			wiki_TypeTree_RecursivePrint(links, leafs, pw, "*", n);
+			pw.println("</div>");
+		});
 	}
 
 	private static void wiki_TypeTree_RecursivePrint(Multimap<String, String> links, Multimap<String, String> leafs,
