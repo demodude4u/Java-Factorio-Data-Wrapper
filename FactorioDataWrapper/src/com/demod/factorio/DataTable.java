@@ -36,16 +36,16 @@ public class DataTable {
 
 	private final TypeHiearchy typeHiearchy;
 	private final LuaTable rawLua;
+
 	private final Map<String, EntityPrototype> entities = new LinkedHashMap<>();
 	private final Map<String, ItemPrototype> items = new LinkedHashMap<>();
 	private final Map<String, RecipePrototype> recipes = new LinkedHashMap<>();
 	private final Map<String, RecipePrototype> expensiveRecipes = new LinkedHashMap<>();
 	private final Map<String, FluidPrototype> fluids = new LinkedHashMap<>();
 	private final Map<String, TechPrototype> technologies = new LinkedHashMap<>();
-
 	private final Map<String, EquipmentPrototype> equipments = new LinkedHashMap<>();
-
 	private final Map<String, TilePrototype> tiles = new LinkedHashMap<>();
+
 	private final Set<String> worldInputs = new LinkedHashSet<>();
 
 	public DataTable(TypeHiearchy typeHiearchy, LuaTable dataLua, JSONObject excludeDataJson) {
