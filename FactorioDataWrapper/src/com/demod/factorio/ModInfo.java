@@ -7,6 +7,35 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class ModInfo {
+	public static class Dependency {
+		private final boolean optional;
+		private final String name;
+		private final String conditional;
+		private final String version;
+
+		private Dependency(boolean optional, String name, String conditional, String version) {
+			this.optional = optional;
+			this.name = name;
+			this.conditional = conditional;
+			this.version = version;
+		}
+
+		public String getConditional() {
+			return conditional;
+		}
+
+		public String getName() {
+			return name;
+		}
+
+		public String getVersion() {
+			return version;
+		}
+
+		public boolean isOptional() {
+			return optional;
+		}
+	}
 
 	private final String name;
 	private final String version;
@@ -15,11 +44,11 @@ public class ModInfo {
 	private final String contact;
 	private final String homepage;
 	private final String description;
-	private final List<String> dependencies = new ArrayList<>();
+	private final List<Dependency> dependencies = new ArrayList<>();
 
 	public ModInfo(JSONObject json) {
 		name = json.getString("name");
-		version = json.getString("version");
+		version = json.optString("version", "???");
 		title = json.optString("title", "");
 		author = json.optString("author", "");
 		contact = json.optString("contact", "");
@@ -27,7 +56,13 @@ public class ModInfo {
 		description = json.optString("description", "");
 		JSONArray dependenciesJson = json.getJSONArray("dependencies");
 		for (int i = 0; i < dependenciesJson.length(); i++) {
-			dependencies.add(dependenciesJson.getString(i));
+			String depString = dependenciesJson.getString(i);
+			String[] depSplit = depString.split("\\s");
+			if (depSplit.length == 3) {
+				dependencies.add(new Dependency(false, depSplit[0], depSplit[1], depSplit[2]));
+			} else {
+				dependencies.add(new Dependency(true, depSplit[1], depSplit[2], depSplit[3]));
+			}
 		}
 	}
 
@@ -39,7 +74,7 @@ public class ModInfo {
 		return contact;
 	}
 
-	public List<String> getDependencies() {
+	public List<Dependency> getDependencies() {
 		return dependencies;
 	}
 
