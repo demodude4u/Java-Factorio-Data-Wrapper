@@ -1,0 +1,354 @@
+Advanced electronics
+|internal-name = advanced-electronics
+
+Advanced electronics 2
+|internal-name = advanced-electronics-2
+
+Advanced material processing
+|internal-name = advanced-material-processing
+
+Advanced material processing 2
+|internal-name = advanced-material-processing-2
+
+Advanced oil processing
+|internal-name = advanced-oil-processing
+
+Atomic bomb
+|internal-name = atomic-bomb
+
+Auto character logistic trash slots
+|internal-name = auto-character-logistic-trash-slots
+
+Automated rail transportation
+|internal-name = automated-rail-transportation
+
+Automation
+|internal-name = automation
+
+Automation 2
+|internal-name = automation-2
+
+Automation 3
+|internal-name = automation-3
+
+Automobilism
+|internal-name = automobilism
+
+Battery
+|internal-name = battery
+
+Battery equipment
+|internal-name = battery-equipment
+
+Battery MK2 equipment
+|internal-name = battery-mk2-equipment
+
+Braking force
+|internal-name = braking-force-1
+
+Bullet damage
+|internal-name = bullet-damage-1
+
+Bullet shooting speed
+|internal-name = bullet-speed-1
+
+Cannon shell damage
+|internal-name = cannon-shell-damage-1
+
+Cannon shell shooting speed
+|internal-name = cannon-shell-speed-1
+
+Character logistic slots
+|internal-name = character-logistic-slots-1
+
+Character logistic trash slots
+|internal-name = character-logistic-trash-slots-1
+
+Circuit network
+|internal-name = circuit-network
+
+Cluster grenade
+|internal-name = cluster-grenade
+
+Coal liquefaction
+|internal-name = coal-liquefaction
+
+Combat robot damage
+|internal-name = combat-robot-damage-1
+
+Combat robotics
+|internal-name = combat-robotics
+
+Combat robotics 2
+|internal-name = combat-robotics-2
+
+Combat robotics 3
+|internal-name = combat-robotics-3
+
+Concrete
+|internal-name = concrete
+
+Construction robotics
+|internal-name = construction-robotics
+
+Discharge defense
+|internal-name = discharge-defense-equipment
+
+Effect transmission
+|internal-name = effect-transmission
+
+Efficiency module
+|internal-name = effectivity-module
+
+Efficiency module 2
+|internal-name = effectivity-module-2
+
+Efficiency module 3
+|internal-name = effectivity-module-3
+
+Electric energy accumulators
+|internal-name = electric-energy-accumulators-1
+
+Electric energy distribution 1
+|internal-name = electric-energy-distribution-1
+
+Electric energy distribution 2
+|internal-name = electric-energy-distribution-2
+
+Electric engine
+|internal-name = electric-engine
+
+Electronics
+|internal-name = electronics
+
+Energy shield equipment
+|internal-name = energy-shield-equipment
+
+Energy shield MK2 equipment
+|internal-name = energy-shield-mk2-equipment
+
+Engine
+|internal-name = engine
+
+Exoskeleton equipment
+|internal-name = exoskeleton-equipment
+
+Explosive rocketry
+|internal-name = explosive-rocketry
+
+Explosives
+|internal-name = explosives
+
+Flamethrower
+|internal-name = flamethrower
+
+Flamethrower damage
+|internal-name = flamethrower-damage-1
+
+Flammables
+|internal-name = flammables
+
+Fluid handling
+|internal-name = fluid-handling
+
+Fluid wagon
+|internal-name = fluid-wagon
+
+Flight
+|internal-name = flying
+
+Follower robot count
+|internal-name = follower-robot-count-1
+
+Portable fusion reactor
+|internal-name = fusion-reactor-equipment
+
+Gates
+|internal-name = gates
+
+Grenade damage
+|internal-name = grenade-damage-1
+
+Gun turret damage
+|internal-name = gun-turret-damage-1
+
+Heavy armor
+|internal-name = heavy-armor
+
+Inserter capacity bonus
+|internal-name = inserter-capacity-bonus-1
+
+Kovarex enrichment process
+|internal-name = kovarex-enrichment-process
+
+Landmines
+|internal-name = land-mine
+
+Landfill
+|internal-name = landfill
+
+Laser
+|internal-name = laser
+
+Laser turret damage
+|internal-name = laser-turret-damage-1
+
+Laser turret shooting speed
+|internal-name = laser-turret-speed-1
+
+Laser turrets
+|internal-name = laser-turrets
+
+Logistic robotics
+|internal-name = logistic-robotics
+
+Logistic system
+|internal-name = logistic-system
+
+Logistics
+|internal-name = logistics
+
+Logistics 2
+|internal-name = logistics-2
+
+Logistics 3
+|internal-name = logistics-3
+
+Military
+|internal-name = military
+
+Military 2
+|internal-name = military-2
+
+Military 3
+|internal-name = military-3
+
+Military 4
+|internal-name = military-4
+
+Mining productivity
+|internal-name = mining-productivity-1
+
+Modular armor
+|internal-name = modular-armor
+
+Modules
+|internal-name = modules
+
+Nightvision equipment
+|internal-name = night-vision-equipment
+
+Nuclear fuel reprocessing
+|internal-name = nuclear-fuel-reprocessing
+
+Nuclear power
+|internal-name = nuclear-power
+
+Oil processing
+|internal-name = oil-processing
+
+Optics
+|internal-name = optics
+
+Personal laser defense
+|internal-name = personal-laser-defense-equipment
+
+Personal roboport
+|internal-name = personal-roboport-equipment
+
+Personal roboport 2
+|internal-name = personal-roboport-equipment-2
+
+Plastics
+|internal-name = plastics
+
+Power armor
+|internal-name = power-armor
+
+Power armor 2
+|internal-name = power-armor-2
+
+Productivity module
+|internal-name = productivity-module
+
+Productivity module 2
+|internal-name = productivity-module-2
+
+Productivity module 3
+|internal-name = productivity-module-3
+
+Rail signals
+|internal-name = rail-signals
+
+Railway
+|internal-name = railway
+
+Lab research speed
+|internal-name = research-speed-1
+
+Robotics
+|internal-name = robotics
+
+Rocket damage
+|internal-name = rocket-damage-1
+
+Rocket silo
+|internal-name = rocket-silo
+
+Rocket shooting speed
+|internal-name = rocket-speed-1
+
+Rocketry
+|internal-name = rocketry
+
+Shotgun shell damage
+|internal-name = shotgun-shell-damage-1
+
+Shotgun shell shooting speed
+|internal-name = shotgun-shell-speed-1
+
+Solar energy
+|internal-name = solar-energy
+
+Portable solar panel
+|internal-name = solar-panel-equipment
+
+Speed module
+|internal-name = speed-module
+
+Speed module 2
+|internal-name = speed-module-2
+
+Speed module 3
+|internal-name = speed-module-3
+
+Stack inserter
+|internal-name = stack-inserter
+
+Steel processing
+|internal-name = steel-processing
+
+Stone walls
+|internal-name = stone-walls
+
+Sulfur processing
+|internal-name = sulfur-processing
+
+Tanks
+|internal-name = tanks
+
+Toolbelt
+|internal-name = toolbelt
+
+Turrets
+|internal-name = turrets
+
+Uranium ammo
+|internal-name = uranium-ammo
+
+Worker robot speed
+|internal-name = worker-robots-speed-1
+
+Worker robot cargo size
+|internal-name = worker-robots-storage-1
+

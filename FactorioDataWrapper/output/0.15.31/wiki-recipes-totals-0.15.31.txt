@@ -1,0 +1,1194 @@
+Accumulator
+|recipe = Time, 10 + Battery, 5 + Iron plate, 2
+|total-raw = Time, 10 + Battery, 5 + Iron plate, 2
+|expensive-recipe = Time, 10 + Battery, 5 + Iron plate, 2
+|expensive-total-raw = Time, 10 + Battery, 5 + Iron plate, 2
+
+Advanced circuit
+|recipe = Time, 6 + Copper cable, 4 + Electronic circuit, 2 + Plastic bar, 2
+|total-raw = Time, 9.5 + Copper plate, 5 + Iron plate, 2 + Plastic bar, 2
+|expensive-recipe = Time, 6 + Copper cable, 8 + Electronic circuit, 2 + Plastic bar, 4
+|expensive-total-raw = Time, 14 + Copper plate, 14 + Iron plate, 4 + Plastic bar, 4
+
+Advanced oil processing
+|recipe = Time, 5 + Crude oil, 100 + Water, 50 = Heavy oil, 10 + Light oil, 45 + Petroleum gas, 55
+|total-raw = Time, 5 + Crude oil, 100 + Water, 50
+|expensive-recipe = Time, 5 + Crude oil, 100 + Water, 50 = Heavy oil, 10 + Light oil, 45 + Petroleum gas, 55
+|expensive-total-raw = Time, 5 + Crude oil, 100 + Water, 50
+
+Arithmetic combinator
+|recipe = Time, 0.5 + Copper cable, 5 + Electronic circuit, 5
+|total-raw = Time, 8 + Copper plate, 10 + Iron plate, 5
+|expensive-recipe = Time, 0.5 + Copper cable, 5 + Electronic circuit, 5
+|expensive-total-raw = Time, 16.75 + Copper plate, 27.5 + Iron plate, 10
+
+Assembling machine 1
+|recipe = Time, 0.5 + Electronic circuit, 3 + Iron gear wheel, 5 + Iron plate, 9
+|total-raw = Time, 6.75 + Copper plate, 4.5 + Iron plate, 22
+|expensive-recipe = Time, 0.5 + Electronic circuit, 3 + Iron gear wheel, 5 + Iron plate, 9
+|expensive-total-raw = Time, 12 + Copper plate, 15 + Iron plate, 35
+
+Assembling machine 2
+|recipe = Time, 0.5 + Assembling machine 1, 1 + Electronic circuit, 3 + Iron gear wheel, 5 + Iron plate, 9
+|total-raw = Time, 13.5 + Copper plate, 9 + Iron plate, 44
+|expensive-recipe = Time, 0.5 + Assembling machine 1, 1 + Electronic circuit, 5 + Iron gear wheel, 10 + Iron plate, 20
+|expensive-total-raw = Time, 32.5 + Copper plate, 40 + Iron plate, 105
+
+Assembling machine 3
+|recipe = Time, 0.5 + Assembling machine 2, 2 + Speed module, 4
+|total-raw = Time, 302.5 + Copper plate, 148 + Iron plate, 148 + Plastic bar, 40
+|expensive-recipe = Time, 0.5 + Assembling machine 2, 2 + Speed module, 4
+|expensive-total-raw = Time, 465.5 + Copper plate, 460 + Iron plate, 330 + Plastic bar, 80
+
+Atomic bomb
+|recipe = Time, 50 + Explosives, 10 + Processing unit, 20 + Uranium-235, 30
+|total-raw = Time, 50 + Explosives, 10 + Processing unit, 20 + Uranium-235, 30
+|expensive-recipe = Time, 50 + Explosives, 10 + Processing unit, 20 + Uranium-235, 30
+|expensive-total-raw = Time, 50 + Explosives, 10 + Processing unit, 20 + Uranium-235, 30
+
+Basic oil processing
+|recipe = Time, 5 + Crude oil, 100 = Heavy oil, 30 + Light oil, 30 + Petroleum gas, 40
+|total-raw = Time, 5 + Crude oil, 100
+|expensive-recipe = Time, 5 + Crude oil, 100 = Heavy oil, 30 + Light oil, 30 + Petroleum gas, 40
+|expensive-total-raw = Time, 5 + Crude oil, 100
+
+Battery
+|recipe = Time, 5 + Copper plate, 1 + Iron plate, 1 + Sulfuric acid, 20
+|total-raw = Time, 5 + Copper plate, 1 + Iron plate, 1 + Sulfuric acid, 20
+|expensive-recipe = Time, 5 + Copper plate, 1 + Iron plate, 1 + Sulfuric acid, 40
+|expensive-total-raw = Time, 5 + Copper plate, 1 + Iron plate, 1 + Sulfuric acid, 40
+
+Battery MK1
+|recipe = Time, 10 + Battery, 5 + Steel plate, 10
+|total-raw = Time, 10 + Battery, 5 + Steel plate, 10
+|expensive-recipe = Time, 10 + Battery, 5 + Steel plate, 10
+|expensive-total-raw = Time, 10 + Battery, 5 + Steel plate, 10
+
+Battery MK2
+|recipe = Time, 10 + Battery MK1, 10 + Processing unit, 20
+|total-raw = Time, 110 + Battery, 50 + Processing unit, 20 + Steel plate, 100
+|expensive-recipe = Time, 10 + Battery MK1, 10 + Processing unit, 20
+|expensive-total-raw = Time, 110 + Battery, 50 + Processing unit, 20 + Steel plate, 100
+
+Beacon
+|recipe = Time, 15 + Advanced circuit, 20 + Copper cable, 10 + Electronic circuit, 20 + Steel plate, 10
+|total-raw = Time, 232.5 + Copper plate, 135 + Iron plate, 60 + Plastic bar, 40 + Steel plate, 10
+|expensive-recipe = Time, 15 + Advanced circuit, 20 + Copper cable, 10 + Electronic circuit, 20 + Steel plate, 10
+|expensive-total-raw = Time, 357.5 + Copper plate, 385 + Iron plate, 120 + Plastic bar, 80 + Steel plate, 10
+
+Big electric pole
+|recipe = Time, 0.5 + Copper plate, 5 + Steel plate, 5
+|total-raw = Time, 0.5 + Copper plate, 5 + Steel plate, 5
+|expensive-recipe = Time, 0.5 + Copper plate, 5 + Steel plate, 5
+|expensive-total-raw = Time, 0.5 + Copper plate, 5 + Steel plate, 5
+
+Boiler
+|recipe = Time, 0.5 + Pipe, 4 + Stone furnace, 1
+|total-raw = Time, 3 + Iron plate, 4 + Stone, 5
+|expensive-recipe = Time, 0.5 + Pipe, 4 + Stone furnace, 1
+|expensive-total-raw = Time, 3 + Iron plate, 8 + Stone, 5
+
+Burner inserter
+|recipe = Time, 0.5 + Iron gear wheel, 1 + Iron plate, 1
+|total-raw = Time, 1 + Iron plate, 3
+|expensive-recipe = Time, 0.5 + Iron gear wheel, 1 + Iron plate, 1
+|expensive-total-raw = Time, 1 + Iron plate, 5
+
+Burner mining drill
+|recipe = Time, 2 + Iron gear wheel, 3 + Iron plate, 3 + Stone furnace, 1
+|total-raw = Time, 4 + Iron plate, 9 + Stone, 5
+|expensive-recipe = Time, 4 + Iron gear wheel, 6 + Iron plate, 6 + Stone furnace, 2
+|expensive-total-raw = Time, 8 + Iron plate, 30 + Stone, 10
+
+Cannon shell
+|recipe = Time, 8 + Explosives, 1 + Plastic bar, 2 + Steel plate, 2
+|total-raw = Time, 8 + Explosives, 1 + Plastic bar, 2 + Steel plate, 2
+|expensive-recipe = Time, 8 + Explosives, 1 + Plastic bar, 4 + Steel plate, 4
+|expensive-total-raw = Time, 8 + Explosives, 1 + Plastic bar, 4 + Steel plate, 4
+
+Car
+|recipe = Time, 0.5 + Engine unit, 8 + Iron plate, 20 + Steel plate, 5
+|total-raw = Time, 0.5 + Engine unit, 8 + Iron plate, 20 + Steel plate, 5
+|expensive-recipe = Time, 0.5 + Engine unit, 8 + Iron plate, 20 + Steel plate, 5
+|expensive-total-raw = Time, 0.5 + Engine unit, 8 + Iron plate, 20 + Steel plate, 5
+
+Cargo wagon
+|recipe = Time, 0.5 + Iron gear wheel, 10 + Iron plate, 20 + Steel plate, 20
+|total-raw = Time, 5.5 + Iron plate, 40 + Steel plate, 20
+|expensive-recipe = Time, 0.5 + Iron gear wheel, 10 + Iron plate, 20 + Steel plate, 20
+|expensive-total-raw = Time, 5.5 + Iron plate, 60 + Steel plate, 20
+
+Centrifuge
+|recipe = Time, 4 + Advanced circuit, 100 + Concrete, 100 + Iron gear wheel, 100 + Steel plate, 50
+|total-raw = Time, 1004 + Concrete, 100 + Copper plate, 500 + Iron plate, 400 + Plastic bar, 200 + Steel plate, 50
+|expensive-recipe = Time, 4 + Advanced circuit, 100 + Concrete, 100 + Iron gear wheel, 100 + Steel plate, 50
+|expensive-total-raw = Time, 1454 + Concrete, 100 + Copper plate, 1400 + Iron plate, 800 + Plastic bar, 400 + Steel plate, 50
+
+Chemical plant
+|recipe = Time, 5 + Electronic circuit, 5 + Iron gear wheel, 5 + Pipe, 5 + Steel plate, 5
+|total-raw = Time, 16.25 + Copper plate, 7.5 + Iron plate, 20 + Steel plate, 5
+|expensive-recipe = Time, 5 + Electronic circuit, 5 + Iron gear wheel, 5 + Pipe, 5 + Steel plate, 5
+|expensive-total-raw = Time, 25 + Copper plate, 25 + Iron plate, 40 + Steel plate, 5
+
+Cluster grenade
+|recipe = Time, 8 + Explosives, 5 + Grenade, 7 + Steel plate, 5
+|total-raw = Time, 64 + Coal, 70 + Explosives, 5 + Iron plate, 35 + Steel plate, 5
+|expensive-recipe = Time, 8 + Explosives, 5 + Grenade, 7 + Steel plate, 5
+|expensive-total-raw = Time, 64 + Coal, 70 + Explosives, 5 + Iron plate, 35 + Steel plate, 5
+
+Coal liquefaction
+|recipe = Time, 5 + Coal, 10 + Heavy oil, 25 + Steam, 50 = Heavy oil, 35 + Light oil, 15 + Petroleum gas, 20
+|total-raw = Time, 5 + Coal, 10 + Heavy oil, 25 + Steam, 50
+|expensive-recipe = Time, 5 + Coal, 10 + Heavy oil, 25 + Steam, 50 = Heavy oil, 35 + Light oil, 15 + Petroleum gas, 20
+|expensive-total-raw = Time, 5 + Coal, 10 + Heavy oil, 25 + Steam, 50
+
+Combat shotgun
+|recipe = Time, 10 + Copper plate, 10 + Iron gear wheel, 5 + Steel plate, 15 + Wood, 10
+|total-raw = Time, 15 + Copper plate, 10 + Iron plate, 10 + Raw wood, 5 + Steel plate, 15
+|expensive-recipe = Time, 10 + Copper plate, 10 + Iron gear wheel, 5 + Steel plate, 15 + Wood, 10
+|expensive-total-raw = Time, 15 + Copper plate, 10 + Iron plate, 20 + Raw wood, 5 + Steel plate, 15
+
+Concrete
+|recipe = Time, 10 + Iron ore, 1 + Stone brick, 5 + Water, 100 = Concrete, 10
+|total-raw = Time, 10 + Iron ore, 1 + Stone brick, 5 + Water, 100
+|expensive-recipe = Time, 10 + Iron ore, 1 + Stone brick, 5 + Water, 100 = Concrete, 10
+|expensive-total-raw = Time, 10 + Iron ore, 1 + Stone brick, 5 + Water, 100
+
+Constant combinator
+|recipe = Time, 0.5 + Copper cable, 5 + Electronic circuit, 2
+|total-raw = Time, 4.25 + Copper plate, 5.5 + Iron plate, 2
+|expensive-recipe = Time, 0.5 + Copper cable, 5 + Electronic circuit, 2
+|expensive-total-raw = Time, 7.75 + Copper plate, 12.5 + Iron plate, 4
+
+Construction robot
+|recipe = Time, 0.5 + Electronic circuit, 2 + Flying robot frame, 1
+|total-raw = Time, 26.75 + Battery, 2 + Copper plate, 7.5 + Electric engine unit, 1 + Iron plate, 5 + Steel plate, 1
+|expensive-recipe = Time, 0.5 + Electronic circuit, 2 + Flying robot frame, 1
+|expensive-total-raw = Time, 35.5 + Battery, 2 + Copper plate, 25 + Electric engine unit, 1 + Iron plate, 10 + Steel plate, 1
+
+Copper cable
+|recipe = Time, 0.5 + Copper plate, 1 = Copper cable, 2
+|total-raw = Time, 0.5 + Copper plate, 1
+|expensive-recipe = Time, 0.5 + Copper plate, 1 = Copper cable, 2
+|expensive-total-raw = Time, 0.5 + Copper plate, 1
+
+Copper plate
+|recipe = Time, 3.5 + Copper ore, 1
+|total-raw = Time, 3.5 + Copper ore, 1
+|expensive-recipe = Time, 3.5 + Copper ore, 1
+|expensive-total-raw = Time, 3.5 + Copper ore, 1
+
+Decider combinator
+|recipe = Time, 0.5 + Copper cable, 5 + Electronic circuit, 5
+|total-raw = Time, 8 + Copper plate, 10 + Iron plate, 5
+|expensive-recipe = Time, 0.5 + Copper cable, 5 + Electronic circuit, 5
+|expensive-total-raw = Time, 16.75 + Copper plate, 27.5 + Iron plate, 10
+
+Defender capsule
+|recipe = Time, 8 + Electronic circuit, 2 + Iron gear wheel, 3 + Piercing rounds magazine, 1
+|total-raw = Time, 16 + Copper plate, 8 + Iron plate, 12 + Steel plate, 1
+|expensive-recipe = Time, 8 + Electronic circuit, 2 + Iron gear wheel, 3 + Piercing rounds magazine, 1
+|expensive-total-raw = Time, 19.5 + Copper plate, 15 + Iron plate, 20 + Steel plate, 1
+
+Destroyer capsule
+|recipe = Time, 15 + Distractor capsule, 4 + Speed module, 1
+|total-raw = Time, 513.75 + Copper plate, 220.5 + Iron plate, 231 + Plastic bar, 34 + Steel plate, 16
+|expensive-recipe = Time, 15 + Distractor capsule, 4 + Speed module, 1
+|expensive-total-raw = Time, 655 + Copper plate, 503 + Iron plate, 398 + Plastic bar, 68 + Steel plate, 16
+
+Discharge defense
+|recipe = Time, 10 + Laser turret, 10 + Processing unit, 5 + Steel plate, 20
+|total-raw = Time, 460 + Battery, 120 + Copper plate, 300 + Iron plate, 200 + Processing unit, 5 + Steel plate, 220
+|expensive-recipe = Time, 10 + Laser turret, 10 + Processing unit, 5 + Steel plate, 20
+|expensive-total-raw = Time, 810 + Battery, 120 + Copper plate, 1000 + Iron plate, 400 + Processing unit, 5 + Steel plate, 220
+
+Discharge defense remote
+|recipe = Time, 0.5 + Electronic circuit, 1
+|total-raw = Time, 1.75 + Copper plate, 1.5 + Iron plate, 1
+|expensive-recipe = Time, 0.5 + Electronic circuit, 1
+|expensive-total-raw = Time, 3.5 + Copper plate, 5 + Iron plate, 2
+
+Distractor capsule
+|recipe = Time, 15 + Advanced circuit, 3 + Defender capsule, 4
+|total-raw = Time, 107.5 + Copper plate, 47 + Iron plate, 54 + Plastic bar, 6 + Steel plate, 4
+|expensive-recipe = Time, 15 + Advanced circuit, 3 + Defender capsule, 4
+|expensive-total-raw = Time, 135 + Copper plate, 102 + Iron plate, 92 + Plastic bar, 12 + Steel plate, 4
+
+Efficiency module
+|recipe = Time, 15 + Advanced circuit, 5 + Electronic circuit, 5
+|total-raw = Time, 68.75 + Copper plate, 32.5 + Iron plate, 15 + Plastic bar, 10
+|expensive-recipe = Time, 15 + Advanced circuit, 5 + Electronic circuit, 5
+|expensive-total-raw = Time, 100 + Copper plate, 95 + Iron plate, 30 + Plastic bar, 20
+
+Efficiency module 2
+|recipe = Time, 30 + Advanced circuit, 5 + Efficiency module, 4 + Processing unit, 5
+|total-raw = Time, 352.5 + Copper plate, 155 + Iron plate, 70 + Plastic bar, 50 + Processing unit, 5
+|expensive-recipe = Time, 30 + Advanced circuit, 5 + Efficiency module, 4 + Processing unit, 5
+|expensive-total-raw = Time, 500 + Copper plate, 450 + Iron plate, 140 + Plastic bar, 100 + Processing unit, 5
+
+Efficiency module 3
+|recipe = Time, 60 + Advanced circuit, 5 + Efficiency module 2, 5 + Processing unit, 5
+|total-raw = Time, 1870 + Copper plate, 800 + Iron plate, 360 + Plastic bar, 260 + Processing unit, 30
+|expensive-recipe = Time, 60 + Advanced circuit, 5 + Efficiency module 2, 5 + Processing unit, 5
+|expensive-total-raw = Time, 2630 + Copper plate, 2320 + Iron plate, 720 + Plastic bar, 520 + Processing unit, 30
+
+Electric engine unit
+|recipe = Time, 10 + Electronic circuit, 2 + Engine unit, 1 + Lubricant, 15
+|total-raw = Time, 12.5 + Copper plate, 3 + Engine unit, 1 + Iron plate, 2 + Lubricant, 15
+|expensive-recipe = Time, 10 + Electronic circuit, 2 + Engine unit, 1 + Lubricant, 15
+|expensive-total-raw = Time, 16 + Copper plate, 10 + Engine unit, 1 + Iron plate, 4 + Lubricant, 15
+
+Electric furnace
+|recipe = Time, 5 + Advanced circuit, 5 + Steel plate, 10 + Stone brick, 10
+|total-raw = Time, 52.5 + Copper plate, 25 + Iron plate, 10 + Plastic bar, 10 + Steel plate, 10 + Stone brick, 10
+|expensive-recipe = Time, 5 + Advanced circuit, 5 + Steel plate, 10 + Stone brick, 10
+|expensive-total-raw = Time, 75 + Copper plate, 70 + Iron plate, 20 + Plastic bar, 20 + Steel plate, 10 + Stone brick, 10
+
+Electric mining drill
+|recipe = Time, 2 + Electronic circuit, 3 + Iron gear wheel, 5 + Iron plate, 10
+|total-raw = Time, 8.25 + Copper plate, 4.5 + Iron plate, 23
+|expensive-recipe = Time, 2 + Electronic circuit, 5 + Iron gear wheel, 10 + Iron plate, 20
+|expensive-total-raw = Time, 22 + Copper plate, 25 + Iron plate, 70
+
+Electronic circuit
+|recipe = Time, 0.5 + Copper cable, 3 + Iron plate, 1
+|total-raw = Time, 1.25 + Copper plate, 1.5 + Iron plate, 1
+|expensive-recipe = Time, 0.5 + Copper cable, 10 + Iron plate, 2
+|expensive-total-raw = Time, 3 + Copper plate, 5 + Iron plate, 2
+
+Empty barrel
+|recipe = Time, 1 + Steel plate, 1
+|total-raw = Time, 1 + Steel plate, 1
+|expensive-recipe = Time, 1 + Steel plate, 1
+|expensive-total-raw = Time, 1 + Steel plate, 1
+
+Empty crude oil barrel
+|recipe = Time, 1 + Crude oil barrel, 1 = Crude oil, 250 + Empty barrel, 1
+|total-raw = Time, 1 + Crude oil barrel, 1
+|expensive-recipe = Time, 1 + Crude oil barrel, 1 = Crude oil, 250 + Empty barrel, 1
+|expensive-total-raw = Time, 1 + Crude oil barrel, 1
+
+Empty heavy oil barrel
+|recipe = Time, 1 + Heavy oil barrel, 1 = Empty barrel, 1 + Heavy oil, 250
+|total-raw = Time, 1 + Heavy oil barrel, 1
+|expensive-recipe = Time, 1 + Heavy oil barrel, 1 = Empty barrel, 1 + Heavy oil, 250
+|expensive-total-raw = Time, 1 + Heavy oil barrel, 1
+
+Empty light oil barrel
+|recipe = Time, 1 + Light oil barrel, 1 = Empty barrel, 1 + Light oil, 250
+|total-raw = Time, 1 + Light oil barrel, 1
+|expensive-recipe = Time, 1 + Light oil barrel, 1 = Empty barrel, 1 + Light oil, 250
+|expensive-total-raw = Time, 1 + Light oil barrel, 1
+
+Empty lubricant barrel
+|recipe = Time, 1 + Lubricant barrel, 1 = Empty barrel, 1 + Lubricant, 250
+|total-raw = Time, 1 + Lubricant barrel, 1
+|expensive-recipe = Time, 1 + Lubricant barrel, 1 = Empty barrel, 1 + Lubricant, 250
+|expensive-total-raw = Time, 1 + Lubricant barrel, 1
+
+Empty petroleum gas barrel
+|recipe = Time, 1 + Petroleum gas barrel, 1 = Empty barrel, 1 + Petroleum gas, 250
+|total-raw = Time, 1 + Petroleum gas barrel, 1
+|expensive-recipe = Time, 1 + Petroleum gas barrel, 1 = Empty barrel, 1 + Petroleum gas, 250
+|expensive-total-raw = Time, 1 + Petroleum gas barrel, 1
+
+Empty sulfuric acid barrel
+|recipe = Time, 1 + Sulfuric acid barrel, 1 = Empty barrel, 1 + Sulfuric acid, 250
+|total-raw = Time, 1 + Sulfuric acid barrel, 1
+|expensive-recipe = Time, 1 + Sulfuric acid barrel, 1 = Empty barrel, 1 + Sulfuric acid, 250
+|expensive-total-raw = Time, 1 + Sulfuric acid barrel, 1
+
+Empty water barrel
+|recipe = Time, 1 + Water barrel, 1 = Empty barrel, 1 + Water, 250
+|total-raw = Time, 1 + Water barrel, 1
+|expensive-recipe = Time, 1 + Water barrel, 1 = Empty barrel, 1 + Water, 250
+|expensive-total-raw = Time, 1 + Water barrel, 1
+
+Energy shield
+|recipe = Time, 10 + Advanced circuit, 5 + Steel plate, 10
+|total-raw = Time, 57.5 + Copper plate, 25 + Iron plate, 10 + Plastic bar, 10 + Steel plate, 10
+|expensive-recipe = Time, 10 + Advanced circuit, 5 + Steel plate, 10
+|expensive-total-raw = Time, 80 + Copper plate, 70 + Iron plate, 20 + Plastic bar, 20 + Steel plate, 10
+
+Energy shield MK2
+|recipe = Time, 10 + Energy shield, 10 + Processing unit, 10
+|total-raw = Time, 585 + Copper plate, 250 + Iron plate, 100 + Plastic bar, 100 + Processing unit, 10 + Steel plate, 100
+|expensive-recipe = Time, 10 + Energy shield, 10 + Processing unit, 10
+|expensive-total-raw = Time, 810 + Copper plate, 700 + Iron plate, 200 + Plastic bar, 200 + Processing unit, 10 + Steel plate, 100
+
+Engine unit
+|recipe = Time, 10 + Iron gear wheel, 1 + Pipe, 2 + Steel plate, 1
+|total-raw = Time, 11.5 + Iron plate, 4 + Steel plate, 1
+|expensive-recipe = Time, 10 + Iron gear wheel, 1 + Pipe, 2 + Steel plate, 1
+|expensive-total-raw = Time, 11.5 + Iron plate, 8 + Steel plate, 1
+
+Exoskeleton
+|recipe = Time, 10 + Electric engine unit, 30 + Processing unit, 10 + Steel plate, 20
+|total-raw = Time, 10 + Electric engine unit, 30 + Processing unit, 10 + Steel plate, 20
+|expensive-recipe = Time, 10 + Electric engine unit, 30 + Processing unit, 10 + Steel plate, 20
+|expensive-total-raw = Time, 10 + Electric engine unit, 30 + Processing unit, 10 + Steel plate, 20
+
+Explosive cannon shell
+|recipe = Time, 8 + Explosives, 2 + Plastic bar, 2 + Steel plate, 2
+|total-raw = Time, 8 + Explosives, 2 + Plastic bar, 2 + Steel plate, 2
+|expensive-recipe = Time, 8 + Explosives, 2 + Plastic bar, 4 + Steel plate, 4
+|expensive-total-raw = Time, 8 + Explosives, 2 + Plastic bar, 4 + Steel plate, 4
+
+Explosive rocket
+|recipe = Time, 8 + Explosives, 2 + Rocket, 1
+|total-raw = Time, 17.25 + Copper plate, 1.5 + Explosives, 3 + Iron plate, 3
+|expensive-recipe = Time, 8 + Explosives, 2 + Rocket, 1
+|expensive-total-raw = Time, 19 + Copper plate, 5 + Explosives, 3 + Iron plate, 4
+
+Explosive uranium cannon shell
+|recipe = Time, 12 + Explosive cannon shell, 1 + Uranium-238, 1
+|total-raw = Time, 20 + Explosives, 2 + Plastic bar, 2 + Steel plate, 2 + Uranium-238, 1
+|expensive-recipe = Time, 12 + Explosive cannon shell, 1 + Uranium-238, 1
+|expensive-total-raw = Time, 20 + Explosives, 2 + Plastic bar, 4 + Steel plate, 4 + Uranium-238, 1
+
+Explosives
+|recipe = Time, 5 + Coal, 1 + Sulfur, 1 + Water, 10
+|total-raw = Time, 5 + Coal, 1 + Sulfur, 1 + Water, 10
+|expensive-recipe = Time, 5 + Coal, 2 + Sulfur, 2 + Water, 10
+|expensive-total-raw = Time, 5 + Coal, 2 + Sulfur, 2 + Water, 10
+
+Express splitter
+|recipe = Time, 2 + Advanced circuit, 10 + Fast splitter, 1 + Iron gear wheel, 10 + Lubricant, 80
+|total-raw = Time, 130.75 + Copper plate, 72.5 + Iron plate, 86 + Lubricant, 80 + Plastic bar, 20
+|expensive-recipe = Time, 2 + Advanced circuit, 10 + Fast splitter, 1 + Iron gear wheel, 10 + Lubricant, 80
+|expensive-total-raw = Time, 202 + Copper plate, 215 + Iron plate, 165 + Lubricant, 80 + Plastic bar, 40
+
+Express transport belt
+|recipe = Time, 0.5 + Fast transport belt, 1 + Iron gear wheel, 10 + Lubricant, 20
+|total-raw = Time, 9 + Iron plate, 31.5 + Lubricant, 20
+|expensive-recipe = Time, 0.5 + Fast transport belt, 1 + Iron gear wheel, 20 + Lubricant, 20
+|expensive-total-raw = Time, 14 + Iron plate, 102.5 + Lubricant, 20
+
+Express underground belt
+|recipe = Time, 0.5 + Fast underground belt, 2 + Iron gear wheel, 80 + Lubricant, 40 = Express underground belt, 2
+|total-raw = Time, 64.5 + Iron plate, 257.5 + Lubricant, 40
+|expensive-recipe = Time, 0.5 + Fast underground belt, 2 + Iron gear wheel, 80 + Lubricant, 40 = Express underground belt, 2
+|expensive-total-raw = Time, 64.5 + Iron plate, 502.5 + Lubricant, 40
+
+Fast inserter
+|recipe = Time, 0.5 + Electronic circuit, 2 + Inserter, 1 + Iron plate, 2
+|total-raw = Time, 5.25 + Copper plate, 4.5 + Iron plate, 8
+|expensive-recipe = Time, 0.5 + Electronic circuit, 2 + Inserter, 1 + Iron plate, 2
+|expensive-total-raw = Time, 10.5 + Copper plate, 15 + Iron plate, 13
+
+Fast splitter
+|recipe = Time, 2 + Electronic circuit, 10 + Iron gear wheel, 10 + Splitter, 1
+|total-raw = Time, 28.75 + Copper plate, 22.5 + Iron plate, 46
+|expensive-recipe = Time, 2 + Electronic circuit, 10 + Iron gear wheel, 10 + Splitter, 1
+|expensive-total-raw = Time, 55 + Copper plate, 75 + Iron plate, 85
+
+Fast transport belt
+|recipe = Time, 0.5 + Iron gear wheel, 5 + Transport belt, 1
+|total-raw = Time, 3.5 + Iron plate, 11.5
+|expensive-recipe = Time, 0.5 + Iron gear wheel, 5 + Transport belt, 1
+|expensive-total-raw = Time, 3.5 + Iron plate, 22.5
+
+Fast underground belt
+|recipe = Time, 0.5 + Iron gear wheel, 40 + Underground belt, 2 = Fast underground belt, 2
+|total-raw = Time, 24 + Iron plate, 97.5
+|expensive-recipe = Time, 0.5 + Iron gear wheel, 40 + Underground belt, 2 = Fast underground belt, 2
+|expensive-total-raw = Time, 24 + Iron plate, 182.5
+
+Fill crude oil barrel
+|recipe = Time, 1 + Crude oil, 250 + Empty barrel, 1
+|total-raw = Time, 1 + Crude oil, 250 + Empty barrel, 1
+|expensive-recipe = Time, 1 + Crude oil, 250 + Empty barrel, 1
+|expensive-total-raw = Time, 1 + Crude oil, 250 + Empty barrel, 1
+
+Fill heavy oil barrel
+|recipe = Time, 1 + Empty barrel, 1 + Heavy oil, 250
+|total-raw = Time, 1 + Empty barrel, 1 + Heavy oil, 250
+|expensive-recipe = Time, 1 + Empty barrel, 1 + Heavy oil, 250
+|expensive-total-raw = Time, 1 + Empty barrel, 1 + Heavy oil, 250
+
+Fill light oil barrel
+|recipe = Time, 1 + Empty barrel, 1 + Light oil, 250
+|total-raw = Time, 1 + Empty barrel, 1 + Light oil, 250
+|expensive-recipe = Time, 1 + Empty barrel, 1 + Light oil, 250
+|expensive-total-raw = Time, 1 + Empty barrel, 1 + Light oil, 250
+
+Fill lubricant barrel
+|recipe = Time, 1 + Empty barrel, 1 + Lubricant, 250
+|total-raw = Time, 1 + Empty barrel, 1 + Lubricant, 250
+|expensive-recipe = Time, 1 + Empty barrel, 1 + Lubricant, 250
+|expensive-total-raw = Time, 1 + Empty barrel, 1 + Lubricant, 250
+
+Fill petroleum gas barrel
+|recipe = Time, 1 + Empty barrel, 1 + Petroleum gas, 250
+|total-raw = Time, 1 + Empty barrel, 1 + Petroleum gas, 250
+|expensive-recipe = Time, 1 + Empty barrel, 1 + Petroleum gas, 250
+|expensive-total-raw = Time, 1 + Empty barrel, 1 + Petroleum gas, 250
+
+Fill sulfuric acid barrel
+|recipe = Time, 1 + Empty barrel, 1 + Sulfuric acid, 250
+|total-raw = Time, 1 + Empty barrel, 1 + Sulfuric acid, 250
+|expensive-recipe = Time, 1 + Empty barrel, 1 + Sulfuric acid, 250
+|expensive-total-raw = Time, 1 + Empty barrel, 1 + Sulfuric acid, 250
+
+Fill water barrel
+|recipe = Time, 1 + Empty barrel, 1 + Water, 250
+|total-raw = Time, 1 + Empty barrel, 1 + Water, 250
+|expensive-recipe = Time, 1 + Empty barrel, 1 + Water, 250
+|expensive-total-raw = Time, 1 + Empty barrel, 1 + Water, 250
+
+Filter inserter
+|recipe = Time, 0.5 + Electronic circuit, 4 + Fast inserter, 1
+|total-raw = Time, 10.75 + Copper plate, 10.5 + Iron plate, 12
+|expensive-recipe = Time, 0.5 + Electronic circuit, 4 + Fast inserter, 1
+|expensive-total-raw = Time, 23 + Copper plate, 35 + Iron plate, 21
+
+Firearm magazine
+|recipe = Time, 1 + Iron plate, 4
+|total-raw = Time, 1 + Iron plate, 4
+|expensive-recipe = Time, 1 + Iron plate, 4
+|expensive-total-raw = Time, 1 + Iron plate, 4
+
+Flamethrower
+|recipe = Time, 10 + Iron gear wheel, 10 + Steel plate, 5
+|total-raw = Time, 15 + Iron plate, 20 + Steel plate, 5
+|expensive-recipe = Time, 10 + Iron gear wheel, 10 + Steel plate, 5
+|expensive-total-raw = Time, 15 + Iron plate, 40 + Steel plate, 5
+
+Flamethrower ammo
+|recipe = Time, 6 + Heavy oil, 50 + Light oil, 50 + Steel plate, 5
+|total-raw = Time, 6 + Heavy oil, 50 + Light oil, 50 + Steel plate, 5
+|expensive-recipe = Time, 6 + Heavy oil, 50 + Light oil, 50 + Steel plate, 5
+|expensive-total-raw = Time, 6 + Heavy oil, 50 + Light oil, 50 + Steel plate, 5
+
+Flamethrower turret
+|recipe = Time, 20 + Engine unit, 5 + Iron gear wheel, 15 + Pipe, 10 + Steel plate, 30
+|total-raw = Time, 32.5 + Engine unit, 5 + Iron plate, 40 + Steel plate, 30
+|expensive-recipe = Time, 20 + Engine unit, 5 + Iron gear wheel, 15 + Pipe, 10 + Steel plate, 30
+|expensive-total-raw = Time, 32.5 + Engine unit, 5 + Iron plate, 80 + Steel plate, 30
+
+Fluid wagon
+|recipe = Time, 1.5 + Iron gear wheel, 10 + Pipe, 8 + Steel plate, 16 + Storage tank, 3
+|total-raw = Time, 19.5 + Iron plate, 88 + Steel plate, 31
+|expensive-recipe = Time, 1.5 + Iron gear wheel, 10 + Pipe, 8 + Steel plate, 16 + Storage tank, 3
+|expensive-total-raw = Time, 19.5 + Iron plate, 116 + Steel plate, 31
+
+Flying robot frame
+|recipe = Time, 20 + Battery, 2 + Electric engine unit, 1 + Electronic circuit, 3 + Steel plate, 1
+|total-raw = Time, 23.75 + Battery, 2 + Copper plate, 4.5 + Electric engine unit, 1 + Iron plate, 3 + Steel plate, 1
+|expensive-recipe = Time, 20 + Battery, 2 + Electric engine unit, 1 + Electronic circuit, 3 + Steel plate, 1
+|expensive-total-raw = Time, 29 + Battery, 2 + Copper plate, 15 + Electric engine unit, 1 + Iron plate, 6 + Steel plate, 1
+
+Portable fusion reactor
+|recipe = Time, 10 + Processing unit, 250
+|total-raw = Time, 10 + Processing unit, 250
+|expensive-recipe = Time, 10 + Processing unit, 250
+|expensive-total-raw = Time, 10 + Processing unit, 250
+
+Gate
+|recipe = Time, 0.5 + Electronic circuit, 2 + Steel plate, 2 + Stone wall, 1
+|total-raw = Time, 3.5 + Copper plate, 3 + Iron plate, 2 + Steel plate, 2 + Stone brick, 5
+|expensive-recipe = Time, 0.5 + Electronic circuit, 2 + Steel plate, 2 + Stone wall, 1
+|expensive-total-raw = Time, 7 + Copper plate, 10 + Iron plate, 4 + Steel plate, 2 + Stone brick, 5
+
+Green wire
+|recipe = Time, 0.5 + Copper cable, 1 + Electronic circuit, 1
+|total-raw = Time, 2 + Copper plate, 2 + Iron plate, 1
+|expensive-recipe = Time, 0.5 + Copper cable, 1 + Electronic circuit, 1
+|expensive-total-raw = Time, 3.75 + Copper plate, 5.5 + Iron plate, 2
+
+Grenade
+|recipe = Time, 8 + Coal, 10 + Iron plate, 5
+|total-raw = Time, 8 + Coal, 10 + Iron plate, 5
+|expensive-recipe = Time, 8 + Coal, 10 + Iron plate, 5
+|expensive-total-raw = Time, 8 + Coal, 10 + Iron plate, 5
+
+Gun turret
+|recipe = Time, 8 + Copper plate, 10 + Iron gear wheel, 10 + Iron plate, 20
+|total-raw = Time, 13 + Copper plate, 10 + Iron plate, 40
+|expensive-recipe = Time, 8 + Copper plate, 10 + Iron gear wheel, 10 + Iron plate, 20
+|expensive-total-raw = Time, 13 + Copper plate, 10 + Iron plate, 60
+
+Hazard concrete
+|recipe = Time, 0.25 + Concrete, 10 = Hazard concrete, 10
+|total-raw = Time, 0.25 + Concrete, 10
+|expensive-recipe = Time, 0.25 + Concrete, 10 = Hazard concrete, 10
+|expensive-total-raw = Time, 0.25 + Concrete, 10
+
+Heat exchanger
+|recipe = Time, 0.5 + Copper plate, 100 + Pipe, 10 + Steel plate, 10
+|total-raw = Time, 5.5 + Copper plate, 100 + Iron plate, 10 + Steel plate, 10
+|expensive-recipe = Time, 0.5 + Copper plate, 100 + Pipe, 10 + Steel plate, 10
+|expensive-total-raw = Time, 5.5 + Copper plate, 100 + Iron plate, 20 + Steel plate, 10
+
+Heat pipe
+|recipe = Time, 0.5 + Copper plate, 20 + Steel plate, 10
+|total-raw = Time, 0.5 + Copper plate, 20 + Steel plate, 10
+|expensive-recipe = Time, 0.5 + Copper plate, 20 + Steel plate, 10
+|expensive-total-raw = Time, 0.5 + Copper plate, 20 + Steel plate, 10
+
+Heavy armor
+|recipe = Time, 8 + Copper plate, 100 + Steel plate, 50
+|total-raw = Time, 8 + Copper plate, 100 + Steel plate, 50
+|expensive-recipe = Time, 8 + Copper plate, 100 + Steel plate, 50
+|expensive-total-raw = Time, 8 + Copper plate, 100 + Steel plate, 50
+
+Heavy oil cracking
+|recipe = Time, 3 + Heavy oil, 40 + Water, 30 = Light oil, 30
+|total-raw = Time, 3 + Heavy oil, 40 + Water, 30
+|expensive-recipe = Time, 3 + Heavy oil, 40 + Water, 30 = Light oil, 30
+|expensive-total-raw = Time, 3 + Heavy oil, 40 + Water, 30
+
+High tech science pack
+|recipe = Time, 14 + Battery, 1 + Copper cable, 30 + Processing unit, 3 + Speed module, 1 = High tech science pack, 2
+|total-raw = Time, 90.25 + Battery, 1 + Copper plate, 47.5 + Iron plate, 15 + Plastic bar, 10 + Processing unit, 3
+|expensive-recipe = Time, 14 + Battery, 1 + Copper cable, 30 + Processing unit, 3 + Speed module, 1 = High tech science pack, 2
+|expensive-total-raw = Time, 121.5 + Battery, 1 + Copper plate, 110 + Iron plate, 30 + Plastic bar, 20 + Processing unit, 3
+
+Inserter
+|recipe = Time, 0.5 + Electronic circuit, 1 + Iron gear wheel, 1 + Iron plate, 1
+|total-raw = Time, 2.25 + Copper plate, 1.5 + Iron plate, 4
+|expensive-recipe = Time, 0.5 + Electronic circuit, 1 + Iron gear wheel, 1 + Iron plate, 1
+|expensive-total-raw = Time, 4 + Copper plate, 5 + Iron plate, 7
+
+Iron axe
+|recipe = Time, 0.5 + Iron plate, 3 + Iron stick, 2
+|total-raw = Time, 1 + Iron plate, 4
+|expensive-recipe = Time, 0.5 + Iron plate, 3 + Iron stick, 2
+|expensive-total-raw = Time, 1 + Iron plate, 4
+
+Iron chest
+|recipe = Time, 0.5 + Iron plate, 8
+|total-raw = Time, 0.5 + Iron plate, 8
+|expensive-recipe = Time, 0.5 + Iron plate, 8
+|expensive-total-raw = Time, 0.5 + Iron plate, 8
+
+Iron gear wheel
+|recipe = Time, 0.5 + Iron plate, 2
+|total-raw = Time, 0.5 + Iron plate, 2
+|expensive-recipe = Time, 0.5 + Iron plate, 4
+|expensive-total-raw = Time, 0.5 + Iron plate, 4
+
+Iron plate
+|recipe = Time, 3.5 + Iron ore, 1
+|total-raw = Time, 3.5 + Iron ore, 1
+|expensive-recipe = Time, 3.5 + Iron ore, 1
+|expensive-total-raw = Time, 3.5 + Iron ore, 1
+
+Iron stick
+|recipe = Time, 0.5 + Iron plate, 1 = Iron stick, 2
+|total-raw = Time, 0.5 + Iron plate, 1
+|expensive-recipe = Time, 0.5 + Iron plate, 1 = Iron stick, 2
+|expensive-total-raw = Time, 0.5 + Iron plate, 1
+
+Kovarex enrichment process
+|recipe = Time, 50 + Uranium-235, 40 + Uranium-238, 5 = Uranium-235, 41 + Uranium-238, 2
+|total-raw = Time, 50 + Uranium-235, 40 + Uranium-238, 5
+|expensive-recipe = Time, 50 + Uranium-235, 40 + Uranium-238, 5 = Uranium-235, 41 + Uranium-238, 2
+|expensive-total-raw = Time, 50 + Uranium-235, 40 + Uranium-238, 5
+
+Lab
+|recipe = Time, 3 + Electronic circuit, 10 + Iron gear wheel, 10 + Transport belt, 4
+|total-raw = Time, 22.5 + Copper plate, 15 + Iron plate, 36
+|expensive-recipe = Time, 3 + Electronic circuit, 10 + Iron gear wheel, 10 + Transport belt, 4
+|expensive-total-raw = Time, 40 + Copper plate, 50 + Iron plate, 70
+
+Land mine
+|recipe = Time, 5 + Explosives, 2 + Steel plate, 1 = Land mine, 4
+|total-raw = Time, 5 + Explosives, 2 + Steel plate, 1
+|expensive-recipe = Time, 5 + Explosives, 2 + Steel plate, 1 = Land mine, 4
+|expensive-total-raw = Time, 5 + Explosives, 2 + Steel plate, 1
+
+Landfill
+|recipe = Time, 0.5 + Stone, 20
+|total-raw = Time, 0.5 + Stone, 20
+|expensive-recipe = Time, 0.5 + Stone, 20
+|expensive-total-raw = Time, 0.5 + Stone, 20
+
+Laser turret
+|recipe = Time, 20 + Battery, 12 + Electronic circuit, 20 + Steel plate, 20
+|total-raw = Time, 45 + Battery, 12 + Copper plate, 30 + Iron plate, 20 + Steel plate, 20
+|expensive-recipe = Time, 20 + Battery, 12 + Electronic circuit, 20 + Steel plate, 20
+|expensive-total-raw = Time, 80 + Battery, 12 + Copper plate, 100 + Iron plate, 40 + Steel plate, 20
+
+Light armor
+|recipe = Time, 3 + Iron plate, 40
+|total-raw = Time, 3 + Iron plate, 40
+|expensive-recipe = Time, 3 + Iron plate, 40
+|expensive-total-raw = Time, 3 + Iron plate, 40
+
+Light oil cracking
+|recipe = Time, 3 + Light oil, 30 + Water, 30 = Petroleum gas, 20
+|total-raw = Time, 3 + Light oil, 30 + Water, 30
+|expensive-recipe = Time, 3 + Light oil, 30 + Water, 30 = Petroleum gas, 20
+|expensive-total-raw = Time, 3 + Light oil, 30 + Water, 30
+
+Locomotive
+|recipe = Time, 0.5 + Electronic circuit, 10 + Engine unit, 20 + Steel plate, 30
+|total-raw = Time, 13 + Copper plate, 15 + Engine unit, 20 + Iron plate, 10 + Steel plate, 30
+|expensive-recipe = Time, 0.5 + Electronic circuit, 10 + Engine unit, 20 + Steel plate, 30
+|expensive-total-raw = Time, 30.5 + Copper plate, 50 + Engine unit, 20 + Iron plate, 20 + Steel plate, 30
+
+Active provider chest
+|recipe = Time, 0.5 + Advanced circuit, 1 + Electronic circuit, 3 + Steel chest, 1
+|total-raw = Time, 14.25 + Copper plate, 9.5 + Iron plate, 5 + Plastic bar, 2 + Steel plate, 8
+|expensive-recipe = Time, 0.5 + Advanced circuit, 1 + Electronic circuit, 3 + Steel chest, 1
+|expensive-total-raw = Time, 24 + Copper plate, 29 + Iron plate, 10 + Plastic bar, 4 + Steel plate, 8
+
+Passive provider chest
+|recipe = Time, 0.5 + Advanced circuit, 1 + Electronic circuit, 3 + Steel chest, 1
+|total-raw = Time, 14.25 + Copper plate, 9.5 + Iron plate, 5 + Plastic bar, 2 + Steel plate, 8
+|expensive-recipe = Time, 0.5 + Advanced circuit, 1 + Electronic circuit, 3 + Steel chest, 1
+|expensive-total-raw = Time, 24 + Copper plate, 29 + Iron plate, 10 + Plastic bar, 4 + Steel plate, 8
+
+Requester chest
+|recipe = Time, 0.5 + Advanced circuit, 1 + Electronic circuit, 3 + Steel chest, 1
+|total-raw = Time, 14.25 + Copper plate, 9.5 + Iron plate, 5 + Plastic bar, 2 + Steel plate, 8
+|expensive-recipe = Time, 0.5 + Advanced circuit, 1 + Electronic circuit, 3 + Steel chest, 1
+|expensive-total-raw = Time, 24 + Copper plate, 29 + Iron plate, 10 + Plastic bar, 4 + Steel plate, 8
+
+Storage chest
+|recipe = Time, 0.5 + Advanced circuit, 1 + Electronic circuit, 3 + Steel chest, 1
+|total-raw = Time, 14.25 + Copper plate, 9.5 + Iron plate, 5 + Plastic bar, 2 + Steel plate, 8
+|expensive-recipe = Time, 0.5 + Advanced circuit, 1 + Electronic circuit, 3 + Steel chest, 1
+|expensive-total-raw = Time, 24 + Copper plate, 29 + Iron plate, 10 + Plastic bar, 4 + Steel plate, 8
+
+Logistic robot
+|recipe = Time, 0.5 + Advanced circuit, 2 + Flying robot frame, 1
+|total-raw = Time, 43.25 + Battery, 2 + Copper plate, 14.5 + Electric engine unit, 1 + Iron plate, 7 + Plastic bar, 4 + Steel plate, 1
+|expensive-recipe = Time, 0.5 + Advanced circuit, 2 + Flying robot frame, 1
+|expensive-total-raw = Time, 57.5 + Battery, 2 + Copper plate, 43 + Electric engine unit, 1 + Iron plate, 14 + Plastic bar, 8 + Steel plate, 1
+
+Long handed inserter
+|recipe = Time, 0.5 + Inserter, 1 + Iron gear wheel, 1 + Iron plate, 1
+|total-raw = Time, 3.25 + Copper plate, 1.5 + Iron plate, 7
+|expensive-recipe = Time, 0.5 + Inserter, 1 + Iron gear wheel, 1 + Iron plate, 1
+|expensive-total-raw = Time, 5 + Copper plate, 5 + Iron plate, 12
+
+Low density structure
+|recipe = Time, 30 + Copper plate, 5 + Plastic bar, 5 + Steel plate, 10
+|total-raw = Time, 30 + Copper plate, 5 + Plastic bar, 5 + Steel plate, 10
+|expensive-recipe = Time, 30 + Copper plate, 10 + Plastic bar, 10 + Steel plate, 10
+|expensive-total-raw = Time, 30 + Copper plate, 10 + Plastic bar, 10 + Steel plate, 10
+
+Lubricant
+|recipe = Time, 1 + Heavy oil, 10 = Lubricant, 10
+|total-raw = Time, 1 + Heavy oil, 10
+|expensive-recipe = Time, 1 + Heavy oil, 10 = Lubricant, 10
+|expensive-total-raw = Time, 1 + Heavy oil, 10
+
+Medium electric pole
+|recipe = Time, 0.5 + Copper plate, 2 + Steel plate, 2
+|total-raw = Time, 0.5 + Copper plate, 2 + Steel plate, 2
+|expensive-recipe = Time, 0.5 + Copper plate, 2 + Steel plate, 2
+|expensive-total-raw = Time, 0.5 + Copper plate, 2 + Steel plate, 2
+
+Military science pack
+|recipe = Time, 10 + Grenade, 1 + Gun turret, 1 + Piercing rounds magazine, 1 = Military science pack, 2
+|total-raw = Time, 35 + Coal, 10 + Copper plate, 15 + Iron plate, 49 + Steel plate, 1
+|expensive-recipe = Time, 10 + Grenade, 1 + Gun turret, 1 + Piercing rounds magazine, 1 = Military science pack, 2
+|expensive-total-raw = Time, 35 + Coal, 10 + Copper plate, 15 + Iron plate, 69 + Steel plate, 1
+
+Modular armor
+|recipe = Time, 15 + Advanced circuit, 30 + Steel plate, 50
+|total-raw = Time, 300 + Copper plate, 150 + Iron plate, 60 + Plastic bar, 60 + Steel plate, 50
+|expensive-recipe = Time, 15 + Advanced circuit, 30 + Steel plate, 50
+|expensive-total-raw = Time, 435 + Copper plate, 420 + Iron plate, 120 + Plastic bar, 120 + Steel plate, 50
+
+Nightvision
+|recipe = Time, 10 + Advanced circuit, 5 + Steel plate, 10
+|total-raw = Time, 57.5 + Copper plate, 25 + Iron plate, 10 + Plastic bar, 10 + Steel plate, 10
+|expensive-recipe = Time, 10 + Advanced circuit, 5 + Steel plate, 10
+|expensive-total-raw = Time, 80 + Copper plate, 70 + Iron plate, 20 + Plastic bar, 20 + Steel plate, 10
+
+Nuclear fuel reprocessing
+|recipe = Time, 50 + Used up uranium fuel cell, 5 = Uranium-238, 3
+|total-raw = Time, 50 + Used up uranium fuel cell, 5
+|expensive-recipe = Time, 50 + Used up uranium fuel cell, 5 = Uranium-238, 3
+|expensive-total-raw = Time, 50 + Used up uranium fuel cell, 5
+
+Nuclear reactor
+|recipe = Time, 4 + Advanced circuit, 500 + Concrete, 500 + Copper plate, 500 + Steel plate, 500
+|total-raw = Time, 4754 + Concrete, 500 + Copper plate, 3000 + Iron plate, 1000 + Plastic bar, 1000 + Steel plate, 500
+|expensive-recipe = Time, 4 + Advanced circuit, 500 + Concrete, 500 + Copper plate, 500 + Steel plate, 500
+|expensive-total-raw = Time, 7004 + Concrete, 500 + Copper plate, 7500 + Iron plate, 2000 + Plastic bar, 2000 + Steel plate, 500
+
+Offshore pump
+|recipe = Time, 0.5 + Electronic circuit, 2 + Iron gear wheel, 1 + Pipe, 1
+|total-raw = Time, 4 + Copper plate, 3 + Iron plate, 5
+|expensive-recipe = Time, 0.5 + Electronic circuit, 2 + Iron gear wheel, 1 + Pipe, 1
+|expensive-total-raw = Time, 7.5 + Copper plate, 10 + Iron plate, 10
+
+Oil refinery
+|recipe = Time, 10 + Electronic circuit, 10 + Iron gear wheel, 10 + Pipe, 10 + Steel plate, 15 + Stone brick, 10
+|total-raw = Time, 32.5 + Copper plate, 15 + Iron plate, 40 + Steel plate, 15 + Stone brick, 10
+|expensive-recipe = Time, 10 + Electronic circuit, 10 + Iron gear wheel, 10 + Pipe, 10 + Steel plate, 15 + Stone brick, 10
+|expensive-total-raw = Time, 50 + Copper plate, 50 + Iron plate, 80 + Steel plate, 15 + Stone brick, 10
+
+Personal laser defense
+|recipe = Time, 10 + Laser turret, 5 + Processing unit, 1 + Steel plate, 5
+|total-raw = Time, 235 + Battery, 60 + Copper plate, 150 + Iron plate, 100 + Processing unit, 1 + Steel plate, 105
+|expensive-recipe = Time, 10 + Laser turret, 5 + Processing unit, 1 + Steel plate, 5
+|expensive-total-raw = Time, 410 + Battery, 60 + Copper plate, 500 + Iron plate, 200 + Processing unit, 1 + Steel plate, 105
+
+Personal roboport
+|recipe = Time, 10 + Advanced circuit, 10 + Battery, 45 + Iron gear wheel, 40 + Steel plate, 20
+|total-raw = Time, 125 + Battery, 45 + Copper plate, 50 + Iron plate, 100 + Plastic bar, 20 + Steel plate, 20
+|expensive-recipe = Time, 10 + Advanced circuit, 10 + Battery, 45 + Iron gear wheel, 40 + Steel plate, 20
+|expensive-total-raw = Time, 170 + Battery, 45 + Copper plate, 140 + Iron plate, 200 + Plastic bar, 40 + Steel plate, 20
+
+Personal roboport MK2
+|recipe = Time, 20 + Personal roboport, 5 + Processing unit, 100
+|total-raw = Time, 645 + Battery, 225 + Copper plate, 250 + Iron plate, 500 + Plastic bar, 100 + Processing unit, 100 + Steel plate, 100
+|expensive-recipe = Time, 20 + Personal roboport, 5 + Processing unit, 100
+|expensive-total-raw = Time, 870 + Battery, 225 + Copper plate, 700 + Iron plate, 1000 + Plastic bar, 200 + Processing unit, 100 + Steel plate, 100
+
+Piercing rounds magazine
+|recipe = Time, 3 + Copper plate, 5 + Firearm magazine, 1 + Steel plate, 1
+|total-raw = Time, 4 + Copper plate, 5 + Iron plate, 4 + Steel plate, 1
+|expensive-recipe = Time, 3 + Copper plate, 5 + Firearm magazine, 1 + Steel plate, 1
+|expensive-total-raw = Time, 4 + Copper plate, 5 + Iron plate, 4 + Steel plate, 1
+
+Piercing shotgun shells
+|recipe = Time, 8 + Copper plate, 5 + Shotgun shells, 2 + Steel plate, 2
+|total-raw = Time, 14 + Copper plate, 9 + Iron plate, 4 + Steel plate, 2
+|expensive-recipe = Time, 8 + Copper plate, 5 + Shotgun shells, 2 + Steel plate, 2
+|expensive-total-raw = Time, 14 + Copper plate, 9 + Iron plate, 4 + Steel plate, 2
+
+Pipe
+|recipe = Time, 0.5 + Iron plate, 1
+|total-raw = Time, 0.5 + Iron plate, 1
+|expensive-recipe = Time, 0.5 + Iron plate, 2
+|expensive-total-raw = Time, 0.5 + Iron plate, 2
+
+Pipe to ground
+|recipe = Time, 0.5 + Iron plate, 5 + Pipe, 10 = Pipe to ground, 2
+|total-raw = Time, 5.5 + Iron plate, 15
+|expensive-recipe = Time, 0.5 + Iron plate, 5 + Pipe, 10 = Pipe to ground, 2
+|expensive-total-raw = Time, 5.5 + Iron plate, 25
+
+Pistol
+|recipe = Time, 5 + Copper plate, 5 + Iron plate, 5
+|total-raw = Time, 5 + Copper plate, 5 + Iron plate, 5
+|expensive-recipe = Time, 5 + Copper plate, 5 + Iron plate, 5
+|expensive-total-raw = Time, 5 + Copper plate, 5 + Iron plate, 5
+
+Plastic bar
+|recipe = Time, 1 + Coal, 1 + Petroleum gas, 20 = Plastic bar, 2
+|total-raw = Time, 1 + Coal, 1 + Petroleum gas, 20
+|expensive-recipe = Time, 1 + Coal, 1 + Petroleum gas, 20 = Plastic bar, 2
+|expensive-total-raw = Time, 1 + Coal, 1 + Petroleum gas, 20
+
+Poison capsule
+|recipe = Time, 8 + Coal, 10 + Electronic circuit, 3 + Steel plate, 3
+|total-raw = Time, 11.75 + Coal, 10 + Copper plate, 4.5 + Iron plate, 3 + Steel plate, 3
+|expensive-recipe = Time, 8 + Coal, 10 + Electronic circuit, 3 + Steel plate, 3
+|expensive-total-raw = Time, 17 + Coal, 10 + Copper plate, 15 + Iron plate, 6 + Steel plate, 3
+
+Power armor
+|recipe = Time, 20 + Electric engine unit, 20 + Processing unit, 40 + Steel plate, 40
+|total-raw = Time, 20 + Electric engine unit, 20 + Processing unit, 40 + Steel plate, 40
+|expensive-recipe = Time, 20 + Electric engine unit, 20 + Processing unit, 40 + Steel plate, 40
+|expensive-total-raw = Time, 20 + Electric engine unit, 20 + Processing unit, 40 + Steel plate, 40
+
+Power armor MK2
+|recipe = Time, 25 + Efficiency module 3, 5 + Processing unit, 40 + Speed module 3, 5 + Steel plate, 40
+|total-raw = Time, 18725 + Copper plate, 8000 + Iron plate, 3600 + Plastic bar, 2600 + Processing unit, 340 + Steel plate, 40
+|expensive-recipe = Time, 25 + Efficiency module 3, 5 + Processing unit, 40 + Speed module 3, 5 + Steel plate, 40
+|expensive-total-raw = Time, 26325 + Copper plate, 23200 + Iron plate, 7200 + Plastic bar, 5200 + Processing unit, 340 + Steel plate, 40
+
+Power switch
+|recipe = Time, 2 + Copper cable, 5 + Electronic circuit, 2 + Iron plate, 5
+|total-raw = Time, 5.75 + Copper plate, 5.5 + Iron plate, 7
+|expensive-recipe = Time, 2 + Copper cable, 5 + Electronic circuit, 2 + Iron plate, 5
+|expensive-total-raw = Time, 9.25 + Copper plate, 12.5 + Iron plate, 9
+
+Processing unit
+|recipe = Time, 10 + Advanced circuit, 2 + Electronic circuit, 20 + Sulfuric acid, 5
+|total-raw = Time, 54 + Copper plate, 40 + Iron plate, 24 + Plastic bar, 4 + Sulfuric acid, 5
+|expensive-recipe = Time, 10 + Advanced circuit, 2 + Electronic circuit, 20 + Sulfuric acid, 10
+|expensive-total-raw = Time, 98 + Copper plate, 128 + Iron plate, 48 + Plastic bar, 8 + Sulfuric acid, 10
+
+Production science pack
+|recipe = Time, 14 + Assembling machine 1, 1 + Electric engine unit, 1 + Electric furnace, 1 = Production science pack, 2
+|total-raw = Time, 73.25 + Copper plate, 29.5 + Electric engine unit, 1 + Iron plate, 32 + Plastic bar, 10 + Steel plate, 10 + Stone brick, 10
+|expensive-recipe = Time, 14 + Assembling machine 1, 1 + Electric engine unit, 1 + Electric furnace, 1 = Production science pack, 2
+|expensive-total-raw = Time, 101 + Copper plate, 85 + Electric engine unit, 1 + Iron plate, 55 + Plastic bar, 20 + Steel plate, 10 + Stone brick, 10
+
+Productivity module
+|recipe = Time, 15 + Advanced circuit, 5 + Electronic circuit, 5
+|total-raw = Time, 68.75 + Copper plate, 32.5 + Iron plate, 15 + Plastic bar, 10
+|expensive-recipe = Time, 15 + Advanced circuit, 5 + Electronic circuit, 5
+|expensive-total-raw = Time, 100 + Copper plate, 95 + Iron plate, 30 + Plastic bar, 20
+
+Productivity module 2
+|recipe = Time, 30 + Advanced circuit, 5 + Processing unit, 5 + Productivity module, 4
+|total-raw = Time, 352.5 + Copper plate, 155 + Iron plate, 70 + Plastic bar, 50 + Processing unit, 5
+|expensive-recipe = Time, 30 + Advanced circuit, 5 + Processing unit, 5 + Productivity module, 4
+|expensive-total-raw = Time, 500 + Copper plate, 450 + Iron plate, 140 + Plastic bar, 100 + Processing unit, 5
+
+Productivity module 3
+|recipe = Time, 60 + Advanced circuit, 5 + Processing unit, 5 + Productivity module 2, 5
+|total-raw = Time, 1870 + Copper plate, 800 + Iron plate, 360 + Plastic bar, 260 + Processing unit, 30
+|expensive-recipe = Time, 60 + Advanced circuit, 5 + Processing unit, 5 + Productivity module 2, 5
+|expensive-total-raw = Time, 2630 + Copper plate, 2320 + Iron plate, 720 + Plastic bar, 520 + Processing unit, 30
+
+Programmable speaker
+|recipe = Time, 2 + Copper cable, 5 + Electronic circuit, 4 + Iron plate, 5
+|total-raw = Time, 8.25 + Copper plate, 8.5 + Iron plate, 9
+|expensive-recipe = Time, 2 + Copper cable, 5 + Electronic circuit, 4 + Iron plate, 5
+|expensive-total-raw = Time, 15.25 + Copper plate, 22.5 + Iron plate, 13
+
+Pump
+|recipe = Time, 2 + Engine unit, 1 + Pipe, 1 + Steel plate, 1
+|total-raw = Time, 2.5 + Engine unit, 1 + Iron plate, 1 + Steel plate, 1
+|expensive-recipe = Time, 2 + Engine unit, 1 + Pipe, 1 + Steel plate, 1
+|expensive-total-raw = Time, 2.5 + Engine unit, 1 + Iron plate, 2 + Steel plate, 1
+
+Pumpjack
+|recipe = Time, 5 + Electronic circuit, 5 + Iron gear wheel, 10 + Pipe, 10 + Steel plate, 5
+|total-raw = Time, 21.25 + Copper plate, 7.5 + Iron plate, 35 + Steel plate, 5
+|expensive-recipe = Time, 5 + Electronic circuit, 5 + Iron gear wheel, 10 + Pipe, 10 + Steel plate, 5
+|expensive-total-raw = Time, 30 + Copper plate, 25 + Iron plate, 70 + Steel plate, 5
+
+Radar
+|recipe = Time, 0.5 + Electronic circuit, 5 + Iron gear wheel, 5 + Iron plate, 10
+|total-raw = Time, 9.25 + Copper plate, 7.5 + Iron plate, 25
+|expensive-recipe = Time, 0.5 + Electronic circuit, 5 + Iron gear wheel, 5 + Iron plate, 10
+|expensive-total-raw = Time, 18 + Copper plate, 25 + Iron plate, 40
+
+Rail
+|recipe = Time, 0.5 + Iron stick, 1 + Steel plate, 1 + Stone, 1 = Rail, 2
+|total-raw = Time, 0.75 + Iron plate, 0.5 + Steel plate, 1 + Stone, 1
+|expensive-recipe = Time, 0.5 + Iron stick, 1 + Steel plate, 1 + Stone, 1 = Rail, 2
+|expensive-total-raw = Time, 0.75 + Iron plate, 0.5 + Steel plate, 1 + Stone, 1
+
+Rail chain signal
+|recipe = Time, 0.5 + Electronic circuit, 1 + Iron plate, 5
+|total-raw = Time, 1.75 + Copper plate, 1.5 + Iron plate, 6
+|expensive-recipe = Time, 0.5 + Electronic circuit, 1 + Iron plate, 5
+|expensive-total-raw = Time, 3.5 + Copper plate, 5 + Iron plate, 7
+
+Rail signal
+|recipe = Time, 0.5 + Electronic circuit, 1 + Iron plate, 5
+|total-raw = Time, 1.75 + Copper plate, 1.5 + Iron plate, 6
+|expensive-recipe = Time, 0.5 + Electronic circuit, 1 + Iron plate, 5
+|expensive-total-raw = Time, 3.5 + Copper plate, 5 + Iron plate, 7
+
+Red wire
+|recipe = Time, 0.5 + Copper cable, 1 + Electronic circuit, 1
+|total-raw = Time, 2 + Copper plate, 2 + Iron plate, 1
+|expensive-recipe = Time, 0.5 + Copper cable, 1 + Electronic circuit, 1
+|expensive-total-raw = Time, 3.75 + Copper plate, 5.5 + Iron plate, 2
+
+Repair pack
+|recipe = Time, 0.5 + Electronic circuit, 2 + Iron gear wheel, 2
+|total-raw = Time, 4 + Copper plate, 3 + Iron plate, 6
+|expensive-recipe = Time, 0.5 + Electronic circuit, 2 + Iron gear wheel, 2
+|expensive-total-raw = Time, 7.5 + Copper plate, 10 + Iron plate, 12
+
+Roboport
+|recipe = Time, 10 + Advanced circuit, 45 + Iron gear wheel, 45 + Steel plate, 45
+|total-raw = Time, 460 + Copper plate, 225 + Iron plate, 180 + Plastic bar, 90 + Steel plate, 45
+|expensive-recipe = Time, 10 + Advanced circuit, 45 + Iron gear wheel, 45 + Steel plate, 45
+|expensive-total-raw = Time, 662.5 + Copper plate, 630 + Iron plate, 360 + Plastic bar, 180 + Steel plate, 45
+
+Rocket
+|recipe = Time, 8 + Electronic circuit, 1 + Explosives, 1 + Iron plate, 2
+|total-raw = Time, 9.25 + Copper plate, 1.5 + Explosives, 1 + Iron plate, 3
+|expensive-recipe = Time, 8 + Electronic circuit, 1 + Explosives, 1 + Iron plate, 2
+|expensive-total-raw = Time, 11 + Copper plate, 5 + Explosives, 1 + Iron plate, 4
+
+Rocket control unit
+|recipe = Time, 30 + Processing unit, 1 + Speed module, 1
+|total-raw = Time, 98.75 + Copper plate, 32.5 + Iron plate, 15 + Plastic bar, 10 + Processing unit, 1
+|expensive-recipe = Time, 30 + Processing unit, 1 + Speed module, 1
+|expensive-total-raw = Time, 130 + Copper plate, 95 + Iron plate, 30 + Plastic bar, 20 + Processing unit, 1
+
+Rocket fuel
+|recipe = Time, 30 + Solid fuel, 10
+|total-raw = Time, 30 + Solid fuel, 10
+|expensive-recipe = Time, 30 + Solid fuel, 10
+|expensive-total-raw = Time, 30 + Solid fuel, 10
+
+Rocket launcher
+|recipe = Time, 10 + Electronic circuit, 5 + Iron gear wheel, 5 + Iron plate, 5
+|total-raw = Time, 18.75 + Copper plate, 7.5 + Iron plate, 20
+|expensive-recipe = Time, 10 + Electronic circuit, 5 + Iron gear wheel, 5 + Iron plate, 5
+|expensive-total-raw = Time, 27.5 + Copper plate, 25 + Iron plate, 35
+
+Rocket part
+|recipe = Time, 3 + Low density structure, 10 + Rocket control unit, 10 + Rocket fuel, 10
+|total-raw = Time, 1590.5 + Copper plate, 375 + Iron plate, 150 + Plastic bar, 150 + Processing unit, 10 + Solid fuel, 100 + Steel plate, 100
+|expensive-recipe = Time, 3 + Low density structure, 10 + Rocket control unit, 10 + Rocket fuel, 10
+|expensive-total-raw = Time, 1903 + Copper plate, 1050 + Iron plate, 300 + Plastic bar, 300 + Processing unit, 10 + Solid fuel, 100 + Steel plate, 100
+
+Rocket silo
+|recipe = Time, 30 + Concrete, 1000 + Electric engine unit, 200 + Pipe, 100 + Processing unit, 200 + Steel plate, 1000
+|total-raw = Time, 80 + Concrete, 1000 + Electric engine unit, 200 + Iron plate, 100 + Processing unit, 200 + Steel plate, 1000
+|expensive-recipe = Time, 30 + Concrete, 1000 + Electric engine unit, 200 + Pipe, 100 + Processing unit, 200 + Steel plate, 1000
+|expensive-total-raw = Time, 80 + Concrete, 1000 + Electric engine unit, 200 + Iron plate, 200 + Processing unit, 200 + Steel plate, 1000
+
+Satellite
+|recipe = Time, 3 + Accumulator, 100 + Low density structure, 100 + Processing unit, 100 + Radar, 5 + Rocket fuel, 50 + Solar panel, 100
+|total-raw = Time, 8424.25 + Battery, 500 + Copper plate, 3287.5 + Iron plate, 1825 + Plastic bar, 500 + Processing unit, 100 + Solid fuel, 500 + Steel plate, 1500
+|expensive-recipe = Time, 3 + Accumulator, 100 + Low density structure, 100 + Processing unit, 100 + Radar, 5 + Rocket fuel, 50 + Solar panel, 100
+|expensive-total-raw = Time, 11093 + Battery, 500 + Copper plate, 9125 + Iron plate, 3400 + Plastic bar, 1000 + Processing unit, 100 + Solid fuel, 500 + Steel plate, 1500
+
+Science pack 1
+|recipe = Time, 5 + Copper plate, 1 + Iron gear wheel, 1
+|total-raw = Time, 5.5 + Copper plate, 1 + Iron plate, 2
+|expensive-recipe = Time, 5 + Copper plate, 1 + Iron gear wheel, 1
+|expensive-total-raw = Time, 5.5 + Copper plate, 1 + Iron plate, 4
+
+Science pack 2
+|recipe = Time, 6 + Inserter, 1 + Transport belt, 1
+|total-raw = Time, 8.75 + Copper plate, 1.5 + Iron plate, 5.5
+|expensive-recipe = Time, 6 + Inserter, 1 + Transport belt, 1
+|expensive-total-raw = Time, 10.5 + Copper plate, 5 + Iron plate, 9.5
+
+Science pack 3
+|recipe = Time, 12 + Advanced circuit, 1 + Electric mining drill, 1 + Engine unit, 1
+|total-raw = Time, 29.75 + Copper plate, 9.5 + Engine unit, 1 + Iron plate, 25 + Plastic bar, 2
+|expensive-recipe = Time, 12 + Advanced circuit, 1 + Electric mining drill, 1 + Engine unit, 1
+|expensive-total-raw = Time, 48 + Copper plate, 39 + Engine unit, 1 + Iron plate, 74 + Plastic bar, 4
+
+Shotgun
+|recipe = Time, 10 + Copper plate, 10 + Iron gear wheel, 5 + Iron plate, 15 + Wood, 5
+|total-raw = Time, 13.75 + Copper plate, 10 + Iron plate, 25 + Raw wood, 2.5
+|expensive-recipe = Time, 10 + Copper plate, 10 + Iron gear wheel, 5 + Iron plate, 15 + Wood, 5
+|expensive-total-raw = Time, 13.75 + Copper plate, 10 + Iron plate, 35 + Raw wood, 2.5
+
+Shotgun shells
+|recipe = Time, 3 + Copper plate, 2 + Iron plate, 2
+|total-raw = Time, 3 + Copper plate, 2 + Iron plate, 2
+|expensive-recipe = Time, 3 + Copper plate, 2 + Iron plate, 2
+|expensive-total-raw = Time, 3 + Copper plate, 2 + Iron plate, 2
+
+Slowdown capsule
+|recipe = Time, 8 + Coal, 5 + Electronic circuit, 2 + Steel plate, 2
+|total-raw = Time, 10.5 + Coal, 5 + Copper plate, 3 + Iron plate, 2 + Steel plate, 2
+|expensive-recipe = Time, 8 + Coal, 5 + Electronic circuit, 2 + Steel plate, 2
+|expensive-total-raw = Time, 14 + Coal, 5 + Copper plate, 10 + Iron plate, 4 + Steel plate, 2
+
+Small electric pole
+|recipe = Time, 0.5 + Copper cable, 2 + Wood, 2 = Small electric pole, 2
+|total-raw = Time, 1.5 + Copper plate, 1 + Raw wood, 1
+|expensive-recipe = Time, 0.5 + Copper cable, 2 + Wood, 2 = Small electric pole, 2
+|expensive-total-raw = Time, 1.5 + Copper plate, 1 + Raw wood, 1
+
+Lamp
+|recipe = Time, 0.5 + Electronic circuit, 1 + Iron plate, 1 + Iron stick, 3
+|total-raw = Time, 2.5 + Copper plate, 1.5 + Iron plate, 3.5
+|expensive-recipe = Time, 0.5 + Electronic circuit, 1 + Iron plate, 1 + Iron stick, 3
+|expensive-total-raw = Time, 4.25 + Copper plate, 5 + Iron plate, 4.5
+
+Solar panel
+|recipe = Time, 10 + Copper plate, 5 + Electronic circuit, 15 + Steel plate, 5
+|total-raw = Time, 28.75 + Copper plate, 27.5 + Iron plate, 15 + Steel plate, 5
+|expensive-recipe = Time, 10 + Copper plate, 5 + Electronic circuit, 15 + Steel plate, 5
+|expensive-total-raw = Time, 55 + Copper plate, 80 + Iron plate, 30 + Steel plate, 5
+
+Portable solar panel
+|recipe = Time, 10 + Advanced circuit, 1 + Solar panel, 5 + Steel plate, 5
+|total-raw = Time, 163.25 + Copper plate, 142.5 + Iron plate, 77 + Plastic bar, 2 + Steel plate, 30
+|expensive-recipe = Time, 10 + Advanced circuit, 1 + Solar panel, 5 + Steel plate, 5
+|expensive-total-raw = Time, 299 + Copper plate, 414 + Iron plate, 154 + Plastic bar, 4 + Steel plate, 30
+
+Solid fuel from heavy oil
+|recipe = Time, 3 + Heavy oil, 20
+|total-raw = Time, 3 + Heavy oil, 20
+|expensive-recipe = Time, 3 + Heavy oil, 20
+|expensive-total-raw = Time, 3 + Heavy oil, 20
+
+Solid fuel from light oil
+|recipe = Time, 3 + Light oil, 10
+|total-raw = Time, 3 + Light oil, 10
+|expensive-recipe = Time, 3 + Light oil, 10
+|expensive-total-raw = Time, 3 + Light oil, 10
+
+Solid fuel from petroleum gas
+|recipe = Time, 3 + Petroleum gas, 20
+|total-raw = Time, 3 + Petroleum gas, 20
+|expensive-recipe = Time, 3 + Petroleum gas, 20
+|expensive-total-raw = Time, 3 + Petroleum gas, 20
+
+Speed module
+|recipe = Time, 15 + Advanced circuit, 5 + Electronic circuit, 5
+|total-raw = Time, 68.75 + Copper plate, 32.5 + Iron plate, 15 + Plastic bar, 10
+|expensive-recipe = Time, 15 + Advanced circuit, 5 + Electronic circuit, 5
+|expensive-total-raw = Time, 100 + Copper plate, 95 + Iron plate, 30 + Plastic bar, 20
+
+Speed module 2
+|recipe = Time, 30 + Advanced circuit, 5 + Processing unit, 5 + Speed module, 4
+|total-raw = Time, 352.5 + Copper plate, 155 + Iron plate, 70 + Plastic bar, 50 + Processing unit, 5
+|expensive-recipe = Time, 30 + Advanced circuit, 5 + Processing unit, 5 + Speed module, 4
+|expensive-total-raw = Time, 500 + Copper plate, 450 + Iron plate, 140 + Plastic bar, 100 + Processing unit, 5
+
+Speed module 3
+|recipe = Time, 60 + Advanced circuit, 5 + Processing unit, 5 + Speed module 2, 5
+|total-raw = Time, 1870 + Copper plate, 800 + Iron plate, 360 + Plastic bar, 260 + Processing unit, 30
+|expensive-recipe = Time, 60 + Advanced circuit, 5 + Processing unit, 5 + Speed module 2, 5
+|expensive-total-raw = Time, 2630 + Copper plate, 2320 + Iron plate, 720 + Plastic bar, 520 + Processing unit, 30
+
+Splitter
+|recipe = Time, 1 + Electronic circuit, 5 + Iron plate, 5 + Transport belt, 4
+|total-raw = Time, 9.25 + Copper plate, 7.5 + Iron plate, 16
+|expensive-recipe = Time, 1 + Electronic circuit, 5 + Iron plate, 5 + Transport belt, 4
+|expensive-total-raw = Time, 18 + Copper plate, 25 + Iron plate, 25
+
+Stack filter inserter
+|recipe = Time, 0.5 + Electronic circuit, 5 + Stack inserter, 1
+|total-raw = Time, 48.25 + Copper plate, 39.5 + Iron plate, 60 + Plastic bar, 2
+|expensive-recipe = Time, 0.5 + Electronic circuit, 5 + Stack inserter, 1
+|expensive-total-raw = Time, 93 + Copper plate, 129 + Iron plate, 117 + Plastic bar, 4
+
+Stack inserter
+|recipe = Time, 0.5 + Advanced circuit, 1 + Electronic circuit, 15 + Fast inserter, 1 + Iron gear wheel, 15
+|total-raw = Time, 41.5 + Copper plate, 32 + Iron plate, 55 + Plastic bar, 2
+|expensive-recipe = Time, 0.5 + Advanced circuit, 1 + Electronic circuit, 15 + Fast inserter, 1 + Iron gear wheel, 15
+|expensive-total-raw = Time, 77.5 + Copper plate, 104 + Iron plate, 107 + Plastic bar, 4
+
+Steam engine
+|recipe = Time, 0.5 + Iron gear wheel, 8 + Iron plate, 10 + Pipe, 5
+|total-raw = Time, 7 + Iron plate, 31
+|expensive-recipe = Time, 0.5 + Iron gear wheel, 10 + Iron plate, 50 + Pipe, 5
+|expensive-total-raw = Time, 8 + Iron plate, 100
+
+Steam turbine
+|recipe = Time, 0.5 + Copper plate, 50 + Iron gear wheel, 50 + Pipe, 20
+|total-raw = Time, 35.5 + Copper plate, 50 + Iron plate, 120
+|expensive-recipe = Time, 0.5 + Copper plate, 50 + Iron gear wheel, 50 + Pipe, 20
+|expensive-total-raw = Time, 35.5 + Copper plate, 50 + Iron plate, 240
+
+Steel axe
+|recipe = Time, 0.5 + Iron stick, 2 + Steel plate, 5
+|total-raw = Time, 1 + Iron plate, 1 + Steel plate, 5
+|expensive-recipe = Time, 0.5 + Iron stick, 2 + Steel plate, 5
+|expensive-total-raw = Time, 1 + Iron plate, 1 + Steel plate, 5
+
+Steel chest
+|recipe = Time, 0.5 + Steel plate, 8
+|total-raw = Time, 0.5 + Steel plate, 8
+|expensive-recipe = Time, 0.5 + Steel plate, 8
+|expensive-total-raw = Time, 0.5 + Steel plate, 8
+
+Steel furnace
+|recipe = Time, 3 + Steel plate, 6 + Stone brick, 10
+|total-raw = Time, 3 + Steel plate, 6 + Stone brick, 10
+|expensive-recipe = Time, 3 + Steel plate, 6 + Stone brick, 10
+|expensive-total-raw = Time, 3 + Steel plate, 6 + Stone brick, 10
+
+Steel plate
+|recipe = Time, 17.5 + Iron plate, 5
+|total-raw = Time, 17.5 + Iron plate, 5
+|expensive-recipe = Time, 35 + Iron plate, 10
+|expensive-total-raw = Time, 35 + Iron plate, 10
+
+Stone brick
+|recipe = Time, 3.5 + Stone, 2
+|total-raw = Time, 3.5 + Stone, 2
+|expensive-recipe = Time, 3.5 + Stone, 2
+|expensive-total-raw = Time, 3.5 + Stone, 2
+
+Stone furnace
+|recipe = Time, 0.5 + Stone, 5
+|total-raw = Time, 0.5 + Stone, 5
+|expensive-recipe = Time, 0.5 + Stone, 5
+|expensive-total-raw = Time, 0.5 + Stone, 5
+
+Stone wall
+|recipe = Time, 0.5 + Stone brick, 5
+|total-raw = Time, 0.5 + Stone brick, 5
+|expensive-recipe = Time, 0.5 + Stone brick, 5
+|expensive-total-raw = Time, 0.5 + Stone brick, 5
+
+Storage tank
+|recipe = Time, 3 + Iron plate, 20 + Steel plate, 5
+|total-raw = Time, 3 + Iron plate, 20 + Steel plate, 5
+|expensive-recipe = Time, 3 + Iron plate, 20 + Steel plate, 5
+|expensive-total-raw = Time, 3 + Iron plate, 20 + Steel plate, 5
+
+Submachine gun
+|recipe = Time, 10 + Copper plate, 5 + Iron gear wheel, 10 + Iron plate, 10
+|total-raw = Time, 15 + Copper plate, 5 + Iron plate, 30
+|expensive-recipe = Time, 10 + Copper plate, 20 + Iron gear wheel, 15 + Iron plate, 30
+|expensive-total-raw = Time, 17.5 + Copper plate, 20 + Iron plate, 90
+
+Substation
+|recipe = Time, 0.5 + Advanced circuit, 5 + Copper plate, 5 + Steel plate, 10
+|total-raw = Time, 48 + Copper plate, 30 + Iron plate, 10 + Plastic bar, 10 + Steel plate, 10
+|expensive-recipe = Time, 0.5 + Advanced circuit, 5 + Copper plate, 5 + Steel plate, 10
+|expensive-total-raw = Time, 70.5 + Copper plate, 75 + Iron plate, 20 + Plastic bar, 20 + Steel plate, 10
+
+Sulfur
+|recipe = Time, 1 + Petroleum gas, 30 + Water, 30 = Sulfur, 2
+|total-raw = Time, 1 + Petroleum gas, 30 + Water, 30
+|expensive-recipe = Time, 1 + Petroleum gas, 30 + Water, 30 = Sulfur, 2
+|expensive-total-raw = Time, 1 + Petroleum gas, 30 + Water, 30
+
+Sulfuric acid
+|recipe = Time, 1 + Iron plate, 1 + Sulfur, 5 + Water, 100 = Sulfuric acid, 50
+|total-raw = Time, 1 + Iron plate, 1 + Sulfur, 5 + Water, 100
+|expensive-recipe = Time, 1 + Iron plate, 1 + Sulfur, 5 + Water, 100 = Sulfuric acid, 50
+|expensive-total-raw = Time, 1 + Iron plate, 1 + Sulfur, 5 + Water, 100
+
+Tank
+|recipe = Time, 0.5 + Advanced circuit, 10 + Engine unit, 32 + Iron gear wheel, 15 + Steel plate, 50
+|total-raw = Time, 103 + Copper plate, 50 + Engine unit, 32 + Iron plate, 50 + Plastic bar, 20 + Steel plate, 50
+|expensive-recipe = Time, 0.5 + Advanced circuit, 20 + Engine unit, 64 + Iron gear wheel, 30 + Steel plate, 100
+|expensive-total-raw = Time, 295.5 + Copper plate, 280 + Engine unit, 64 + Iron plate, 200 + Plastic bar, 80 + Steel plate, 100
+
+Train stop
+|recipe = Time, 0.5 + Electronic circuit, 5 + Iron plate, 10 + Steel plate, 3
+|total-raw = Time, 6.75 + Copper plate, 7.5 + Iron plate, 15 + Steel plate, 3
+|expensive-recipe = Time, 0.5 + Electronic circuit, 5 + Iron plate, 10 + Steel plate, 3
+|expensive-total-raw = Time, 15.5 + Copper plate, 25 + Iron plate, 20 + Steel plate, 3
+
+Transport belt
+|recipe = Time, 0.5 + Iron gear wheel, 1 + Iron plate, 1 = Transport belt, 2
+|total-raw = Time, 1 + Iron plate, 3
+|expensive-recipe = Time, 0.5 + Iron gear wheel, 1 + Iron plate, 1 = Transport belt, 2
+|expensive-total-raw = Time, 1 + Iron plate, 5
+
+Underground belt
+|recipe = Time, 1 + Iron plate, 10 + Transport belt, 5 = Underground belt, 2
+|total-raw = Time, 3.5 + Iron plate, 17.5
+|expensive-recipe = Time, 1 + Iron plate, 10 + Transport belt, 5 = Underground belt, 2
+|expensive-total-raw = Time, 3.5 + Iron plate, 22.5
+
+Uranium cannon shell
+|recipe = Time, 12 + Cannon shell, 1 + Uranium-238, 1
+|total-raw = Time, 20 + Explosives, 1 + Plastic bar, 2 + Steel plate, 2 + Uranium-238, 1
+|expensive-recipe = Time, 12 + Cannon shell, 1 + Uranium-238, 1
+|expensive-total-raw = Time, 20 + Explosives, 1 + Plastic bar, 4 + Steel plate, 4 + Uranium-238, 1
+
+Uranium fuel cell
+|recipe = Time, 10 + Iron plate, 10 + Uranium-235, 1 + Uranium-238, 19 = Uranium fuel cell, 10
+|total-raw = Time, 10 + Iron plate, 10 + Uranium-235, 1 + Uranium-238, 19
+|expensive-recipe = Time, 10 + Iron plate, 10 + Uranium-235, 1 + Uranium-238, 19 = Uranium fuel cell, 10
+|expensive-total-raw = Time, 10 + Iron plate, 10 + Uranium-235, 1 + Uranium-238, 19
+
+Uranium processing
+|recipe = Time, 10 + Uranium ore, 10 = Uranium-235, 1 + Uranium-238, 1
+|total-raw = Time, 10 + Uranium ore, 10
+|expensive-recipe = Time, 10 + Uranium ore, 10 = Uranium-235, 1 + Uranium-238, 1
+|expensive-total-raw = Time, 10 + Uranium ore, 10
+
+Uranium rounds magazine
+|recipe = Time, 10 + Piercing rounds magazine, 1 + Uranium-238, 1
+|total-raw = Time, 14 + Copper plate, 5 + Iron plate, 4 + Steel plate, 1 + Uranium-238, 1
+|expensive-recipe = Time, 10 + Piercing rounds magazine, 1 + Uranium-238, 1
+|expensive-total-raw = Time, 14 + Copper plate, 5 + Iron plate, 4 + Steel plate, 1 + Uranium-238, 1
+
+Wood
+|recipe = Time, 0.5 + Raw wood, 1 = Wood, 2
+|total-raw = Time, 0.5 + Raw wood, 1
+|expensive-recipe = Time, 0.5 + Raw wood, 1 = Wood, 2
+|expensive-total-raw = Time, 0.5 + Raw wood, 1
+
+Wooden chest
+|recipe = Time, 0.5 + Wood, 4
+|total-raw = Time, 1.5 + Raw wood, 2
+|expensive-recipe = Time, 0.5 + Wood, 4
+|expensive-total-raw = Time, 1.5 + Raw wood, 2
+

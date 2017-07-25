@@ -12,7 +12,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -28,8 +27,8 @@ import com.demod.factorio.Utils;
 import com.demod.factorio.prototype.RecipePrototype;
 
 public class FactorioXMLMain {
-	private static Element createItemQuantityElement(Document doc, JSONObject nameMappingJson,
-			Map<String, Integer> itemMap, String elementName) {
+	private static Element createItemQuantityElement(Document doc, DataTable table, Map<String, Integer> itemMap,
+			String elementName) {
 		Element itemsElement = doc.createElement(elementName);
 		itemMap.forEach((name, qty) -> {
 			Element itemQuantityElement = doc.createElement("item");
@@ -40,7 +39,7 @@ public class FactorioXMLMain {
 			itemQuantityElement.setAttributeNode(itemIdAttr);
 
 			Element itemNameElement = doc.createElement("wikiName");
-			itemNameElement.appendChild(doc.createTextNode(FactorioWikiMain.wiki_fmtName(name, nameMappingJson)));
+			itemNameElement.appendChild(doc.createTextNode(table.getWikiItemName(name)));
 			itemQuantityElement.appendChild(itemNameElement);
 
 			Element quantityElement = doc.createElement("quantity");
@@ -50,9 +49,9 @@ public class FactorioXMLMain {
 		return itemsElement;
 	}
 
-	private static void generateRecipesXML(Map<String, RecipePrototype> recipes, JSONObject nameMappingJson,
-			String fileName) throws ParserConfigurationException, ClassNotFoundException, InstantiationException,
-			IllegalAccessException, IOException {
+	private static void generateRecipesXML(Map<String, RecipePrototype> recipes, DataTable table, String fileName)
+			throws ParserConfigurationException, ClassNotFoundException, InstantiationException, IllegalAccessException,
+			IOException {
 		DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
 
@@ -70,16 +69,16 @@ public class FactorioXMLMain {
 			recipeElement.setAttributeNode(idAttr);
 
 			Element nameElement = doc.createElement("wikiName");
-			nameElement.appendChild(doc.createTextNode(FactorioWikiMain.wiki_fmtName(r.getName(), nameMappingJson)));
+			nameElement.appendChild(doc.createTextNode(table.getWikiRecipeName(r.getName())));
 			recipeElement.appendChild(nameElement);
 
 			Element energyRequiredElement = doc.createElement("energyRequired");
 			energyRequiredElement.appendChild(doc.createTextNode(Double.toString(r.getEnergyRequired())));
 			recipeElement.appendChild(energyRequiredElement);
 
-			recipeElement.appendChild(createItemQuantityElement(doc, nameMappingJson, r.getInputs(), "inputs"));
+			recipeElement.appendChild(createItemQuantityElement(doc, table, r.getInputs(), "inputs"));
 
-			recipeElement.appendChild(createItemQuantityElement(doc, nameMappingJson, r.getOutputs(), "outputs"));
+			recipeElement.appendChild(createItemQuantityElement(doc, table, r.getOutputs(), "outputs"));
 		});
 
 		// TransformerFactory transformerFactory =
@@ -110,13 +109,7 @@ public class FactorioXMLMain {
 		ModInfo baseInfo = new ModInfo(
 				Utils.readJsonFromStream(new FileInputStream(new File(FactorioData.factorio, "data/base/info.json"))));
 
-		JSONObject wikiNaming = Utils
-				.readJsonFromStream(FactorioWikiMain.class.getClassLoader().getResourceAsStream("wiki-naming.json"));
-		JSONObject nameMappingItemsRecipes = wikiNaming.getJSONObject("items and recipes");
-
-		generateRecipesXML(table.getRecipes(), nameMappingItemsRecipes,
-				"recipes-normal-" + baseInfo.getVersion() + ".xml");
-		generateRecipesXML(table.getExpensiveRecipes(), nameMappingItemsRecipes,
-				"recipes-expensive-" + baseInfo.getVersion() + ".xml");
+		generateRecipesXML(table.getRecipes(), table, "recipes-normal-" + baseInfo.getVersion() + ".xml");
+		generateRecipesXML(table.getExpensiveRecipes(), table, "recipes-expensive-" + baseInfo.getVersion() + ".xml");
 	}
 }

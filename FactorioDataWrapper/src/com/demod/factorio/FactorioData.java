@@ -235,7 +235,10 @@ public class FactorioData {
 
 		JSONObject excludeDataJson = Utils
 				.readJsonFromStream(FactorioData.class.getClassLoader().getResourceAsStream("exclude-data.json"));
-		DataTable dataTable = new DataTable(typeHiearchy, globals.get("data").checktable(), excludeDataJson);
+		JSONObject wikiNamingJson = Utils
+				.readJsonFromStream(FactorioData.class.getClassLoader().getResourceAsStream("wiki-naming.json"));
+		DataTable dataTable = new DataTable(typeHiearchy, globals.get("data").checktable(), excludeDataJson,
+				wikiNamingJson);
 
 		return dataTable;
 	}

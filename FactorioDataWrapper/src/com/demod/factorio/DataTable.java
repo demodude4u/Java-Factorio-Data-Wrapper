@@ -37,6 +37,9 @@ public class DataTable {
 	private final TypeHiearchy typeHiearchy;
 	private final LuaTable rawLua;
 
+	private final JSONObject nameMappingTechnologies;
+	private final JSONObject nameMappingItemsRecipes;
+
 	private final Map<String, EntityPrototype> entities = new LinkedHashMap<>();
 	private final Map<String, ItemPrototype> items = new LinkedHashMap<>();
 	private final Map<String, RecipePrototype> recipes = new LinkedHashMap<>();
@@ -48,11 +51,15 @@ public class DataTable {
 
 	private final Set<String> worldInputs = new LinkedHashSet<>();
 
-	public DataTable(TypeHiearchy typeHiearchy, LuaTable dataLua, JSONObject excludeDataJson) {
+	public DataTable(TypeHiearchy typeHiearchy, LuaTable dataLua, JSONObject excludeDataJson,
+			JSONObject wikiNamingJson) {
 		this.typeHiearchy = typeHiearchy;
 		this.rawLua = dataLua.get("raw").checktable();
 
 		Set<String> excludedRecipesAndItems = asStringSet(excludeDataJson.getJSONArray("recipes-and-items"));
+
+		nameMappingTechnologies = wikiNamingJson.getJSONObject("technologies");
+		nameMappingItemsRecipes = wikiNamingJson.getJSONObject("items and recipes");
 
 		Utils.forEach(rawLua, v -> {
 			Utils.forEach(v.checktable(), protoLua -> {
@@ -210,6 +217,43 @@ public class DataTable {
 
 	public TypeHiearchy getTypeHiearchy() {
 		return typeHiearchy;
+	}
+
+	private String getWikiDefaultName(String name) {
+		String[] split = name.split("-");
+		String formatted = Character.toUpperCase(split[0].charAt(0)) + split[0].substring(1);
+		if (formatted.equals("Uranium") && split.length == 2 && split[1].startsWith("2")) {
+			return formatted + "-" + split[1];
+		}
+		for (int i = 1; i < split.length; i++) {
+			formatted += " " + split[i];
+		}
+		return formatted;
+	}
+
+	public String getWikiEntityName(String name) {
+		return getWikiName(name, nameMappingItemsRecipes);
+	}
+
+	public String getWikiItemName(String name) {
+		return getWikiName(name, nameMappingItemsRecipes);
+	}
+
+	private String getWikiName(String name, JSONObject nameMappingJson) {
+		String ret = nameMappingJson.optString(name, null);
+		if (ret == null) {
+			System.err.println("\"" + name + "\":\"" + getWikiDefaultName(name) + "\",");
+			nameMappingJson.put(name, ret = getWikiDefaultName(name));
+		}
+		return ret;
+	}
+
+	public String getWikiRecipeName(String name) {
+		return getWikiName(name, nameMappingItemsRecipes);
+	}
+
+	public String getWikiTechnologyName(String name) {
+		return getWikiName(name, nameMappingTechnologies);
 	}
 
 	public Set<String> getWorldInputs() {
