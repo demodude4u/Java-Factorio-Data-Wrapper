@@ -11,7 +11,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
 import java.util.function.Function;
 import java.util.function.IntUnaryOperator;
 import java.util.stream.Collectors;
@@ -119,33 +118,28 @@ public class FactorioWikiMain {
 		File outputFolder = new File("output/" + baseInfo.getVersion());
 		outputFolder.mkdirs();
 
-		JSONObject wikiNaming = Utils
-				.readJsonFromStream(FactorioWikiMain.class.getClassLoader().getResourceAsStream("wiki-naming.json"));
-		JSONObject nameMappingTechnologies = wikiNaming.getJSONObject("technologies");
-		JSONObject nameMappingItemsRecipes = wikiNaming.getJSONObject("items and recipes");
-
 		try (PrintWriter pw = new PrintWriter(
 				new File(outputFolder, "wiki-technologies-" + baseInfo.getVersion() + ".txt"))) {
-			wiki_Technologies(table, nameMappingTechnologies, nameMappingItemsRecipes, pw);
+			wiki_Technologies(table, pw);
 		}
 
 		try (PrintWriter pw = new PrintWriter(
 				new File(outputFolder, "wiki-formula-technologies-" + baseInfo.getVersion() + ".txt"))) {
-			wiki_FormulaTechnologies(table, nameMappingTechnologies, nameMappingItemsRecipes, pw);
+			wiki_FormulaTechnologies(table, pw);
 		}
 
 		try (PrintWriter pw = new PrintWriter(
 				new File(outputFolder, "wiki-recipes-totals-" + baseInfo.getVersion() + ".txt"))) {
-			wiki_RawTotals(table, nameMappingItemsRecipes, pw);
+			wiki_RawTotals(table, pw);
 		}
 
 		Map<String, WikiTypeMatch> wikiTypes;
 		try (PrintWriter pw = new PrintWriter(new File(outputFolder, "wiki-types-" + baseInfo.getVersion() + ".txt"))) {
-			wikiTypes = wiki_Types(table, nameMappingItemsRecipes, pw);
+			wikiTypes = wiki_Types(table, pw);
 		}
 
 		try (PrintWriter pw = new PrintWriter(new File(outputFolder, "wiki-items-" + baseInfo.getVersion() + ".txt"))) {
-			wiki_Items(table, nameMappingTechnologies, nameMappingItemsRecipes, pw);
+			wiki_Items(table, pw);
 		}
 
 		try (PrintWriter pw = new PrintWriter(
@@ -155,12 +149,12 @@ public class FactorioWikiMain {
 
 		try (PrintWriter pw = new PrintWriter(
 				new File(outputFolder, "wiki-entities-mining-" + baseInfo.getVersion() + ".txt"))) {
-			wiki_EntitiesMining(table, wikiTypes, nameMappingItemsRecipes, pw);
+			wiki_EntitiesMining(table, wikiTypes, pw);
 		}
 
 		try (PrintWriter pw = new PrintWriter(
 				new File(outputFolder, "wiki-tech-names-" + baseInfo.getVersion() + ".txt"))) {
-			wiki_TechNames(table, nameMappingTechnologies, pw);
+			wiki_TechNames(table, pw);
 		}
 
 		// wiki_GenerateTintedIcons(table, new File(outputFolder, "icons"));
@@ -168,32 +162,12 @@ public class FactorioWikiMain {
 		Desktop.getDesktop().open(outputFolder);
 	}
 
-	@SuppressWarnings("unused")
-	private static void wiki_DefaultNameMapping(DataTable table, PrintWriter pw) {
-		JSONObject root = new JSONObject();
-		root.put("items and recipes",
-				wiki_DefaultNameMapping_NameGroup(Sets.union(table.getItems().keySet(), table.getRecipes().keySet())));
-		root.put("technologies", wiki_DefaultNameMapping_NameGroup(table.getTechnologies().keySet()));
-		pw.println(root);
-	}
-
-	private static JSONObject wiki_DefaultNameMapping_NameGroup(Set<String> names) {
-		JSONObject ret = new JSONObject();
-		Utils.terribleHackToHaveOrderedJSONObject(ret);
-
-		names.stream().sorted().forEach(name -> {
-			ret.put(name, wiki_fmtDefaultName(name));
-		});
-		return ret;
-	}
-
-	private static void wiki_EntitiesMining(DataTable table, Map<String, WikiTypeMatch> wikiTypes,
-			JSONObject nameMappingItemsRecipes, PrintWriter pw) {
+	private static void wiki_EntitiesMining(DataTable table, Map<String, WikiTypeMatch> wikiTypes, PrintWriter pw) {
 		table.getEntities().values().stream().sorted((e1, e2) -> e1.getName().compareTo(e2.getName()))
 				.filter(e -> !wikiTypes.get(e.getName()).toString().equals("N/A")).forEach(e -> {
 					LuaValue minableLua = e.lua().get("minable");
 					if (!minableLua.isnil()) {
-						pw.println(wiki_fmtName(e.getName(), nameMappingItemsRecipes));
+						pw.println(table.getWikiEntityName(e.getName()));
 
 						pw.println("|mining-hardness = " + wiki_fmtDouble(minableLua.get("hardness").todouble()));
 						pw.println("|mining-time = " + wiki_fmtDouble(minableLua.get("mining_time").todouble()));
@@ -201,22 +175,6 @@ public class FactorioWikiMain {
 						pw.println();
 					}
 				});
-	}
-
-	/**
-	 * "ingredient names are done with spaces in between and Upper lower lower
-	 * ... except for uranium" - Bilka
-	 */
-	public static String wiki_fmtDefaultName(String name) {
-		String[] split = name.split("-");
-		String formatted = Character.toUpperCase(split[0].charAt(0)) + split[0].substring(1);
-		if (formatted.equals("Uranium") && split.length == 2 && split[1].startsWith("2")) {
-			return formatted + "-" + split[1];
-		}
-		for (int i = 1; i < split.length; i++) {
-			formatted += " " + split[i];
-		}
-		return formatted;
 	}
 
 	public static String wiki_fmtDouble(double value) {
@@ -232,30 +190,19 @@ public class FactorioWikiMain {
 	 * [number]" when there is a number as the last part of the name. This adds
 	 * the number to the icon.
 	 */
-	public static String wiki_fmtIconName(String name, JSONObject nameMappingJson) {
-		String ret = wiki_fmtName(name, nameMappingJson);
-		String[] split = ret.split("\\s+");
+	public static String wiki_fmtNumberedWikiName(String wikiName) {
+		String[] split = wikiName.split("\\s+");
 		Integer num = Ints.tryParse(split[split.length - 1]);
 		if (num != null) {
-			ret += ", " + num;
+			wikiName += ", " + num;
 		}
-		return ret;
+		return wikiName;
 	}
 
-	public static String wiki_fmtName(String name, JSONObject nameMappingJson) {
-		String ret = nameMappingJson.optString(name, null);
-		if (ret == null) {
-			System.err.println("\"" + name + "\":\"" + wiki_fmtDefaultName(name) + "\",");
-			nameMappingJson.put(name, ret = wiki_fmtDefaultName(name));
-		}
-		return ret;
-	}
-
-	private static void wiki_FormulaTechnologies(DataTable table, JSONObject nameMappingTechnologies,
-			JSONObject nameMappingItemsRecipes, PrintWriter pw) {
+	private static void wiki_FormulaTechnologies(DataTable table, PrintWriter pw) {
 		table.getTechnologies().values().stream().filter(t -> t.isBonus()).map(t -> t.getBonusName()).distinct()
 				.sorted().forEach(bonusName -> {
-					String wikiBonusName = wiki_fmtName(bonusName, nameMappingTechnologies);
+					String wikiBonusName = table.getWikiTechnologyName(bonusName);
 					pw.println(wikiBonusName);
 					TechPrototype firstTech = table.getTechnology(bonusName + "-1").get();
 					int maxBonus = firstTech.getBonusGroup().stream().mapToInt(TechPrototype::getBonusLevel).max()
@@ -303,8 +250,8 @@ public class FactorioWikiMain {
 								+ ingredients.entrySet().stream()
 										.sorted((e1, e2) -> Integer.compare(wiki_ScienceOrdering.get(e1.getKey()),
 												wiki_ScienceOrdering.get(e2.getKey())))
-										.map(e -> "{{Icon|" + wiki_fmtName(e.getKey(), nameMappingItemsRecipes) + "|"
-												+ e.getValue() + "}}")
+										.map(e -> "{{Icon|" + table.getWikiItemName(e.getKey()) + "|" + e.getValue()
+												+ "}}")
 										.collect(Collectors.joining(" "))
 								+ " <big>X " + count + "</big>" + (showFormula ? (" " + formula) : "") + " || "
 								+ effects.stream()
@@ -352,8 +299,7 @@ public class FactorioWikiMain {
 		});
 	}
 
-	private static void wiki_Items(DataTable table, JSONObject nameMappingTechnologies,
-			JSONObject nameMappingItemsRecipes, PrintWriter pw) {
+	private static void wiki_Items(DataTable table, PrintWriter pw) {
 		Multimap<String, String> requiredTechnologies = LinkedHashMultimap.create();
 		table.getTechnologies().values()
 				.forEach(tech -> tech.getRecipeUnlocks().stream().map(table.getRecipes()::get)
@@ -361,14 +307,14 @@ public class FactorioWikiMain {
 						.forEach(name -> requiredTechnologies.put(name, tech.getName())));
 
 		table.getItems().values().stream().sorted((i1, i2) -> i1.getName().compareTo(i2.getName())).forEach(item -> {
-			pw.println(wiki_fmtName(item.getName(), nameMappingItemsRecipes));
+			pw.println(table.getWikiItemName(item.getName()));
 
 			List<String> names = table.getRecipes().values().stream()
 					.filter(r -> r.getInputs().containsKey(item.getName())).map(RecipePrototype::getName).sorted()
 					.collect(Collectors.toList());
 			if (!names.isEmpty()) {
-				pw.println("|consumers = " + names.stream().map(n -> wiki_fmtName(n, nameMappingItemsRecipes))
-						.collect(Collectors.joining(" + ")));
+				pw.println("|consumers = "
+						+ names.stream().map(n -> table.getWikiRecipeName(n)).collect(Collectors.joining(" + ")));
 			}
 
 			pw.println("|stack-size = " + item.lua().get("stack_size").toint());
@@ -376,7 +322,7 @@ public class FactorioWikiMain {
 			Collection<String> reqTech = requiredTechnologies.get(item.getName());
 			if (!reqTech.isEmpty()) {
 				pw.println("|required-technologies = " + reqTech.stream().sorted()
-						.map(n -> wiki_fmtIconName(n, nameMappingTechnologies)).collect(Collectors.joining(" + ")));
+						.map(n -> table.getWikiTechnologyName(n)).collect(Collectors.joining(" + ")));
 			}
 
 			pw.println();
@@ -401,8 +347,7 @@ public class FactorioWikiMain {
 	 * @param table
 	 * @param mappingJson
 	 */
-	private static void wiki_RawTotals(DataTable table, JSONObject nameMappingJson, PrintWriter pw)
-			throws FileNotFoundException {
+	private static void wiki_RawTotals(DataTable table, PrintWriter pw) throws FileNotFoundException {
 
 		Map<String, RecipePrototype> normalRecipes = table.getRecipes();
 		Map<String, RecipePrototype> expensiveRecipes = table.getExpensiveRecipes();
@@ -411,7 +356,7 @@ public class FactorioWikiMain {
 		TotalRawCalculator expensiveTotalRawCalculator = new TotalRawCalculator(expensiveRecipes);
 
 		Sets.union(normalRecipes.keySet(), expensiveRecipes.keySet()).stream().sorted().forEach(name -> {
-			pw.println(wiki_fmtName(name, nameMappingJson));
+			pw.println(table.getWikiRecipeName(name));
 
 			{
 				RecipePrototype recipe = normalRecipes.get(name);
@@ -420,17 +365,15 @@ public class FactorioWikiMain {
 					pw.printf("Time, %s", wiki_fmtDouble(recipe.getEnergyRequired()));
 					recipe.getInputs().entrySet().stream().sorted((e1, e2) -> e1.getKey().compareTo(e2.getKey()))
 							.forEach(entry -> {
-								pw.printf(" + %s, %d", wiki_fmtName(entry.getKey(), nameMappingJson), entry.getValue());
+								pw.printf(" + %s, %d", table.getWikiItemName(entry.getKey()), entry.getValue());
 							});
 					if (recipe.getOutputs().size() > 1
 							|| recipe.getOutputs().values().stream().findFirst().get() != 1) {
 						pw.print(" = ");
-						pw.print(
-								recipe.getOutputs().entrySet().stream()
-										.sorted((e1, e2) -> e1.getKey().compareTo(e2.getKey()))
-										.map(entry -> String.format("%s, %d",
-												wiki_fmtName(entry.getKey(), nameMappingJson), entry.getValue()))
-										.collect(Collectors.joining(" + ")));
+						pw.print(recipe.getOutputs().entrySet().stream()
+								.sorted((e1, e2) -> e1.getKey().compareTo(e2.getKey())).map(entry -> String
+										.format("%s, %d", table.getWikiItemName(entry.getKey()), entry.getValue()))
+								.collect(Collectors.joining(" + ")));
 					}
 					pw.println();
 
@@ -440,7 +383,7 @@ public class FactorioWikiMain {
 					pw.printf("Time, %s", wiki_fmtDouble(totalRaw.get(TotalRawCalculator.RAW_TIME)));
 					totalRaw.entrySet().stream().filter(e -> !e.getKey().equals(TotalRawCalculator.RAW_TIME))
 							.sorted((e1, e2) -> e1.getKey().compareTo(e2.getKey())).forEach(entry -> {
-								pw.printf(" + %s, %s", wiki_fmtName(entry.getKey(), nameMappingJson),
+								pw.printf(" + %s, %s", table.getWikiItemName(entry.getKey()),
 										wiki_fmtDouble(entry.getValue()));
 							});
 					pw.println();
@@ -453,17 +396,15 @@ public class FactorioWikiMain {
 					pw.printf("Time, %s", wiki_fmtDouble(recipe.getEnergyRequired()));
 					recipe.getInputs().entrySet().stream().sorted((e1, e2) -> e1.getKey().compareTo(e2.getKey()))
 							.forEach(entry -> {
-								pw.printf(" + %s, %d", wiki_fmtName(entry.getKey(), nameMappingJson), entry.getValue());
+								pw.printf(" + %s, %d", table.getWikiItemName(entry.getKey()), entry.getValue());
 							});
 					if (recipe.getOutputs().size() > 1
 							|| recipe.getOutputs().values().stream().findFirst().get() != 1) {
 						pw.print(" = ");
-						pw.print(
-								recipe.getOutputs().entrySet().stream()
-										.sorted((e1, e2) -> e1.getKey().compareTo(e2.getKey()))
-										.map(entry -> String.format("%s, %d",
-												wiki_fmtName(entry.getKey(), nameMappingJson), entry.getValue()))
-										.collect(Collectors.joining(" + ")));
+						pw.print(recipe.getOutputs().entrySet().stream()
+								.sorted((e1, e2) -> e1.getKey().compareTo(e2.getKey())).map(entry -> String
+										.format("%s, %d", table.getWikiItemName(entry.getKey()), entry.getValue()))
+								.collect(Collectors.joining(" + ")));
 					}
 					pw.println();
 
@@ -473,7 +414,7 @@ public class FactorioWikiMain {
 					pw.printf("Time, %s", wiki_fmtDouble(totalRaw.get(TotalRawCalculator.RAW_TIME)));
 					totalRaw.entrySet().stream().filter(e -> !e.getKey().equals(TotalRawCalculator.RAW_TIME))
 							.sorted((e1, e2) -> e1.getKey().compareTo(e2.getKey())).forEach(entry -> {
-								pw.printf(" + %s, %s", wiki_fmtName(entry.getKey(), nameMappingJson),
+								pw.printf(" + %s, %s", table.getWikiItemName(entry.getKey()),
 										wiki_fmtDouble(entry.getValue()));
 							});
 					pw.println();
@@ -484,11 +425,10 @@ public class FactorioWikiMain {
 		});
 	}
 
-	private static void wiki_TechNames(DataTable table, JSONObject nameMappingTechnologies, PrintWriter pw) {
+	private static void wiki_TechNames(DataTable table, PrintWriter pw) {
 		table.getTechnologies().values().stream().sorted((t1, t2) -> t1.getName().compareTo(t2.getName()))
 				.filter(t -> !t.isBonus() || t.isFirstBonus()).forEach(tech -> {
-					pw.println(wiki_fmtName(tech.isBonus() ? tech.getBonusName() : tech.getName(),
-							nameMappingTechnologies));
+					pw.println(table.getWikiTechnologyName(tech.isBonus() ? tech.getBonusName() : tech.getName()));
 					pw.println("|internal-name = " + tech.getName());
 					pw.println();
 				});
@@ -517,24 +457,21 @@ public class FactorioWikiMain {
 	 * <br>
 	 * - Bilka
 	 */
-	private static void wiki_Technologies(DataTable table, JSONObject nameMappingTechnologies,
-			JSONObject nameMappingItemsRecipes, PrintWriter pw) {
+	private static void wiki_Technologies(DataTable table, PrintWriter pw) {
 		Multimap<String, String> allowsMap = LinkedHashMultimap.create();
 		table.getTechnologies().values().forEach(tech -> tech.getPrerequisites()
 				.forEach(n -> allowsMap.put(n, tech.isBonus() ? tech.getBonusName() : tech.getName())));
 
 		table.getTechnologies().values().stream().sorted((t1, t2) -> t1.getName().compareTo(t2.getName()))
 				.filter(t -> !t.isBonus() || t.isFirstBonus()).forEach(tech -> {
-					pw.println(wiki_fmtName(tech.isBonus() ? tech.getBonusName() : tech.getName(),
-							nameMappingTechnologies));
+					pw.println(table.getWikiTechnologyName(tech.isBonus() ? tech.getBonusName() : tech.getName()));
 
 					pw.print("|cost = ");
 					pw.printf("Time, %s", wiki_fmtDouble(tech.getTime()));
 					tech.getIngredients().entrySet().stream().sorted((e1, e2) -> Integer
 							.compare(wiki_ScienceOrdering.get(e1.getKey()), wiki_ScienceOrdering.get(e2.getKey())))
 							.forEach(entry -> {
-								pw.printf(" + %s, %d", wiki_fmtName(entry.getKey(), nameMappingItemsRecipes),
-										entry.getValue());
+								pw.printf(" + %s, %d", table.getWikiItemName(entry.getKey()), entry.getValue());
 							});
 					pw.println();
 
@@ -544,33 +481,32 @@ public class FactorioWikiMain {
 
 					if (!tech.getPrerequisites().isEmpty()) {
 						pw.println("|required-technologies = " + tech.getPrerequisites().stream().sorted()
-								.map(n -> wiki_fmtIconName(n, nameMappingTechnologies))
+								.map(n -> wiki_fmtNumberedWikiName(table.getWikiTechnologyName(n)))
 								.collect(Collectors.joining(" + ")));
 					}
 
 					if (!tech.isFirstBonus()) {
 						Collection<String> allows = allowsMap.get(tech.getName());
 						if (!allows.isEmpty()) {
-							pw.println("|allows = "
-									+ allows.stream().sorted().map(n -> wiki_fmtIconName(n, nameMappingTechnologies))
-											.collect(Collectors.joining(" + ")));
+							pw.println("|allows = " + allows.stream().sorted()
+									.map(n -> wiki_fmtNumberedWikiName(table.getWikiTechnologyName(n)))
+									.collect(Collectors.joining(" + ")));
 						}
 					} else {
-						pw.println("|allows = " + wiki_fmtName(tech.getBonusName(), nameMappingTechnologies) + ", 2-"
+						pw.println("|allows = " + table.getWikiTechnologyName(tech.getBonusName()) + ", 2-"
 								+ tech.getBonusGroup().size());
 					}
 
 					if (!tech.getRecipeUnlocks().isEmpty()) {
 						pw.println("|effects = " + tech.getRecipeUnlocks().stream().sorted()
-								.map(n -> wiki_fmtName(n, nameMappingItemsRecipes)).collect(Collectors.joining(" + ")));
+								.map(n -> table.getWikiRecipeName(n)).collect(Collectors.joining(" + ")));
 					}
 
 					pw.println();
 				});
 	}
 
-	private static Map<String, WikiTypeMatch> wiki_Types(DataTable table, JSONObject nameMappingItemsRecipes,
-			PrintWriter pw) {
+	private static Map<String, WikiTypeMatch> wiki_Types(DataTable table, PrintWriter pw) {
 
 		Map<String, WikiTypeMatch> protoMatches = new LinkedHashMap<>();
 		table.getItems().entrySet().forEach(e -> protoMatches.computeIfAbsent(e.getKey(), k -> new WikiTypeMatch())
@@ -595,7 +531,7 @@ public class FactorioWikiMain {
 				return;
 			}
 
-			pw.println(wiki_fmtName(name, nameMappingItemsRecipes));
+			pw.println(m.item ? table.getWikiItemName(name) : table.getWikiRecipeName(name));
 			pw.println("|internal-name = " + name);
 			pw.println("|prototype-type = " + type);
 			pw.println();

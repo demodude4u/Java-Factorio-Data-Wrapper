@@ -22,6 +22,10 @@ defines = {
 }
 
 require "dataloader"
-require "core.data"
-require "base.data"
-require "base.data-updates"
+-- require "core.data"
+-- require "base.data"
+-- require "base.data-updates"
+
+data.raw["gui-style"] = {
+    default = {}
+}

@@ -1,0 +1,336 @@
+Accumulator
+|mining-hardness = 0.2
+|mining-time = 0.5
+
+Arithmetic combinator
+|mining-hardness = 0.2
+|mining-time = 0.5
+
+Assembling machine 1
+|mining-hardness = 0.2
+|mining-time = 0.5
+
+Assembling machine 2
+|mining-hardness = 0.2
+|mining-time = 0.5
+
+Assembling machine 3
+|mining-hardness = 0.2
+|mining-time = 0.5
+
+Beacon
+|mining-hardness = 0
+|mining-time = 1
+
+Big electric pole
+|mining-hardness = 0.2
+|mining-time = 0.5
+
+Boiler
+|mining-hardness = 0.2
+|mining-time = 0.5
+
+Burner inserter
+|mining-hardness = 0.2
+|mining-time = 0.5
+
+Burner mining drill
+|mining-hardness = 0
+|mining-time = 1
+
+Car
+|mining-hardness = 0
+|mining-time = 1
+
+Cargo wagon
+|mining-hardness = 0
+|mining-time = 1
+
+Centrifuge
+|mining-hardness = 0.2
+|mining-time = 0.5
+
+Chemical plant
+|mining-hardness = 0.2
+|mining-time = 0.5
+
+Coal
+|mining-hardness = 0.9
+|mining-time = 2
+
+Constant combinator
+|mining-hardness = 0.2
+|mining-time = 0.5
+
+Construction robot
+|mining-hardness = 0.1
+|mining-time = 0.1
+
+Copper ore
+|mining-hardness = 0.9
+|mining-time = 2
+
+Decider combinator
+|mining-hardness = 0.2
+|mining-time = 0.5
+
+Electric furnace
+|mining-hardness = 0
+|mining-time = 1
+
+Electric mining drill
+|mining-hardness = 0
+|mining-time = 1
+
+Express splitter
+|mining-hardness = 0.2
+|mining-time = 0.5
+
+Express transport belt
+|mining-hardness = 0.2
+|mining-time = 0.3
+
+Express underground belt
+|mining-hardness = 0.2
+|mining-time = 0.5
+
+Fast inserter
+|mining-hardness = 0.2
+|mining-time = 0.5
+
+Fast splitter
+|mining-hardness = 0.2
+|mining-time = 0.5
+
+Fast transport belt
+|mining-hardness = 0.2
+|mining-time = 0.3
+
+Fast underground belt
+|mining-hardness = 0.2
+|mining-time = 0.5
+
+Filter inserter
+|mining-hardness = 0.2
+|mining-time = 0.5
+
+Flamethrower turret
+|mining-hardness = 0
+|mining-time = 0.5
+
+Fluid wagon
+|mining-hardness = 0
+|mining-time = 1
+
+Gate
+|mining-hardness = 0.2
+|mining-time = 0.5
+
+Gun turret
+|mining-hardness = 0
+|mining-time = 0.5
+
+Heat exchanger
+|mining-hardness = 0.2
+|mining-time = 0.5
+
+Heat pipe
+|mining-hardness = 0.2
+|mining-time = 0.5
+
+Inserter
+|mining-hardness = 0.2
+|mining-time = 0.5
+
+Iron chest
+|mining-hardness = 0
+|mining-time = 1
+
+Iron ore
+|mining-hardness = 0.9
+|mining-time = 2
+
+Lab
+|mining-hardness = 0
+|mining-time = 1
+
+Land mine
+|mining-hardness = 0
+|mining-time = 1
+
+Laser turret
+|mining-hardness = 0
+|mining-time = 0.5
+
+Locomotive
+|mining-hardness = 0
+|mining-time = 1
+
+Active provider chest
+|mining-hardness = 0.2
+|mining-time = 0.5
+
+Passive provider chest
+|mining-hardness = 0.2
+|mining-time = 0.5
+
+Requester chest
+|mining-hardness = 0.2
+|mining-time = 0.5
+
+Storage chest
+|mining-hardness = 0.2
+|mining-time = 0.5
+
+Logistic robot
+|mining-hardness = 0.1
+|mining-time = 0.1
+
+Long handed inserter
+|mining-hardness = 0.2
+|mining-time = 0.5
+
+Medium electric pole
+|mining-hardness = 0.2
+|mining-time = 0.5
+
+Nuclear reactor
+|mining-hardness = 0
+|mining-time = 1.5
+
+Offshore pump
+|mining-hardness = 0
+|mining-time = 1
+
+Oil refinery
+|mining-hardness = 0
+|mining-time = 1
+
+Pipe
+|mining-hardness = 0.2
+|mining-time = 0.5
+
+Pipe to ground
+|mining-hardness = 0.2
+|mining-time = 0.5
+
+Power switch
+|mining-hardness = 0.2
+|mining-time = 1
+
+Programmable speaker
+|mining-hardness = 0.2
+|mining-time = 0.5
+
+Pump
+|mining-hardness = 0
+|mining-time = 1
+
+Pumpjack
+|mining-hardness = 0
+|mining-time = 1
+
+Radar
+|mining-hardness = 0.2
+|mining-time = 0.5
+
+Rail chain signal
+|mining-hardness = 0
+|mining-time = 0.5
+
+Rail signal
+|mining-hardness = 0
+|mining-time = 0.5
+
+Roboport
+|mining-hardness = 0.2
+|mining-time = 0.5
+
+Rocket silo
+|mining-hardness = 0.2
+|mining-time = 5
+
+Small electric pole
+|mining-hardness = 0.2
+|mining-time = 0.5
+
+Lamp
+|mining-hardness = 0.2
+|mining-time = 0.5
+
+Solar panel
+|mining-hardness = 0.2
+|mining-time = 0.5
+
+Splitter
+|mining-hardness = 0.2
+|mining-time = 0.5
+
+Stack filter inserter
+|mining-hardness = 0.2
+|mining-time = 0.5
+
+Stack inserter
+|mining-hardness = 0.2
+|mining-time = 0.5
+
+Steam engine
+|mining-hardness = 0
+|mining-time = 1
+
+Steam turbine
+|mining-hardness = 0
+|mining-time = 1
+
+Steel chest
+|mining-hardness = 0
+|mining-time = 1
+
+Steel furnace
+|mining-hardness = 0
+|mining-time = 1
+
+Stone
+|mining-hardness = 0.4
+|mining-time = 2
+
+Stone furnace
+|mining-hardness = 0
+|mining-time = 1
+
+Stone wall
+|mining-hardness = 0
+|mining-time = 0.5
+
+Storage tank
+|mining-hardness = 0
+|mining-time = 1.5
+
+Substation
+|mining-hardness = 0.2
+|mining-time = 0.5
+
+Tank
+|mining-hardness = 0
+|mining-time = 1
+
+Train stop
+|mining-hardness = 0
+|mining-time = 1
+
+Transport belt
+|mining-hardness = 0.2
+|mining-time = 0.3
+
+Underground belt
+|mining-hardness = 0.2
+|mining-time = 0.5
+
+Uranium ore
+|mining-hardness = 0.9
+|mining-time = 4
+
+Wooden chest
+|mining-hardness = 0
+|mining-time = 1
+

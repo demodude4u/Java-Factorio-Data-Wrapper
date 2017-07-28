@@ -17,6 +17,7 @@ import java.io.StringReader;
 import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.IntUnaryOperator;
@@ -27,20 +28,24 @@ import javax.imageio.ImageIO;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.luaj.vm2.Globals;
+import org.luaj.vm2.LuaTable;
 import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.lib.BaseLib;
 import org.luaj.vm2.lib.DebugLib;
 import org.luaj.vm2.lib.ResourceFinder;
 import org.luaj.vm2.lib.jse.JsePlatform;
 
+import com.demod.factorio.ModLoader.Mod;
 import com.demod.factorio.port.SimpleMathFormula;
 import com.demod.factorio.port.SimpleMathFormula.Expression;
 import com.demod.factorio.port.SimpleMathFormula.InputException;
 import com.demod.factorio.prototype.DataPrototype;
+import com.diffplug.common.base.Box;
 
 public class FactorioData {
 
-	private static final String SEARCHJAR = "SEARCHJAR";
+	private static final String SEARCH_MOD = "__MOD__";
+	private static final String SEARCH_RESOURCE = "__RESOURCE__";
 
 	private static Map<String, BufferedImage> modImageCache = new HashMap<>();
 	private static Map<String, BufferedImage> modIconCache = new HashMap<>();
@@ -48,7 +53,7 @@ public class FactorioData {
 	public static File factorio;
 
 	private static DataTable dataTable = null;
-	private static Globals globals;
+	private static ModLoader modLoader;
 
 	/**
 	 * I'm assuming this is some weird grayscale image...
@@ -121,18 +126,20 @@ public class FactorioData {
 			if (firstSegment.length() < 4) {
 				throw new IllegalArgumentException("Path is not valid: \"" + path + "\"");
 			}
-			String mod = firstSegment.substring(2, firstSegment.length() - 2);
-			File modFolder = new File(factorio, "data/" + mod);
-			if (!modFolder.exists()) {
-				throw new IllegalStateException("Mod folder does not exist: " + modFolder.getAbsolutePath());
+			String modName = firstSegment.substring(2, firstSegment.length() - 2);
+			Optional<Mod> mod = modLoader.getMod(modName);
+			if (!mod.isPresent()) {
+				throw new IllegalStateException("Mod does not exist: " + modName);
 			}
+			String modPath = path.replace(firstSegment, "");
 			try {
-				BufferedImage image = loadImage(new File(modFolder, path.replace(firstSegment, "").substring(1)));
+				BufferedImage image = loadImage(mod.get().getResource(modPath).get());
 				if (tint.isPresent()) {
 					image = Utils.tintImage(image, tint.get());
 				}
 				return image;
-			} catch (IOException e) {
+			} catch (Exception e) {
+				System.err.println("MISSING MOD IMAGE " + modName + " : " + modPath);
 				e.printStackTrace();
 				throw new RuntimeException(e);
 			}
@@ -153,12 +160,20 @@ public class FactorioData {
 
 		File[] luaFolders = new File[] { //
 				new File(factorio, "data/core/luaLib"), //
-				new File(factorio, "data"), //
-				new File(factorio, "data/core"), //
-				new File(factorio, "data/base"), //
+				// new File(factorio, "data"), //
+				// new File(factorio, "data/core"), //
+				// new File(factorio, "data/base"), //
 		};
 
-		String luaPath = SEARCHJAR + "/?.lua;"
+		modLoader = new ModLoader();
+		modLoader.loadFolder(new File(factorio, "data"));
+
+		File modsFolder = new File("mods");
+		if (modsFolder.exists()) {
+			modLoader.loadFolder(modsFolder);
+		}
+
+		String luaPath = SEARCH_MOD + "/?.lua;" + SEARCH_RESOURCE + "/?.lua;"
 				+ Arrays.stream(luaFolders).map(f -> f.getAbsolutePath() + File.separator + "?.lua")
 						.collect(Collectors.joining(";")).replace('\\', '/');
 		// System.out.println("LUA_PATH: " + luaPath);
@@ -166,17 +181,25 @@ public class FactorioData {
 		TypeHiearchy typeHiearchy = new TypeHiearchy(Utils
 				.readJsonFromStream(FactorioData.class.getClassLoader().getResourceAsStream("type-hiearchy.json")));
 
-		globals = JsePlatform.standardGlobals();
+		Box<Mod> currentMod = Box.of(modLoader.getMod("core").get());
+
+		Globals globals = JsePlatform.standardGlobals();
 		globals.load(new BaseLib());
 		globals.load(new DebugLib());
 		globals.load(new StringReader("package.path = package.path .. ';" + luaPath + "'"), "initLuaPath").call();
 		globals.finder = new ResourceFinder() {
 			@Override
 			public InputStream findResource(String filename) {
-				// System.out.print(filename + "? ");
-				if (filename.startsWith(SEARCHJAR)) {
+				if (filename.startsWith(SEARCH_MOD) && currentMod.get() != null) {
+					try {
+						return currentMod.get().getResource(filename.replace(SEARCH_MOD, "")).orElse(null);
+					} catch (Exception e) {
+						e.printStackTrace();
+						throw new InternalError(e);
+					}
+				} else if (filename.startsWith(SEARCH_RESOURCE)) {
 					InputStream stream = FactorioData.class.getClassLoader()
-							.getResourceAsStream(filename.replace(SEARCHJAR, "lua"));
+							.getResourceAsStream(filename.replace(SEARCH_RESOURCE, "lua"));
 					// System.out.println(stream != null);
 					return stream;
 				} else {
@@ -186,27 +209,95 @@ public class FactorioData {
 						return file.exists() ? new FileInputStream(file) : null;
 					} catch (FileNotFoundException e) {
 						e.printStackTrace();
-						throw new RuntimeException(e);
+						throw new InternalError(e);
 					}
 				}
 			}
 		};
 
-		globals.load(new InputStreamReader(globals.finder.findResource(SEARCHJAR + "/loader.lua")), "loader").call();
+		globals.load(new InputStreamReader(globals.finder.findResource(SEARCH_RESOURCE + "/loader.lua")), "loader")
+				.call();
+
+		List<Mod> loadOrder = modLoader.getModsInLoadOrder();
+
+		loadStage(globals, loadOrder, currentMod, "/settings.lua");
+		loadStage(globals, loadOrder, currentMod, "/settings-updates.lua");
+		loadStage(globals, loadOrder, currentMod, "/settings-final-fixes.lua");
+
+		initializeSettings(globals);
+
+		loadStage(globals, loadOrder, currentMod, "/data.lua");
+		loadStage(globals, loadOrder, currentMod, "/data-updates.lua");
+		loadStage(globals, loadOrder, currentMod, "/data-final-fixes.lua");
+
+		// XXX Do I need to do anything with control.lua things?
+		// http://lua-api.factorio.com/latest/Data-Lifecycle.html
 
 		JSONObject excludeDataJson = Utils
 				.readJsonFromStream(FactorioData.class.getClassLoader().getResourceAsStream("exclude-data.json"));
-		DataTable dataTable = new DataTable(typeHiearchy, globals.get("data").checktable(), excludeDataJson);
+		JSONObject wikiNamingJson = Utils
+				.readJsonFromStream(FactorioData.class.getClassLoader().getResourceAsStream("wiki-naming.json"));
+		DataTable dataTable = new DataTable(typeHiearchy, globals.get("data").checktable(), excludeDataJson,
+				wikiNamingJson);
 
 		return dataTable;
 	}
 
-	private static BufferedImage loadImage(File file) throws IOException {
-		BufferedImage image = ImageIO.read(file);
+	private static void initializeSettings(Globals globals) {
+		LuaTable settingsLua = new LuaTable();
+		LuaTable startupLua = new LuaTable();
+		settingsLua.set("startup", startupLua);
+		LuaTable runtimeLua = new LuaTable();
+		settingsLua.set("runtime", runtimeLua);
+		LuaTable runtimePerUserLua = new LuaTable();
+		settingsLua.set("runtime-per-user", runtimePerUserLua);
+
+		Utils.forEach(globals.get("data").get("raw"), v -> {
+			Utils.forEach(v.checktable(), protoLua -> {
+				String type = protoLua.get("type").tojstring();
+				String name = protoLua.get("name").tojstring();
+
+				if (type.endsWith("-setting")) {
+					LuaTable lua = new LuaTable();
+					lua.set("value", protoLua.get("default_value"));
+
+					LuaTable settingTypeLua = null;
+					switch (protoLua.get("setting_type").tojstring()) {
+					case "startup":
+						settingTypeLua = startupLua;
+						break;
+					case "runtime-global":
+						settingTypeLua = runtimeLua;
+						break;
+					case "runtime-per-user":
+						settingTypeLua = runtimePerUserLua;
+						break;
+					}
+					settingTypeLua.set(name, lua);
+				}
+			});
+		});
+
+		globals.set("settings", settingsLua);
+	}
+
+	private static BufferedImage loadImage(InputStream is) throws IOException {
+		BufferedImage image = ImageIO.read(is);
 		if (image.getType() == BufferedImage.TYPE_CUSTOM) {
 			image = convertCustomImage(image);
 		}
 		return image;
+	}
+
+	private static void loadStage(Globals globals, List<Mod> loadOrder, Box<Mod> currentMod, String filename)
+			throws IOException {
+		for (Mod mod : loadOrder) {
+			currentMod.set(mod);
+			Optional<InputStream> resource = mod.getResource(filename);
+			if (resource.isPresent()) {
+				globals.load(new InputStreamReader(resource.get()), mod.getInfo().getName() + "_" + filename).call();
+			}
+		}
 	}
 
 	public static IntUnaryOperator parseCountFormula(String countFormula) {
