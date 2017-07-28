@@ -245,7 +245,7 @@ public class FactorioWikiMain {
 							effectTypeSum.put(e.getType(), sum);
 						});
 
-						pw.println("| {{Icontech|" + wikiBonusName + " (research)|" + i + "|" + wikiBonusName + "}} "
+						pw.println("| {{Icontech|" + wikiBonusName + " (research)|" + i + "}} "
 								+ wikiBonusName + " " + i + " || {{Icon|Time|" + wiki_fmtDouble(time) + "|Time}} "
 								+ ingredients.entrySet().stream()
 										.sorted((e1, e2) -> Integer.compare(wiki_ScienceOrdering.get(e1.getKey()),
