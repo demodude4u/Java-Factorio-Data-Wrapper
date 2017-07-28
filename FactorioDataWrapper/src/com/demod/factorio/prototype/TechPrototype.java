@@ -30,6 +30,13 @@ public class TechPrototype extends DataPrototype {
 			}
 		}
 
+		public String getKey() {
+			if (type.equals("ammo-damage")) {
+				return type + "|" + lua.get("ammo_category").tojstring();
+			}
+			return type;
+		}
+
 		public double getModifier() {
 			return modifier;
 		}

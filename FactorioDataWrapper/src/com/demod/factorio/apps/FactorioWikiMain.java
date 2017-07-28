@@ -240,9 +240,9 @@ public class FactorioWikiMain {
 						}
 
 						effects.forEach(e -> {
-							double sum = effectTypeSum.getOrDefault(e.getType(), 0.0);
+							double sum = effectTypeSum.getOrDefault(e.getKey(), 0.0);
 							sum += e.getModifier();
-							effectTypeSum.put(e.getType(), sum);
+							effectTypeSum.put(e.getKey(), sum);
 						});
 
 						pw.println("| {{Icontech|" + wikiBonusName + " (research)|" + i + "}} " + wikiBonusName + " "
@@ -257,11 +257,14 @@ public class FactorioWikiMain {
 								+ effects.stream()
 										.map(e -> wiki_EffectModifierFormatter.getOrDefault(e.getType(), v -> "")
 												.apply(e.getModifier()))
-										.filter(s -> !s.isEmpty()).distinct().collect(Collectors.joining(" "))
+										.filter(s -> !s.isEmpty()).distinct().collect(
+												Collectors
+														.joining(
+																" "))
 								+ " || "
 								+ effectTypeSum.entrySet().stream()
-										.map(e -> wiki_EffectModifierFormatter.getOrDefault(e.getKey(), v -> "")
-												.apply(e.getValue()))
+										.map(e -> wiki_EffectModifierFormatter
+												.getOrDefault(e.getKey().split("\\|")[0], v -> "").apply(e.getValue()))
 										.filter(s -> !s.isEmpty()).distinct().collect(Collectors.joining(" ")));
 						pw.println("|-");
 					}

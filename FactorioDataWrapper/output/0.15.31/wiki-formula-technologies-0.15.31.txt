@@ -91,17 +91,17 @@ Character logistic trash slots
 |-
 
 Combat robot damage
-| {{Icontech|Combat robot damage (research)|1}} Combat robot damage 1 || {{Icon|Time|30}} {{Icon|Science pack 1|1}} {{Icon|Science pack 2|1}} {{Icon|Military science pack|1}} <big>X 100</big> || 10% || 20%
+| {{Icontech|Combat robot damage (research)|1}} Combat robot damage 1 || {{Icon|Time|30}} {{Icon|Science pack 1|1}} {{Icon|Science pack 2|1}} {{Icon|Military science pack|1}} <big>X 100</big> || 10% || 10%
 |-
-| {{Icontech|Combat robot damage (research)|2}} Combat robot damage 2 || {{Icon|Time|30}} {{Icon|Science pack 1|1}} {{Icon|Science pack 2|1}} {{Icon|Military science pack|1}} <big>X 200</big> || 15% || 50%
+| {{Icontech|Combat robot damage (research)|2}} Combat robot damage 2 || {{Icon|Time|30}} {{Icon|Science pack 1|1}} {{Icon|Science pack 2|1}} {{Icon|Military science pack|1}} <big>X 200</big> || 15% || 25%
 |-
-| {{Icontech|Combat robot damage (research)|3}} Combat robot damage 3 || {{Icon|Time|30}} {{Icon|Science pack 1|1}} {{Icon|Science pack 2|1}} {{Icon|Science pack 3|1}} {{Icon|Military science pack|1}} <big>X 200</big> || 20% || 90%
+| {{Icontech|Combat robot damage (research)|3}} Combat robot damage 3 || {{Icon|Time|30}} {{Icon|Science pack 1|1}} {{Icon|Science pack 2|1}} {{Icon|Science pack 3|1}} {{Icon|Military science pack|1}} <big>X 200</big> || 20% || 45%
 |-
-| {{Icontech|Combat robot damage (research)|4}} Combat robot damage 4 || {{Icon|Time|30}} {{Icon|Science pack 1|1}} {{Icon|Science pack 2|1}} {{Icon|Science pack 3|1}} {{Icon|Military science pack|1}} <big>X 300</big> || 25% || 140%
+| {{Icontech|Combat robot damage (research)|4}} Combat robot damage 4 || {{Icon|Time|30}} {{Icon|Science pack 1|1}} {{Icon|Science pack 2|1}} {{Icon|Science pack 3|1}} {{Icon|Military science pack|1}} <big>X 300</big> || 25% || 70%
 |-
-| {{Icontech|Combat robot damage (research)|5}} Combat robot damage 5 || {{Icon|Time|30}} {{Icon|Science pack 1|1}} {{Icon|Science pack 2|1}} {{Icon|Science pack 3|1}} {{Icon|Military science pack|1}} {{Icon|High tech science pack|1}} <big>X 300</big> || 30% || 200%
+| {{Icontech|Combat robot damage (research)|5}} Combat robot damage 5 || {{Icon|Time|30}} {{Icon|Science pack 1|1}} {{Icon|Science pack 2|1}} {{Icon|Science pack 3|1}} {{Icon|Military science pack|1}} {{Icon|High tech science pack|1}} <big>X 300</big> || 30% || 100%
 |-
-| {{Icontech|Combat robot damage (research)|6}} Combat robot damage 6 || {{Icon|Time|30}} {{Icon|Science pack 1|1}} {{Icon|Science pack 2|1}} {{Icon|Science pack 3|1}} {{Icon|Military science pack|1}} {{Icon|High tech science pack|1}} {{Icon|Space science pack|1}} <big>X 1000</big> 2^(Level-6)*1000 || 30% || 260%
+| {{Icontech|Combat robot damage (research)|6}} Combat robot damage 6 || {{Icon|Time|30}} {{Icon|Science pack 1|1}} {{Icon|Science pack 2|1}} {{Icon|Science pack 3|1}} {{Icon|Military science pack|1}} {{Icon|High tech science pack|1}} {{Icon|Space science pack|1}} <big>X 1000</big> 2^(Level-6)*1000 || 30% || 130%
 |-
 
 Flamethrower damage
