@@ -220,7 +220,7 @@ public class DataTable {
 	}
 
 	private String getWikiDefaultName(String name) {
-		String[] split = name.split("-");
+		String[] split = name.split("-|_");
 		String formatted = Character.toUpperCase(split[0].charAt(0)) + split[0].substring(1);
 		if (formatted.equals("Uranium") && split.length == 2 && split[1].startsWith("2")) {
 			return formatted + "-" + split[1];
