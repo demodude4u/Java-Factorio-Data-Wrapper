@@ -216,6 +216,10 @@ public final class Utils {
 		return new Point(value.get(1).checkint(), value.get(2).checkint());
 	}
 
+	public static Point2D.Double parsePoint2D(JSONObject json) {
+		return new Point2D.Double(json.getDouble("x"), json.getDouble("y"));
+	}
+
 	public static Point2D.Double parsePoint2D(LuaValue value) {
 		if (value.isnil()) {
 			return new Point2D.Double();
