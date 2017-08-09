@@ -19,7 +19,6 @@ import javax.imageio.ImageIO;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.luaj.vm2.LuaValue;
 
 import com.demod.factorio.DataTable;
 import com.demod.factorio.FactorioData;
@@ -148,13 +147,13 @@ public class FactorioWikiMain {
 		}
 
 		try (PrintWriter pw = new PrintWriter(
-				new File(outputFolder, "wiki-entities-mining-" + baseInfo.getVersion() + ".txt"))) {
-			wiki_EntitiesMining(table, wikiTypes, pw);
+				new File(outputFolder, "wiki-tech-names-" + baseInfo.getVersion() + ".txt"))) {
+			wiki_TechNames(table, pw);
 		}
 
 		try (PrintWriter pw = new PrintWriter(
-				new File(outputFolder, "wiki-tech-names-" + baseInfo.getVersion() + ".txt"))) {
-			wiki_TechNames(table, pw);
+				new File(outputFolder, "wiki-entities-health-" + baseInfo.getVersion() + ".txt"))) {
+			wiki_EntitiesHealth(table, wikiTypes, pw);
 		}
 
 		// wiki_GenerateTintedIcons(table, new File(outputFolder, "icons"));
@@ -162,15 +161,14 @@ public class FactorioWikiMain {
 		Desktop.getDesktop().open(outputFolder);
 	}
 
-	private static void wiki_EntitiesMining(DataTable table, Map<String, WikiTypeMatch> wikiTypes, PrintWriter pw) {
+	private static void wiki_EntitiesHealth(DataTable table, Map<String, WikiTypeMatch> wikiTypes, PrintWriter pw) {
 		table.getEntities().values().stream().sorted((e1, e2) -> e1.getName().compareTo(e2.getName()))
 				.filter(e -> !wikiTypes.get(e.getName()).toString().equals("N/A")).forEach(e -> {
-					LuaValue minableLua = e.lua().get("minable");
-					if (!minableLua.isnil()) {
+					double health = e.lua().get("max_health").todouble();
+					if (health > 0) {
 						pw.println(table.getWikiEntityName(e.getName()));
 
-						pw.println("|mining-hardness = " + wiki_fmtDouble(minableLua.get("hardness").todouble()));
-						pw.println("|mining-time = " + wiki_fmtDouble(minableLua.get("mining_time").todouble()));
+						pw.println("|health = " + wiki_fmtDouble(health));
 
 						pw.println();
 					}
