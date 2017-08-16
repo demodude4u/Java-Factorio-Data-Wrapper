@@ -1,0 +1,2042 @@
+{
+  "accumulator": {
+    "wiki-name": "Accumulator",
+    "type": "recipe",
+    "energy-required": 10,
+    "inputs": {
+      "battery": 5,
+      "iron-plate": 2
+    },
+    "outputs": {"accumulator": 1}
+  },
+  "advanced-circuit": {
+    "wiki-name": "Advanced circuit",
+    "type": "recipe",
+    "energy-required": 6,
+    "inputs": {
+      "copper-cable": 4,
+      "electronic-circuit": 2,
+      "plastic-bar": 2
+    },
+    "outputs": {"advanced-circuit": 1}
+  },
+  "advanced-oil-processing": {
+    "wiki-name": "Advanced oil processing",
+    "type": "recipe",
+    "energy-required": 5,
+    "inputs": {
+      "crude-oil": 100,
+      "water": 50
+    },
+    "outputs": {
+      "heavy-oil": 10,
+      "light-oil": 45,
+      "petroleum-gas": 55
+    }
+  },
+  "arithmetic-combinator": {
+    "wiki-name": "Arithmetic combinator",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "copper-cable": 5,
+      "electronic-circuit": 5
+    },
+    "outputs": {"arithmetic-combinator": 1}
+  },
+  "assembling-machine-1": {
+    "wiki-name": "Assembling machine 1",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "electronic-circuit": 3,
+      "iron-gear-wheel": 5,
+      "iron-plate": 9
+    },
+    "outputs": {"assembling-machine-1": 1}
+  },
+  "assembling-machine-2": {
+    "wiki-name": "Assembling machine 2",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "assembling-machine-1": 1,
+      "electronic-circuit": 3,
+      "iron-gear-wheel": 5,
+      "iron-plate": 9
+    },
+    "outputs": {"assembling-machine-2": 1}
+  },
+  "assembling-machine-3": {
+    "wiki-name": "Assembling machine 3",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "assembling-machine-2": 2,
+      "speed-module": 4
+    },
+    "outputs": {"assembling-machine-3": 1}
+  },
+  "atomic-bomb": {
+    "wiki-name": "Atomic bomb",
+    "type": "recipe",
+    "energy-required": 50,
+    "inputs": {
+      "explosives": 10,
+      "processing-unit": 20,
+      "uranium-235": 30
+    },
+    "outputs": {"atomic-bomb": 1}
+  },
+  "basic-oil-processing": {
+    "wiki-name": "Basic oil processing",
+    "type": "recipe",
+    "energy-required": 5,
+    "inputs": {"crude-oil": 100},
+    "outputs": {
+      "heavy-oil": 30,
+      "light-oil": 30,
+      "petroleum-gas": 40
+    }
+  },
+  "battery": {
+    "wiki-name": "Battery",
+    "type": "recipe",
+    "energy-required": 5,
+    "inputs": {
+      "copper-plate": 1,
+      "iron-plate": 1,
+      "sulfuric-acid": 20
+    },
+    "outputs": {"battery": 1}
+  },
+  "battery-equipment": {
+    "wiki-name": "Battery MK1",
+    "type": "recipe",
+    "energy-required": 10,
+    "inputs": {
+      "battery": 5,
+      "steel-plate": 10
+    },
+    "outputs": {"battery-equipment": 1}
+  },
+  "battery-mk2-equipment": {
+    "wiki-name": "Battery MK2",
+    "type": "recipe",
+    "energy-required": 10,
+    "inputs": {
+      "battery-equipment": 10,
+      "processing-unit": 20
+    },
+    "outputs": {"battery-mk2-equipment": 1}
+  },
+  "beacon": {
+    "wiki-name": "Beacon",
+    "type": "recipe",
+    "energy-required": 15,
+    "inputs": {
+      "advanced-circuit": 20,
+      "copper-cable": 10,
+      "electronic-circuit": 20,
+      "steel-plate": 10
+    },
+    "outputs": {"beacon": 1}
+  },
+  "big-electric-pole": {
+    "wiki-name": "Big electric pole",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "copper-plate": 5,
+      "steel-plate": 5
+    },
+    "outputs": {"big-electric-pole": 1}
+  },
+  "boiler": {
+    "wiki-name": "Boiler",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "pipe": 4,
+      "stone-furnace": 1
+    },
+    "outputs": {"boiler": 1}
+  },
+  "burner-inserter": {
+    "wiki-name": "Burner inserter",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "iron-gear-wheel": 1,
+      "iron-plate": 1
+    },
+    "outputs": {"burner-inserter": 1}
+  },
+  "burner-mining-drill": {
+    "wiki-name": "Burner mining drill",
+    "type": "recipe",
+    "energy-required": 2,
+    "inputs": {
+      "iron-gear-wheel": 3,
+      "iron-plate": 3,
+      "stone-furnace": 1
+    },
+    "outputs": {"burner-mining-drill": 1}
+  },
+  "cannon-shell": {
+    "wiki-name": "Cannon shell",
+    "type": "recipe",
+    "energy-required": 8,
+    "inputs": {
+      "explosives": 1,
+      "plastic-bar": 2,
+      "steel-plate": 2
+    },
+    "outputs": {"cannon-shell": 1}
+  },
+  "car": {
+    "wiki-name": "Car",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "engine-unit": 8,
+      "iron-plate": 20,
+      "steel-plate": 5
+    },
+    "outputs": {"car": 1}
+  },
+  "cargo-wagon": {
+    "wiki-name": "Cargo wagon",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "iron-gear-wheel": 10,
+      "iron-plate": 20,
+      "steel-plate": 20
+    },
+    "outputs": {"cargo-wagon": 1}
+  },
+  "centrifuge": {
+    "wiki-name": "Centrifuge",
+    "type": "recipe",
+    "energy-required": 4,
+    "inputs": {
+      "advanced-circuit": 100,
+      "concrete": 100,
+      "iron-gear-wheel": 100,
+      "steel-plate": 50
+    },
+    "outputs": {"centrifuge": 1}
+  },
+  "chemical-plant": {
+    "wiki-name": "Chemical plant",
+    "type": "recipe",
+    "energy-required": 5,
+    "inputs": {
+      "electronic-circuit": 5,
+      "iron-gear-wheel": 5,
+      "pipe": 5,
+      "steel-plate": 5
+    },
+    "outputs": {"chemical-plant": 1}
+  },
+  "cluster-grenade": {
+    "wiki-name": "Cluster grenade",
+    "type": "recipe",
+    "energy-required": 8,
+    "inputs": {
+      "explosives": 5,
+      "grenade": 7,
+      "steel-plate": 5
+    },
+    "outputs": {"cluster-grenade": 1}
+  },
+  "coal-liquefaction": {
+    "wiki-name": "Coal liquefaction",
+    "type": "recipe",
+    "energy-required": 5,
+    "inputs": {
+      "coal": 10,
+      "heavy-oil": 25,
+      "steam": 50
+    },
+    "outputs": {
+      "heavy-oil": 35,
+      "light-oil": 15,
+      "petroleum-gas": 20
+    }
+  },
+  "combat-shotgun": {
+    "wiki-name": "Combat shotgun",
+    "type": "recipe",
+    "energy-required": 10,
+    "inputs": {
+      "copper-plate": 10,
+      "iron-gear-wheel": 5,
+      "steel-plate": 15,
+      "wood": 10
+    },
+    "outputs": {"combat-shotgun": 1}
+  },
+  "concrete": {
+    "wiki-name": "Concrete",
+    "type": "recipe",
+    "energy-required": 10,
+    "inputs": {
+      "iron-ore": 1,
+      "stone-brick": 5,
+      "water": 100
+    },
+    "outputs": {"concrete": 10}
+  },
+  "constant-combinator": {
+    "wiki-name": "Constant combinator",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "copper-cable": 5,
+      "electronic-circuit": 2
+    },
+    "outputs": {"constant-combinator": 1}
+  },
+  "construction-robot": {
+    "wiki-name": "Construction robot",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "electronic-circuit": 2,
+      "flying-robot-frame": 1
+    },
+    "outputs": {"construction-robot": 1}
+  },
+  "copper-cable": {
+    "wiki-name": "Copper cable",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {"copper-plate": 1},
+    "outputs": {"copper-cable": 2}
+  },
+  "copper-plate": {
+    "wiki-name": "Copper plate",
+    "type": "recipe",
+    "energy-required": 3.5,
+    "inputs": {"copper-ore": 1},
+    "outputs": {"copper-plate": 1}
+  },
+  "decider-combinator": {
+    "wiki-name": "Decider combinator",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "copper-cable": 5,
+      "electronic-circuit": 5
+    },
+    "outputs": {"decider-combinator": 1}
+  },
+  "defender-capsule": {
+    "wiki-name": "Defender capsule",
+    "type": "recipe",
+    "energy-required": 8,
+    "inputs": {
+      "electronic-circuit": 2,
+      "iron-gear-wheel": 3,
+      "piercing-rounds-magazine": 1
+    },
+    "outputs": {"defender-capsule": 1}
+  },
+  "destroyer-capsule": {
+    "wiki-name": "Destroyer capsule",
+    "type": "recipe",
+    "energy-required": 15,
+    "inputs": {
+      "distractor-capsule": 4,
+      "speed-module": 1
+    },
+    "outputs": {"destroyer-capsule": 1}
+  },
+  "discharge-defense-equipment": {
+    "wiki-name": "Discharge defense",
+    "type": "recipe",
+    "energy-required": 10,
+    "inputs": {
+      "laser-turret": 10,
+      "processing-unit": 5,
+      "steel-plate": 20
+    },
+    "outputs": {"discharge-defense-equipment": 1}
+  },
+  "discharge-defense-remote": {
+    "wiki-name": "Discharge defense remote",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {"electronic-circuit": 1},
+    "outputs": {"discharge-defense-remote": 1}
+  },
+  "distractor-capsule": {
+    "wiki-name": "Distractor capsule",
+    "type": "recipe",
+    "energy-required": 15,
+    "inputs": {
+      "advanced-circuit": 3,
+      "defender-capsule": 4
+    },
+    "outputs": {"distractor-capsule": 1}
+  },
+  "effectivity-module": {
+    "wiki-name": "Efficiency module",
+    "type": "recipe",
+    "energy-required": 15,
+    "inputs": {
+      "advanced-circuit": 5,
+      "electronic-circuit": 5
+    },
+    "outputs": {"effectivity-module": 1}
+  },
+  "effectivity-module-2": {
+    "wiki-name": "Efficiency module 2",
+    "type": "recipe",
+    "energy-required": 30,
+    "inputs": {
+      "advanced-circuit": 5,
+      "effectivity-module": 4,
+      "processing-unit": 5
+    },
+    "outputs": {"effectivity-module-2": 1}
+  },
+  "effectivity-module-3": {
+    "wiki-name": "Efficiency module 3",
+    "type": "recipe",
+    "energy-required": 60,
+    "inputs": {
+      "advanced-circuit": 5,
+      "effectivity-module-2": 5,
+      "processing-unit": 5
+    },
+    "outputs": {"effectivity-module-3": 1}
+  },
+  "electric-engine-unit": {
+    "wiki-name": "Electric engine unit",
+    "type": "recipe",
+    "energy-required": 10,
+    "inputs": {
+      "electronic-circuit": 2,
+      "engine-unit": 1,
+      "lubricant": 15
+    },
+    "outputs": {"electric-engine-unit": 1}
+  },
+  "electric-furnace": {
+    "wiki-name": "Electric furnace",
+    "type": "recipe",
+    "energy-required": 5,
+    "inputs": {
+      "advanced-circuit": 5,
+      "steel-plate": 10,
+      "stone-brick": 10
+    },
+    "outputs": {"electric-furnace": 1}
+  },
+  "electric-mining-drill": {
+    "wiki-name": "Electric mining drill",
+    "type": "recipe",
+    "energy-required": 2,
+    "inputs": {
+      "electronic-circuit": 3,
+      "iron-gear-wheel": 5,
+      "iron-plate": 10
+    },
+    "outputs": {"electric-mining-drill": 1}
+  },
+  "electronic-circuit": {
+    "wiki-name": "Electronic circuit",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "copper-cable": 3,
+      "iron-plate": 1
+    },
+    "outputs": {"electronic-circuit": 1}
+  },
+  "empty-barrel": {
+    "wiki-name": "Empty barrel",
+    "type": "recipe",
+    "energy-required": 1,
+    "inputs": {"steel-plate": 1},
+    "outputs": {"empty-barrel": 1}
+  },
+  "empty-crude-oil-barrel": {
+    "wiki-name": "Empty crude oil barrel",
+    "type": "recipe",
+    "energy-required": 1,
+    "inputs": {"crude-oil-barrel": 1},
+    "outputs": {
+      "crude-oil": 250,
+      "empty-barrel": 1
+    }
+  },
+  "empty-heavy-oil-barrel": {
+    "wiki-name": "Empty heavy oil barrel",
+    "type": "recipe",
+    "energy-required": 1,
+    "inputs": {"heavy-oil-barrel": 1},
+    "outputs": {
+      "empty-barrel": 1,
+      "heavy-oil": 250
+    }
+  },
+  "empty-light-oil-barrel": {
+    "wiki-name": "Empty light oil barrel",
+    "type": "recipe",
+    "energy-required": 1,
+    "inputs": {"light-oil-barrel": 1},
+    "outputs": {
+      "empty-barrel": 1,
+      "light-oil": 250
+    }
+  },
+  "empty-lubricant-barrel": {
+    "wiki-name": "Empty lubricant barrel",
+    "type": "recipe",
+    "energy-required": 1,
+    "inputs": {"lubricant-barrel": 1},
+    "outputs": {
+      "empty-barrel": 1,
+      "lubricant": 250
+    }
+  },
+  "empty-petroleum-gas-barrel": {
+    "wiki-name": "Empty petroleum gas barrel",
+    "type": "recipe",
+    "energy-required": 1,
+    "inputs": {"petroleum-gas-barrel": 1},
+    "outputs": {
+      "empty-barrel": 1,
+      "petroleum-gas": 250
+    }
+  },
+  "empty-sulfuric-acid-barrel": {
+    "wiki-name": "Empty sulfuric acid barrel",
+    "type": "recipe",
+    "energy-required": 1,
+    "inputs": {"sulfuric-acid-barrel": 1},
+    "outputs": {
+      "empty-barrel": 1,
+      "sulfuric-acid": 250
+    }
+  },
+  "empty-water-barrel": {
+    "wiki-name": "Empty water barrel",
+    "type": "recipe",
+    "energy-required": 1,
+    "inputs": {"water-barrel": 1},
+    "outputs": {
+      "empty-barrel": 1,
+      "water": 250
+    }
+  },
+  "energy-shield-equipment": {
+    "wiki-name": "Energy shield",
+    "type": "recipe",
+    "energy-required": 10,
+    "inputs": {
+      "advanced-circuit": 5,
+      "steel-plate": 10
+    },
+    "outputs": {"energy-shield-equipment": 1}
+  },
+  "energy-shield-mk2-equipment": {
+    "wiki-name": "Energy shield MK2",
+    "type": "recipe",
+    "energy-required": 10,
+    "inputs": {
+      "energy-shield-equipment": 10,
+      "processing-unit": 10
+    },
+    "outputs": {"energy-shield-mk2-equipment": 1}
+  },
+  "engine-unit": {
+    "wiki-name": "Engine unit",
+    "type": "recipe",
+    "energy-required": 10,
+    "inputs": {
+      "iron-gear-wheel": 1,
+      "pipe": 2,
+      "steel-plate": 1
+    },
+    "outputs": {"engine-unit": 1}
+  },
+  "exoskeleton-equipment": {
+    "wiki-name": "Exoskeleton",
+    "type": "recipe",
+    "energy-required": 10,
+    "inputs": {
+      "electric-engine-unit": 30,
+      "processing-unit": 10,
+      "steel-plate": 20
+    },
+    "outputs": {"exoskeleton-equipment": 1}
+  },
+  "explosive-cannon-shell": {
+    "wiki-name": "Explosive cannon shell",
+    "type": "recipe",
+    "energy-required": 8,
+    "inputs": {
+      "explosives": 2,
+      "plastic-bar": 2,
+      "steel-plate": 2
+    },
+    "outputs": {"explosive-cannon-shell": 1}
+  },
+  "explosive-rocket": {
+    "wiki-name": "Explosive rocket",
+    "type": "recipe",
+    "energy-required": 8,
+    "inputs": {
+      "explosives": 2,
+      "rocket": 1
+    },
+    "outputs": {"explosive-rocket": 1}
+  },
+  "explosive-uranium-cannon-shell": {
+    "wiki-name": "Explosive uranium cannon shell",
+    "type": "recipe",
+    "energy-required": 12,
+    "inputs": {
+      "explosive-cannon-shell": 1,
+      "uranium-238": 1
+    },
+    "outputs": {"explosive-uranium-cannon-shell": 1}
+  },
+  "explosives": {
+    "wiki-name": "Explosives",
+    "type": "recipe",
+    "energy-required": 5,
+    "inputs": {
+      "coal": 1,
+      "sulfur": 1,
+      "water": 10
+    },
+    "outputs": {"explosives": 1}
+  },
+  "express-splitter": {
+    "wiki-name": "Express splitter",
+    "type": "recipe",
+    "energy-required": 2,
+    "inputs": {
+      "advanced-circuit": 10,
+      "fast-splitter": 1,
+      "iron-gear-wheel": 10,
+      "lubricant": 80
+    },
+    "outputs": {"express-splitter": 1}
+  },
+  "express-transport-belt": {
+    "wiki-name": "Express transport belt",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "fast-transport-belt": 1,
+      "iron-gear-wheel": 10,
+      "lubricant": 20
+    },
+    "outputs": {"express-transport-belt": 1}
+  },
+  "express-underground-belt": {
+    "wiki-name": "Express underground belt",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "fast-underground-belt": 2,
+      "iron-gear-wheel": 80,
+      "lubricant": 40
+    },
+    "outputs": {"express-underground-belt": 2}
+  },
+  "fast-inserter": {
+    "wiki-name": "Fast inserter",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "electronic-circuit": 2,
+      "inserter": 1,
+      "iron-plate": 2
+    },
+    "outputs": {"fast-inserter": 1}
+  },
+  "fast-splitter": {
+    "wiki-name": "Fast splitter",
+    "type": "recipe",
+    "energy-required": 2,
+    "inputs": {
+      "electronic-circuit": 10,
+      "iron-gear-wheel": 10,
+      "splitter": 1
+    },
+    "outputs": {"fast-splitter": 1}
+  },
+  "fast-transport-belt": {
+    "wiki-name": "Fast transport belt",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "iron-gear-wheel": 5,
+      "transport-belt": 1
+    },
+    "outputs": {"fast-transport-belt": 1}
+  },
+  "fast-underground-belt": {
+    "wiki-name": "Fast underground belt",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "iron-gear-wheel": 40,
+      "underground-belt": 2
+    },
+    "outputs": {"fast-underground-belt": 2}
+  },
+  "fill-crude-oil-barrel": {
+    "wiki-name": "Fill crude oil barrel",
+    "type": "recipe",
+    "energy-required": 1,
+    "inputs": {
+      "crude-oil": 250,
+      "empty-barrel": 1
+    },
+    "outputs": {"crude-oil-barrel": 1}
+  },
+  "fill-heavy-oil-barrel": {
+    "wiki-name": "Fill heavy oil barrel",
+    "type": "recipe",
+    "energy-required": 1,
+    "inputs": {
+      "empty-barrel": 1,
+      "heavy-oil": 250
+    },
+    "outputs": {"heavy-oil-barrel": 1}
+  },
+  "fill-light-oil-barrel": {
+    "wiki-name": "Fill light oil barrel",
+    "type": "recipe",
+    "energy-required": 1,
+    "inputs": {
+      "empty-barrel": 1,
+      "light-oil": 250
+    },
+    "outputs": {"light-oil-barrel": 1}
+  },
+  "fill-lubricant-barrel": {
+    "wiki-name": "Fill lubricant barrel",
+    "type": "recipe",
+    "energy-required": 1,
+    "inputs": {
+      "empty-barrel": 1,
+      "lubricant": 250
+    },
+    "outputs": {"lubricant-barrel": 1}
+  },
+  "fill-petroleum-gas-barrel": {
+    "wiki-name": "Fill petroleum gas barrel",
+    "type": "recipe",
+    "energy-required": 1,
+    "inputs": {
+      "empty-barrel": 1,
+      "petroleum-gas": 250
+    },
+    "outputs": {"petroleum-gas-barrel": 1}
+  },
+  "fill-sulfuric-acid-barrel": {
+    "wiki-name": "Fill sulfuric acid barrel",
+    "type": "recipe",
+    "energy-required": 1,
+    "inputs": {
+      "empty-barrel": 1,
+      "sulfuric-acid": 250
+    },
+    "outputs": {"sulfuric-acid-barrel": 1}
+  },
+  "fill-water-barrel": {
+    "wiki-name": "Fill water barrel",
+    "type": "recipe",
+    "energy-required": 1,
+    "inputs": {
+      "empty-barrel": 1,
+      "water": 250
+    },
+    "outputs": {"water-barrel": 1}
+  },
+  "filter-inserter": {
+    "wiki-name": "Filter inserter",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "electronic-circuit": 4,
+      "fast-inserter": 1
+    },
+    "outputs": {"filter-inserter": 1}
+  },
+  "firearm-magazine": {
+    "wiki-name": "Firearm magazine",
+    "type": "recipe",
+    "energy-required": 1,
+    "inputs": {"iron-plate": 4},
+    "outputs": {"firearm-magazine": 1}
+  },
+  "flamethrower": {
+    "wiki-name": "Flamethrower",
+    "type": "recipe",
+    "energy-required": 10,
+    "inputs": {
+      "iron-gear-wheel": 10,
+      "steel-plate": 5
+    },
+    "outputs": {"flamethrower": 1}
+  },
+  "flamethrower-ammo": {
+    "wiki-name": "Flamethrower ammo",
+    "type": "recipe",
+    "energy-required": 6,
+    "inputs": {
+      "heavy-oil": 50,
+      "light-oil": 50,
+      "steel-plate": 5
+    },
+    "outputs": {"flamethrower-ammo": 1}
+  },
+  "flamethrower-turret": {
+    "wiki-name": "Flamethrower turret",
+    "type": "recipe",
+    "energy-required": 20,
+    "inputs": {
+      "engine-unit": 5,
+      "iron-gear-wheel": 15,
+      "pipe": 10,
+      "steel-plate": 30
+    },
+    "outputs": {"flamethrower-turret": 1}
+  },
+  "fluid-wagon": {
+    "wiki-name": "Fluid wagon",
+    "type": "recipe",
+    "energy-required": 1.5,
+    "inputs": {
+      "iron-gear-wheel": 10,
+      "pipe": 8,
+      "steel-plate": 16,
+      "storage-tank": 3
+    },
+    "outputs": {"fluid-wagon": 1}
+  },
+  "flying-robot-frame": {
+    "wiki-name": "Flying robot frame",
+    "type": "recipe",
+    "energy-required": 20,
+    "inputs": {
+      "battery": 2,
+      "electric-engine-unit": 1,
+      "electronic-circuit": 3,
+      "steel-plate": 1
+    },
+    "outputs": {"flying-robot-frame": 1}
+  },
+  "fusion-reactor-equipment": {
+    "wiki-name": "Portable fusion reactor",
+    "type": "recipe",
+    "energy-required": 10,
+    "inputs": {"processing-unit": 250},
+    "outputs": {"fusion-reactor-equipment": 1}
+  },
+  "gate": {
+    "wiki-name": "Gate",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "electronic-circuit": 2,
+      "steel-plate": 2,
+      "stone-wall": 1
+    },
+    "outputs": {"gate": 1}
+  },
+  "green-wire": {
+    "wiki-name": "Green wire",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "copper-cable": 1,
+      "electronic-circuit": 1
+    },
+    "outputs": {"green-wire": 1}
+  },
+  "grenade": {
+    "wiki-name": "Grenade",
+    "type": "recipe",
+    "energy-required": 8,
+    "inputs": {
+      "coal": 10,
+      "iron-plate": 5
+    },
+    "outputs": {"grenade": 1}
+  },
+  "gun-turret": {
+    "wiki-name": "Gun turret",
+    "type": "recipe",
+    "energy-required": 8,
+    "inputs": {
+      "copper-plate": 10,
+      "iron-gear-wheel": 10,
+      "iron-plate": 20
+    },
+    "outputs": {"gun-turret": 1}
+  },
+  "hazard-concrete": {
+    "wiki-name": "Hazard concrete",
+    "type": "recipe",
+    "energy-required": 0.25,
+    "inputs": {"concrete": 10},
+    "outputs": {"hazard-concrete": 10}
+  },
+  "heat-exchanger": {
+    "wiki-name": "Heat exchanger",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "copper-plate": 100,
+      "pipe": 10,
+      "steel-plate": 10
+    },
+    "outputs": {"heat-exchanger": 1}
+  },
+  "heat-pipe": {
+    "wiki-name": "Heat pipe",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "copper-plate": 20,
+      "steel-plate": 10
+    },
+    "outputs": {"heat-pipe": 1}
+  },
+  "heavy-armor": {
+    "wiki-name": "Heavy armor",
+    "type": "recipe",
+    "energy-required": 8,
+    "inputs": {
+      "copper-plate": 100,
+      "steel-plate": 50
+    },
+    "outputs": {"heavy-armor": 1}
+  },
+  "heavy-oil-cracking": {
+    "wiki-name": "Heavy oil cracking",
+    "type": "recipe",
+    "energy-required": 3,
+    "inputs": {
+      "heavy-oil": 40,
+      "water": 30
+    },
+    "outputs": {"light-oil": 30}
+  },
+  "high-tech-science-pack": {
+    "wiki-name": "High tech science pack",
+    "type": "recipe",
+    "energy-required": 14,
+    "inputs": {
+      "battery": 1,
+      "copper-cable": 30,
+      "processing-unit": 3,
+      "speed-module": 1
+    },
+    "outputs": {"high-tech-science-pack": 2}
+  },
+  "inserter": {
+    "wiki-name": "Inserter",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "electronic-circuit": 1,
+      "iron-gear-wheel": 1,
+      "iron-plate": 1
+    },
+    "outputs": {"inserter": 1}
+  },
+  "iron-axe": {
+    "wiki-name": "Iron axe",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "iron-plate": 3,
+      "iron-stick": 2
+    },
+    "outputs": {"iron-axe": 1}
+  },
+  "iron-chest": {
+    "wiki-name": "Iron chest",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {"iron-plate": 8},
+    "outputs": {"iron-chest": 1}
+  },
+  "iron-gear-wheel": {
+    "wiki-name": "Iron gear wheel",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {"iron-plate": 2},
+    "outputs": {"iron-gear-wheel": 1}
+  },
+  "iron-plate": {
+    "wiki-name": "Iron plate",
+    "type": "recipe",
+    "energy-required": 3.5,
+    "inputs": {"iron-ore": 1},
+    "outputs": {"iron-plate": 1}
+  },
+  "iron-stick": {
+    "wiki-name": "Iron stick",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {"iron-plate": 1},
+    "outputs": {"iron-stick": 2}
+  },
+  "kovarex-enrichment-process": {
+    "wiki-name": "Kovarex enrichment process",
+    "type": "recipe",
+    "energy-required": 50,
+    "inputs": {
+      "uranium-235": 40,
+      "uranium-238": 5
+    },
+    "outputs": {
+      "uranium-235": 41,
+      "uranium-238": 2
+    }
+  },
+  "lab": {
+    "wiki-name": "Lab",
+    "type": "recipe",
+    "energy-required": 3,
+    "inputs": {
+      "electronic-circuit": 10,
+      "iron-gear-wheel": 10,
+      "transport-belt": 4
+    },
+    "outputs": {"lab": 1}
+  },
+  "land-mine": {
+    "wiki-name": "Land mine",
+    "type": "recipe",
+    "energy-required": 5,
+    "inputs": {
+      "explosives": 2,
+      "steel-plate": 1
+    },
+    "outputs": {"land-mine": 4}
+  },
+  "landfill": {
+    "wiki-name": "Landfill",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {"stone": 20},
+    "outputs": {"landfill": 1}
+  },
+  "laser-turret": {
+    "wiki-name": "Laser turret",
+    "type": "recipe",
+    "energy-required": 20,
+    "inputs": {
+      "battery": 12,
+      "electronic-circuit": 20,
+      "steel-plate": 20
+    },
+    "outputs": {"laser-turret": 1}
+  },
+  "light-armor": {
+    "wiki-name": "Light armor",
+    "type": "recipe",
+    "energy-required": 3,
+    "inputs": {"iron-plate": 40},
+    "outputs": {"light-armor": 1}
+  },
+  "light-oil-cracking": {
+    "wiki-name": "Light oil cracking",
+    "type": "recipe",
+    "energy-required": 3,
+    "inputs": {
+      "light-oil": 30,
+      "water": 30
+    },
+    "outputs": {"petroleum-gas": 20}
+  },
+  "locomotive": {
+    "wiki-name": "Locomotive",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "electronic-circuit": 10,
+      "engine-unit": 20,
+      "steel-plate": 30
+    },
+    "outputs": {"locomotive": 1}
+  },
+  "logistic-chest-active-provider": {
+    "wiki-name": "Active provider chest",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "advanced-circuit": 1,
+      "electronic-circuit": 3,
+      "steel-chest": 1
+    },
+    "outputs": {"logistic-chest-active-provider": 1}
+  },
+  "logistic-chest-passive-provider": {
+    "wiki-name": "Passive provider chest",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "advanced-circuit": 1,
+      "electronic-circuit": 3,
+      "steel-chest": 1
+    },
+    "outputs": {"logistic-chest-passive-provider": 1}
+  },
+  "logistic-chest-requester": {
+    "wiki-name": "Requester chest",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "advanced-circuit": 1,
+      "electronic-circuit": 3,
+      "steel-chest": 1
+    },
+    "outputs": {"logistic-chest-requester": 1}
+  },
+  "logistic-chest-storage": {
+    "wiki-name": "Storage chest",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "advanced-circuit": 1,
+      "electronic-circuit": 3,
+      "steel-chest": 1
+    },
+    "outputs": {"logistic-chest-storage": 1}
+  },
+  "logistic-robot": {
+    "wiki-name": "Logistic robot",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "advanced-circuit": 2,
+      "flying-robot-frame": 1
+    },
+    "outputs": {"logistic-robot": 1}
+  },
+  "long-handed-inserter": {
+    "wiki-name": "Long handed inserter",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "inserter": 1,
+      "iron-gear-wheel": 1,
+      "iron-plate": 1
+    },
+    "outputs": {"long-handed-inserter": 1}
+  },
+  "low-density-structure": {
+    "wiki-name": "Low density structure",
+    "type": "recipe",
+    "energy-required": 30,
+    "inputs": {
+      "copper-plate": 5,
+      "plastic-bar": 5,
+      "steel-plate": 10
+    },
+    "outputs": {"low-density-structure": 1}
+  },
+  "lubricant": {
+    "wiki-name": "Lubricant",
+    "type": "recipe",
+    "energy-required": 1,
+    "inputs": {"heavy-oil": 10},
+    "outputs": {"lubricant": 10}
+  },
+  "medium-electric-pole": {
+    "wiki-name": "Medium electric pole",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "copper-plate": 2,
+      "steel-plate": 2
+    },
+    "outputs": {"medium-electric-pole": 1}
+  },
+  "military-science-pack": {
+    "wiki-name": "Military science pack",
+    "type": "recipe",
+    "energy-required": 10,
+    "inputs": {
+      "grenade": 1,
+      "gun-turret": 1,
+      "piercing-rounds-magazine": 1
+    },
+    "outputs": {"military-science-pack": 2}
+  },
+  "modular-armor": {
+    "wiki-name": "Modular armor",
+    "type": "recipe",
+    "energy-required": 15,
+    "inputs": {
+      "advanced-circuit": 30,
+      "steel-plate": 50
+    },
+    "outputs": {"modular-armor": 1}
+  },
+  "night-vision-equipment": {
+    "wiki-name": "Nightvision",
+    "type": "recipe",
+    "energy-required": 10,
+    "inputs": {
+      "advanced-circuit": 5,
+      "steel-plate": 10
+    },
+    "outputs": {"night-vision-equipment": 1}
+  },
+  "nuclear-fuel-reprocessing": {
+    "wiki-name": "Nuclear fuel reprocessing",
+    "type": "recipe",
+    "energy-required": 50,
+    "inputs": {"used-up-uranium-fuel-cell": 5},
+    "outputs": {"uranium-238": 3}
+  },
+  "nuclear-reactor": {
+    "wiki-name": "Nuclear reactor",
+    "type": "recipe",
+    "energy-required": 4,
+    "inputs": {
+      "advanced-circuit": 500,
+      "concrete": 500,
+      "copper-plate": 500,
+      "steel-plate": 500
+    },
+    "outputs": {"nuclear-reactor": 1}
+  },
+  "offshore-pump": {
+    "wiki-name": "Offshore pump",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "electronic-circuit": 2,
+      "iron-gear-wheel": 1,
+      "pipe": 1
+    },
+    "outputs": {"offshore-pump": 1}
+  },
+  "oil-refinery": {
+    "wiki-name": "Oil refinery",
+    "type": "recipe",
+    "energy-required": 10,
+    "inputs": {
+      "electronic-circuit": 10,
+      "iron-gear-wheel": 10,
+      "pipe": 10,
+      "steel-plate": 15,
+      "stone-brick": 10
+    },
+    "outputs": {"oil-refinery": 1}
+  },
+  "personal-laser-defense-equipment": {
+    "wiki-name": "Personal laser defense",
+    "type": "recipe",
+    "energy-required": 10,
+    "inputs": {
+      "laser-turret": 5,
+      "processing-unit": 1,
+      "steel-plate": 5
+    },
+    "outputs": {"personal-laser-defense-equipment": 1}
+  },
+  "personal-roboport-equipment": {
+    "wiki-name": "Personal roboport",
+    "type": "recipe",
+    "energy-required": 10,
+    "inputs": {
+      "advanced-circuit": 10,
+      "battery": 45,
+      "iron-gear-wheel": 40,
+      "steel-plate": 20
+    },
+    "outputs": {"personal-roboport-equipment": 1}
+  },
+  "personal-roboport-mk2-equipment": {
+    "wiki-name": "Personal roboport MK2",
+    "type": "recipe",
+    "energy-required": 20,
+    "inputs": {
+      "personal-roboport-equipment": 5,
+      "processing-unit": 100
+    },
+    "outputs": {"personal-roboport-mk2-equipment": 1}
+  },
+  "piercing-rounds-magazine": {
+    "wiki-name": "Piercing rounds magazine",
+    "type": "recipe",
+    "energy-required": 3,
+    "inputs": {
+      "copper-plate": 5,
+      "firearm-magazine": 1,
+      "steel-plate": 1
+    },
+    "outputs": {"piercing-rounds-magazine": 1}
+  },
+  "piercing-shotgun-shell": {
+    "wiki-name": "Piercing shotgun shells",
+    "type": "recipe",
+    "energy-required": 8,
+    "inputs": {
+      "copper-plate": 5,
+      "shotgun-shell": 2,
+      "steel-plate": 2
+    },
+    "outputs": {"piercing-shotgun-shell": 1}
+  },
+  "pipe": {
+    "wiki-name": "Pipe",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {"iron-plate": 1},
+    "outputs": {"pipe": 1}
+  },
+  "pipe-to-ground": {
+    "wiki-name": "Pipe to ground",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "iron-plate": 5,
+      "pipe": 10
+    },
+    "outputs": {"pipe-to-ground": 2}
+  },
+  "pistol": {
+    "wiki-name": "Pistol",
+    "type": "recipe",
+    "energy-required": 5,
+    "inputs": {
+      "copper-plate": 5,
+      "iron-plate": 5
+    },
+    "outputs": {"pistol": 1}
+  },
+  "plastic-bar": {
+    "wiki-name": "Plastic bar",
+    "type": "recipe",
+    "energy-required": 1,
+    "inputs": {
+      "coal": 1,
+      "petroleum-gas": 20
+    },
+    "outputs": {"plastic-bar": 2}
+  },
+  "poison-capsule": {
+    "wiki-name": "Poison capsule",
+    "type": "recipe",
+    "energy-required": 8,
+    "inputs": {
+      "coal": 10,
+      "electronic-circuit": 3,
+      "steel-plate": 3
+    },
+    "outputs": {"poison-capsule": 1}
+  },
+  "power-armor": {
+    "wiki-name": "Power armor",
+    "type": "recipe",
+    "energy-required": 20,
+    "inputs": {
+      "electric-engine-unit": 20,
+      "processing-unit": 40,
+      "steel-plate": 40
+    },
+    "outputs": {"power-armor": 1}
+  },
+  "power-armor-mk2": {
+    "wiki-name": "Power armor MK2",
+    "type": "recipe",
+    "energy-required": 25,
+    "inputs": {
+      "effectivity-module-3": 5,
+      "processing-unit": 40,
+      "speed-module-3": 5,
+      "steel-plate": 40
+    },
+    "outputs": {"power-armor-mk2": 1}
+  },
+  "power-switch": {
+    "wiki-name": "Power switch",
+    "type": "recipe",
+    "energy-required": 2,
+    "inputs": {
+      "copper-cable": 5,
+      "electronic-circuit": 2,
+      "iron-plate": 5
+    },
+    "outputs": {"power-switch": 1}
+  },
+  "processing-unit": {
+    "wiki-name": "Processing unit",
+    "type": "recipe",
+    "energy-required": 10,
+    "inputs": {
+      "advanced-circuit": 2,
+      "electronic-circuit": 20,
+      "sulfuric-acid": 5
+    },
+    "outputs": {"processing-unit": 1}
+  },
+  "production-science-pack": {
+    "wiki-name": "Production science pack",
+    "type": "recipe",
+    "energy-required": 14,
+    "inputs": {
+      "assembling-machine-1": 1,
+      "electric-engine-unit": 1,
+      "electric-furnace": 1
+    },
+    "outputs": {"production-science-pack": 2}
+  },
+  "productivity-module": {
+    "wiki-name": "Productivity module",
+    "type": "recipe",
+    "energy-required": 15,
+    "inputs": {
+      "advanced-circuit": 5,
+      "electronic-circuit": 5
+    },
+    "outputs": {"productivity-module": 1}
+  },
+  "productivity-module-2": {
+    "wiki-name": "Productivity module 2",
+    "type": "recipe",
+    "energy-required": 30,
+    "inputs": {
+      "advanced-circuit": 5,
+      "processing-unit": 5,
+      "productivity-module": 4
+    },
+    "outputs": {"productivity-module-2": 1}
+  },
+  "productivity-module-3": {
+    "wiki-name": "Productivity module 3",
+    "type": "recipe",
+    "energy-required": 60,
+    "inputs": {
+      "advanced-circuit": 5,
+      "processing-unit": 5,
+      "productivity-module-2": 5
+    },
+    "outputs": {"productivity-module-3": 1}
+  },
+  "programmable-speaker": {
+    "wiki-name": "Programmable speaker",
+    "type": "recipe",
+    "energy-required": 2,
+    "inputs": {
+      "copper-cable": 5,
+      "electronic-circuit": 4,
+      "iron-plate": 5
+    },
+    "outputs": {"programmable-speaker": 1}
+  },
+  "pump": {
+    "wiki-name": "Pump",
+    "type": "recipe",
+    "energy-required": 2,
+    "inputs": {
+      "engine-unit": 1,
+      "pipe": 1,
+      "steel-plate": 1
+    },
+    "outputs": {"pump": 1}
+  },
+  "pumpjack": {
+    "wiki-name": "Pumpjack",
+    "type": "recipe",
+    "energy-required": 5,
+    "inputs": {
+      "electronic-circuit": 5,
+      "iron-gear-wheel": 10,
+      "pipe": 10,
+      "steel-plate": 5
+    },
+    "outputs": {"pumpjack": 1}
+  },
+  "radar": {
+    "wiki-name": "Radar",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "electronic-circuit": 5,
+      "iron-gear-wheel": 5,
+      "iron-plate": 10
+    },
+    "outputs": {"radar": 1}
+  },
+  "rail": {
+    "wiki-name": "Rail",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "iron-stick": 1,
+      "steel-plate": 1,
+      "stone": 1
+    },
+    "outputs": {"rail": 2}
+  },
+  "rail-chain-signal": {
+    "wiki-name": "Rail chain signal",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "electronic-circuit": 1,
+      "iron-plate": 5
+    },
+    "outputs": {"rail-chain-signal": 1}
+  },
+  "rail-signal": {
+    "wiki-name": "Rail signal",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "electronic-circuit": 1,
+      "iron-plate": 5
+    },
+    "outputs": {"rail-signal": 1}
+  },
+  "red-wire": {
+    "wiki-name": "Red wire",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "copper-cable": 1,
+      "electronic-circuit": 1
+    },
+    "outputs": {"red-wire": 1}
+  },
+  "repair-pack": {
+    "wiki-name": "Repair pack",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "electronic-circuit": 2,
+      "iron-gear-wheel": 2
+    },
+    "outputs": {"repair-pack": 1}
+  },
+  "roboport": {
+    "wiki-name": "Roboport",
+    "type": "recipe",
+    "energy-required": 10,
+    "inputs": {
+      "advanced-circuit": 45,
+      "iron-gear-wheel": 45,
+      "steel-plate": 45
+    },
+    "outputs": {"roboport": 1}
+  },
+  "rocket": {
+    "wiki-name": "Rocket",
+    "type": "recipe",
+    "energy-required": 8,
+    "inputs": {
+      "electronic-circuit": 1,
+      "explosives": 1,
+      "iron-plate": 2
+    },
+    "outputs": {"rocket": 1}
+  },
+  "rocket-control-unit": {
+    "wiki-name": "Rocket control unit",
+    "type": "recipe",
+    "energy-required": 30,
+    "inputs": {
+      "processing-unit": 1,
+      "speed-module": 1
+    },
+    "outputs": {"rocket-control-unit": 1}
+  },
+  "rocket-fuel": {
+    "wiki-name": "Rocket fuel",
+    "type": "recipe",
+    "energy-required": 30,
+    "inputs": {"solid-fuel": 10},
+    "outputs": {"rocket-fuel": 1}
+  },
+  "rocket-launcher": {
+    "wiki-name": "Rocket launcher",
+    "type": "recipe",
+    "energy-required": 10,
+    "inputs": {
+      "electronic-circuit": 5,
+      "iron-gear-wheel": 5,
+      "iron-plate": 5
+    },
+    "outputs": {"rocket-launcher": 1}
+  },
+  "rocket-part": {
+    "wiki-name": "Rocket part",
+    "type": "recipe",
+    "energy-required": 3,
+    "inputs": {
+      "low-density-structure": 10,
+      "rocket-control-unit": 10,
+      "rocket-fuel": 10
+    },
+    "outputs": {"rocket-part": 1}
+  },
+  "rocket-silo": {
+    "wiki-name": "Rocket silo",
+    "type": "recipe",
+    "energy-required": 30,
+    "inputs": {
+      "concrete": 1000,
+      "electric-engine-unit": 200,
+      "pipe": 100,
+      "processing-unit": 200,
+      "steel-plate": 1000
+    },
+    "outputs": {"rocket-silo": 1}
+  },
+  "satellite": {
+    "wiki-name": "Satellite",
+    "type": "recipe",
+    "energy-required": 3,
+    "inputs": {
+      "accumulator": 100,
+      "low-density-structure": 100,
+      "processing-unit": 100,
+      "radar": 5,
+      "rocket-fuel": 50,
+      "solar-panel": 100
+    },
+    "outputs": {"satellite": 1}
+  },
+  "science-pack-1": {
+    "wiki-name": "Science pack 1",
+    "type": "recipe",
+    "energy-required": 5,
+    "inputs": {
+      "copper-plate": 1,
+      "iron-gear-wheel": 1
+    },
+    "outputs": {"science-pack-1": 1}
+  },
+  "science-pack-2": {
+    "wiki-name": "Science pack 2",
+    "type": "recipe",
+    "energy-required": 6,
+    "inputs": {
+      "inserter": 1,
+      "transport-belt": 1
+    },
+    "outputs": {"science-pack-2": 1}
+  },
+  "science-pack-3": {
+    "wiki-name": "Science pack 3",
+    "type": "recipe",
+    "energy-required": 12,
+    "inputs": {
+      "advanced-circuit": 1,
+      "electric-mining-drill": 1,
+      "engine-unit": 1
+    },
+    "outputs": {"science-pack-3": 1}
+  },
+  "shotgun": {
+    "wiki-name": "Shotgun",
+    "type": "recipe",
+    "energy-required": 10,
+    "inputs": {
+      "copper-plate": 10,
+      "iron-gear-wheel": 5,
+      "iron-plate": 15,
+      "wood": 5
+    },
+    "outputs": {"shotgun": 1}
+  },
+  "shotgun-shell": {
+    "wiki-name": "Shotgun shells",
+    "type": "recipe",
+    "energy-required": 3,
+    "inputs": {
+      "copper-plate": 2,
+      "iron-plate": 2
+    },
+    "outputs": {"shotgun-shell": 1}
+  },
+  "slowdown-capsule": {
+    "wiki-name": "Slowdown capsule",
+    "type": "recipe",
+    "energy-required": 8,
+    "inputs": {
+      "coal": 5,
+      "electronic-circuit": 2,
+      "steel-plate": 2
+    },
+    "outputs": {"slowdown-capsule": 1}
+  },
+  "small-electric-pole": {
+    "wiki-name": "Small electric pole",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "copper-cable": 2,
+      "wood": 2
+    },
+    "outputs": {"small-electric-pole": 2}
+  },
+  "small-lamp": {
+    "wiki-name": "Lamp",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "electronic-circuit": 1,
+      "iron-plate": 1,
+      "iron-stick": 3
+    },
+    "outputs": {"small-lamp": 1}
+  },
+  "solar-panel": {
+    "wiki-name": "Solar panel",
+    "type": "recipe",
+    "energy-required": 10,
+    "inputs": {
+      "copper-plate": 5,
+      "electronic-circuit": 15,
+      "steel-plate": 5
+    },
+    "outputs": {"solar-panel": 1}
+  },
+  "solar-panel-equipment": {
+    "wiki-name": "Portable solar panel",
+    "type": "recipe",
+    "energy-required": 10,
+    "inputs": {
+      "advanced-circuit": 1,
+      "solar-panel": 5,
+      "steel-plate": 5
+    },
+    "outputs": {"solar-panel-equipment": 1}
+  },
+  "solid-fuel-from-heavy-oil": {
+    "wiki-name": "Solid fuel from heavy oil",
+    "type": "recipe",
+    "energy-required": 3,
+    "inputs": {"heavy-oil": 20},
+    "outputs": {"solid-fuel": 1}
+  },
+  "solid-fuel-from-light-oil": {
+    "wiki-name": "Solid fuel from light oil",
+    "type": "recipe",
+    "energy-required": 3,
+    "inputs": {"light-oil": 10},
+    "outputs": {"solid-fuel": 1}
+  },
+  "solid-fuel-from-petroleum-gas": {
+    "wiki-name": "Solid fuel from petroleum gas",
+    "type": "recipe",
+    "energy-required": 3,
+    "inputs": {"petroleum-gas": 20},
+    "outputs": {"solid-fuel": 1}
+  },
+  "speed-module": {
+    "wiki-name": "Speed module",
+    "type": "recipe",
+    "energy-required": 15,
+    "inputs": {
+      "advanced-circuit": 5,
+      "electronic-circuit": 5
+    },
+    "outputs": {"speed-module": 1}
+  },
+  "speed-module-2": {
+    "wiki-name": "Speed module 2",
+    "type": "recipe",
+    "energy-required": 30,
+    "inputs": {
+      "advanced-circuit": 5,
+      "processing-unit": 5,
+      "speed-module": 4
+    },
+    "outputs": {"speed-module-2": 1}
+  },
+  "speed-module-3": {
+    "wiki-name": "Speed module 3",
+    "type": "recipe",
+    "energy-required": 60,
+    "inputs": {
+      "advanced-circuit": 5,
+      "processing-unit": 5,
+      "speed-module-2": 5
+    },
+    "outputs": {"speed-module-3": 1}
+  },
+  "splitter": {
+    "wiki-name": "Splitter",
+    "type": "recipe",
+    "energy-required": 1,
+    "inputs": {
+      "electronic-circuit": 5,
+      "iron-plate": 5,
+      "transport-belt": 4
+    },
+    "outputs": {"splitter": 1}
+  },
+  "stack-filter-inserter": {
+    "wiki-name": "Stack filter inserter",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "electronic-circuit": 5,
+      "stack-inserter": 1
+    },
+    "outputs": {"stack-filter-inserter": 1}
+  },
+  "stack-inserter": {
+    "wiki-name": "Stack inserter",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "advanced-circuit": 1,
+      "electronic-circuit": 15,
+      "fast-inserter": 1,
+      "iron-gear-wheel": 15
+    },
+    "outputs": {"stack-inserter": 1}
+  },
+  "steam-engine": {
+    "wiki-name": "Steam engine",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "iron-gear-wheel": 8,
+      "iron-plate": 10,
+      "pipe": 5
+    },
+    "outputs": {"steam-engine": 1}
+  },
+  "steam-turbine": {
+    "wiki-name": "Steam turbine",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "copper-plate": 50,
+      "iron-gear-wheel": 50,
+      "pipe": 20
+    },
+    "outputs": {"steam-turbine": 1}
+  },
+  "steel-axe": {
+    "wiki-name": "Steel axe",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "iron-stick": 2,
+      "steel-plate": 5
+    },
+    "outputs": {"steel-axe": 1}
+  },
+  "steel-chest": {
+    "wiki-name": "Steel chest",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {"steel-plate": 8},
+    "outputs": {"steel-chest": 1}
+  },
+  "steel-furnace": {
+    "wiki-name": "Steel furnace",
+    "type": "recipe",
+    "energy-required": 3,
+    "inputs": {
+      "steel-plate": 6,
+      "stone-brick": 10
+    },
+    "outputs": {"steel-furnace": 1}
+  },
+  "steel-plate": {
+    "wiki-name": "Steel plate",
+    "type": "recipe",
+    "energy-required": 17.5,
+    "inputs": {"iron-plate": 5},
+    "outputs": {"steel-plate": 1}
+  },
+  "stone-brick": {
+    "wiki-name": "Stone brick",
+    "type": "recipe",
+    "energy-required": 3.5,
+    "inputs": {"stone": 2},
+    "outputs": {"stone-brick": 1}
+  },
+  "stone-furnace": {
+    "wiki-name": "Stone furnace",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {"stone": 5},
+    "outputs": {"stone-furnace": 1}
+  },
+  "stone-wall": {
+    "wiki-name": "Stone wall",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {"stone-brick": 5},
+    "outputs": {"stone-wall": 1}
+  },
+  "storage-tank": {
+    "wiki-name": "Storage tank",
+    "type": "recipe",
+    "energy-required": 3,
+    "inputs": {
+      "iron-plate": 20,
+      "steel-plate": 5
+    },
+    "outputs": {"storage-tank": 1}
+  },
+  "submachine-gun": {
+    "wiki-name": "Submachine gun",
+    "type": "recipe",
+    "energy-required": 10,
+    "inputs": {
+      "copper-plate": 5,
+      "iron-gear-wheel": 10,
+      "iron-plate": 10
+    },
+    "outputs": {"submachine-gun": 1}
+  },
+  "substation": {
+    "wiki-name": "Substation",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "advanced-circuit": 5,
+      "copper-plate": 5,
+      "steel-plate": 10
+    },
+    "outputs": {"substation": 1}
+  },
+  "sulfur": {
+    "wiki-name": "Sulfur",
+    "type": "recipe",
+    "energy-required": 1,
+    "inputs": {
+      "petroleum-gas": 30,
+      "water": 30
+    },
+    "outputs": {"sulfur": 2}
+  },
+  "sulfuric-acid": {
+    "wiki-name": "Sulfuric acid",
+    "type": "recipe",
+    "energy-required": 1,
+    "inputs": {
+      "iron-plate": 1,
+      "sulfur": 5,
+      "water": 100
+    },
+    "outputs": {"sulfuric-acid": 50}
+  },
+  "tank": {
+    "wiki-name": "Tank",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "advanced-circuit": 10,
+      "engine-unit": 32,
+      "iron-gear-wheel": 15,
+      "steel-plate": 50
+    },
+    "outputs": {"tank": 1}
+  },
+  "train-stop": {
+    "wiki-name": "Train stop",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "electronic-circuit": 5,
+      "iron-plate": 10,
+      "steel-plate": 3
+    },
+    "outputs": {"train-stop": 1}
+  },
+  "transport-belt": {
+    "wiki-name": "Transport belt",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {
+      "iron-gear-wheel": 1,
+      "iron-plate": 1
+    },
+    "outputs": {"transport-belt": 2}
+  },
+  "underground-belt": {
+    "wiki-name": "Underground belt",
+    "type": "recipe",
+    "energy-required": 1,
+    "inputs": {
+      "iron-plate": 10,
+      "transport-belt": 5
+    },
+    "outputs": {"underground-belt": 2}
+  },
+  "uranium-cannon-shell": {
+    "wiki-name": "Uranium cannon shell",
+    "type": "recipe",
+    "energy-required": 12,
+    "inputs": {
+      "cannon-shell": 1,
+      "uranium-238": 1
+    },
+    "outputs": {"uranium-cannon-shell": 1}
+  },
+  "uranium-fuel-cell": {
+    "wiki-name": "Uranium fuel cell",
+    "type": "recipe",
+    "energy-required": 10,
+    "inputs": {
+      "iron-plate": 10,
+      "uranium-235": 1,
+      "uranium-238": 19
+    },
+    "outputs": {"uranium-fuel-cell": 10}
+  },
+  "uranium-processing": {
+    "wiki-name": "Uranium processing",
+    "type": "recipe",
+    "energy-required": 10,
+    "inputs": {"uranium-ore": 10},
+    "outputs": {
+      "uranium-235": 1,
+      "uranium-238": 1
+    }
+  },
+  "uranium-rounds-magazine": {
+    "wiki-name": "Uranium rounds magazine",
+    "type": "recipe",
+    "energy-required": 10,
+    "inputs": {
+      "piercing-rounds-magazine": 1,
+      "uranium-238": 1
+    },
+    "outputs": {"uranium-rounds-magazine": 1}
+  },
+  "wood": {
+    "wiki-name": "Wood",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {"raw-wood": 1},
+    "outputs": {"wood": 2}
+  },
+  "wooden-chest": {
+    "wiki-name": "Wooden chest",
+    "type": "recipe",
+    "energy-required": 0.5,
+    "inputs": {"wood": 4},
+    "outputs": {"wooden-chest": 1}
+  }
+}
