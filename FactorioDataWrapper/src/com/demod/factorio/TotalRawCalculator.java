@@ -8,9 +8,9 @@ import java.util.Optional;
 import com.demod.factorio.prototype.RecipePrototype;
 
 public class TotalRawCalculator {
+	public static final String RAW_TIME = "_TIME_";
 	private final Map<String, RecipePrototype> recipes;
 	private final Map<String, Map<String, Double>> recipeTotalRaws = new LinkedHashMap<>();
-	public static final String RAW_TIME = "_TIME_";
 
 	public TotalRawCalculator(Map<String, RecipePrototype> recipes) {
 		this.recipes = recipes;
@@ -30,8 +30,8 @@ public class TotalRawCalculator {
 			if (findRecipe.filter(RecipePrototype::isHandCraftable).isPresent()) {
 				RecipePrototype inputRecipe = findRecipe.get();
 				Map<String, Double> inputTotalRaw = compute(inputRecipe);
-				Integer inputRunYield = inputRecipe.getOutputs().get(input);
-				double inputRunCount = entry.getValue() / (double) inputRunYield;
+				Double inputRunYield = inputRecipe.getOutputs().get(input);
+				double inputRunCount = entry.getValue() / inputRunYield;
 				inputTotalRaw.forEach((k, v) -> {
 					totalRaw.put(k, totalRaw.getOrDefault(k, 0.0) + v * inputRunCount);
 				});

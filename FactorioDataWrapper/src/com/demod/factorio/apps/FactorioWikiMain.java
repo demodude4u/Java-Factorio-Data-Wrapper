@@ -58,14 +58,14 @@ public class FactorioWikiMain {
 
 		@Override
 		public String toString() {
-			if (!item && !recipe) {
+			if (!item && !recipe && !fluid) {
 				return "N/A";
 			} else if (equipment) {
 				return equipmentType;
-			} else if (tile) {
-				return "tile";
 			} else if (fluid) {
 				return "fluid";
+			} else if (tile) {
+				return "tile";
 			} else if (entity) {
 				return entityType;
 			} else if (item) {
@@ -128,8 +128,8 @@ public class FactorioWikiMain {
 		}
 
 		try (PrintWriter pw = new PrintWriter(
-				new File(outputFolder, "wiki-recipes-totals-" + baseInfo.getVersion() + ".txt"))) {
-			wiki_RawTotals(table, pw);
+				new File(outputFolder, "wiki-recipes-" + baseInfo.getVersion() + ".txt"))) {
+			wiki_Recipes(table, pw);
 		}
 
 		Map<String, WikiTypeMatch> wikiTypes;
@@ -348,7 +348,7 @@ public class FactorioWikiMain {
 	 * @param table
 	 * @param mappingJson
 	 */
-	private static void wiki_RawTotals(DataTable table, PrintWriter pw) throws FileNotFoundException {
+	private static void wiki_Recipes(DataTable table, PrintWriter pw) throws FileNotFoundException {
 
 		Map<String, RecipePrototype> normalRecipes = table.getRecipes();
 		Map<String, RecipePrototype> expensiveRecipes = table.getExpensiveRecipes();
@@ -372,8 +372,9 @@ public class FactorioWikiMain {
 							|| recipe.getOutputs().values().stream().findFirst().get() != 1) {
 						pw.print(" = ");
 						pw.print(recipe.getOutputs().entrySet().stream()
-								.sorted((e1, e2) -> e1.getKey().compareTo(e2.getKey())).map(entry -> String
-										.format("%s, %d", table.getWikiItemName(entry.getKey()), entry.getValue()))
+								.sorted((e1, e2) -> e1.getKey().compareTo(e2.getKey()))
+								.map(entry -> String.format("%s, %s", table.getWikiItemName(entry.getKey()),
+										wiki_fmtDouble(entry.getValue())))
 								.collect(Collectors.joining(" + ")));
 					}
 					pw.println();
@@ -403,8 +404,9 @@ public class FactorioWikiMain {
 							|| recipe.getOutputs().values().stream().findFirst().get() != 1) {
 						pw.print(" = ");
 						pw.print(recipe.getOutputs().entrySet().stream()
-								.sorted((e1, e2) -> e1.getKey().compareTo(e2.getKey())).map(entry -> String
-										.format("%s, %d", table.getWikiItemName(entry.getKey()), entry.getValue()))
+								.sorted((e1, e2) -> e1.getKey().compareTo(e2.getKey()))
+								.map(entry -> String.format("%s, %s", table.getWikiItemName(entry.getKey()),
+										wiki_fmtDouble(entry.getValue())))
 								.collect(Collectors.joining(" + ")));
 					}
 					pw.println();
@@ -528,7 +530,7 @@ public class FactorioWikiMain {
 			WikiTypeMatch m = e.getValue();
 			String type = m.toString();
 
-			if (!m.item && !m.recipe) {
+			if (!m.item && !m.recipe && !m.fluid) {
 				return;
 			}
 

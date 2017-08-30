@@ -27,8 +27,8 @@ import com.demod.factorio.Utils;
 import com.demod.factorio.prototype.RecipePrototype;
 
 public class FactorioXMLMain {
-	private static Element createItemQuantityElement(Document doc, DataTable table, Map<String, Integer> itemMap,
-			String elementName) {
+	private static Element createItemQuantityElement(Document doc, DataTable table,
+			Map<String, ? extends Number> itemMap, String elementName) {
 		Element itemsElement = doc.createElement(elementName);
 		itemMap.forEach((name, qty) -> {
 			Element itemQuantityElement = doc.createElement("item");
@@ -43,7 +43,7 @@ public class FactorioXMLMain {
 			itemQuantityElement.appendChild(itemNameElement);
 
 			Element quantityElement = doc.createElement("quantity");
-			quantityElement.appendChild(doc.createTextNode(Integer.toString(qty)));
+			quantityElement.appendChild(doc.createTextNode(qty.toString()));
 			itemQuantityElement.appendChild(quantityElement);
 		});
 		return itemsElement;

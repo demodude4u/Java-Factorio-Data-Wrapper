@@ -134,6 +134,10 @@ Copper plate
 |internal-name = copper-plate
 |prototype-type = item
 
+Crude oil
+|internal-name = crude-oil
+|prototype-type = fluid
+
 Crude oil barrel
 |internal-name = crude-oil-barrel
 |prototype-type = item
@@ -378,6 +382,10 @@ Heavy armor
 |internal-name = heavy-armor
 |prototype-type = armor
 
+Heavy oil
+|internal-name = heavy-oil
+|prototype-type = fluid
+
 Heavy oil barrel
 |internal-name = heavy-oil-barrel
 |prototype-type = item
@@ -441,6 +449,10 @@ Laser turret
 Light armor
 |internal-name = light-armor
 |prototype-type = armor
+
+Light oil
+|internal-name = light-oil
+|prototype-type = fluid
 
 Light oil barrel
 |internal-name = light-oil-barrel
@@ -533,6 +545,10 @@ Personal roboport
 Personal roboport MK2
 |internal-name = personal-roboport-mk2-equipment
 |prototype-type = roboport-equipment
+
+Petroleum gas
+|internal-name = petroleum-gas
+|prototype-type = fluid
 
 Petroleum gas barrel
 |internal-name = petroleum-gas-barrel
@@ -758,6 +774,10 @@ Stack inserter
 |internal-name = stack-inserter
 |prototype-type = inserter
 
+Steam
+|internal-name = steam
+|prototype-type = fluid
+
 Steam engine
 |internal-name = steam-engine
 |prototype-type = generator
@@ -869,6 +889,10 @@ Uranium rounds magazine
 Used up uranium fuel cell
 |internal-name = used-up-uranium-fuel-cell
 |prototype-type = item
+
+Water
+|internal-name = water
+|prototype-type = fluid
 
 Water barrel
 |internal-name = water-barrel

@@ -12,7 +12,7 @@ public class RecipePrototype extends DataPrototype {
 
 	private final String category;
 	private final Map<String, Integer> inputs = new LinkedHashMap<>();
-	private final Map<String, Integer> outputs = new LinkedHashMap<>();
+	private final Map<String, Double> outputs = new LinkedHashMap<>();
 	private final double energyRequired;
 	private final boolean handCraftable;
 
@@ -42,13 +42,18 @@ public class RecipePrototype extends DataPrototype {
 		if (resultLua.istable()) {
 			Utils.forEach(resultLua, lv -> {
 				if (lv.get("name").isnil()) {
-					outputs.put(lv.get(1).tojstring(), lv.get(2).toint());
+					outputs.put(lv.get(1).tojstring(), (double) lv.get(2).toint());
 				} else {
-					outputs.put(lv.get("name").tojstring(), lv.get("amount").toint());
+					LuaValue probabilityLua = lv.get("probability");
+					if (probabilityLua.isnil()) {
+						outputs.put(lv.get("name").tojstring(), (double) lv.get("amount").toint());
+					} else {
+						outputs.put(lv.get("name").tojstring(), probabilityLua.todouble());
+					}
 				}
 			});
 		} else {
-			outputs.put(resultLua.tojstring(), lua.get("result_count").optint(1));
+			outputs.put(resultLua.tojstring(), (double) lua.get("result_count").optint(1));
 		}
 
 		energyRequired = lua.get("energy_required").optdouble(0.5);
@@ -64,7 +69,7 @@ public class RecipePrototype extends DataPrototype {
 		return inputs;
 	}
 
-	public Map<String, Integer> getOutputs() {
+	public Map<String, Double> getOutputs() {
 		return outputs;
 	}
 

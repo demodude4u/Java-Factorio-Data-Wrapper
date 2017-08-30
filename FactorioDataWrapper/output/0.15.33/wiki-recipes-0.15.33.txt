@@ -1169,9 +1169,9 @@ Uranium fuel cell
 |expensive-total-raw = Time, 10 + Iron plate, 10 + Uranium-235, 1 + Uranium-238, 19
 
 Uranium processing
-|recipe = Time, 10 + Uranium ore, 10 = Uranium-235, 1 + Uranium-238, 1
+|recipe = Time, 10 + Uranium ore, 10 = Uranium-235, 0.007 + Uranium-238, 0.993
 |total-raw = Time, 10 + Uranium ore, 10
-|expensive-recipe = Time, 10 + Uranium ore, 10 = Uranium-235, 1 + Uranium-238, 1
+|expensive-recipe = Time, 10 + Uranium ore, 10 = Uranium-235, 0.007 + Uranium-238, 0.993
 |expensive-total-raw = Time, 10 + Uranium ore, 10
 
 Uranium rounds magazine
