@@ -1,0 +1,237 @@
+Accumulator
+|health = 150
+
+Arithmetic combinator
+|health = 150
+
+Assembling machine 1
+|health = 300
+
+Assembling machine 2
+|health = 350
+
+Assembling machine 3
+|health = 400
+
+Beacon
+|health = 200
+
+Big electric pole
+|health = 150
+
+Boiler
+|health = 200
+
+Burner inserter
+|health = 100
+
+Burner mining drill
+|health = 150
+
+Car
+|health = 450
+
+Cargo wagon
+|health = 600
+
+Centrifuge
+|health = 350
+
+Chemical plant
+|health = 300
+
+Constant combinator
+|health = 120
+
+Construction robot
+|health = 100
+
+Decider combinator
+|health = 150
+
+Electric furnace
+|health = 350
+
+Electric mining drill
+|health = 300
+
+Express splitter
+|health = 190
+
+Express transport belt
+|health = 170
+
+Express underground belt
+|health = 170
+
+Fast inserter
+|health = 150
+
+Fast splitter
+|health = 180
+
+Fast transport belt
+|health = 160
+
+Fast underground belt
+|health = 160
+
+Filter inserter
+|health = 150
+
+Flamethrower turret
+|health = 1400
+
+Fluid wagon
+|health = 600
+
+Gate
+|health = 350
+
+Gun turret
+|health = 400
+
+Heat exchanger
+|health = 200
+
+Heat pipe
+|health = 200
+
+Inserter
+|health = 150
+
+Iron chest
+|health = 200
+
+Lab
+|health = 150
+
+Land mine
+|health = 15
+
+Laser turret
+|health = 1000
+
+Locomotive
+|health = 1000
+
+Active provider chest
+|health = 350
+
+Passive provider chest
+|health = 350
+
+Requester chest
+|health = 350
+
+Storage chest
+|health = 350
+
+Logistic robot
+|health = 100
+
+Long handed inserter
+|health = 160
+
+Medium electric pole
+|health = 100
+
+Nuclear reactor
+|health = 500
+
+Offshore pump
+|health = 150
+
+Oil refinery
+|health = 350
+
+Pipe
+|health = 100
+
+Pipe to ground
+|health = 150
+
+Power switch
+|health = 200
+
+Programmable speaker
+|health = 150
+
+Pump
+|health = 180
+
+Pumpjack
+|health = 200
+
+Radar
+|health = 250
+
+Rail chain signal
+|health = 100
+
+Rail signal
+|health = 100
+
+Roboport
+|health = 500
+
+Rocket silo
+|health = 5000
+
+Small electric pole
+|health = 100
+
+Lamp
+|health = 100
+
+Solar panel
+|health = 200
+
+Splitter
+|health = 170
+
+Stack filter inserter
+|health = 160
+
+Stack inserter
+|health = 160
+
+Steam engine
+|health = 400
+
+Steam turbine
+|health = 300
+
+Steel chest
+|health = 350
+
+Steel furnace
+|health = 300
+
+Stone furnace
+|health = 200
+
+Stone wall
+|health = 350
+
+Storage tank
+|health = 500
+
+Substation
+|health = 200
+
+Tank
+|health = 2000
+
+Train stop
+|health = 250
+
+Transport belt
+|health = 150
+
+Underground belt
+|health = 150
+
+Wooden chest
+|health = 100
+

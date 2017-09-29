@@ -1,0 +1,875 @@
+Advanced electronics
+|cost = Time, 15 + Science pack 1, 1 + Science pack 2, 1
+|cost-multiplier = 200
+|expensive-cost-multiplier = 800
+|required-technologies = Electronics + Plastics
+|allows = Advanced electronics 2, 2 + Advanced material processing 2, 2 + Electric engine + Laser + Mining productivity + Modules + Nuclear power + Stack inserter
+|effects = Advanced circuit + Science pack 3
+
+Advanced electronics 2
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1 + Science pack 3, 1
+|cost-multiplier = 300
+|expensive-cost-multiplier = 1200
+|required-technologies = Advanced electronics
+|allows = Effect transmission + Rocket silo
+|effects = High tech science pack + Processing unit
+
+Advanced material processing
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1
+|cost-multiplier = 75
+|expensive-cost-multiplier = 300
+|required-technologies = Steel processing
+|allows = Advanced material processing 2, 2 + Concrete
+|effects = Steel furnace
+
+Advanced material processing 2
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1 + Science pack 3, 1
+|cost-multiplier = 250
+|expensive-cost-multiplier = 1000
+|required-technologies = Advanced electronics + Advanced material processing
+|effects = Electric furnace + Production science pack
+
+Advanced oil processing
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1 + Science pack 3, 1
+|cost-multiplier = 75
+|expensive-cost-multiplier = 300
+|required-technologies = Oil processing
+|allows = Coal liquefaction
+|effects = Advanced oil processing + Heavy oil cracking + Light oil cracking
+
+Atomic bomb
+|cost = Time, 45 + Science pack 1, 1 + Science pack 2, 1 + Science pack 3, 1 + Military science pack, 1 + Production science pack, 1 + High tech science pack, 1
+|cost-multiplier = 5000
+|expensive-cost-multiplier = 20000
+|required-technologies = Military 4, 4 + Nuclear power + Rocketry
+|effects = Atomic bomb
+
+Auto character logistic trash slots
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1 + Science pack 3, 1
+|cost-multiplier = 150
+|expensive-cost-multiplier = 600
+|required-technologies = Character logistic trash slots 2, 2
+
+Automated rail transportation
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1
+|cost-multiplier = 75
+|expensive-cost-multiplier = 300
+|required-technologies = Railway
+|allows = Rail signals
+|effects = Train stop
+
+Automation
+|cost = Time, 10 + Science pack 1, 1
+|cost-multiplier = 10
+|expensive-cost-multiplier = 40
+|allows = Electronics
+|effects = Assembling machine 1 + Long handed inserter
+
+Automation 2
+|cost = Time, 5 + Science pack 1, 1
+|cost-multiplier = 80
+|expensive-cost-multiplier = 320
+|required-technologies = Electronics
+|allows = Automation 3, 3 + Engine + Fluid handling
+|effects = Assembling machine 2
+
+Automation 3
+|cost = Time, 60 + Science pack 1, 1 + Science pack 2, 1 + Science pack 3, 1 + Production science pack, 1
+|cost-multiplier = 150
+|expensive-cost-multiplier = 600
+|required-technologies = Automation 2, 2 + Speed module
+|allows = Logistics 3, 3
+|effects = Assembling machine 3
+
+Automobilism
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1
+|cost-multiplier = 100
+|expensive-cost-multiplier = 400
+|required-technologies = Engine + Logistics 2, 2
+|allows = Tanks
+|effects = Car
+
+Battery
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1
+|cost-multiplier = 150
+|expensive-cost-multiplier = 600
+|required-technologies = Sulfur processing
+|allows = Battery equipment + Electric energy accumulators + Laser turrets + Robotics
+|effects = Battery
+
+Battery equipment
+|cost = Time, 15 + Science pack 1, 1 + Science pack 2, 1
+|cost-multiplier = 50
+|expensive-cost-multiplier = 200
+|required-technologies = Battery + Modular armor
+|allows = Battery MK2 equipment
+|effects = Battery MK1
+
+Battery MK2 equipment
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1 + Science pack 3, 1
+|cost-multiplier = 100
+|expensive-cost-multiplier = 400
+|required-technologies = Battery equipment
+|effects = Battery MK2
+
+Braking force
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1 + Science pack 3, 1
+|cost-multiplier = 100
+|expensive-cost-multiplier = 400
+|required-technologies = Railway
+|allows = Braking force, 2-7
+
+Bullet damage
+|cost = Time, 30 + Science pack 1, 1
+|cost-multiplier = 50
+|expensive-cost-multiplier = 200
+|required-technologies = Military
+|allows = Bullet damage, 2-7
+
+Bullet shooting speed
+|cost = Time, 30 + Science pack 1, 1
+|cost-multiplier = 50
+|expensive-cost-multiplier = 200
+|required-technologies = Military
+|allows = Bullet shooting speed, 2-6
+
+Cannon shell damage
+|cost = Time, 60 + Science pack 1, 1 + Science pack 2, 1 + Science pack 3, 1 + Military science pack, 1
+|cost-multiplier = 100
+|expensive-cost-multiplier = 400
+|required-technologies = Tanks
+|allows = Cannon shell damage, 2-6
+
+Cannon shell shooting speed
+|cost = Time, 60 + Science pack 1, 1 + Science pack 2, 1 + Science pack 3, 1 + Military science pack, 1
+|cost-multiplier = 100
+|expensive-cost-multiplier = 400
+|required-technologies = Tanks
+|allows = Cannon shell shooting speed, 2-5
+
+Character logistic slots
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1
+|cost-multiplier = 100
+|expensive-cost-multiplier = 400
+|required-technologies = Logistic robotics
+|allows = Character logistic slots, 2-6
+
+Character logistic trash slots
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1
+|cost-multiplier = 100
+|expensive-cost-multiplier = 400
+|required-technologies = Logistic robotics
+|allows = Character logistic trash slots, 2-2
+
+Circuit network
+|cost = Time, 15 + Science pack 1, 1 + Science pack 2, 1
+|cost-multiplier = 100
+|expensive-cost-multiplier = 400
+|required-technologies = Electronics
+|effects = Arithmetic combinator + Constant combinator + Decider combinator + Green wire + Power switch + Programmable speaker + Red wire
+
+Cluster grenade
+|cost = Time, 45 + Science pack 1, 1 + Science pack 2, 1 + Science pack 3, 1 + Military science pack, 1 + High tech science pack, 1
+|cost-multiplier = 200
+|expensive-cost-multiplier = 800
+|required-technologies = Military 4, 4
+|effects = Cluster grenade
+
+Coal liquefaction
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1 + Science pack 3, 1 + Production science pack, 1
+|cost-multiplier = 200
+|expensive-cost-multiplier = 800
+|required-technologies = Advanced oil processing
+|effects = Coal liquefaction
+
+Combat robot damage
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1 + Military science pack, 1
+|cost-multiplier = 100
+|expensive-cost-multiplier = 400
+|required-technologies = Combat robotics
+|allows = Combat robot damage, 2-6
+
+Combat robotics
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1 + Military science pack, 1
+|cost-multiplier = 150
+|expensive-cost-multiplier = 600
+|required-technologies = Flight + Military 2, 2
+|allows = Combat robot damage + Combat robotics 2, 2 + Follower robot count
+|effects = Defender capsule
+
+Combat robotics 2
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1 + Science pack 3, 1 + Military science pack, 1
+|cost-multiplier = 200
+|expensive-cost-multiplier = 800
+|required-technologies = Combat robotics + Military 3, 3
+|allows = Combat robotics 3, 3
+|effects = Distractor capsule
+
+Combat robotics 3
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1 + Science pack 3, 1 + Military science pack, 1 + High tech science pack, 1
+|cost-multiplier = 300
+|expensive-cost-multiplier = 1200
+|required-technologies = Combat robotics 2, 2 + Military 4, 4 + Speed module
+|allows = Follower robot count
+|effects = Destroyer capsule
+
+Concrete
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1
+|cost-multiplier = 250
+|expensive-cost-multiplier = 1000
+|required-technologies = Advanced material processing
+|allows = Nuclear power
+|effects = Concrete + Hazard concrete
+
+Construction robotics
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1
+|cost-multiplier = 100
+|expensive-cost-multiplier = 400
+|required-technologies = Flight + Robotics
+|allows = Personal roboport
+|effects = Construction robot + Passive provider chest + Storage chest + Roboport
+
+Discharge defense
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1 + Science pack 3, 1 + Military science pack, 1
+|cost-multiplier = 100
+|expensive-cost-multiplier = 400
+|required-technologies = Laser turrets + Modular armor
+|effects = Discharge defense + Discharge defense remote
+
+Effect transmission
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1 + Science pack 3, 1 + High tech science pack, 1
+|cost-multiplier = 75
+|expensive-cost-multiplier = 300
+|required-technologies = Advanced electronics 2, 2 + Modules
+|effects = Beacon
+
+Efficiency module
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1
+|cost-multiplier = 50
+|expensive-cost-multiplier = 200
+|required-technologies = Modules
+|allows = Efficiency module 2, 2
+|effects = Efficiency module
+
+Efficiency module 2
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1 + Science pack 3, 1
+|cost-multiplier = 75
+|expensive-cost-multiplier = 300
+|required-technologies = Efficiency module
+|allows = Efficiency module 3, 3
+|effects = Efficiency module 2
+
+Efficiency module 3
+|cost = Time, 60 + Science pack 1, 1 + Science pack 2, 1 + Science pack 3, 1 + High tech science pack, 1
+|cost-multiplier = 300
+|expensive-cost-multiplier = 1200
+|required-technologies = Efficiency module 2, 2
+|allows = Power armor 2, 2
+|effects = Efficiency module 3
+
+Electric energy accumulators
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1
+|cost-multiplier = 150
+|expensive-cost-multiplier = 600
+|required-technologies = Battery + Electric energy distribution 1, 1
+|effects = Accumulator
+
+Electric energy distribution 1
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1
+|cost-multiplier = 120
+|expensive-cost-multiplier = 480
+|required-technologies = Electronics + Steel processing
+|allows = Electric energy accumulators + Electric energy distribution 2, 2
+|effects = Big electric pole + Medium electric pole
+
+Electric energy distribution 2
+|cost = Time, 45 + Science pack 1, 1 + Science pack 2, 1 + Science pack 3, 1
+|cost-multiplier = 100
+|expensive-cost-multiplier = 400
+|required-technologies = Electric energy distribution 1, 1
+|effects = Substation
+
+Electric engine
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1
+|cost-multiplier = 100
+|expensive-cost-multiplier = 400
+|required-technologies = Advanced electronics + Engine
+|allows = Exoskeleton equipment + Flight + Power armor + Robotics
+|effects = Electric engine unit
+
+Electronics
+|cost = Time, 15 + Science pack 1, 1
+|cost-multiplier = 30
+|expensive-cost-multiplier = 120
+|required-technologies = Automation
+|allows = Advanced electronics + Automation 2, 2 + Circuit network + Electric energy distribution 1, 1 + Lab research speed + Rocketry + Solar energy
+|effects = Filter inserter
+
+Energy shield equipment
+|cost = Time, 15 + Science pack 1, 1 + Science pack 2, 1 + Military science pack, 1
+|cost-multiplier = 150
+|expensive-cost-multiplier = 600
+|required-technologies = Modular armor
+|allows = Energy shield MK2 equipment
+|effects = Energy shield
+
+Energy shield MK2 equipment
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1 + Science pack 3, 1 + Military science pack, 1
+|cost-multiplier = 200
+|expensive-cost-multiplier = 800
+|required-technologies = Energy shield equipment
+|effects = Energy shield MK2
+
+Engine
+|cost = Time, 15 + Science pack 1, 1 + Science pack 2, 1
+|cost-multiplier = 100
+|expensive-cost-multiplier = 400
+|required-technologies = Automation 2, 2 + Steel processing
+|allows = Automobilism + Electric engine + Railway
+|effects = Engine unit + Pump
+
+Exoskeleton equipment
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1 + Science pack 3, 1
+|cost-multiplier = 50
+|expensive-cost-multiplier = 200
+|required-technologies = Electric engine + Portable solar panel
+|effects = Exoskeleton
+
+Explosive rocketry
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1 + Science pack 3, 1 + Military science pack, 1
+|cost-multiplier = 100
+|expensive-cost-multiplier = 400
+|required-technologies = Military 3, 3 + Rocketry
+|effects = Explosive rocket
+
+Explosives
+|cost = Time, 15 + Science pack 1, 1 + Science pack 2, 1 + Military science pack, 1
+|cost-multiplier = 100
+|expensive-cost-multiplier = 400
+|required-technologies = Sulfur processing
+|allows = Landmines + Rocketry
+|effects = Explosives
+
+Flamethrower
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1 + Military science pack, 1
+|cost-multiplier = 50
+|expensive-cost-multiplier = 200
+|required-technologies = Flammables + Military 2, 2
+|allows = Flamethrower damage
+|effects = Flamethrower + Flamethrower ammo + Flamethrower turret
+
+Flamethrower damage
+|cost = Time, 45 + Science pack 1, 1 + Science pack 2, 1 + Military science pack, 1
+|cost-multiplier = 100
+|expensive-cost-multiplier = 400
+|required-technologies = Flamethrower
+|allows = Flamethrower damage, 2-7
+
+Flammables
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1
+|cost-multiplier = 50
+|expensive-cost-multiplier = 200
+|required-technologies = Oil processing
+|allows = Flamethrower + Rocketry
+
+Fluid handling
+|cost = Time, 30 + Science pack 1, 1
+|cost-multiplier = 100
+|expensive-cost-multiplier = 400
+|required-technologies = Automation 2, 2 + Steel processing
+|allows = Fluid wagon
+|effects = Empty barrel + Empty crude oil barrel + Empty heavy oil barrel + Empty light oil barrel + Empty lubricant barrel + Empty petroleum gas barrel + Empty sulfuric acid barrel + Empty water barrel + Fill crude oil barrel + Fill heavy oil barrel + Fill light oil barrel + Fill lubricant barrel + Fill petroleum gas barrel + Fill sulfuric acid barrel + Fill water barrel + Storage tank
+
+Fluid wagon
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1
+|cost-multiplier = 200
+|expensive-cost-multiplier = 800
+|required-technologies = Fluid handling + Railway
+|effects = Fluid wagon
+
+Flight
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1
+|cost-multiplier = 200
+|expensive-cost-multiplier = 800
+|required-technologies = Electric engine
+|allows = Combat robotics + Construction robotics + Logistic robotics
+
+Follower robot count
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1 + Military science pack, 1
+|cost-multiplier = 300
+|expensive-cost-multiplier = 1200
+|required-technologies = Combat robotics
+|allows = Follower robot count, 2-7
+
+Portable fusion reactor
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1 + Science pack 3, 1 + Military science pack, 1 + High tech science pack, 1
+|cost-multiplier = 200
+|expensive-cost-multiplier = 800
+|required-technologies = Portable solar panel
+|effects = Portable fusion reactor
+
+Gates
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1
+|cost-multiplier = 100
+|expensive-cost-multiplier = 400
+|required-technologies = Military 2, 2 + Stone walls
+|effects = Gate
+
+Grenade damage
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1 + Military science pack, 1
+|cost-multiplier = 50
+|expensive-cost-multiplier = 200
+|required-technologies = Military 2, 2
+|allows = Grenade damage, 2-7
+
+Gun turret damage
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1
+|cost-multiplier = 50
+|expensive-cost-multiplier = 200
+|required-technologies = Turrets
+|allows = Gun turret damage, 2-7
+
+Heavy armor
+|cost = Time, 30 + Science pack 1, 1
+|cost-multiplier = 30
+|expensive-cost-multiplier = 120
+|required-technologies = Military + Steel processing
+|allows = Modular armor
+|effects = Heavy armor
+
+Inserter capacity bonus
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1
+|cost-multiplier = 200
+|expensive-cost-multiplier = 800
+|required-technologies = Stack inserter
+|allows = Inserter capacity bonus, 2-7
+
+Kovarex enrichment process
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1 + Science pack 3, 1 + Production science pack, 1 + High tech science pack, 1
+|cost-multiplier = 1500
+|expensive-cost-multiplier = 6000
+|required-technologies = Nuclear power
+|effects = Kovarex enrichment process
+
+Landmines
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1 + Military science pack, 1
+|cost-multiplier = 100
+|expensive-cost-multiplier = 400
+|required-technologies = Explosives + Military 2, 2
+|effects = Land mine
+
+Landfill
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1
+|cost-multiplier = 50
+|expensive-cost-multiplier = 200
+|effects = Landfill
+
+Laser
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1
+|cost-multiplier = 150
+|expensive-cost-multiplier = 600
+|required-technologies = Advanced electronics + Optics
+|allows = Laser turrets + Military 3, 3
+
+Laser turret damage
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1 + Military science pack, 1
+|cost-multiplier = 50
+|expensive-cost-multiplier = 200
+|required-technologies = Laser turrets
+|allows = Laser turret damage, 2-8
+
+Laser turret shooting speed
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1 + Military science pack, 1
+|cost-multiplier = 50
+|expensive-cost-multiplier = 200
+|required-technologies = Laser turrets
+|allows = Laser turret shooting speed, 2-7
+
+Laser turrets
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1 + Military science pack, 1
+|cost-multiplier = 200
+|expensive-cost-multiplier = 800
+|required-technologies = Battery + Laser + Military 2, 2 + Turrets
+|allows = Discharge defense + Laser turret damage + Laser turret shooting speed + Personal laser defense
+|effects = Laser turret
+
+Logistic robotics
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1
+|cost-multiplier = 150
+|expensive-cost-multiplier = 600
+|required-technologies = Flight + Robotics
+|allows = Character logistic slots + Character logistic trash slots + Logistic system
+|effects = Passive provider chest + Storage chest + Logistic robot + Roboport
+
+Logistic system
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1 + Science pack 3, 1 + Production science pack, 1 + High tech science pack, 1
+|cost-multiplier = 150
+|expensive-cost-multiplier = 600
+|required-technologies = Logistic robotics
+|effects = Active provider chest + Requester chest
+
+Logistics
+|cost = Time, 15 + Science pack 1, 1
+|cost-multiplier = 20
+|expensive-cost-multiplier = 80
+|allows = Logistics 2, 2
+|effects = Fast inserter + Splitter + Underground belt
+
+Logistics 2
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1
+|cost-multiplier = 200
+|expensive-cost-multiplier = 800
+|required-technologies = Logistics
+|allows = Automobilism + Logistics 3, 3 + Railway + Stack inserter
+|effects = Fast splitter + Fast transport belt + Fast underground belt
+
+Logistics 3
+|cost = Time, 15 + Science pack 1, 1 + Science pack 2, 1 + Science pack 3, 1 + Production science pack, 1
+|cost-multiplier = 300
+|expensive-cost-multiplier = 1200
+|required-technologies = Automation 3, 3 + Logistics 2, 2
+|allows = Braking force
+|effects = Express splitter + Express transport belt + Express underground belt
+
+Military
+|cost = Time, 15 + Science pack 1, 1
+|cost-multiplier = 10
+|expensive-cost-multiplier = 40
+|allows = Bullet damage + Bullet shooting speed + Heavy armor + Military 2, 2 + Shotgun shell damage + Shotgun shell shooting speed
+|effects = Shotgun + Shotgun shells + Submachine gun
+
+Military 2
+|cost = Time, 15 + Science pack 1, 1 + Science pack 2, 1
+|cost-multiplier = 20
+|expensive-cost-multiplier = 80
+|required-technologies = Military + Steel processing
+|allows = Combat robotics + Flamethrower + Gates + Grenade damage + Landmines + Laser turrets + Military 3, 3 + Rocketry
+|effects = Grenade + Military science pack + Piercing rounds magazine
+
+Military 3
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1 + Science pack 3, 1 + Military science pack, 1
+|cost-multiplier = 100
+|expensive-cost-multiplier = 400
+|required-technologies = Laser + Military 2, 2
+|allows = Combat robotics 2, 2 + Explosive rocketry + Military 4, 4 + Tanks + Uranium ammo
+|effects = Combat shotgun + Poison capsule + Slowdown capsule
+
+Military 4
+|cost = Time, 45 + Science pack 1, 1 + Science pack 2, 1 + Science pack 3, 1 + Military science pack, 1 + High tech science pack, 1
+|cost-multiplier = 150
+|expensive-cost-multiplier = 600
+|required-technologies = Military 3, 3
+|allows = Atomic bomb + Cluster grenade + Combat robotics 3, 3
+|effects = Piercing shotgun shells
+
+Mining productivity
+|cost = Time, 60 + Science pack 1, 1 + Science pack 2, 1
+|cost-multiplier = 100
+|expensive-cost-multiplier = 400
+|required-technologies = Advanced electronics
+|allows = Mining productivity, 2-5
+
+Modular armor
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1
+|cost-multiplier = 100
+|expensive-cost-multiplier = 400
+|required-technologies = Heavy armor + Modules
+|allows = Battery equipment + Discharge defense + Energy shield equipment + Nightvision equipment + Personal laser defense + Power armor + Portable solar panel
+|effects = Modular armor
+
+Modules
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1
+|cost-multiplier = 100
+|expensive-cost-multiplier = 400
+|required-technologies = Advanced electronics
+|allows = Effect transmission + Efficiency module + Modular armor + Productivity module + Speed module
+
+Nightvision equipment
+|cost = Time, 15 + Science pack 1, 1 + Science pack 2, 1
+|cost-multiplier = 50
+|expensive-cost-multiplier = 200
+|required-technologies = Modular armor
+|effects = Nightvision
+
+Nuclear fuel reprocessing
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1 + Science pack 3, 1 + Production science pack, 1
+|cost-multiplier = 1500
+|expensive-cost-multiplier = 6000
+|required-technologies = Nuclear power
+|effects = Nuclear fuel reprocessing
+
+Nuclear power
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1 + Science pack 3, 1
+|cost-multiplier = 1000
+|expensive-cost-multiplier = 4000
+|required-technologies = Advanced electronics + Concrete
+|allows = Atomic bomb + Kovarex enrichment process + Nuclear fuel reprocessing + Uranium ammo
+|effects = Centrifuge + Heat exchanger + Heat pipe + Nuclear reactor + Steam turbine + Uranium fuel cell + Uranium processing
+
+Oil processing
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1
+|cost-multiplier = 100
+|expensive-cost-multiplier = 400
+|required-technologies = Steel processing
+|allows = Advanced oil processing + Flammables + Plastics + Sulfur processing
+|effects = Basic oil processing + Chemical plant + Lubricant + Oil refinery + Pumpjack + Solid fuel from heavy oil + Solid fuel from light oil + Solid fuel from petroleum gas
+
+Optics
+|cost = Time, 15 + Science pack 1, 1
+|cost-multiplier = 10
+|expensive-cost-multiplier = 40
+|allows = Laser + Solar energy
+|effects = Lamp
+
+Personal laser defense
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1 + Science pack 3, 1 + Military science pack, 1
+|cost-multiplier = 100
+|expensive-cost-multiplier = 400
+|required-technologies = Laser turrets + Modular armor
+|effects = Personal laser defense
+
+Personal roboport
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1 + Science pack 3, 1
+|cost-multiplier = 50
+|expensive-cost-multiplier = 200
+|required-technologies = Construction robotics + Portable solar panel
+|allows = Personal roboport 2, 2
+|effects = Personal roboport
+
+Personal roboport 2
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1 + Science pack 3, 1 + High tech science pack, 1
+|cost-multiplier = 250
+|expensive-cost-multiplier = 1000
+|required-technologies = Personal roboport
+|effects = Personal roboport MK2
+
+Plastics
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1
+|cost-multiplier = 200
+|expensive-cost-multiplier = 800
+|required-technologies = Oil processing
+|allows = Advanced electronics
+|effects = Plastic bar
+
+Power armor
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1 + Science pack 3, 1
+|cost-multiplier = 200
+|expensive-cost-multiplier = 800
+|required-technologies = Electric engine + Modular armor
+|allows = Power armor 2, 2
+|effects = Power armor
+
+Power armor 2
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1 + Science pack 3, 1 + Military science pack, 1 + High tech science pack, 1
+|cost-multiplier = 400
+|expensive-cost-multiplier = 1600
+|required-technologies = Efficiency module 3, 3 + Power armor + Speed module 3, 3
+|effects = Power armor MK2
+
+Productivity module
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1
+|cost-multiplier = 50
+|expensive-cost-multiplier = 200
+|required-technologies = Modules
+|allows = Productivity module 2, 2
+|effects = Productivity module
+
+Productivity module 2
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1 + Science pack 3, 1
+|cost-multiplier = 75
+|expensive-cost-multiplier = 300
+|required-technologies = Productivity module
+|allows = Productivity module 3, 3
+|effects = Productivity module 2
+
+Productivity module 3
+|cost = Time, 60 + Science pack 1, 1 + Science pack 2, 1 + Science pack 3, 1 + Production science pack, 1
+|cost-multiplier = 300
+|expensive-cost-multiplier = 1200
+|required-technologies = Productivity module 2, 2
+|allows = Rocket silo
+|effects = Productivity module 3
+
+Rail signals
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1
+|cost-multiplier = 100
+|expensive-cost-multiplier = 400
+|required-technologies = Automated rail transportation
+|effects = Rail chain signal + Rail signal
+
+Railway
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1
+|cost-multiplier = 75
+|expensive-cost-multiplier = 300
+|required-technologies = Engine + Logistics 2, 2
+|allows = Automated rail transportation + Braking force + Fluid wagon
+|effects = Cargo wagon + Locomotive + Rail
+
+Lab research speed
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1
+|cost-multiplier = 100
+|expensive-cost-multiplier = 400
+|required-technologies = Electronics
+|allows = Lab research speed, 2-6
+
+Robotics
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1
+|cost-multiplier = 150
+|expensive-cost-multiplier = 600
+|required-technologies = Battery + Electric engine
+|allows = Construction robotics + Logistic robotics + Worker robot speed + Worker robot cargo size
+|effects = Flying robot frame
+
+Rocket damage
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1 + Military science pack, 1
+|cost-multiplier = 100
+|expensive-cost-multiplier = 400
+|required-technologies = Rocketry
+|allows = Rocket damage, 2-7
+
+Rocket silo
+|cost = Time, 60 + Science pack 1, 1 + Science pack 2, 1 + Science pack 3, 1 + Military science pack, 1 + Production science pack, 1 + High tech science pack, 1
+|cost-multiplier = 1000
+|expensive-cost-multiplier = 4000
+|required-technologies = Advanced electronics 2, 2 + Productivity module 3, 3 + Rocket shooting speed 5, 5 + Speed module 3, 3
+|effects = Low density structure + Rocket control unit + Rocket fuel + Rocket part + Rocket silo + Satellite
+
+Rocket shooting speed
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1 + Military science pack, 1
+|cost-multiplier = 100
+|expensive-cost-multiplier = 400
+|required-technologies = Rocketry
+|allows = Rocket shooting speed, 2-7
+
+Rocketry
+|cost = Time, 15 + Science pack 1, 1 + Science pack 2, 1 + Military science pack, 1
+|cost-multiplier = 120
+|expensive-cost-multiplier = 480
+|required-technologies = Electronics + Explosives + Flammables + Military 2, 2
+|allows = Atomic bomb + Explosive rocketry + Rocket damage + Rocket shooting speed
+|effects = Rocket + Rocket launcher
+
+Shotgun shell damage
+|cost = Time, 30 + Science pack 1, 1
+|cost-multiplier = 50
+|expensive-cost-multiplier = 200
+|required-technologies = Military
+|allows = Shotgun shell damage, 2-7
+
+Shotgun shell shooting speed
+|cost = Time, 30 + Science pack 1, 1
+|cost-multiplier = 50
+|expensive-cost-multiplier = 200
+|required-technologies = Military
+|allows = Shotgun shell shooting speed, 2-6
+
+Solar energy
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1
+|cost-multiplier = 250
+|expensive-cost-multiplier = 1000
+|required-technologies = Electronics + Optics + Steel processing
+|effects = Solar panel
+
+Portable solar panel
+|cost = Time, 15 + Science pack 1, 1 + Science pack 2, 1
+|cost-multiplier = 100
+|expensive-cost-multiplier = 400
+|required-technologies = Modular armor
+|allows = Exoskeleton equipment + Portable fusion reactor + Personal roboport
+|effects = Portable solar panel
+
+Speed module
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1
+|cost-multiplier = 50
+|expensive-cost-multiplier = 200
+|required-technologies = Modules
+|allows = Automation 3, 3 + Combat robotics 3, 3 + Speed module 2, 2
+|effects = Speed module
+
+Speed module 2
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1 + Science pack 3, 1
+|cost-multiplier = 75
+|expensive-cost-multiplier = 300
+|required-technologies = Speed module
+|allows = Speed module 3, 3
+|effects = Speed module 2
+
+Speed module 3
+|cost = Time, 60 + Science pack 1, 1 + Science pack 2, 1 + Science pack 3, 1 + High tech science pack, 1
+|cost-multiplier = 300
+|expensive-cost-multiplier = 1200
+|required-technologies = Speed module 2, 2
+|allows = Power armor 2, 2 + Rocket silo
+|effects = Speed module 3
+
+Stack inserter
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1
+|cost-multiplier = 150
+|expensive-cost-multiplier = 600
+|required-technologies = Advanced electronics + Logistics 2, 2
+|allows = Inserter capacity bonus
+|effects = Stack filter inserter + Stack inserter
+
+Steel processing
+|cost = Time, 5 + Science pack 1, 1
+|cost-multiplier = 50
+|expensive-cost-multiplier = 200
+|allows = Advanced material processing + Electric energy distribution 1, 1 + Engine + Fluid handling + Heavy armor + Military 2, 2 + Oil processing + Solar energy
+|effects = Steel axe + Steel chest + Steel plate
+
+Stone walls
+|cost = Time, 10 + Science pack 1, 1
+|cost-multiplier = 10
+|expensive-cost-multiplier = 40
+|allows = Gates
+|effects = Stone wall
+
+Sulfur processing
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1
+|cost-multiplier = 150
+|expensive-cost-multiplier = 600
+|required-technologies = Oil processing
+|allows = Battery + Explosives
+|effects = Sulfur + Sulfuric acid
+
+Tanks
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1 + Science pack 3, 1 + Military science pack, 1
+|cost-multiplier = 75
+|expensive-cost-multiplier = 300
+|required-technologies = Automobilism + Military 3, 3
+|allows = Cannon shell damage + Cannon shell shooting speed
+|effects = Cannon shell + Explosive cannon shell + Tank
+
+Toolbelt
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1
+|cost-multiplier = 100
+|expensive-cost-multiplier = 400
+
+Turrets
+|cost = Time, 10 + Science pack 1, 1
+|cost-multiplier = 10
+|expensive-cost-multiplier = 40
+|allows = Gun turret damage + Laser turrets
+|effects = Gun turret
+
+Uranium ammo
+|cost = Time, 45 + Science pack 1, 1 + Science pack 2, 1 + Science pack 3, 1 + Military science pack, 1 + High tech science pack, 1
+|cost-multiplier = 1000
+|expensive-cost-multiplier = 4000
+|required-technologies = Military 3, 3 + Nuclear power
+|effects = Explosive uranium cannon shell + Uranium cannon shell + Uranium rounds magazine
+
+Worker robot speed
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1 + Science pack 3, 1
+|cost-multiplier = 50
+|expensive-cost-multiplier = 200
+|required-technologies = Robotics
+|allows = Worker robot speed, 2-6
+
+Worker robot cargo size
+|cost = Time, 30 + Science pack 1, 1 + Science pack 2, 1 + Science pack 3, 1
+|cost-multiplier = 200
+|expensive-cost-multiplier = 800
+|required-technologies = Robotics
+|allows = Worker robot cargo size, 2-3
+
