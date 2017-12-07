@@ -174,5 +174,12 @@
   "stream": "entity",
   "rail-planner": "item",
   "beam": "entity",
-  "god-controller": null
+  "god-controller": null,
+  "trivial-smoke": null,
+  "artillery-projectile": "entity",
+  "infinity-container": "logistic-container",
+  "artillery-flare": "particle",
+  "cliff": "entity",
+  "artillery-wagon": "rolling-stock",
+  "noise-expression": null
 }

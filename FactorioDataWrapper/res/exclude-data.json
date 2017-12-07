@@ -20,6 +20,8 @@
 	  "vehicle-machine-gun",
 	  "item-with-label",
 	  "item-with-inventory",
-	  "item-with-tags"
+	  "item-with-tags",
+	  "artillery-wagon-cannon",
+	  "infinity-chest"
    ]
 }
