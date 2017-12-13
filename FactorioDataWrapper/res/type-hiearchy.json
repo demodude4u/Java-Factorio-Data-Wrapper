@@ -6,6 +6,7 @@
   "ammo-turret": "turret",
   "armor": "tool",
   "arrow": "entity",
+  "artillery-turret": "entity-with-health",
   "assembling-machine": "crafting-machine",
   "autoplace-control": null,
   "battery-equipment": "equipment",
