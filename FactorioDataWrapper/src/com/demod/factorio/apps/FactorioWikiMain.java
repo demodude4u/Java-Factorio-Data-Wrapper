@@ -156,9 +156,35 @@ public class FactorioWikiMain {
 			wiki_EntitiesHealth(table, wikiTypes, pw);
 		}
 
+		try (PrintWriter pw = new PrintWriter(
+				new File(outputFolder, "wiki-data-raw-tree-" + baseInfo.getVersion() + ".txt"))) {
+			wiki_DataRawTree(table, pw);
+		}
+
 		// wiki_GenerateTintedIcons(table, new File(outputFolder, "icons"));
 
 		Desktop.getDesktop().open(outputFolder);
+	}
+
+	private static void wiki_DataRawTree(DataTable table, PrintWriter pw) {
+		Multimap<String, String> leafs = LinkedHashMultimap.create();
+
+		Utils.forEach(table.getRawLua(), v -> {
+			Utils.forEach(v.checktable(), protoLua -> {
+				String type = protoLua.get("type").tojstring();
+				String name = protoLua.get("name").tojstring();
+				leafs.put(type, name);
+			});
+		});
+
+		leafs.keySet().stream().sorted().forEach(type -> {
+			pw.println("== " + type + " ==");
+			pw.println("<div style=\"column-count:2;-moz-column-count:2;-webkit-column-count:2\">");
+			leafs.get(type).stream().sorted().forEach(name -> {
+				pw.println("* " + name);
+			});
+			pw.println("</div>");
+		});
 	}
 
 	private static void wiki_EntitiesHealth(DataTable table, Map<String, WikiTypeMatch> wikiTypes, PrintWriter pw) {
