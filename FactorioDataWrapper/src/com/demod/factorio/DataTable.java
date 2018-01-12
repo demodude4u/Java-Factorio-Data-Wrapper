@@ -96,29 +96,31 @@ public class DataTable {
 			}
 		}
 
-		technologies.values().stream().filter(t -> t.isUpgrade() && t.getName().endsWith("-1")).forEach(firstBonus -> {
-			String bonusMatch = firstBonus.getName().substring(0, firstBonus.getName().length() - 1);
-			String bonusName = bonusMatch.substring(0, bonusMatch.length() - 1);
+		technologies.values().stream()
+				.filter(t -> (t.isUpgrade() || t.isMaxLevelInfinite()) && t.getName().endsWith("-1"))
+				.forEach(firstBonus -> {
+					String bonusMatch = firstBonus.getName().substring(0, firstBonus.getName().length() - 1);
+					String bonusName = bonusMatch.substring(0, bonusMatch.length() - 1);
 
-			firstBonus.setFirstBonus(true);
-			List<TechPrototype> bonusGroup = technologies.values().stream()
-					.filter(bonus -> bonus.getName().startsWith(bonusMatch))
-					.peek(b -> b.setBonusLevel(-Integer.parseInt(b.getName().replace(bonusName, ""))))
-					.sorted((b1, b2) -> Integer.compare(b1.getBonusLevel(), b2.getBonusLevel()))
-					.collect(Collectors.toList());
+					firstBonus.setFirstBonus(true);
+					List<TechPrototype> bonusGroup = technologies.values().stream()
+							.filter(bonus -> bonus.getName().startsWith(bonusMatch))
+							.peek(b -> b.setBonusLevel(-Integer.parseInt(b.getName().replace(bonusName, ""))))
+							.sorted((b1, b2) -> Integer.compare(b1.getBonusLevel(), b2.getBonusLevel()))
+							.collect(Collectors.toList());
 
-			for (TechPrototype bonus : bonusGroup) {
-				bonus.setBonus(true);
-				bonus.setBonusName(bonusName);
-				bonus.setBonusGroup(bonusGroup);
+					for (TechPrototype bonus : bonusGroup) {
+						bonus.setBonus(true);
+						bonus.setBonusName(bonusName);
+						bonus.setBonusGroup(bonusGroup);
 
-				LuaValue countFormulaLua = bonus.lua().get("unit").get("count_formula");
-				if (!countFormulaLua.isnil()) {
-					bonus.setBonusFormula(Optional.of(countFormulaLua.tojstring()),
-							Optional.of(FactorioData.parseCountFormula(countFormulaLua.tojstring())));
-				}
-			}
-		});
+						LuaValue countFormulaLua = bonus.lua().get("unit").get("count_formula");
+						if (!countFormulaLua.isnil()) {
+							bonus.setBonusFormula(Optional.of(countFormulaLua.tojstring()),
+									Optional.of(FactorioData.parseCountFormula(countFormulaLua.tojstring())));
+						}
+					}
+				});
 	}
 
 	private Set<String> asStringSet(JSONArray jsonArray) {
