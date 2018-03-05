@@ -523,7 +523,7 @@ public class FactorioWikiMain {
 						}
 					} else {
 						pw.println("|allows = " + table.getWikiTechnologyName(tech.getBonusName()) + ", 2-"
-								+ (tech.isMaxLevelInfinite() ? "∞" : tech.getBonusGroup().size()));
+								+ (tech.isMaxLevelInfinite() ? "&infin;" : tech.getBonusGroup().size()));
 					}
 
 					if (!tech.getRecipeUnlocks().isEmpty()) {
