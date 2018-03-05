@@ -58,9 +58,11 @@ public class ModInfo {
 		for (int i = 0; i < dependenciesJson.length(); i++) {
 			String depString = dependenciesJson.getString(i);
 			String[] depSplit = depString.split("\\s");
-			if (depSplit.length == 3) {
+			if (depSplit.length == 2) {
+				dependencies.add(new Dependency(true, depSplit[1], null, null));
+			} else if (depSplit.length == 3) {
 				dependencies.add(new Dependency(false, depSplit[0], depSplit[1], depSplit[2]));
-			} else {
+			} else if (depSplit.length == 4) {
 				dependencies.add(new Dependency(true, depSplit[1], depSplit[2], depSplit[3]));
 			}
 		}
