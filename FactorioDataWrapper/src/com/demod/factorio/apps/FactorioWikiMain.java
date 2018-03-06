@@ -1,5 +1,6 @@
 package com.demod.factorio.apps;
 
+import java.awt.Color;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileInputStream;
@@ -7,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +21,7 @@ import javax.imageio.ImageIO;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.luaj.vm2.LuaValue;
 
 import com.demod.factorio.DataTable;
 import com.demod.factorio.FactorioData;
@@ -161,6 +164,11 @@ public class FactorioWikiMain {
 			wiki_DataRawTree(table, pw);
 		}
 
+		try (PrintWriter pw = new PrintWriter(
+				new File(outputFolder, "wiki-entities-mapcolor-" + baseInfo.getVersion() + ".txt"))) {
+			wiki_EntitiesMapColor(table, wikiTypes, pw);
+		}
+
 		// wiki_GenerateTintedIcons(table, new File(outputFolder, "icons"));
 
 		Desktop.getDesktop().open(outputFolder);
@@ -199,6 +207,47 @@ public class FactorioWikiMain {
 						pw.println();
 					}
 				});
+	}
+
+	private static void wiki_EntitiesMapColor(DataTable table, Map<String, WikiTypeMatch> wikiTypes, PrintWriter pw) {
+		Optional<LuaValue> optUtilityConstantsLua = table.getRaw("utility-constants", "default");
+		LuaValue utilityConstantsLua = optUtilityConstantsLua.get();
+
+		Color defaultFriendlyColor = Utils.parseColor(utilityConstantsLua.get("chart").get("default_friendly_color"));
+		Map<String, Color> defaultFriendlyColorByType = new HashMap<>();
+		Utils.forEach(utilityConstantsLua.get("chart").get("default_friendly_color_by_type"), (k, v) -> {
+			defaultFriendlyColorByType.put(k.tojstring(), Utils.parseColor(v));
+		});
+
+		table.getEntities().values().stream().sorted((e1, e2) -> e1.getName().compareTo(e2.getName()))
+				.filter(e -> !wikiTypes.get(e.getName()).toString().equals("N/A")).forEach(e -> {
+					Color mapColor = null;
+					LuaValue friendlyMapColorLua = e.lua().get("friendly_map_color");
+					if (!friendlyMapColorLua.isnil()) {
+						mapColor = Utils.parseColor(friendlyMapColorLua);
+					} else {
+						LuaValue mapColorLua = e.lua().get("map_color");
+						if (!mapColorLua.isnil()) {
+							mapColor = Utils.parseColor(mapColorLua);
+						} else {
+							mapColor = defaultFriendlyColorByType.get(e.lua().get("type").tojstring());
+							if (mapColor == null) {
+								mapColor = defaultFriendlyColor;// XXX yay/nay?
+							}
+						}
+					}
+
+					if (mapColor != null) {
+						pw.println(table.getWikiEntityName(e.getName()));
+
+						pw.println("|map-color = " + String.format("%02x%02x%02x", mapColor.getRed(),
+								mapColor.getGreen(), mapColor.getBlue()));
+
+						pw.println();
+					}
+				});
+
+		// TODO
 	}
 
 	public static String wiki_fmtDouble(double value) {

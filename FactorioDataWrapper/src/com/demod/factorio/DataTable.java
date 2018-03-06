@@ -181,7 +181,7 @@ public class DataTable {
 	public Optional<LuaValue> getRaw(String... path) {
 		LuaValue retLua = rawLua;
 		for (String key : path) {
-			retLua = rawLua.get(key);
+			retLua = retLua.get(key);
 			if (retLua.isnil()) {
 				return Optional.empty();
 			}

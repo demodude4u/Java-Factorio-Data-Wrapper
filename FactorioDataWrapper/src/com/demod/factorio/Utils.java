@@ -206,6 +206,12 @@ public final class Utils {
 		float green = value.get("g").tofloat();
 		float blue = value.get("b").tofloat();
 		float alpha = value.get("a").tofloat();
+		if (red > 1 || green > 1 || blue > 1 || alpha > 1) {
+			red /= 255;
+			green /= 255;
+			blue /= 255;
+			alpha /= 255;
+		}
 		return new Color(red, green, blue, alpha);
 	}
 
