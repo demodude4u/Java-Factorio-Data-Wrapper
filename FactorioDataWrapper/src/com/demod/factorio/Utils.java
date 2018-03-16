@@ -9,8 +9,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.lang.reflect.Field;
+import java.util.AbstractMap.SimpleImmutableEntry;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.Map.Entry;
 import java.util.Scanner;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
@@ -25,8 +27,6 @@ import org.luaj.vm2.Varargs;
 import com.diffplug.common.base.Errors;
 import com.diffplug.common.base.Throwing;
 import com.google.common.collect.Streams;
-
-import javafx.util.Pair;
 
 public final class Utils {
 
@@ -156,7 +156,7 @@ public final class Utils {
 	}
 
 	private static void forEachSorted(LuaValue table, BiConsumer<LuaValue, LuaValue> consumer) {
-		Streams.stream(new Iterator<Pair<LuaValue, LuaValue>>() {
+		Streams.stream(new Iterator<Entry<LuaValue, LuaValue>>() {
 			LuaValue k = LuaValue.NIL;
 			Varargs next = null;
 
@@ -170,12 +170,12 @@ public final class Utils {
 			}
 
 			@Override
-			public Pair<LuaValue, LuaValue> next() {
+			public Entry<LuaValue, LuaValue> next() {
 				if (next == null) {
 					next = table.next(k);
 					k = next.arg1();
 				}
-				Pair<LuaValue, LuaValue> ret = new Pair<>(k, next.arg(2));
+				Entry<LuaValue, LuaValue> ret = new SimpleImmutableEntry<>(k, next.arg(2));
 				next = null;
 				return ret;
 			}
