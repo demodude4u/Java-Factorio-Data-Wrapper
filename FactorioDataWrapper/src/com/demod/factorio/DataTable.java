@@ -238,6 +238,9 @@ public class DataTable {
 	}
 
 	public String getWikiItemName(String name) {
+		if (name.equals(TotalRawCalculator.RAW_TIME)) {
+			return "Time (Seconds)";
+		}
 		return getWikiName(name, nameMappingItemsRecipes);
 	}
 
