@@ -159,7 +159,7 @@ public class FactorioData {
 		factorio = new File(Config.get().getString("factorio"));
 
 		File[] luaFolders = new File[] { //
-				new File(factorio, "data/core/luaLib"), //
+				new File(factorio, "data/core/lualib"), //
 				// new File(factorio, "data"), //
 				// new File(factorio, "data/core"), //
 				// new File(factorio, "data/base"), //
