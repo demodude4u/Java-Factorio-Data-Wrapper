@@ -2,6 +2,7 @@ package com.demod.factorio;
 
 import java.awt.Color;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
@@ -233,6 +234,10 @@ public final class Utils {
 		return new Point2D.Double(value.get(1).checkdouble(), value.get(2).checkdouble());
 	}
 
+	public static Rectangle parseRectangle(JSONArray json) {
+		return new Rectangle(json.getInt(0), json.getInt(1), json.getInt(2), json.getInt(3));
+	}
+
 	public static Rectangle2D.Double parseRectangle(LuaValue value) {
 		LuaTable table = value.checktable();
 		LuaValue p1 = table.get(1);
@@ -242,6 +247,10 @@ public final class Utils {
 		double x2 = p2.get(1).checkdouble();
 		double y2 = p2.get(2).checkdouble();
 		return new Rectangle2D.Double(x1, y1, x2 - x1, y2 - y1);
+	}
+
+	public static Rectangle2D.Double parseRectangle2D(JSONArray json) {
+		return new Rectangle2D.Double(json.getDouble(0), json.getDouble(1), json.getDouble(2), json.getDouble(3));
 	}
 
 	@SuppressWarnings("resource")
@@ -279,6 +288,24 @@ public final class Utils {
 		}
 		ret.setRGB(0, 0, w, h, pixels, 0, w);
 		return ret;
+	}
+
+	public static JSONArray toJson(Rectangle rectangle) {
+		JSONArray json = new JSONArray();
+		json.put(rectangle.x);
+		json.put(rectangle.y);
+		json.put(rectangle.width);
+		json.put(rectangle.height);
+		return json;
+	}
+
+	public static JSONArray toJson(Rectangle2D.Double rectangle) {
+		JSONArray json = new JSONArray();
+		json.put(rectangle.x);
+		json.put(rectangle.y);
+		json.put(rectangle.width);
+		json.put(rectangle.height);
+		return json;
 	}
 
 	private Utils() {
