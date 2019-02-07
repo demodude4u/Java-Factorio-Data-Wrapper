@@ -159,9 +159,8 @@ public class FactorioWikiMain {
 		write(wiki_Items(table), "wiki-items");
 		write(wiki_TypeTree(table), "wiki-type-tree");
 		write(wiki_TechNames(table), "wiki-tech-names");
-		write(wiki_EntitiesHealth(table, wikiTypes), "wiki-entities-health");
+		write(wiki_EntitiesHealth(table, wikiTypes), "wiki-entities");
 		write(wiki_DataRawTree(table), "data-raw-tree");
-		write(wiki_EntitiesMapColor(table, wikiTypes), "wiki-entities-mapcolor");
 
 		// wiki_GenerateTintedIcons(table, new File(outputFolder, "icons"));
 
@@ -202,23 +201,6 @@ public class FactorioWikiMain {
 	private static JSONObject wiki_EntitiesHealth(DataTable table, Map<String, WikiTypeMatch> wikiTypes) {
 		JSONObject json = createOrderedJSONObject();
 
-		table.getEntities().values().stream().sorted((e1, e2) -> e1.getName().compareTo(e2.getName()))
-				.filter(e -> !wikiTypes.get(e.getName()).toString().equals("N/A")).forEach(e -> {
-					double health = e.lua().get("max_health").todouble();
-					if (health > 0) {
-						JSONObject itemJson = createOrderedJSONObject();
-						json.put(table.getWikiEntityName(e.getName()), itemJson);
-
-						itemJson.put("health", health);
-					}
-				});
-
-		return json;
-	}
-
-	private static JSONObject wiki_EntitiesMapColor(DataTable table, Map<String, WikiTypeMatch> wikiTypes) {
-		JSONObject json = createOrderedJSONObject();
-
 		Optional<LuaValue> optUtilityConstantsLua = table.getRaw("utility-constants", "default");
 		LuaValue utilityConstantsLua = optUtilityConstantsLua.get();
 
@@ -240,18 +222,23 @@ public class FactorioWikiMain {
 							mapColor = Utils.parseColor(mapColorLua);
 						} else {
 							mapColor = defaultFriendlyColorByType.get(e.lua().get("type").tojstring());
-							if (mapColor == null) {
-								mapColor = defaultFriendlyColor;// XXX yay/nay?
+							if (mapColor == null && !e.getFlags().contains("not-on-map")) {
+								mapColor = defaultFriendlyColor;
 							}
 						}
 					}
 
-					if (mapColor != null) {
+					double health = e.lua().get("max_health").todouble();
+
+					if (mapColor != null || health > 0) {
 						JSONObject itemJson = createOrderedJSONObject();
 						json.put(table.getWikiEntityName(e.getName()), itemJson);
 
-						itemJson.put("map-color", String.format("%02x%02x%02x", mapColor.getRed(), mapColor.getGreen(),
-								mapColor.getBlue()));
+						if (mapColor != null)
+							itemJson.put("map-color", String.format("%02x%02x%02x", mapColor.getRed(),
+									mapColor.getGreen(), mapColor.getBlue()));
+						if (health > 0)
+							itemJson.put("health", health);
 					}
 				});
 
