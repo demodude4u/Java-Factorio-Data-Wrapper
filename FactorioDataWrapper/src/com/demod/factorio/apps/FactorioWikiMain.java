@@ -86,12 +86,12 @@ public class FactorioWikiMain {
 	public static final Map<String, Integer> wiki_ScienceOrdering = new LinkedHashMap<>();
 
 	static {
-		wiki_ScienceOrdering.put("science-pack-1", 1);
-		wiki_ScienceOrdering.put("science-pack-2", 2);
-		wiki_ScienceOrdering.put("science-pack-3", 3);
-		wiki_ScienceOrdering.put("military-science-pack", 4);
+		wiki_ScienceOrdering.put("automation-science-pack", 1);
+		wiki_ScienceOrdering.put("logistic-science-pack", 2);
+		wiki_ScienceOrdering.put("military-science-pack", 3);
+		wiki_ScienceOrdering.put("chemical-science-pack", 4);
 		wiki_ScienceOrdering.put("production-science-pack", 5);
-		wiki_ScienceOrdering.put("high-tech-science-pack", 6);
+		wiki_ScienceOrdering.put("utility-science-pack", 6);
 		wiki_ScienceOrdering.put("space-science-pack", 7);
 	}
 
