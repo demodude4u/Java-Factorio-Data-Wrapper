@@ -157,7 +157,7 @@ public class FactorioWikiMain {
 		write(wiki_Recipes(table), "wiki-recipes");
 		write(wiki_Types(table, wikiTypes), "wiki-types");
 		write(wiki_Items(table), "wiki-items");
-		write(wiki_TypeTree(table), "wiki-type-tree");
+		// write(wiki_TypeTree(table), "wiki-type-tree");
 		write(wiki_EntitiesHealth(table, wikiTypes), "wiki-entities");
 		write(wiki_DataRawTree(table), "data-raw-tree");
 
@@ -608,6 +608,7 @@ public class FactorioWikiMain {
 		return json;
 	}
 
+	@SuppressWarnings("unused")
 	private static JSONObject wiki_TypeTree(DataTable table) {
 		JSONObject json = createOrderedJSONObject();
 
