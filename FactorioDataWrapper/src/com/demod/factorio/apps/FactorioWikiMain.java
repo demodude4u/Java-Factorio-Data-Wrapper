@@ -158,7 +158,6 @@ public class FactorioWikiMain {
 		write(wiki_Types(table, wikiTypes), "wiki-types");
 		write(wiki_Items(table), "wiki-items");
 		write(wiki_TypeTree(table), "wiki-type-tree");
-		write(wiki_TechNames(table), "wiki-tech-names");
 		write(wiki_EntitiesHealth(table, wikiTypes), "wiki-entities");
 		write(wiki_DataRawTree(table), "data-raw-tree");
 
@@ -503,21 +502,6 @@ public class FactorioWikiMain {
 		return json;
 	}
 
-	private static JSONObject wiki_TechNames(DataTable table) {
-		JSONObject json = createOrderedJSONObject();
-
-		table.getTechnologies().values().stream().sorted((t1, t2) -> t1.getName().compareTo(t2.getName()))
-				.filter(t -> !t.isBonus() || t.isFirstBonus()).forEach(tech -> {
-					JSONObject itemJson = createOrderedJSONObject();
-					json.put(table.getWikiTechnologyName(tech.isBonus() ? tech.getBonusName() : tech.getName()),
-							itemJson);
-
-					itemJson.put("internal-name", tech.getName());
-				});
-
-		return json;
-	}
-
 	/**
 	 * | cost = Time,30 + Science pack 1,1 + Science pack 2,1 + Science pack 3,1<br>
 	 * |cost-multiplier = 1000 <br>
@@ -552,6 +536,8 @@ public class FactorioWikiMain {
 					JSONObject itemJson = createOrderedJSONObject();
 					json.put(table.getWikiTechnologyName(tech.isBonus() ? tech.getBonusName() : tech.getName()),
 							itemJson);
+
+					itemJson.put("internal-name", tech.getName());
 
 					JSONArray costJson = new JSONArray();
 					costJson.put(pair("Time", tech.getTime()));
