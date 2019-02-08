@@ -157,11 +157,9 @@ public class FactorioWikiMain {
 		write(wiki_Recipes(table), "wiki-recipes");
 		write(wiki_Types(table, wikiTypes), "wiki-types");
 		write(wiki_Items(table), "wiki-items");
-		write(wiki_TypeTree(table), "wiki-type-tree");
-		write(wiki_TechNames(table), "wiki-tech-names");
-		write(wiki_EntitiesHealth(table, wikiTypes), "wiki-entities-health");
+		// write(wiki_TypeTree(table), "wiki-type-tree");
+		write(wiki_EntitiesHealth(table, wikiTypes), "wiki-entities");
 		write(wiki_DataRawTree(table), "data-raw-tree");
-		write(wiki_EntitiesMapColor(table, wikiTypes), "wiki-entities-mapcolor");
 
 		// wiki_GenerateTintedIcons(table, new File(outputFolder, "icons"));
 
@@ -202,23 +200,6 @@ public class FactorioWikiMain {
 	private static JSONObject wiki_EntitiesHealth(DataTable table, Map<String, WikiTypeMatch> wikiTypes) {
 		JSONObject json = createOrderedJSONObject();
 
-		table.getEntities().values().stream().sorted((e1, e2) -> e1.getName().compareTo(e2.getName()))
-				.filter(e -> !wikiTypes.get(e.getName()).toString().equals("N/A")).forEach(e -> {
-					double health = e.lua().get("max_health").todouble();
-					if (health > 0) {
-						JSONObject itemJson = createOrderedJSONObject();
-						json.put(table.getWikiEntityName(e.getName()), itemJson);
-
-						itemJson.put("health", health);
-					}
-				});
-
-		return json;
-	}
-
-	private static JSONObject wiki_EntitiesMapColor(DataTable table, Map<String, WikiTypeMatch> wikiTypes) {
-		JSONObject json = createOrderedJSONObject();
-
 		Optional<LuaValue> optUtilityConstantsLua = table.getRaw("utility-constants", "default");
 		LuaValue utilityConstantsLua = optUtilityConstantsLua.get();
 
@@ -240,18 +221,23 @@ public class FactorioWikiMain {
 							mapColor = Utils.parseColor(mapColorLua);
 						} else {
 							mapColor = defaultFriendlyColorByType.get(e.lua().get("type").tojstring());
-							if (mapColor == null) {
-								mapColor = defaultFriendlyColor;// XXX yay/nay?
+							if (mapColor == null && !e.getFlags().contains("not-on-map")) {
+								mapColor = defaultFriendlyColor;
 							}
 						}
 					}
 
-					if (mapColor != null) {
+					double health = e.lua().get("max_health").todouble();
+
+					if (mapColor != null || health > 0) {
 						JSONObject itemJson = createOrderedJSONObject();
 						json.put(table.getWikiEntityName(e.getName()), itemJson);
 
-						itemJson.put("map-color", String.format("%02x%02x%02x", mapColor.getRed(), mapColor.getGreen(),
-								mapColor.getBlue()));
+						if (mapColor != null)
+							itemJson.put("map-color", String.format("%02x%02x%02x", mapColor.getRed(),
+									mapColor.getGreen(), mapColor.getBlue()));
+						if (health > 0)
+							itemJson.put("health", health);
 					}
 				});
 
@@ -516,21 +502,6 @@ public class FactorioWikiMain {
 		return json;
 	}
 
-	private static JSONObject wiki_TechNames(DataTable table) {
-		JSONObject json = createOrderedJSONObject();
-
-		table.getTechnologies().values().stream().sorted((t1, t2) -> t1.getName().compareTo(t2.getName()))
-				.filter(t -> !t.isBonus() || t.isFirstBonus()).forEach(tech -> {
-					JSONObject itemJson = createOrderedJSONObject();
-					json.put(table.getWikiTechnologyName(tech.isBonus() ? tech.getBonusName() : tech.getName()),
-							itemJson);
-
-					itemJson.put("internal-name", tech.getName());
-				});
-
-		return json;
-	}
-
 	/**
 	 * | cost = Time,30 + Science pack 1,1 + Science pack 2,1 + Science pack 3,1<br>
 	 * |cost-multiplier = 1000 <br>
@@ -565,6 +536,8 @@ public class FactorioWikiMain {
 					JSONObject itemJson = createOrderedJSONObject();
 					json.put(table.getWikiTechnologyName(tech.isBonus() ? tech.getBonusName() : tech.getName()),
 							itemJson);
+
+					itemJson.put("internal-name", tech.getName());
 
 					JSONArray costJson = new JSONArray();
 					costJson.put(pair("Time", tech.getTime()));
@@ -635,6 +608,7 @@ public class FactorioWikiMain {
 		return json;
 	}
 
+	@SuppressWarnings("unused")
 	private static JSONObject wiki_TypeTree(DataTable table) {
 		JSONObject json = createOrderedJSONObject();
 

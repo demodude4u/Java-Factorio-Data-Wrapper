@@ -1,5 +1,6 @@
 {
   "Advanced electronics": {
+    "internal-name": "advanced-electronics",
     "cost": [
       [
         "Time",
@@ -36,6 +37,7 @@
     ]
   },
   "Advanced electronics 2": {
+    "internal-name": "advanced-electronics-2",
     "cost": [
       [
         "Time",
@@ -67,6 +69,7 @@
     ]
   },
   "Advanced material processing": {
+    "internal-name": "advanced-material-processing",
     "cost": [
       [
         "Time",
@@ -91,6 +94,7 @@
     "effects": ["Steel furnace"]
   },
   "Advanced material processing 2": {
+    "internal-name": "advanced-material-processing-2",
     "cost": [
       [
         "Time",
@@ -121,6 +125,7 @@
     ]
   },
   "Advanced oil processing": {
+    "internal-name": "advanced-oil-processing",
     "cost": [
       [
         "Time",
@@ -150,6 +155,7 @@
     ]
   },
   "Artillery": {
+    "internal-name": "artillery",
     "cost": [
       [
         "Time",
@@ -191,6 +197,7 @@
     ]
   },
   "Artillery shell range": {
+    "internal-name": "artillery-shell-range-1",
     "cost": [
       [
         "Time",
@@ -227,6 +234,7 @@
     "allows": ["Artillery shell range, 2-&infin;"]
   },
   "Artillery shell shooting speed": {
+    "internal-name": "artillery-shell-speed-1",
     "cost": [
       [
         "Time",
@@ -263,6 +271,7 @@
     "allows": ["Artillery shell shooting speed, 2-&infin;"]
   },
   "Atomic bomb": {
+    "internal-name": "atomic-bomb",
     "cost": [
       [
         "Time",
@@ -303,6 +312,7 @@
     "effects": ["Atomic bomb"]
   },
   "Auto character logistic trash slots": {
+    "internal-name": "auto-character-logistic-trash-slots",
     "cost": [
       [
         "Time",
@@ -326,6 +336,7 @@
     "required-technologies": ["Character logistic trash slots 2, 2"]
   },
   "Automated rail transportation": {
+    "internal-name": "automated-rail-transportation",
     "cost": [
       [
         "Time",
@@ -347,6 +358,7 @@
     "effects": ["Train stop"]
   },
   "Automation": {
+    "internal-name": "automation",
     "cost": [
       [
         "Time",
@@ -366,6 +378,7 @@
     ]
   },
   "Automation 2": {
+    "internal-name": "automation-2",
     "cost": [
       [
         "Time",
@@ -387,6 +400,7 @@
     "effects": ["Assembling machine 2"]
   },
   "Automation 3": {
+    "internal-name": "automation-3",
     "cost": [
       [
         "Time",
@@ -419,6 +433,7 @@
     "effects": ["Assembling machine 3"]
   },
   "Automobilism": {
+    "internal-name": "automobilism",
     "cost": [
       [
         "Time",
@@ -443,6 +458,7 @@
     "effects": ["Car"]
   },
   "Battery": {
+    "internal-name": "battery",
     "cost": [
       [
         "Time",
@@ -469,6 +485,7 @@
     "effects": ["Battery"]
   },
   "Battery equipment": {
+    "internal-name": "battery-equipment",
     "cost": [
       [
         "Time",
@@ -493,6 +510,7 @@
     "effects": ["Battery MK1"]
   },
   "Battery MK2 equipment": {
+    "internal-name": "battery-mk2-equipment",
     "cost": [
       [
         "Time",
@@ -517,6 +535,7 @@
     "effects": ["Battery MK2"]
   },
   "Braking force": {
+    "internal-name": "braking-force-1",
     "cost": [
       [
         "Time",
@@ -541,6 +560,7 @@
     "allows": ["Braking force, 2-7"]
   },
   "Bullet damage": {
+    "internal-name": "bullet-damage-1",
     "cost": [
       [
         "Time",
@@ -557,6 +577,7 @@
     "allows": ["Bullet damage, 2-7"]
   },
   "Bullet shooting speed": {
+    "internal-name": "bullet-speed-1",
     "cost": [
       [
         "Time",
@@ -573,6 +594,7 @@
     "allows": ["Bullet shooting speed, 2-6"]
   },
   "Cannon shell damage": {
+    "internal-name": "cannon-shell-damage-1",
     "cost": [
       [
         "Time",
@@ -601,6 +623,7 @@
     "allows": ["Cannon shell damage, 2-6"]
   },
   "Cannon shell shooting speed": {
+    "internal-name": "cannon-shell-speed-1",
     "cost": [
       [
         "Time",
@@ -629,6 +652,7 @@
     "allows": ["Cannon shell shooting speed, 2-5"]
   },
   "Character logistic slots": {
+    "internal-name": "character-logistic-slots-1",
     "cost": [
       [
         "Time",
@@ -649,6 +673,7 @@
     "allows": ["Character logistic slots, 2-6"]
   },
   "Character logistic trash slots": {
+    "internal-name": "character-logistic-trash-slots-1",
     "cost": [
       [
         "Time",
@@ -669,6 +694,7 @@
     "allows": ["Character logistic trash slots, 2"]
   },
   "Circuit network": {
+    "internal-name": "circuit-network",
     "cost": [
       [
         "Time",
@@ -697,6 +723,7 @@
     ]
   },
   "Cliff explosives": {
+    "internal-name": "cliff-explosives",
     "cost": [
       [
         "Time",
@@ -717,6 +744,7 @@
     "effects": ["Cliff explosives"]
   },
   "Coal liquefaction": {
+    "internal-name": "coal-liquefaction",
     "cost": [
       [
         "Time",
@@ -745,6 +773,7 @@
     "effects": ["Coal liquefaction"]
   },
   "Combat robot damage": {
+    "internal-name": "combat-robot-damage-1",
     "cost": [
       [
         "Time",
@@ -769,6 +798,7 @@
     "allows": ["Combat robot damage, 2-6"]
   },
   "Combat robotics": {
+    "internal-name": "combat-robotics",
     "cost": [
       [
         "Time",
@@ -801,6 +831,7 @@
     "effects": ["Defender capsule"]
   },
   "Combat robotics 2": {
+    "internal-name": "combat-robotics-2",
     "cost": [
       [
         "Time",
@@ -833,6 +864,7 @@
     "effects": ["Distractor capsule"]
   },
   "Combat robotics 3": {
+    "internal-name": "combat-robotics-3",
     "cost": [
       [
         "Time",
@@ -870,6 +902,7 @@
     "effects": ["Destroyer capsule"]
   },
   "Concrete": {
+    "internal-name": "concrete",
     "cost": [
       [
         "Time",
@@ -896,6 +929,7 @@
     ]
   },
   "Construction robotics": {
+    "internal-name": "construction-robotics",
     "cost": [
       [
         "Time",
@@ -925,6 +959,7 @@
     ]
   },
   "Discharge defense": {
+    "internal-name": "discharge-defense-equipment",
     "cost": [
       [
         "Time",
@@ -959,6 +994,7 @@
     ]
   },
   "Effect transmission": {
+    "internal-name": "effect-transmission",
     "cost": [
       [
         "Time",
@@ -990,6 +1026,7 @@
     "effects": ["Beacon"]
   },
   "Efficiency module": {
+    "internal-name": "effectivity-module",
     "cost": [
       [
         "Time",
@@ -1011,6 +1048,7 @@
     "effects": ["Efficiency module"]
   },
   "Efficiency module 2": {
+    "internal-name": "effectivity-module-2",
     "cost": [
       [
         "Time",
@@ -1036,6 +1074,7 @@
     "effects": ["Efficiency module 2"]
   },
   "Efficiency module 3": {
+    "internal-name": "effectivity-module-3",
     "cost": [
       [
         "Time",
@@ -1065,6 +1104,7 @@
     "effects": ["Efficiency module 3"]
   },
   "Electric energy accumulators": {
+    "internal-name": "electric-energy-accumulators-1",
     "cost": [
       [
         "Time",
@@ -1088,6 +1128,7 @@
     "effects": ["Accumulator"]
   },
   "Electric energy distribution 1": {
+    "internal-name": "electric-energy-distribution-1",
     "cost": [
       [
         "Time",
@@ -1118,6 +1159,7 @@
     ]
   },
   "Electric energy distribution 2": {
+    "internal-name": "electric-energy-distribution-2",
     "cost": [
       [
         "Time",
@@ -1142,6 +1184,7 @@
     "effects": ["Substation"]
   },
   "Electric engine": {
+    "internal-name": "electric-engine",
     "cost": [
       [
         "Time",
@@ -1171,6 +1214,7 @@
     "effects": ["Electric engine unit"]
   },
   "Electronics": {
+    "internal-name": "electronics",
     "cost": [
       [
         "Time",
@@ -1196,6 +1240,7 @@
     "effects": ["Filter inserter"]
   },
   "Energy shield equipment": {
+    "internal-name": "energy-shield-equipment",
     "cost": [
       [
         "Time",
@@ -1221,6 +1266,7 @@
     "effects": ["Energy shield"]
   },
   "Energy shield MK2 equipment": {
+    "internal-name": "energy-shield-mk2-equipment",
     "cost": [
       [
         "Time",
@@ -1249,6 +1295,7 @@
     "effects": ["Energy shield MK2"]
   },
   "Engine": {
+    "internal-name": "engine",
     "cost": [
       [
         "Time",
@@ -1280,6 +1327,7 @@
     ]
   },
   "Exoskeleton equipment": {
+    "internal-name": "exoskeleton-equipment",
     "cost": [
       [
         "Time",
@@ -1307,6 +1355,7 @@
     "effects": ["Exoskeleton"]
   },
   "Explosive rocketry": {
+    "internal-name": "explosive-rocketry",
     "cost": [
       [
         "Time",
@@ -1338,6 +1387,7 @@
     "effects": ["Explosive rocket"]
   },
   "Explosives": {
+    "internal-name": "explosives",
     "cost": [
       [
         "Time",
@@ -1367,6 +1417,7 @@
     "effects": ["Explosives"]
   },
   "Flamethrower": {
+    "internal-name": "flamethrower",
     "cost": [
       [
         "Time",
@@ -1399,6 +1450,7 @@
     ]
   },
   "Flamethrower damage": {
+    "internal-name": "flamethrower-damage-1",
     "cost": [
       [
         "Time",
@@ -1423,6 +1475,7 @@
     "allows": ["Flamethrower damage, 2-7"]
   },
   "Flammables": {
+    "internal-name": "flammables",
     "cost": [
       [
         "Time",
@@ -1446,6 +1499,7 @@
     ]
   },
   "Fluid handling": {
+    "internal-name": "fluid-handling",
     "cost": [
       [
         "Time",
@@ -1483,6 +1537,7 @@
     ]
   },
   "Fluid wagon": {
+    "internal-name": "fluid-wagon",
     "cost": [
       [
         "Time",
@@ -1506,6 +1561,7 @@
     "effects": ["Fluid wagon"]
   },
   "Flight": {
+    "internal-name": "flying",
     "cost": [
       [
         "Time",
@@ -1530,6 +1586,7 @@
     ]
   },
   "Follower robot count": {
+    "internal-name": "follower-robot-count-1",
     "cost": [
       [
         "Time",
@@ -1554,6 +1611,7 @@
     "allows": ["Follower robot count, 2-7"]
   },
   "Portable fusion reactor": {
+    "internal-name": "fusion-reactor-equipment",
     "cost": [
       [
         "Time",
@@ -1586,6 +1644,7 @@
     "effects": ["Portable fusion reactor"]
   },
   "Gates": {
+    "internal-name": "gates",
     "cost": [
       [
         "Time",
@@ -1609,6 +1668,7 @@
     "effects": ["Gate"]
   },
   "Grenade damage": {
+    "internal-name": "grenade-damage-1",
     "cost": [
       [
         "Time",
@@ -1633,6 +1693,7 @@
     "allows": ["Grenade damage, 2-7"]
   },
   "Gun turret damage": {
+    "internal-name": "gun-turret-damage-1",
     "cost": [
       [
         "Time",
@@ -1653,6 +1714,7 @@
     "allows": ["Gun turret damage, 2-7"]
   },
   "Heavy armor": {
+    "internal-name": "heavy-armor",
     "cost": [
       [
         "Time",
@@ -1673,6 +1735,7 @@
     "effects": ["Heavy armor"]
   },
   "Inserter capacity bonus": {
+    "internal-name": "inserter-capacity-bonus-1",
     "cost": [
       [
         "Time",
@@ -1693,6 +1756,7 @@
     "allows": ["Inserter capacity bonus, 2-7"]
   },
   "Kovarex enrichment process": {
+    "internal-name": "kovarex-enrichment-process",
     "cost": [
       [
         "Time",
@@ -1728,6 +1792,7 @@
     ]
   },
   "Landmines": {
+    "internal-name": "land-mine",
     "cost": [
       [
         "Time",
@@ -1755,6 +1820,7 @@
     "effects": ["Land mine"]
   },
   "Landfill": {
+    "internal-name": "landfill",
     "cost": [
       [
         "Time",
@@ -1774,6 +1840,7 @@
     "effects": ["Landfill"]
   },
   "Laser": {
+    "internal-name": "laser",
     "cost": [
       [
         "Time",
@@ -1800,6 +1867,7 @@
     ]
   },
   "Laser turret damage": {
+    "internal-name": "laser-turret-damage-1",
     "cost": [
       [
         "Time",
@@ -1824,6 +1892,7 @@
     "allows": ["Laser turret damage, 2-8"]
   },
   "Laser turret shooting speed": {
+    "internal-name": "laser-turret-speed-1",
     "cost": [
       [
         "Time",
@@ -1848,6 +1917,7 @@
     "allows": ["Laser turret shooting speed, 2-7"]
   },
   "Laser turrets": {
+    "internal-name": "laser-turrets",
     "cost": [
       [
         "Time",
@@ -1883,6 +1953,7 @@
     "effects": ["Laser turret"]
   },
   "Logistic robotics": {
+    "internal-name": "logistic-robotics",
     "cost": [
       [
         "Time",
@@ -1916,6 +1987,7 @@
     ]
   },
   "Logistic system": {
+    "internal-name": "logistic-system",
     "cost": [
       [
         "Time",
@@ -1952,6 +2024,7 @@
     ]
   },
   "Logistics": {
+    "internal-name": "logistics",
     "cost": [
       [
         "Time",
@@ -1972,6 +2045,7 @@
     ]
   },
   "Logistics 2": {
+    "internal-name": "logistics-2",
     "cost": [
       [
         "Time",
@@ -2002,6 +2076,7 @@
     ]
   },
   "Logistics 3": {
+    "internal-name": "logistics-3",
     "cost": [
       [
         "Time",
@@ -2038,6 +2113,7 @@
     ]
   },
   "Military": {
+    "internal-name": "military",
     "cost": [
       [
         "Time",
@@ -2065,6 +2141,7 @@
     ]
   },
   "Military 2": {
+    "internal-name": "military-2",
     "cost": [
       [
         "Time",
@@ -2102,6 +2179,7 @@
     ]
   },
   "Military 3": {
+    "internal-name": "military-3",
     "cost": [
       [
         "Time",
@@ -2143,6 +2221,7 @@
     ]
   },
   "Military 4": {
+    "internal-name": "military-4",
     "cost": [
       [
         "Time",
@@ -2184,6 +2263,7 @@
     ]
   },
   "Mining productivity": {
+    "internal-name": "mining-productivity-1",
     "cost": [
       [
         "Time",
@@ -2204,6 +2284,7 @@
     "allows": ["Mining productivity, 2-5"]
   },
   "Modular armor": {
+    "internal-name": "modular-armor",
     "cost": [
       [
         "Time",
@@ -2236,6 +2317,7 @@
     "effects": ["Modular armor"]
   },
   "Modules": {
+    "internal-name": "modules",
     "cost": [
       [
         "Time",
@@ -2262,6 +2344,7 @@
     ]
   },
   "Nightvision equipment": {
+    "internal-name": "night-vision-equipment",
     "cost": [
       [
         "Time",
@@ -2282,6 +2365,7 @@
     "effects": ["Nightvision"]
   },
   "Nuclear fuel reprocessing": {
+    "internal-name": "nuclear-fuel-reprocessing",
     "cost": [
       [
         "Time",
@@ -2310,6 +2394,7 @@
     "effects": ["Nuclear fuel reprocessing"]
   },
   "Nuclear power": {
+    "internal-name": "nuclear-power",
     "cost": [
       [
         "Time",
@@ -2351,6 +2436,7 @@
     ]
   },
   "Oil processing": {
+    "internal-name": "oil-processing",
     "cost": [
       [
         "Time",
@@ -2386,6 +2472,7 @@
     ]
   },
   "Optics": {
+    "internal-name": "optics",
     "cost": [
       [
         "Time",
@@ -2405,6 +2492,7 @@
     "effects": ["Lamp"]
   },
   "Personal laser defense": {
+    "internal-name": "personal-laser-defense-equipment",
     "cost": [
       [
         "Time",
@@ -2436,6 +2524,7 @@
     "effects": ["Personal laser defense"]
   },
   "Personal roboport": {
+    "internal-name": "personal-roboport-equipment",
     "cost": [
       [
         "Time",
@@ -2464,6 +2553,7 @@
     "effects": ["Personal roboport"]
   },
   "Personal roboport 2": {
+    "internal-name": "personal-roboport-equipment-2",
     "cost": [
       [
         "Time",
@@ -2492,6 +2582,7 @@
     "effects": ["Personal roboport MK2"]
   },
   "Plastics": {
+    "internal-name": "plastics",
     "cost": [
       [
         "Time",
@@ -2513,6 +2604,7 @@
     "effects": ["Plastic bar"]
   },
   "Power armor": {
+    "internal-name": "power-armor",
     "cost": [
       [
         "Time",
@@ -2541,6 +2633,7 @@
     "effects": ["Power armor"]
   },
   "Power armor 2": {
+    "internal-name": "power-armor-2",
     "cost": [
       [
         "Time",
@@ -2577,6 +2670,7 @@
     "effects": ["Power armor MK2"]
   },
   "Productivity module": {
+    "internal-name": "productivity-module",
     "cost": [
       [
         "Time",
@@ -2598,6 +2692,7 @@
     "effects": ["Productivity module"]
   },
   "Productivity module 2": {
+    "internal-name": "productivity-module-2",
     "cost": [
       [
         "Time",
@@ -2623,6 +2718,7 @@
     "effects": ["Productivity module 2"]
   },
   "Productivity module 3": {
+    "internal-name": "productivity-module-3",
     "cost": [
       [
         "Time",
@@ -2652,6 +2748,7 @@
     "effects": ["Productivity module 3"]
   },
   "Rail signals": {
+    "internal-name": "rail-signals",
     "cost": [
       [
         "Time",
@@ -2675,6 +2772,7 @@
     ]
   },
   "Railway": {
+    "internal-name": "railway",
     "cost": [
       [
         "Time",
@@ -2707,6 +2805,7 @@
     ]
   },
   "Lab research speed": {
+    "internal-name": "research-speed-1",
     "cost": [
       [
         "Time",
@@ -2727,6 +2826,7 @@
     "allows": ["Lab research speed, 2-6"]
   },
   "Robotics": {
+    "internal-name": "robotics",
     "cost": [
       [
         "Time",
@@ -2756,6 +2856,7 @@
     "effects": ["Flying robot frame"]
   },
   "Rocket damage": {
+    "internal-name": "rocket-damage-1",
     "cost": [
       [
         "Time",
@@ -2780,6 +2881,7 @@
     "allows": ["Rocket damage, 2-7"]
   },
   "Rocket silo": {
+    "internal-name": "rocket-silo",
     "cost": [
       [
         "Time",
@@ -2828,6 +2930,7 @@
     ]
   },
   "Rocket shooting speed": {
+    "internal-name": "rocket-speed-1",
     "cost": [
       [
         "Time",
@@ -2852,6 +2955,7 @@
     "allows": ["Rocket shooting speed, 2-7"]
   },
   "Rocketry": {
+    "internal-name": "rocketry",
     "cost": [
       [
         "Time",
@@ -2890,6 +2994,7 @@
     ]
   },
   "Shotgun shell damage": {
+    "internal-name": "shotgun-shell-damage-1",
     "cost": [
       [
         "Time",
@@ -2906,6 +3011,7 @@
     "allows": ["Shotgun shell damage, 2-7"]
   },
   "Shotgun shell shooting speed": {
+    "internal-name": "shotgun-shell-speed-1",
     "cost": [
       [
         "Time",
@@ -2922,6 +3028,7 @@
     "allows": ["Shotgun shell shooting speed, 2-6"]
   },
   "Solar energy": {
+    "internal-name": "solar-energy",
     "cost": [
       [
         "Time",
@@ -2946,6 +3053,7 @@
     "effects": ["Solar panel"]
   },
   "Portable solar panel": {
+    "internal-name": "solar-panel-equipment",
     "cost": [
       [
         "Time",
@@ -2971,6 +3079,7 @@
     "effects": ["Portable solar panel"]
   },
   "Speed module": {
+    "internal-name": "speed-module",
     "cost": [
       [
         "Time",
@@ -2996,6 +3105,7 @@
     "effects": ["Speed module"]
   },
   "Speed module 2": {
+    "internal-name": "speed-module-2",
     "cost": [
       [
         "Time",
@@ -3021,6 +3131,7 @@
     "effects": ["Speed module 2"]
   },
   "Speed module 3": {
+    "internal-name": "speed-module-3",
     "cost": [
       [
         "Time",
@@ -3053,6 +3164,7 @@
     "effects": ["Speed module 3"]
   },
   "Stack inserter": {
+    "internal-name": "stack-inserter",
     "cost": [
       [
         "Time",
@@ -3080,6 +3192,7 @@
     ]
   },
   "Steel processing": {
+    "internal-name": "steel-processing",
     "cost": [
       [
         "Time",
@@ -3109,6 +3222,7 @@
     ]
   },
   "Stone walls": {
+    "internal-name": "stone-walls",
     "cost": [
       [
         "Time",
@@ -3125,6 +3239,7 @@
     "effects": ["Stone wall"]
   },
   "Sulfur processing": {
+    "internal-name": "sulfur-processing",
     "cost": [
       [
         "Time",
@@ -3152,6 +3267,7 @@
     ]
   },
   "Tanks": {
+    "internal-name": "tanks",
     "cost": [
       [
         "Time",
@@ -3191,6 +3307,7 @@
     ]
   },
   "Toolbelt": {
+    "internal-name": "toolbelt",
     "cost": [
       [
         "Time",
@@ -3209,6 +3326,7 @@
     "expensive-cost-multiplier": 400
   },
   "Turrets": {
+    "internal-name": "turrets",
     "cost": [
       [
         "Time",
@@ -3228,6 +3346,7 @@
     "effects": ["Gun turret"]
   },
   "Uranium ammo": {
+    "internal-name": "uranium-ammo",
     "cost": [
       [
         "Time",
@@ -3267,6 +3386,7 @@
     ]
   },
   "Worker robot speed": {
+    "internal-name": "worker-robots-speed-1",
     "cost": [
       [
         "Time",
@@ -3291,6 +3411,7 @@
     "allows": ["Worker robot speed, 2-6"]
   },
   "Worker robot cargo size": {
+    "internal-name": "worker-robots-storage-1",
     "cost": [
       [
         "Time",

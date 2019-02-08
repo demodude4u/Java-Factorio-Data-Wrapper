@@ -1,0 +1,327 @@
+{
+  "Accumulator": {
+    "map-color": "6b6b6b",
+    "health": 150
+  },
+  "Arithmetic combinator": {
+    "map-color": "006191",
+    "health": 150
+  },
+  "Artillery turret": {
+    "map-color": "006191",
+    "health": 2000
+  },
+  "Artillery wagon": {
+    "map-color": "006191",
+    "health": 600
+  },
+  "Assembling machine 1": {
+    "map-color": "006191",
+    "health": 300
+  },
+  "Assembling machine 2": {
+    "map-color": "006191",
+    "health": 350
+  },
+  "Assembling machine 3": {
+    "map-color": "006191",
+    "health": 400
+  },
+  "Beacon": {
+    "map-color": "006191",
+    "health": 200
+  },
+  "Big electric pole": {
+    "map-color": "006191",
+    "health": 150
+  },
+  "Boiler": {
+    "map-color": "006191",
+    "health": 200
+  },
+  "Burner inserter": {
+    "map-color": "006191",
+    "health": 100
+  },
+  "Burner mining drill": {
+    "map-color": "006191",
+    "health": 150
+  },
+  "Car": {
+    "map-color": "006191",
+    "health": 450
+  },
+  "Cargo wagon": {
+    "map-color": "006191",
+    "health": 600
+  },
+  "Centrifuge": {
+    "map-color": "006191",
+    "health": 350
+  },
+  "Chemical plant": {
+    "map-color": "006191",
+    "health": 300
+  },
+  "Coal": {"map-color": "000000"},
+  "Constant combinator": {
+    "map-color": "006191",
+    "health": 120
+  },
+  "Construction robot": {"health": 100},
+  "Copper ore": {"map-color": "cd6337"},
+  "Crude oil": {"map-color": "c733c4"},
+  "Decider combinator": {
+    "map-color": "006191",
+    "health": 150
+  },
+  "Electric furnace": {
+    "map-color": "006191",
+    "health": 350
+  },
+  "Electric mining drill": {
+    "map-color": "006191",
+    "health": 300
+  },
+  "Express splitter": {
+    "map-color": "ffd100",
+    "health": 190
+  },
+  "Express transport belt": {
+    "map-color": "cca147",
+    "health": 170
+  },
+  "Express underground belt": {
+    "map-color": "8f7500",
+    "health": 170
+  },
+  "Fast inserter": {
+    "map-color": "006191",
+    "health": 150
+  },
+  "Fast splitter": {
+    "map-color": "ffd100",
+    "health": 180
+  },
+  "Fast transport belt": {
+    "map-color": "cca147",
+    "health": 160
+  },
+  "Fast underground belt": {
+    "map-color": "8f7500",
+    "health": 160
+  },
+  "Filter inserter": {
+    "map-color": "006191",
+    "health": 150
+  },
+  "Flamethrower turret": {
+    "map-color": "eb751a",
+    "health": 1400
+  },
+  "Fluid wagon": {
+    "map-color": "006191",
+    "health": 600
+  },
+  "Gate": {
+    "map-color": "808080",
+    "health": 350
+  },
+  "Gun turret": {
+    "map-color": "caa718",
+    "health": 400
+  },
+  "Heat exchanger": {
+    "map-color": "006191",
+    "health": 200
+  },
+  "Heat pipe": {
+    "map-color": "006191",
+    "health": 200
+  },
+  "Inserter": {
+    "map-color": "006191",
+    "health": 150
+  },
+  "Iron chest": {
+    "map-color": "006191",
+    "health": 200
+  },
+  "Iron ore": {"map-color": "6a8694"},
+  "Lab": {
+    "map-color": "006191",
+    "health": 150
+  },
+  "Land mine": {"health": 15},
+  "Laser turret": {
+    "map-color": "d92e2e",
+    "health": 1000
+  },
+  "Locomotive": {
+    "map-color": "006191",
+    "health": 1000
+  },
+  "Active provider chest": {
+    "map-color": "006191",
+    "health": 350
+  },
+  "Buffer chest": {
+    "map-color": "006191",
+    "health": 350
+  },
+  "Passive provider chest": {
+    "map-color": "006191",
+    "health": 350
+  },
+  "Requester chest": {
+    "map-color": "006191",
+    "health": 350
+  },
+  "Storage chest": {
+    "map-color": "006191",
+    "health": 350
+  },
+  "Logistic robot": {"health": 100},
+  "Long handed inserter": {
+    "map-color": "006191",
+    "health": 160
+  },
+  "Medium electric pole": {
+    "map-color": "006191",
+    "health": 100
+  },
+  "Nuclear reactor": {
+    "map-color": "006191",
+    "health": 500
+  },
+  "Offshore pump": {
+    "map-color": "006191",
+    "health": 150
+  },
+  "Oil refinery": {
+    "map-color": "006191",
+    "health": 350
+  },
+  "Pipe": {
+    "map-color": "006191",
+    "health": 100
+  },
+  "Pipe to ground": {
+    "map-color": "006191",
+    "health": 150
+  },
+  "Power switch": {
+    "map-color": "006191",
+    "health": 200
+  },
+  "Programmable speaker": {
+    "map-color": "006191",
+    "health": 150
+  },
+  "Pump": {
+    "map-color": "006191",
+    "health": 180
+  },
+  "Pumpjack": {
+    "map-color": "006191",
+    "health": 200
+  },
+  "Radar": {
+    "map-color": "006191",
+    "health": 250
+  },
+  "Rail chain signal": {
+    "map-color": "006191",
+    "health": 100
+  },
+  "Rail signal": {
+    "map-color": "006191",
+    "health": 100
+  },
+  "Roboport": {
+    "map-color": "006191",
+    "health": 500
+  },
+  "Rocket silo": {
+    "map-color": "006191",
+    "health": 5000
+  },
+  "Small electric pole": {
+    "map-color": "006191",
+    "health": 100
+  },
+  "Lamp": {
+    "map-color": "006191",
+    "health": 100
+  },
+  "Solar panel": {
+    "map-color": "1f2124",
+    "health": 200
+  },
+  "Splitter": {
+    "map-color": "ffd100",
+    "health": 170
+  },
+  "Stack filter inserter": {
+    "map-color": "006191",
+    "health": 160
+  },
+  "Stack inserter": {
+    "map-color": "006191",
+    "health": 160
+  },
+  "Steam engine": {
+    "map-color": "006191",
+    "health": 400
+  },
+  "Steam turbine": {
+    "map-color": "006191",
+    "health": 300
+  },
+  "Steel chest": {
+    "map-color": "006191",
+    "health": 350
+  },
+  "Steel furnace": {
+    "map-color": "006191",
+    "health": 300
+  },
+  "Stone": {"map-color": "b09c6d"},
+  "Stone furnace": {
+    "map-color": "006191",
+    "health": 200
+  },
+  "Stone wall": {
+    "map-color": "bfccbf",
+    "health": 350
+  },
+  "Storage tank": {
+    "map-color": "006191",
+    "health": 500
+  },
+  "Substation": {
+    "map-color": "006191",
+    "health": 200
+  },
+  "Tank": {
+    "map-color": "006191",
+    "health": 2000
+  },
+  "Train stop": {
+    "map-color": "006191",
+    "health": 250
+  },
+  "Transport belt": {
+    "map-color": "cca147",
+    "health": 150
+  },
+  "Underground belt": {
+    "map-color": "8f7500",
+    "health": 150
+  },
+  "Uranium ore": {"map-color": "00b300"},
+  "Wooden chest": {
+    "map-color": "006191",
+    "health": 100
+  }
+}
