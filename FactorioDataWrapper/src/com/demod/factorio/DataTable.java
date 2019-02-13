@@ -264,4 +264,8 @@ public class DataTable {
 	public Set<String> getWorldInputs() {
 		return worldInputs;
 	}
+
+	public boolean hasWikiEntityName(String name) {
+		return nameMappingItemsRecipes.optString(name, null) != null;
+	}
 }

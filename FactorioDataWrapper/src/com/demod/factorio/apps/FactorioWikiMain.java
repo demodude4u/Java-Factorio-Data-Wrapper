@@ -158,7 +158,7 @@ public class FactorioWikiMain {
 		write(wiki_Types(table, wikiTypes), "wiki-types");
 		write(wiki_Items(table), "wiki-items");
 		// write(wiki_TypeTree(table), "wiki-type-tree");
-		write(wiki_EntitiesHealth(table, wikiTypes), "wiki-entities");
+		write(wiki_Entities(table, wikiTypes), "wiki-entities");
 		write(wiki_DataRawTree(table), "data-raw-tree");
 
 		// wiki_GenerateTintedIcons(table, new File(outputFolder, "icons"));
@@ -197,7 +197,7 @@ public class FactorioWikiMain {
 		return json;
 	}
 
-	private static JSONObject wiki_EntitiesHealth(DataTable table, Map<String, WikiTypeMatch> wikiTypes) {
+	private static JSONObject wiki_Entities(DataTable table, Map<String, WikiTypeMatch> wikiTypes) {
 		JSONObject json = createOrderedJSONObject();
 
 		Optional<LuaValue> optUtilityConstantsLua = table.getRaw("utility-constants", "default");
@@ -226,6 +226,10 @@ public class FactorioWikiMain {
 							}
 						}
 					}
+					
+					if (e.getType().equals("car") || e.getType().equals("locomotive") || e.getType().contains("wagon")) {
+						mapColor = null; // these entity types are not drawn on map normally
+					}
 
 					double health = e.lua().get("max_health").todouble();
 
@@ -240,7 +244,24 @@ public class FactorioWikiMain {
 							itemJson.put("health", health);
 					}
 				});
+		
+		// not entities but lets just.. ignore that		
+		table.getTiles().values().stream().sorted((t1, t2) -> t1.getName().compareTo(t2.getName()))
+				.filter(t -> table.hasWikiEntityName(t.getName())).forEach(t -> {
+					Color mapColor = null;					
+					LuaValue mapColorLua = t.lua().get("map_color");
+					if (!mapColorLua.isnil())
+						mapColor = Utils.parseColor(mapColorLua);
+					
+					if (mapColor != null) {
+						JSONObject itemJson = createOrderedJSONObject();
+						json.put(table.getWikiEntityName(t.getName()), itemJson);
 
+						itemJson.put("map-color", String.format("%02x%02x%02x", mapColor.getRed(),
+									mapColor.getGreen(), mapColor.getBlue()));
+					}
+				});
+		
 		return json;
 	}
 
