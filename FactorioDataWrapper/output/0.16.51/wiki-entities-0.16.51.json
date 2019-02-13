@@ -11,10 +11,7 @@
     "map-color": "006191",
     "health": 2000
   },
-  "Artillery wagon": {
-    "map-color": "006191",
-    "health": 600
-  },
+  "Artillery wagon": {"health": 600},
   "Assembling machine 1": {
     "map-color": "006191",
     "health": 300
@@ -47,14 +44,8 @@
     "map-color": "006191",
     "health": 150
   },
-  "Car": {
-    "map-color": "006191",
-    "health": 450
-  },
-  "Cargo wagon": {
-    "map-color": "006191",
-    "health": 600
-  },
+  "Car": {"health": 450},
+  "Cargo wagon": {"health": 600},
   "Centrifuge": {
     "map-color": "006191",
     "health": 350
@@ -119,10 +110,7 @@
     "map-color": "eb751a",
     "health": 1400
   },
-  "Fluid wagon": {
-    "map-color": "006191",
-    "health": 600
-  },
+  "Fluid wagon": {"health": 600},
   "Gate": {
     "map-color": "808080",
     "health": 350
@@ -157,10 +145,7 @@
     "map-color": "d92e2e",
     "health": 1000
   },
-  "Locomotive": {
-    "map-color": "006191",
-    "health": 1000
-  },
+  "Locomotive": {"health": 1000},
   "Active provider chest": {
     "map-color": "006191",
     "health": 350
@@ -303,10 +288,7 @@
     "map-color": "006191",
     "health": 200
   },
-  "Tank": {
-    "map-color": "006191",
-    "health": 2000
-  },
+  "Tank": {"health": 2000},
   "Train stop": {
     "map-color": "006191",
     "health": 250
@@ -323,5 +305,11 @@
   "Wooden chest": {
     "map-color": "006191",
     "health": 100
-  }
+  },
+  "Concrete": {"map-color": "646464"},
+  "Hazard concrete": {"map-color": "808000"},
+  "Refined concrete": {"map-color": "646464"},
+  "Refined hazard concrete": {"map-color": "808000"},
+  "Stone brick": {"map-color": "323232"},
+  "Water": {"map-color": "33535f"}
 }
