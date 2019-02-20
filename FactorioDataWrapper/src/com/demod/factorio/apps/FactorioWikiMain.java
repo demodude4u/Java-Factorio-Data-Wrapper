@@ -232,8 +232,9 @@ public class FactorioWikiMain {
 					}
 
 					double health = e.lua().get("max_health").todouble();
-
-					if (mapColor != null || health > 0) {
+					LuaValue minableLua = e.lua().get("minable");
+					
+					if (mapColor != null || health > 0 || !minableLua.isnil()) {
 						JSONObject itemJson = createOrderedJSONObject();
 						json.put(table.getWikiEntityName(e.getName()), itemJson);
 
@@ -242,6 +243,8 @@ public class FactorioWikiMain {
 									mapColor.getGreen(), mapColor.getBlue()));
 						if (health > 0)
 							itemJson.put("health", health);
+						if (!minableLua.isnil())
+							itemJson.put("mining-time", minableLua.get("mining_time").todouble());
 					}
 				});
 		
