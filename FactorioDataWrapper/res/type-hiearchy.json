@@ -60,7 +60,6 @@
   "map-settings": null,
   "market": "entity-with-health",
   "mining-drill": "entity-with-health",
-  "mining-tool": "tool",
   "module": "item",
   "movement-bonus-equipment": "equipment",
   "night-vision-equipment": "equipment",
@@ -182,5 +181,16 @@
   "artillery-flare": "particle",
   "cliff": "entity",
   "artillery-wagon": "rolling-stock",
-  "noise-expression": null
+  "noise-expression": null,
+  "infinity-pipe": "pipe",
+  "copy-paste-tool": "selection-tool",
+  "wind-sound": null,
+  "highlight-box": "entity",
+  "spectator-controller": null,
+  "editor-controller": null,
+  "speech-bubble": "entity",
+  "mouse-cursor": null,
+  "sprite": null,
+  "heat-interface": "entity-with-health",
+  "upgrade-item": "selection-tool"
 }

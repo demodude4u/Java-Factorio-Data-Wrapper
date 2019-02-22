@@ -22,6 +22,12 @@
 	  "item-with-inventory",
 	  "item-with-tags",
 	  "artillery-wagon-cannon",
-	  "infinity-chest"
+	  "infinity-chest",
+	  "selection-tool",
+	  "infinity-pipe",
+	  "heat-interface",
+	  "dummy-steel-axe",
+	  "cut-paste-tool",
+	  "copy-paste-tool"
    ]
 }
