@@ -25,6 +25,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.luaj.vm2.LuaValue;
 
+import com.demod.factorio.Config;
 import com.demod.factorio.DataTable;
 import com.demod.factorio.FactorioData;
 import com.demod.factorio.ModInfo;
@@ -147,7 +148,9 @@ public class FactorioWikiMain {
 		baseInfo = new ModInfo(
 				Utils.readJsonFromStream(new FileInputStream(new File(FactorioData.factorio, "data/base/info.json"))));
 
-		folder = new File("output/" + baseInfo.getVersion());
+		String outputPath = Config.get().optString("output", "output");
+
+		folder = new File(outputPath + File.separator + baseInfo.getVersion());
 		folder.mkdirs();
 
 		Map<String, WikiTypeMatch> wikiTypes = generateWikiTypes(table);

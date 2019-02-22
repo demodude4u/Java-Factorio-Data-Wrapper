@@ -17,14 +17,17 @@ import java.io.StringReader;
 import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.IntUnaryOperator;
 import java.util.stream.Collectors;
 
 import javax.imageio.ImageIO;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.luaj.vm2.Globals;
@@ -165,7 +168,13 @@ public class FactorioData {
 				// new File(factorio, "data/base"), //
 		};
 
-		modLoader = new ModLoader();
+		JSONArray modExcludeJson = Config.get().optJSONArray("mod-exclude");
+		Set<String> modExclude = new HashSet<>();
+		if (modExcludeJson != null) {
+			Utils.forEach(modExcludeJson, modExclude::add);
+		}
+
+		modLoader = new ModLoader(modExclude);
 		modLoader.loadFolder(new File(factorio, "data"));
 
 		File modsFolder = new File("mods");
