@@ -13,6 +13,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -101,7 +102,13 @@ public class ModLoader {
 		}
 	}
 
+	private final Set<String> modExclude;
+
 	private final Map<String, Mod> mods = new LinkedHashMap<>();
+
+	public ModLoader(Set<String> modExclude) {
+		this.modExclude = modExclude;
+	}
 
 	public Optional<Mod> getMod(String name) {
 		return Optional.ofNullable(mods.get(name));
@@ -139,6 +146,9 @@ public class ModLoader {
 
 	public void loadFolder(File folder) throws IOException {
 		for (File file : folder.listFiles()) {
+			if (modExclude.contains(file.getName())) {
+				continue;
+			}
 			if (file.isDirectory()) {
 				if (new File(file, "info.json").exists()) {
 					ModFolder mod = new ModFolder(file);
