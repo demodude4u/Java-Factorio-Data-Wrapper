@@ -229,14 +229,15 @@ public class FactorioWikiMain {
 							}
 						}
 					}
-					
-					if (e.getType().equals("car") || e.getType().equals("locomotive") || e.getType().contains("wagon")) {
+
+					if (e.getType().equals("car") || e.getType().equals("locomotive")
+							|| e.getType().contains("wagon")) {
 						mapColor = null; // these entity types are not drawn on map normally
 					}
 
 					double health = e.lua().get("max_health").todouble();
 					LuaValue minableLua = e.lua().get("minable");
-					
+
 					if (mapColor != null || health > 0 || !minableLua.isnil()) {
 						JSONObject itemJson = createOrderedJSONObject();
 						json.put(table.getWikiEntityName(e.getName()), itemJson);
@@ -250,24 +251,24 @@ public class FactorioWikiMain {
 							itemJson.put("mining-time", minableLua.get("mining_time").todouble());
 					}
 				});
-		
-		// not entities but lets just.. ignore that		
+
+		// not entities but lets just.. ignore that
 		table.getTiles().values().stream().sorted((t1, t2) -> t1.getName().compareTo(t2.getName()))
 				.filter(t -> table.hasWikiEntityName(t.getName())).forEach(t -> {
-					Color mapColor = null;					
+					Color mapColor = null;
 					LuaValue mapColorLua = t.lua().get("map_color");
 					if (!mapColorLua.isnil())
 						mapColor = Utils.parseColor(mapColorLua);
-					
+
 					if (mapColor != null) {
 						JSONObject itemJson = createOrderedJSONObject();
 						json.put(table.getWikiEntityName(t.getName()), itemJson);
 
-						itemJson.put("map-color", String.format("%02x%02x%02x", mapColor.getRed(),
-									mapColor.getGreen(), mapColor.getBlue()));
+						itemJson.put("map-color", String.format("%02x%02x%02x", mapColor.getRed(), mapColor.getGreen(),
+								mapColor.getBlue()));
 					}
 				});
-		
+
 		return json;
 	}
 
