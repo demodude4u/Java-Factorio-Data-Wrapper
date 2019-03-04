@@ -60,6 +60,7 @@
   "map-settings": null,
   "market": "entity-with-health",
   "mining-drill": "entity-with-health",
+  "mining-tool": "tool",
   "module": "item",
   "movement-bonus-equipment": "equipment",
   "night-vision-equipment": "equipment",
@@ -192,5 +193,6 @@
   "mouse-cursor": null,
   "sprite": null,
   "heat-interface": "entity-with-health",
-  "upgrade-item": "selection-tool"
+  "upgrade-item": "selection-tool",
+  "shortcut" : null
 }
