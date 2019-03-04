@@ -381,7 +381,7 @@
     "health": 200,
     "mining-time": 0.2
   },
-  "Stone wall": {
+  "Wall": {
     "map-color": "bfccbf",
     "health": 350,
     "mining-time": 0.2

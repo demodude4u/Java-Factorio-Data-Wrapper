@@ -839,7 +839,7 @@
     "internal-name": "stone-furnace",
     "prototype-type": "furnace"
   },
-  "Stone wall": {
+  "Wall": {
     "internal-name": "stone-wall",
     "prototype-type": "wall"
   },

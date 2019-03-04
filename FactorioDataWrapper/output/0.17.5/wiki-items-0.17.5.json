@@ -1174,7 +1174,7 @@
       "Electric furnace",
       "Oil refinery",
       "Steel furnace",
-      "Stone wall"
+      "Wall"
     ],
     "stack-size": 100
   },
@@ -1185,7 +1185,7 @@
     ],
     "stack-size": 50
   },
-  "Stone wall": {
+  "Wall": {
     "consumers": [
       "Gate",
       "Military science pack"

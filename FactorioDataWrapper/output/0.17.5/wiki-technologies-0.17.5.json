@@ -3433,7 +3433,7 @@
       "Gates",
       "Military science pack"
     ],
-    "effects": ["Stone wall"]
+    "effects": ["Wall"]
   },
   "Stronger explosives": {
     "internal-name": "stronger-explosives-1",
