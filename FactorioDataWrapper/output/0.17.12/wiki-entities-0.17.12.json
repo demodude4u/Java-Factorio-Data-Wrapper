@@ -1,0 +1,447 @@
+{
+  "Accumulator": {
+    "map-color": "6b6b6b",
+    "health": 150,
+    "mining-time": 0.1
+  },
+  "Arithmetic combinator": {
+    "map-color": "006191",
+    "health": 150,
+    "mining-time": 0.1
+  },
+  "Artillery turret": {
+    "map-color": "006191",
+    "health": 2000,
+    "mining-time": 0.5
+  },
+  "Artillery wagon": {
+    "health": 600,
+    "mining-time": 0.5
+  },
+  "Assembling machine 1": {
+    "map-color": "006191",
+    "health": 300,
+    "mining-time": 0.2,
+    "pollution": 4
+  },
+  "Assembling machine 2": {
+    "map-color": "006191",
+    "health": 350,
+    "mining-time": 0.2,
+    "pollution": 3
+  },
+  "Assembling machine 3": {
+    "map-color": "006191",
+    "health": 400,
+    "mining-time": 0.2,
+    "pollution": 2
+  },
+  "Beacon": {
+    "map-color": "006191",
+    "health": 200,
+    "mining-time": 0.2
+  },
+  "Big electric pole": {
+    "map-color": "006191",
+    "health": 150,
+    "mining-time": 0.1
+  },
+  "Boiler": {
+    "map-color": "006191",
+    "health": 200,
+    "mining-time": 0.2,
+    "pollution": 30
+  },
+  "Burner inserter": {
+    "map-color": "006191",
+    "health": 100,
+    "mining-time": 0.1
+  },
+  "Burner mining drill": {
+    "map-color": "006191",
+    "health": 150,
+    "mining-time": 0.3,
+    "pollution": 12
+  },
+  "Car": {
+    "health": 450,
+    "mining-time": 0.4
+  },
+  "Cargo wagon": {
+    "health": 600,
+    "mining-time": 0.5
+  },
+  "Centrifuge": {
+    "map-color": "006191",
+    "health": 350,
+    "mining-time": 0.1,
+    "pollution": 4
+  },
+  "Chemical plant": {
+    "map-color": "006191",
+    "health": 300,
+    "mining-time": 0.1,
+    "pollution": 4
+  },
+  "Coal": {
+    "map-color": "000000",
+    "mining-time": 1
+  },
+  "Constant combinator": {
+    "map-color": "006191",
+    "health": 120,
+    "mining-time": 0.1
+  },
+  "Construction robot": {
+    "health": 100,
+    "mining-time": 0.1
+  },
+  "Copper ore": {
+    "map-color": "cd6337",
+    "mining-time": 1
+  },
+  "Crude oil": {
+    "map-color": "c733c4",
+    "mining-time": 1
+  },
+  "Decider combinator": {
+    "map-color": "006191",
+    "health": 150,
+    "mining-time": 0.1
+  },
+  "Electric furnace": {
+    "map-color": "006191",
+    "health": 350,
+    "mining-time": 0.2,
+    "pollution": 1
+  },
+  "Electric mining drill": {
+    "map-color": "006191",
+    "health": 300,
+    "mining-time": 0.3,
+    "pollution": 10
+  },
+  "Express splitter": {
+    "map-color": "ffd100",
+    "health": 190,
+    "mining-time": 0.1
+  },
+  "Express transport belt": {
+    "map-color": "cca147",
+    "health": 170,
+    "mining-time": 0.1
+  },
+  "Express underground belt": {
+    "map-color": "8f7500",
+    "health": 170,
+    "mining-time": 0.1
+  },
+  "Fast inserter": {
+    "map-color": "006191",
+    "health": 150,
+    "mining-time": 0.1
+  },
+  "Fast splitter": {
+    "map-color": "ffd100",
+    "health": 180,
+    "mining-time": 0.1
+  },
+  "Fast transport belt": {
+    "map-color": "cca147",
+    "health": 160,
+    "mining-time": 0.1
+  },
+  "Fast underground belt": {
+    "map-color": "8f7500",
+    "health": 160,
+    "mining-time": 0.1
+  },
+  "Filter inserter": {
+    "map-color": "006191",
+    "health": 150,
+    "mining-time": 0.1
+  },
+  "Flamethrower turret": {
+    "map-color": "eb751a",
+    "health": 1400,
+    "mining-time": 0.5
+  },
+  "Fluid wagon": {
+    "health": 600,
+    "mining-time": 0.5
+  },
+  "Gate": {
+    "map-color": "808080",
+    "health": 350,
+    "mining-time": 0.1
+  },
+  "Gun turret": {
+    "map-color": "caa718",
+    "health": 400,
+    "mining-time": 0.5
+  },
+  "Heat exchanger": {
+    "map-color": "006191",
+    "health": 200,
+    "mining-time": 0.1
+  },
+  "Heat pipe": {
+    "map-color": "006191",
+    "health": 200,
+    "mining-time": 0.1
+  },
+  "Inserter": {
+    "map-color": "006191",
+    "health": 150,
+    "mining-time": 0.1
+  },
+  "Iron chest": {
+    "map-color": "006191",
+    "health": 200,
+    "mining-time": 0.2
+  },
+  "Iron ore": {
+    "map-color": "6a8694",
+    "mining-time": 1
+  },
+  "Lab": {
+    "map-color": "006191",
+    "health": 150,
+    "mining-time": 0.2
+  },
+  "Land mine": {
+    "health": 15,
+    "mining-time": 0.5
+  },
+  "Laser turret": {
+    "map-color": "d92e2e",
+    "health": 1000,
+    "mining-time": 0.5
+  },
+  "Locomotive": {
+    "health": 1000,
+    "mining-time": 0.5
+  },
+  "Active provider chest": {
+    "map-color": "006191",
+    "health": 350,
+    "mining-time": 0.1
+  },
+  "Buffer chest": {
+    "map-color": "006191",
+    "health": 350,
+    "mining-time": 0.1
+  },
+  "Passive provider chest": {
+    "map-color": "006191",
+    "health": 350,
+    "mining-time": 0.1
+  },
+  "Requester chest": {
+    "map-color": "006191",
+    "health": 350,
+    "mining-time": 0.1
+  },
+  "Storage chest": {
+    "map-color": "006191",
+    "health": 350,
+    "mining-time": 0.1
+  },
+  "Logistic robot": {
+    "health": 100,
+    "mining-time": 0.1
+  },
+  "Long handed inserter": {
+    "map-color": "006191",
+    "health": 160,
+    "mining-time": 0.1
+  },
+  "Medium electric pole": {
+    "map-color": "006191",
+    "health": 100,
+    "mining-time": 0.1
+  },
+  "Nuclear reactor": {
+    "map-color": "006191",
+    "health": 500,
+    "mining-time": 0.5
+  },
+  "Offshore pump": {
+    "map-color": "006191",
+    "health": 150,
+    "mining-time": 0.1
+  },
+  "Oil refinery": {
+    "map-color": "006191",
+    "health": 350,
+    "mining-time": 0.2,
+    "pollution": 6
+  },
+  "Pipe": {
+    "map-color": "006191",
+    "health": 100,
+    "mining-time": 0.1
+  },
+  "Pipe to ground": {
+    "map-color": "006191",
+    "health": 150,
+    "mining-time": 0.1
+  },
+  "Power switch": {
+    "map-color": "006191",
+    "health": 200,
+    "mining-time": 0.2
+  },
+  "Programmable speaker": {
+    "map-color": "006191",
+    "health": 150,
+    "mining-time": 0.1
+  },
+  "Pump": {
+    "map-color": "006191",
+    "health": 180,
+    "mining-time": 0.2
+  },
+  "Pumpjack": {
+    "map-color": "006191",
+    "health": 200,
+    "mining-time": 0.5,
+    "pollution": 10
+  },
+  "Radar": {
+    "map-color": "006191",
+    "health": 250,
+    "mining-time": 0.1
+  },
+  "Rail chain signal": {
+    "map-color": "006191",
+    "health": 100,
+    "mining-time": 0.1
+  },
+  "Rail signal": {
+    "map-color": "006191",
+    "health": 100,
+    "mining-time": 0.1
+  },
+  "Roboport": {
+    "map-color": "006191",
+    "health": 500,
+    "mining-time": 0.1
+  },
+  "Rocket silo": {
+    "map-color": "006191",
+    "health": 5000,
+    "mining-time": 1
+  },
+  "Small electric pole": {
+    "map-color": "006191",
+    "health": 100,
+    "mining-time": 0.1
+  },
+  "Lamp": {
+    "map-color": "006191",
+    "health": 100,
+    "mining-time": 0.1
+  },
+  "Solar panel": {
+    "map-color": "1f2124",
+    "health": 200,
+    "mining-time": 0.1
+  },
+  "Splitter": {
+    "map-color": "ffd100",
+    "health": 170,
+    "mining-time": 0.1
+  },
+  "Stack filter inserter": {
+    "map-color": "006191",
+    "health": 160,
+    "mining-time": 0.1
+  },
+  "Stack inserter": {
+    "map-color": "006191",
+    "health": 160,
+    "mining-time": 0.1
+  },
+  "Steam engine": {
+    "map-color": "006191",
+    "health": 400,
+    "mining-time": 0.3
+  },
+  "Steam turbine": {
+    "map-color": "006191",
+    "health": 300,
+    "mining-time": 0.3
+  },
+  "Steel chest": {
+    "map-color": "006191",
+    "health": 350,
+    "mining-time": 0.2
+  },
+  "Steel furnace": {
+    "map-color": "006191",
+    "health": 300,
+    "mining-time": 0.2,
+    "pollution": 1
+  },
+  "Stone": {
+    "map-color": "b09c6d",
+    "mining-time": 1
+  },
+  "Stone furnace": {
+    "map-color": "006191",
+    "health": 200,
+    "mining-time": 0.2,
+    "pollution": 2
+  },
+  "Wall": {
+    "map-color": "bfccbf",
+    "health": 350,
+    "mining-time": 0.2
+  },
+  "Storage tank": {
+    "map-color": "006191",
+    "health": 500,
+    "mining-time": 0.5
+  },
+  "Substation": {
+    "map-color": "006191",
+    "health": 200,
+    "mining-time": 0.1
+  },
+  "Tank": {
+    "health": 2000,
+    "mining-time": 0.5
+  },
+  "Train stop": {
+    "map-color": "006191",
+    "health": 250,
+    "mining-time": 0.2
+  },
+  "Transport belt": {
+    "map-color": "cca147",
+    "health": 150,
+    "mining-time": 0.1
+  },
+  "Underground belt": {
+    "map-color": "8f7500",
+    "health": 150,
+    "mining-time": 0.1
+  },
+  "Uranium ore": {
+    "map-color": "00b300",
+    "mining-time": 2
+  },
+  "Wooden chest": {
+    "map-color": "006191",
+    "health": 100,
+    "mining-time": 0.1
+  },
+  "Concrete": {"map-color": "646464"},
+  "Hazard concrete": {"map-color": "808000"},
+  "Landfill": {"map-color": "35341b"},
+  "Refined concrete": {"map-color": "646464"},
+  "Refined hazard concrete": {"map-color": "808000"},
+  "Stone brick": {"map-color": "323232"},
+  "Water": {"map-color": "33535f"}
+}
