@@ -237,8 +237,46 @@ public class FactorioWikiMain {
 
 					double health = e.lua().get("max_health").todouble();
 					LuaValue minableLua = e.lua().get("minable");
+					LuaValue energySource = e.lua().get("energy_source");
+					if (energySource.isnil() && !e.lua().get("burner").isnil())
+						energySource = e.lua().get("burner");
+					double emissions = 0.0;
+					
+					if (!energySource.isnil()) {
+						LuaValue prototypeEmissions = energySource.get("emissions_per_second_per_watt");
+						LuaValue energyUsageLua = e.lua().get("energy_usage");
+						if (energyUsageLua.isnil() && !e.lua().get("energy_consumption").isnil())
+							energyUsageLua = e.lua().get("energy_consumption");
+						else if (energyUsageLua.isnil() && !e.lua().get("consumption").isnil())
+							energyUsageLua = e.lua().get("consumption");
+						
+						if (!energyUsageLua.isnil()) {
+							double multiplier = 1;
+							char magnitudeChar = energyUsageLua.toString().charAt(energyUsageLua.length() - 2);
+							switch (magnitudeChar)
+							  {
+							    case 'k':
+							    case 'K': multiplier = 1.0e+3; break;
+							    case 'M': multiplier = 1.0e+6; break;
+							    case 'G': multiplier = 1.0e+9; break;
+							    case 'T': multiplier = 1.0e+12; break;
+							    case 'P': multiplier = 1.0e+15; break;
+							    case 'E': multiplier = 1.0e+18; break;
+							    case 'Z': multiplier = 1.0e+21; break;
+							    case 'Y': multiplier = 1.0e+24; break;
+							    default:
+							    	System.err.println("Unknown magnitude char in energy usage of " + e.getName() +  ": " + magnitudeChar);
+							  }
+							
+							double energyUsage = Double.parseDouble(energyUsageLua.toString().substring(0, energyUsageLua.length() - 2));
+							energyUsage *= multiplier;
+							if (!prototypeEmissions.isnil())
+								emissions = prototypeEmissions.todouble() * energyUsage;
+						}
+						
+					}
 
-					if (mapColor != null || health > 0 || !minableLua.isnil()) {
+					if (mapColor != null || health > 0 || !minableLua.isnil() || emissions > 0) {
 						JSONObject itemJson = createOrderedJSONObject();
 						json.put(table.getWikiEntityName(e.getName()), itemJson);
 
@@ -249,6 +287,9 @@ public class FactorioWikiMain {
 							itemJson.put("health", health);
 						if (!minableLua.isnil())
 							itemJson.put("mining-time", minableLua.get("mining_time").todouble());
+						if (emissions > 0) {
+							itemJson.put("pollution", Math.round(emissions * 100) / 100.0);
+						}
 					}
 				});
 
