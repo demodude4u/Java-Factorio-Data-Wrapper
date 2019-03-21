@@ -237,11 +237,12 @@ public class FactorioWikiMain {
 
 					double health = e.lua().get("max_health").todouble();
 					LuaValue minableLua = e.lua().get("minable");
+					LuaValue resistances = e.lua().get("resistances");
 					LuaValue energySource = e.lua().get("energy_source");
 					if (energySource.isnil() && !e.lua().get("burner").isnil())
 						energySource = e.lua().get("burner");
 					double emissions = 0.0;
-					
+
 					if (!energySource.isnil()) {
 						LuaValue prototypeEmissions = energySource.get("emissions_per_second_per_watt");
 						LuaValue energyUsageLua = e.lua().get("energy_usage");
@@ -249,7 +250,7 @@ public class FactorioWikiMain {
 							energyUsageLua = e.lua().get("energy_consumption");
 						else if (energyUsageLua.isnil() && !e.lua().get("consumption").isnil())
 							energyUsageLua = e.lua().get("consumption");
-						
+
 						if (!energyUsageLua.isnil()) {
 							double multiplier = 1;
 							char magnitudeChar = energyUsageLua.toString().charAt(energyUsageLua.length() - 2);
@@ -273,10 +274,10 @@ public class FactorioWikiMain {
 							if (!prototypeEmissions.isnil())
 								emissions = prototypeEmissions.todouble() * energyUsage;
 						}
-						
+
 					}
 
-					if (mapColor != null || health > 0 || !minableLua.isnil() || emissions > 0) {
+					if (mapColor != null || health > 0 || !minableLua.isnil() || emissions > 0 || !resistances.isnil()) {
 						JSONObject itemJson = createOrderedJSONObject();
 						json.put(table.getWikiEntityName(e.getName()), itemJson);
 
@@ -287,8 +288,22 @@ public class FactorioWikiMain {
 							itemJson.put("health", health);
 						if (!minableLua.isnil())
 							itemJson.put("mining-time", minableLua.get("mining_time").todouble());
-						if (emissions > 0) {
+						if (emissions > 0)
 							itemJson.put("pollution", Math.round(emissions * 100) / 100.0);
+						if (!resistances.isnil()) {
+							JSONObject resistancesJson = createOrderedJSONObject();
+							itemJson.put("resistances", resistancesJson);
+
+							for (int i = 1; i <= resistances.length(); ++i) {
+								LuaValue resist = resistances.get(i);
+
+								JSONObject resistJson = createOrderedJSONObject();
+								resistancesJson.put(resist.get("type").toString(), resistJson);
+								LuaValue percent = resist.get("percent");
+								LuaValue decrease = resist.get("decrease");
+								resistJson.put("percent", !percent.isnil() ? percent.toint() : 0);
+								resistJson.put("decrease", !decrease.isnil() ? decrease.toint() : 0);
+							}
 						}
 					}
 				});
