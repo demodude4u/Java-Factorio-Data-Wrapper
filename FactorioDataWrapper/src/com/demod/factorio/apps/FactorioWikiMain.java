@@ -31,6 +31,7 @@ import com.demod.factorio.FactorioData;
 import com.demod.factorio.ModInfo;
 import com.demod.factorio.TotalRawCalculator;
 import com.demod.factorio.Utils;
+import com.demod.factorio.prototype.EntityPrototype;
 import com.demod.factorio.prototype.RecipePrototype;
 import com.demod.factorio.prototype.TechPrototype;
 import com.google.common.collect.LinkedHashMultimap;
@@ -294,16 +295,14 @@ public class FactorioWikiMain {
 							JSONObject resistancesJson = createOrderedJSONObject();
 							itemJson.put("resistances", resistancesJson);
 
-							for (int i = 1; i <= resistances.length(); ++i) {
-								LuaValue resist = resistances.get(i);
-
+							Utils.forEach(resistances, resist -> {
 								JSONObject resistJson = createOrderedJSONObject();
 								resistancesJson.put(resist.get("type").toString(), resistJson);
 								LuaValue percent = resist.get("percent");
 								LuaValue decrease = resist.get("decrease");
 								resistJson.put("percent", !percent.isnil() ? percent.toint() : 0);
 								resistJson.put("decrease", !decrease.isnil() ? decrease.toint() : 0);
-							}
+							});
 						}
 					}
 				});
@@ -581,6 +580,12 @@ public class FactorioWikiMain {
 							});
 				}
 			}
+			
+			// category must be same for expensive and normal
+			String category = normalRecipes.get(name).getCategory();			
+			Map<String, List<EntityPrototype>> craftingCategories = table.getCraftingCategories();
+			item.put("producers", craftingCategories.get(category).stream().sorted((e1, e2) -> e1.getName().compareTo(e2.getName())).map(e -> table.getWikiEntityName(e.getName())).collect(toJsonArray()));
+			
 		});
 
 		return json;
