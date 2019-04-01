@@ -57,6 +57,7 @@ public class DataTable {
 		this.rawLua = dataLua.get("raw").checktable();
 
 		Set<String> excludedRecipesAndItems = asStringSet(excludeDataJson.getJSONArray("recipes-and-items"));
+		Set<String> excludedTechnologies = asStringSet(excludeDataJson.getJSONArray("technologies"));
 
 		nameMappingTechnologies = wikiNamingJson.getJSONObject("technologies");
 		nameMappingItemsRecipes = wikiNamingJson.getJSONObject("items and recipes");
@@ -74,7 +75,7 @@ public class DataTable {
 					entities.put(name, new EntityPrototype(protoLua.checktable(), name, type));
 				} else if (typeHiearchy.isAssignable("fluid", type)) {
 					fluids.put(name, new FluidPrototype(protoLua.checktable(), name, type));
-				} else if (typeHiearchy.isAssignable("technology", type)) {
+				} else if (typeHiearchy.isAssignable("technology", type) && !excludedTechnologies.contains(name)) {
 					technologies.put(name,
 							new TechPrototype(protoLua.checktable(), name, type, excludedRecipesAndItems));
 				} else if (typeHiearchy.isAssignable("equipment", type)) {

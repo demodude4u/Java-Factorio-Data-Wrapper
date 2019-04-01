@@ -182,5 +182,17 @@
   "artillery-flare": "particle",
   "cliff": "entity",
   "artillery-wagon": "rolling-stock",
-  "noise-expression": null
+  "noise-expression": null,
+  "infinity-pipe": "pipe",
+  "copy-paste-tool": "selection-tool",
+  "wind-sound": null,
+  "highlight-box": "entity",
+  "spectator-controller": null,
+  "editor-controller": null,
+  "speech-bubble": "entity",
+  "mouse-cursor": null,
+  "sprite": null,
+  "heat-interface": "entity-with-health",
+  "upgrade-item": "selection-tool",
+  "shortcut" : null
 }

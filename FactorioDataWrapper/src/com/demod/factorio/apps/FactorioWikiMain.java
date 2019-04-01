@@ -25,6 +25,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.luaj.vm2.LuaValue;
 
+import com.demod.factorio.Config;
 import com.demod.factorio.DataTable;
 import com.demod.factorio.FactorioData;
 import com.demod.factorio.ModInfo;
@@ -86,12 +87,12 @@ public class FactorioWikiMain {
 	public static final Map<String, Integer> wiki_ScienceOrdering = new LinkedHashMap<>();
 
 	static {
-		wiki_ScienceOrdering.put("science-pack-1", 1);
-		wiki_ScienceOrdering.put("science-pack-2", 2);
-		wiki_ScienceOrdering.put("science-pack-3", 3);
-		wiki_ScienceOrdering.put("military-science-pack", 4);
+		wiki_ScienceOrdering.put("automation-science-pack", 1);
+		wiki_ScienceOrdering.put("logistic-science-pack", 2);
+		wiki_ScienceOrdering.put("military-science-pack", 3);
+		wiki_ScienceOrdering.put("chemical-science-pack", 4);
 		wiki_ScienceOrdering.put("production-science-pack", 5);
-		wiki_ScienceOrdering.put("high-tech-science-pack", 6);
+		wiki_ScienceOrdering.put("utility-science-pack", 6);
 		wiki_ScienceOrdering.put("space-science-pack", 7);
 	}
 
@@ -147,7 +148,9 @@ public class FactorioWikiMain {
 		baseInfo = new ModInfo(
 				Utils.readJsonFromStream(new FileInputStream(new File(FactorioData.factorio, "data/base/info.json"))));
 
-		folder = new File("output/" + baseInfo.getVersion());
+		String outputPath = Config.get().optString("output", "output");
+
+		folder = new File(outputPath + File.separator + baseInfo.getVersion());
 		folder.mkdirs();
 
 		Map<String, WikiTypeMatch> wikiTypes = generateWikiTypes(table);
@@ -226,14 +229,54 @@ public class FactorioWikiMain {
 							}
 						}
 					}
-					
-					if (e.getType().equals("car") || e.getType().equals("locomotive") || e.getType().contains("wagon")) {
+
+					if (e.getType().equals("car") || e.getType().equals("locomotive")
+							|| e.getType().contains("wagon")) {
 						mapColor = null; // these entity types are not drawn on map normally
 					}
 
 					double health = e.lua().get("max_health").todouble();
+					LuaValue minableLua = e.lua().get("minable");
+					LuaValue energySource = e.lua().get("energy_source");
+					if (energySource.isnil() && !e.lua().get("burner").isnil())
+						energySource = e.lua().get("burner");
+					double emissions = 0.0;
+					
+					if (!energySource.isnil()) {
+						LuaValue prototypeEmissions = energySource.get("emissions_per_second_per_watt");
+						LuaValue energyUsageLua = e.lua().get("energy_usage");
+						if (energyUsageLua.isnil() && !e.lua().get("energy_consumption").isnil())
+							energyUsageLua = e.lua().get("energy_consumption");
+						else if (energyUsageLua.isnil() && !e.lua().get("consumption").isnil())
+							energyUsageLua = e.lua().get("consumption");
+						
+						if (!energyUsageLua.isnil()) {
+							double multiplier = 1;
+							char magnitudeChar = energyUsageLua.toString().charAt(energyUsageLua.length() - 2);
+							switch (magnitudeChar)
+							  {
+							    case 'k':
+							    case 'K': multiplier = 1.0e+3; break;
+							    case 'M': multiplier = 1.0e+6; break;
+							    case 'G': multiplier = 1.0e+9; break;
+							    case 'T': multiplier = 1.0e+12; break;
+							    case 'P': multiplier = 1.0e+15; break;
+							    case 'E': multiplier = 1.0e+18; break;
+							    case 'Z': multiplier = 1.0e+21; break;
+							    case 'Y': multiplier = 1.0e+24; break;
+							    default:
+							    	System.err.println("Unknown magnitude char in energy usage of " + e.getName() +  ": " + magnitudeChar);
+							  }
+							
+							double energyUsage = Double.parseDouble(energyUsageLua.toString().substring(0, energyUsageLua.length() - 2));
+							energyUsage *= multiplier;
+							if (!prototypeEmissions.isnil())
+								emissions = prototypeEmissions.todouble() * energyUsage;
+						}
+						
+					}
 
-					if (mapColor != null || health > 0) {
+					if (mapColor != null || health > 0 || !minableLua.isnil() || emissions > 0) {
 						JSONObject itemJson = createOrderedJSONObject();
 						json.put(table.getWikiEntityName(e.getName()), itemJson);
 
@@ -242,26 +285,31 @@ public class FactorioWikiMain {
 									mapColor.getGreen(), mapColor.getBlue()));
 						if (health > 0)
 							itemJson.put("health", health);
+						if (!minableLua.isnil())
+							itemJson.put("mining-time", minableLua.get("mining_time").todouble());
+						if (emissions > 0) {
+							itemJson.put("pollution", Math.round(emissions * 100) / 100.0);
+						}
 					}
 				});
-		
-		// not entities but lets just.. ignore that		
+
+		// not entities but lets just.. ignore that
 		table.getTiles().values().stream().sorted((t1, t2) -> t1.getName().compareTo(t2.getName()))
 				.filter(t -> table.hasWikiEntityName(t.getName())).forEach(t -> {
-					Color mapColor = null;					
+					Color mapColor = null;
 					LuaValue mapColorLua = t.lua().get("map_color");
 					if (!mapColorLua.isnil())
 						mapColor = Utils.parseColor(mapColorLua);
-					
+
 					if (mapColor != null) {
 						JSONObject itemJson = createOrderedJSONObject();
 						json.put(table.getWikiEntityName(t.getName()), itemJson);
 
-						itemJson.put("map-color", String.format("%02x%02x%02x", mapColor.getRed(),
-									mapColor.getGreen(), mapColor.getBlue()));
+						itemJson.put("map-color", String.format("%02x%02x%02x", mapColor.getRed(), mapColor.getGreen(),
+								mapColor.getBlue()));
 					}
 				});
-		
+
 		return json;
 	}
 
