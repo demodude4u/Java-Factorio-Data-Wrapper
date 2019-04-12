@@ -633,10 +633,15 @@ public class FactorioWikiMain {
 							itemJson.put("allows", new JSONArray(
 									new String[] { table.getWikiTechnologyName(tech.getBonusName()) + ", 2" }));
 						} else {
+							
+							String lastLevel;
+							if (tech.isMaxLevelInfinite() || tech.getBonusGroup().get(tech.getBonusGroup().size() -1).isMaxLevelInfinite() )
+								lastLevel = "&infin;";
+							else
+								lastLevel = String.valueOf(tech.getBonusGroup().size());
 							itemJson.put("allows",
 									new JSONArray(new String[] { table.getWikiTechnologyName(tech.getBonusName())
-											+ ", 2-"
-											+ (tech.isMaxLevelInfinite() ? "&infin;" : tech.getBonusGroup().size()) }));
+											+ ", 2-" + lastLevel }));
 						}
 					}
 
