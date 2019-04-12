@@ -61,6 +61,10 @@ public class RecipePrototype extends DataPrototype {
 		handCraftable = category.equals("crafting");
 	}
 
+	public String getCategory() {
+		return category;
+	}
+
 	public double getEnergyRequired() {
 		return energyRequired;
 	}

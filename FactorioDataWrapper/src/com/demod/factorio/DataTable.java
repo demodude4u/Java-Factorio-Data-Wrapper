@@ -1,5 +1,6 @@
 package com.demod.factorio;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -48,6 +49,8 @@ public class DataTable {
 	private final Map<String, TechPrototype> technologies = new LinkedHashMap<>();
 	private final Map<String, EquipmentPrototype> equipments = new LinkedHashMap<>();
 	private final Map<String, TilePrototype> tiles = new LinkedHashMap<>();
+	
+	private final Map<String, List<EntityPrototype>> craftingCategories = new LinkedHashMap<>();
 
 	private final Set<String> worldInputs = new LinkedHashSet<>();
 
@@ -122,6 +125,16 @@ public class DataTable {
 						}
 					}
 				});
+		
+		this.entities.values().stream().filter(e -> !excludedRecipesAndItems.contains(e.getName())).forEach(e -> {
+			LuaValue categories = e.lua().get("crafting_categories");
+			if (!categories.isnil()) {
+				Utils.forEach(categories, cat -> {
+					this.craftingCategories.putIfAbsent(cat.toString(), new ArrayList<EntityPrototype>());
+					this.craftingCategories.get(cat.toString()).add(e);
+				});
+			}
+		});
 	}
 
 	private Set<String> asStringSet(JSONArray jsonArray) {
@@ -144,6 +157,10 @@ public class DataTable {
 
 	public Map<String, EquipmentPrototype> getEquipments() {
 		return equipments;
+	}
+	
+	public Map<String, List<EntityPrototype>> getCraftingCategories() {
+		return craftingCategories;
 	}
 
 	public Optional<RecipePrototype> getExpensiveRecipe(String name) {
