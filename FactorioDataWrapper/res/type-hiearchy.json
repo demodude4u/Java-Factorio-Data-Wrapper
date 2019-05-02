@@ -68,7 +68,7 @@
   "particle": "entity",
   "pipe": "entity-with-health",
   "pipe-to-ground": "entity-with-health",
-  "player": "entity-with-health",
+  "character": "entity-with-health",
   "player-port": "entity-with-health",
   "programmable-speaker": "entity-with-health",
   "projectile": "entity",
