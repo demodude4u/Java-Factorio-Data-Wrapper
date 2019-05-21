@@ -54,7 +54,16 @@ public final class Utils {
 			} else if (value.isboolean()) {
 				return (T) (Boolean) value.toboolean();
 			} else if (value.isnumber()) {
-				return (T) (Double) value.todouble();
+				Double number = value.todouble();
+				if (number == Double.POSITIVE_INFINITY) {
+					return (T) "infinity";
+				} else if (number == Double.NEGATIVE_INFINITY) {
+					return (T) "-infinity";
+				} else if (number == Double.NaN) {
+					return (T) "NaN";
+				} else {
+					return (T) number;
+				}
 			}
 			return (T) value.tojstring();
 		}
