@@ -194,5 +194,6 @@
   "sprite": null,
   "heat-interface": "entity-with-health",
   "upgrade-item": "selection-tool",
-  "shortcut" : null
+  "shortcut" : null,
+  "trigger-target-type" : null
 }
