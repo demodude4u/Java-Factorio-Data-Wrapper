@@ -141,6 +141,11 @@ public class ModLoader {
 				}
 			}
 		}
+		// Make sure core loads first
+		if (order.contains("core") && order.indexOf("core") != 0) {
+			order.remove("core");
+			order.add(0, "core");
+		}
 		return order.stream().map(this::getMod).map(Optional::get).collect(Collectors.toList());
 	}
 
