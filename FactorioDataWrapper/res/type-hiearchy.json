@@ -75,7 +75,6 @@
   "pump": "entity-with-health",
   "radar": "entity-with-health",
   "rail": "entity-with-health",
-  "rail-category": null,
   "rail-remnants": "corpse",
   "rail-signal": "rail-signal-base",
   "rail-signal-base": "entity-with-health",
