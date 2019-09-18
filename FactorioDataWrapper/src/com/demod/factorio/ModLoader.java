@@ -12,6 +12,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -150,7 +151,9 @@ public class ModLoader {
 	}
 
 	public void loadFolder(File folder) throws IOException {
-		for (File file : folder.listFiles()) {
+		File[] files = folder.listFiles();
+		Objects.requireNonNull(files, folder.toString());
+		for (File file : files) {
 			if (modExclude.contains(file.getName())) {
 				continue;
 			}
