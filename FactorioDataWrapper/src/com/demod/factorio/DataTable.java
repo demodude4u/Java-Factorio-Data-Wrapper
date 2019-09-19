@@ -35,7 +35,7 @@ public class DataTable {
 		entityItemNameMapping.put("straight-rail", "rail");
 	}
 
-	private final TypeHiearchy typeHiearchy;
+	private final TypeHierarchy typeHierarchy;
 	private final LuaTable rawLua;
 
 	private final JSONObject nameMappingTechnologies;
@@ -54,9 +54,9 @@ public class DataTable {
 
 	private final Set<String> worldInputs = new LinkedHashSet<>();
 
-	public DataTable(TypeHiearchy typeHiearchy, LuaTable dataLua, JSONObject excludeDataJson,
+	public DataTable(TypeHierarchy typeHierarchy, LuaTable dataLua, JSONObject excludeDataJson,
 			JSONObject wikiNamingJson) {
-		this.typeHiearchy = typeHiearchy;
+		this.typeHierarchy = typeHierarchy;
 		this.rawLua = dataLua.get("raw").checktable();
 
 		Set<String> excludedRecipesAndItems = asStringSet(excludeDataJson.getJSONArray("recipes-and-items"));
@@ -69,21 +69,21 @@ public class DataTable {
 			Utils.forEach(v.checktable(), protoLua -> {
 				String type = protoLua.get("type").tojstring();
 				String name = protoLua.get("name").tojstring();
-				if (typeHiearchy.isAssignable("item", type) && !excludedRecipesAndItems.contains(name)) {
+				if (typeHierarchy.isAssignable("item", type) && !excludedRecipesAndItems.contains(name)) {
 					items.put(name, new ItemPrototype(protoLua.checktable(), name, type));
-				} else if (typeHiearchy.isAssignable("recipe", type) && !excludedRecipesAndItems.contains(name)) {
+				} else if (typeHierarchy.isAssignable("recipe", type) && !excludedRecipesAndItems.contains(name)) {
 					recipes.put(name, new RecipePrototype(protoLua.checktable(), name, type, false));
 					expensiveRecipes.put(name, new RecipePrototype(protoLua.checktable(), name, type, true));
-				} else if (typeHiearchy.isAssignable("entity", type)) {
+				} else if (typeHierarchy.isAssignable("entity", type)) {
 					entities.put(name, new EntityPrototype(protoLua.checktable(), name, type));
-				} else if (typeHiearchy.isAssignable("fluid", type)) {
+				} else if (typeHierarchy.isAssignable("fluid", type)) {
 					fluids.put(name, new FluidPrototype(protoLua.checktable(), name, type));
-				} else if (typeHiearchy.isAssignable("technology", type) && !excludedTechnologies.contains(name)) {
+				} else if (typeHierarchy.isAssignable("technology", type) && !excludedTechnologies.contains(name)) {
 					technologies.put(name,
 							new TechPrototype(protoLua.checktable(), name, type, excludedRecipesAndItems));
-				} else if (typeHiearchy.isAssignable("equipment", type)) {
+				} else if (typeHierarchy.isAssignable("equipment", type)) {
 					equipments.put(name, new EquipmentPrototype(protoLua.checktable(), name, type));
-				} else if (typeHiearchy.isAssignable("tile", type)) {
+				} else if (typeHierarchy.isAssignable("tile", type)) {
 					tiles.put(name, new TilePrototype(protoLua.checktable(), name, type));
 				}
 			});
@@ -235,8 +235,8 @@ public class DataTable {
 		return tiles;
 	}
 
-	public TypeHiearchy getTypeHiearchy() {
-		return typeHiearchy;
+	public TypeHierarchy getTypeHierarchy() {
+		return typeHierarchy;
 	}
 
 	private String getWikiDefaultName(String name) {
