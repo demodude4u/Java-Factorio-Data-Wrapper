@@ -460,20 +460,20 @@ public class FactorioWikiMain {
 	}
 
 	/**
-	 * 
+	 *
 	 * List all hand-craftable recipes.
-	 * 
+	 *
 	 * <pre>
 	 * |recipe = Time, [ENERGY] + [Ingredient Name], [Ingredient Count] + ...  = [Ingredient Name], [Ingredient Count] + ...
 	 * </pre>
-	 * 
+	 *
 	 * If there is only one output ingredient with just 1 count, do not include the
 	 * = part
-	 * 
+	 *
 	 * <pre>
 	 * |total-raw = Time, [ENERGY] + [Ingredient Name], [Ingredient Count] + ...
 	 * </pre>
-	 * 
+	 *
 	 * @param table
 	 * @param mappingJson
 	 */
@@ -552,12 +552,12 @@ public class FactorioWikiMain {
 							});
 				}
 			}
-			
+
 			// category must be same for expensive and normal
-			String category = normalRecipes.get(name).getCategory();			
+			String category = normalRecipes.get(name).getCategory();
 			Map<String, List<EntityPrototype>> craftingCategories = table.getCraftingCategories();
 			item.put("producers", craftingCategories.get(category).stream().sorted((e1, e2) -> e1.getName().compareTo(e2.getName())).map(e -> table.getWikiEntityName(e.getName())).collect(toJsonArray()));
-			
+
 		});
 
 		return json;
@@ -633,7 +633,7 @@ public class FactorioWikiMain {
 							itemJson.put("allows", new JSONArray(
 									new String[] { table.getWikiTechnologyName(tech.getBonusName()) + ", 2" }));
 						} else {
-							
+
 							String lastLevel;
 							if (tech.isMaxLevelInfinite() || tech.getBonusGroup().get(tech.getBonusGroup().size() -1).isMaxLevelInfinite() )
 								lastLevel = "&infin;";
@@ -681,10 +681,10 @@ public class FactorioWikiMain {
 		Multimap<String, String> links = LinkedHashMultimap.create();
 		Multimap<String, String> leafs = LinkedHashMultimap.create();
 
-		table.getTypeHiearchy().getParents().forEach((n, p) -> {
+		table.getTypeHierarchy().getParents().forEach((n, p) -> {
 			links.put(p, n);
 		});
-		table.getTypeHiearchy().getRoots().forEach(n -> {
+		table.getTypeHierarchy().getRoots().forEach(n -> {
 			links.put("__ROOT__", n);
 		});
 
@@ -693,8 +693,8 @@ public class FactorioWikiMain {
 				String type = protoLua.get("type").tojstring();
 				String name = protoLua.get("name").tojstring();
 				leafs.put(type, name);
-				if (!table.getTypeHiearchy().getParents().containsKey(type)
-						&& !table.getTypeHiearchy().getRoots().contains(type)) {
+				if (!table.getTypeHierarchy().getParents().containsKey(type)
+						&& !table.getTypeHierarchy().getRoots().contains(type)) {
 					System.err.println("MISSING PARENT FOR TYPE: " + type + " (" + name + ")");
 				}
 			});

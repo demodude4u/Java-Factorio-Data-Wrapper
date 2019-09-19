@@ -187,7 +187,7 @@ public class FactorioData {
 						.collect(Collectors.joining(";")).replace('\\', '/');
 		// System.out.println("LUA_PATH: " + luaPath);
 
-		TypeHiearchy typeHiearchy = new TypeHiearchy(Utils
+		TypeHierarchy typeHiearchy = new TypeHierarchy(Utils
 				.readJsonFromStream(FactorioData.class.getClassLoader().getResourceAsStream("type-hiearchy.json")));
 
 		Box<Mod> currentMod = Box.of(modLoader.getMod("core").get());

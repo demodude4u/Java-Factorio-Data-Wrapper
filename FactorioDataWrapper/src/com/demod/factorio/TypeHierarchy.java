@@ -7,11 +7,11 @@ import java.util.Set;
 
 import org.json.JSONObject;
 
-public class TypeHiearchy {
+public class TypeHierarchy {
 	private final Map<String, String> parents = new HashMap<>();
 	private final Set<String> roots = new LinkedHashSet<>();
 
-	public TypeHiearchy(JSONObject json) {
+	public TypeHierarchy(JSONObject json) {
 		Utils.<Object>forEach(json, (t, p) -> {
 			if (p instanceof String) {
 				parents.put(t, (String) p);
