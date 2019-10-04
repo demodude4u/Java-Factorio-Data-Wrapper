@@ -477,7 +477,7 @@ public class FactorioWikiMain {
 	 * @param table
 	 * @param mappingJson
 	 */
-	private static JSONObject wiki_Recipes(DataTable table) throws FileNotFoundException {
+	private static JSONObject wiki_Recipes(DataTable table) {
 		JSONObject json = createOrderedJSONObject();
 
 		Map<String, RecipePrototype> normalRecipes = table.getRecipes();

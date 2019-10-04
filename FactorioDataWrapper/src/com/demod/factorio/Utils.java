@@ -263,7 +263,7 @@ public final class Utils {
 	}
 
 	@SuppressWarnings("resource")
-	public static JSONObject readJsonFromStream(InputStream in) throws JSONException, IOException {
+	public static JSONObject readJsonFromStream(InputStream in) throws JSONException {
 		return new JSONObject(new Scanner(in, "UTF-8").useDelimiter("\\A").next());
 	}
 
