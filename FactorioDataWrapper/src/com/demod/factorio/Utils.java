@@ -212,10 +212,19 @@ public final class Utils {
 	}
 
 	public static Color parseColor(LuaValue value) {
-		float red = value.get("r").tofloat();
-		float green = value.get("g").tofloat();
-		float blue = value.get("b").tofloat();
-		float alpha = value.get("a").tofloat();
+		float red, green, blue, alpha;
+		if (!value.get("r").isnil()) {
+			red = value.get("r").tofloat();
+			green = value.get("g").tofloat();
+			blue = value.get("b").tofloat();
+			alpha = !value.get("a").isnil() ? value.get("a").tofloat() : 1.0f;
+		} else { // color defined as array/list
+			red = value.get(1).tofloat();
+			green = value.get(2).tofloat();
+			blue = value.get(3).tofloat();
+			alpha = value.length() == 4 ? value.get(4).tofloat() : 1.0f;
+		}
+
 		if (red > 1 || green > 1 || blue > 1 || alpha > 1) {
 			red /= 255;
 			green /= 255;
