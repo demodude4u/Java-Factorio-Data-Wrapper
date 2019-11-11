@@ -103,7 +103,7 @@ public class FactorioXMLMain {
 	}
 
 	public static void main(String[] args)
-			throws JSONException, IOException, ParserConfigurationException, TransformerException,
+			throws JSONException, IOException, ParserConfigurationException,
 			ClassNotFoundException, InstantiationException, IllegalAccessException, ClassCastException {
 		DataTable table = FactorioData.getTable();
 		ModInfo baseInfo = new ModInfo(
