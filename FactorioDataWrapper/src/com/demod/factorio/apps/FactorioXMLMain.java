@@ -9,7 +9,6 @@ import java.util.Map;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
 
 import org.json.JSONException;
 import org.w3c.dom.Attr;
@@ -102,8 +101,7 @@ public class FactorioXMLMain {
 		writer.write(doc, output);
 	}
 
-	public static void main(String[] args)
-			throws JSONException, IOException, ParserConfigurationException,
+	public static void main(String[] args) throws JSONException, IOException, ParserConfigurationException,
 			ClassNotFoundException, InstantiationException, IllegalAccessException, ClassCastException {
 		DataTable table = FactorioData.getTable();
 		ModInfo baseInfo = new ModInfo(

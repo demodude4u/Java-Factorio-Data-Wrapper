@@ -84,7 +84,13 @@ public class FactorioData {
 		return modIconCache.computeIfAbsent(name, n -> {
 			LuaValue iconLua = prototype.lua().get("icon");
 			if (!iconLua.isnil()) {
-				return getModImage(iconLua.tojstring());
+				if (prototype.lua().get("icon_mipmaps").isnil()) { // simple icon
+					return getModImage(iconLua.tojstring());
+				}
+
+				// icon uses mipmaps
+				int iconSize = prototype.lua().get("icon_size").toint();
+				return getModImage(iconLua.tojstring()).getSubimage(0, 0, iconSize, iconSize);
 			}
 			LuaValue iconsLua = prototype.lua().get("icons");
 			BufferedImage icon = new BufferedImage(32, 32, BufferedImage.TYPE_INT_ARGB);

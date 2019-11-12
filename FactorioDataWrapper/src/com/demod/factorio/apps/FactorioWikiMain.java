@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Collection;
@@ -231,8 +230,8 @@ public class FactorioWikiMain {
 						}
 					}
 
-					if (e.getType().equals("car") || e.getType().equals("locomotive")
-							|| e.getType().contains("wagon") || e.getType().equals("train-stop")) {
+					if (e.getType().equals("car") || e.getType().equals("locomotive") || e.getType().contains("wagon")
+							|| e.getType().equals("train-stop")) {
 						mapColor = null; // these entity types are not drawn on map normally
 					}
 
@@ -250,7 +249,8 @@ public class FactorioWikiMain {
 							emissions = prototypeEmissions.todouble();
 					}
 
-					if (mapColor != null || health > 0 || !minableLua.isnil() || emissions > 0 || !resistances.isnil()) {
+					if (mapColor != null || health > 0 || !minableLua.isnil() || emissions > 0
+							|| !resistances.isnil()) {
 						JSONObject itemJson = createOrderedJSONObject();
 						json.put(table.getWikiEntityName(e.getName()), itemJson);
 
@@ -556,7 +556,9 @@ public class FactorioWikiMain {
 			// category must be same for expensive and normal
 			String category = normalRecipes.get(name).getCategory();
 			Map<String, List<EntityPrototype>> craftingCategories = table.getCraftingCategories();
-			item.put("producers", craftingCategories.get(category).stream().sorted((e1, e2) -> e1.getName().compareTo(e2.getName())).map(e -> table.getWikiEntityName(e.getName())).collect(toJsonArray()));
+			item.put("producers",
+					craftingCategories.get(category).stream().sorted((e1, e2) -> e1.getName().compareTo(e2.getName()))
+							.map(e -> table.getWikiEntityName(e.getName())).collect(toJsonArray()));
 
 		});
 
@@ -635,13 +637,13 @@ public class FactorioWikiMain {
 						} else {
 
 							String lastLevel;
-							if (tech.isMaxLevelInfinite() || tech.getBonusGroup().get(tech.getBonusGroup().size() -1).isMaxLevelInfinite() )
+							if (tech.isMaxLevelInfinite()
+									|| tech.getBonusGroup().get(tech.getBonusGroup().size() - 1).isMaxLevelInfinite())
 								lastLevel = "&infin;";
 							else
 								lastLevel = String.valueOf(tech.getBonusGroup().size());
-							itemJson.put("allows",
-									new JSONArray(new String[] { table.getWikiTechnologyName(tech.getBonusName())
-											+ ", 2-" + lastLevel }));
+							itemJson.put("allows", new JSONArray(new String[] {
+									table.getWikiTechnologyName(tech.getBonusName()) + ", 2-" + lastLevel }));
 						}
 					}
 
