@@ -65,7 +65,7 @@
   "movement-bonus-equipment": "equipment",
   "night-vision-equipment": "equipment",
   "noise-layer": null,
-  "particle": "entity",
+  "optimized-particle": null,
   "pipe": "entity-with-health",
   "pipe-to-ground": "entity-with-health",
   "character": "entity-with-health",
@@ -178,7 +178,7 @@
   "trivial-smoke": null,
   "artillery-projectile": "entity",
   "infinity-container": "logistic-container",
-  "artillery-flare": "particle",
+  "artillery-flare": "entity",
   "cliff": "entity",
   "artillery-wagon": "rolling-stock",
   "noise-expression": null,
@@ -194,5 +194,10 @@
   "heat-interface": "entity-with-health",
   "upgrade-item": "selection-tool",
   "shortcut" : null,
-  "trigger-target-type" : null
+  "trigger-target-type" : null,
+  "particle": "entity",
+  "custom-input" : null,
+  "sound" : null,
+  "burner-generator" : "entity-with-health",
+  "tile-effect" : null
 }
