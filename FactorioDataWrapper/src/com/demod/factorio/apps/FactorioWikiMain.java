@@ -164,7 +164,9 @@ public class FactorioWikiMain {
 		write(wiki_Entities(table, wikiTypes), "wiki-entities");
 		write(wiki_DataRawTree(table), "data-raw-tree");
 
-		// wiki_GenerateTintedIcons(table, new File(outputFolder, "icons"));
+		// Output icons outside of versions because these are a lot of icons and they
+		// dont change so often. No need to spam the repository with them.
+		wiki_GenerateIcons(table, new File(outputPath, "icons"));
 
 		Desktop.getDesktop().open(folder);
 	}
@@ -397,32 +399,35 @@ public class FactorioWikiMain {
 		return json;
 	}
 
-	@SuppressWarnings("unused")
-	private static void wiki_GenerateTintedIcons(DataTable table, File folder) {
+	private static void wiki_GenerateIcons(DataTable table, File folder) {
 		folder.mkdirs();
 
-		table.getRecipes().values().stream().forEach(recipe -> {
-			if (!recipe.lua().get("icons").isnil()) {
-				System.out.println();
-				System.out.println(recipe.getName());
-				Utils.debugPrintLua(recipe.lua().get("icons"));
-				try {
-					ImageIO.write(FactorioData.getIcon(recipe), "PNG", new File(folder, recipe.getName() + ".png"));
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+		table.getRecipes().values().stream().filter(
+				r -> (!table.getItems().containsKey(r.getName()) && !table.getFluids().containsKey(r.getName())))
+				.forEach(recipe -> {
+					try {
+						ImageIO.write(FactorioData.getIcon(recipe), "PNG",
+								new File(folder, table.getWikiRecipeName(recipe.getName()) + ".png"));
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				});
+
+		table.getItems().values().stream().forEach(item -> {
+			try {
+				ImageIO.write(FactorioData.getIcon(item), "PNG",
+						new File(folder, table.getWikiItemName(item.getName()) + ".png"));
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
 		});
-		table.getItems().values().stream().forEach(item -> {
-			if (!item.lua().get("icons").isnil()) {
-				System.out.println();
-				System.out.println(item.getName());
-				Utils.debugPrintLua(item.lua().get("icons"));
-				try {
-					ImageIO.write(FactorioData.getIcon(item), "PNG", new File(folder, item.getName() + ".png"));
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+
+		table.getFluids().values().stream().forEach(fluid -> {
+			try {
+				ImageIO.write(FactorioData.getIcon(fluid), "PNG",
+						new File(folder, table.getWikiFluidName(fluid.getName()) + ".png"));
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
 		});
 	}

@@ -49,7 +49,7 @@ public class DataTable {
 	private final Map<String, TechPrototype> technologies = new LinkedHashMap<>();
 	private final Map<String, EquipmentPrototype> equipments = new LinkedHashMap<>();
 	private final Map<String, TilePrototype> tiles = new LinkedHashMap<>();
-	
+
 	private final Map<String, List<EntityPrototype>> craftingCategories = new LinkedHashMap<>();
 
 	private final Set<String> worldInputs = new LinkedHashSet<>();
@@ -125,7 +125,7 @@ public class DataTable {
 						}
 					}
 				});
-		
+
 		this.entities.values().stream().filter(e -> !excludedRecipesAndItems.contains(e.getName())).forEach(e -> {
 			LuaValue categories = e.lua().get("crafting_categories");
 			if (!categories.isnil()) {
@@ -143,6 +143,10 @@ public class DataTable {
 		return ret;
 	}
 
+	public Map<String, List<EntityPrototype>> getCraftingCategories() {
+		return craftingCategories;
+	}
+
 	public Map<String, EntityPrototype> getEntities() {
 		return entities;
 	}
@@ -157,10 +161,6 @@ public class DataTable {
 
 	public Map<String, EquipmentPrototype> getEquipments() {
 		return equipments;
-	}
-	
-	public Map<String, List<EntityPrototype>> getCraftingCategories() {
-		return craftingCategories;
 	}
 
 	public Optional<RecipePrototype> getExpensiveRecipe(String name) {
@@ -252,6 +252,10 @@ public class DataTable {
 	}
 
 	public String getWikiEntityName(String name) {
+		return getWikiName(name, nameMappingItemsRecipes);
+	}
+
+	public String getWikiFluidName(String name) {
 		return getWikiName(name, nameMappingItemsRecipes);
 	}
 
