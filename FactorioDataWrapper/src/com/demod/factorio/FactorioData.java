@@ -93,27 +93,63 @@ public class FactorioData {
 				return getModImage(iconLua.tojstring()).getSubimage(0, 0, iconSize, iconSize);
 			}
 			LuaValue iconsLua = prototype.lua().get("icons");
-			BufferedImage icon = new BufferedImage(32, 32, BufferedImage.TYPE_INT_ARGB);
+			LuaValue iconsMipmaps = prototype.lua().get("icon_mipmaps");
+			// technically this shouldn't have a default, but all vanilla icons use size 64
+			int iconsSize = prototype.lua().get("icon_size").optint(64);
+
+			BufferedImage icon = new BufferedImage(iconsSize, iconsSize, BufferedImage.TYPE_INT_ARGB);
 			Graphics2D g = icon.createGraphics();
 			g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 			g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
 			AffineTransform pat = g.getTransform();
 			Utils.forEach(iconsLua, l -> {
-				BufferedImage image = getModImage(l.get("icon").tojstring());
+				BufferedImage layer = getModImage(l.get("icon").tojstring());
+				LuaValue layerMipmaps = l.get("icon_mipmaps");
+				int layerIconSize = l.get("icon_size").optint(iconsSize);
+				if (!layerMipmaps.isnil() && layerMipmaps.toint() > 0) {
+					layer = layer.getSubimage(0, 0, layerIconSize, layerIconSize);
+				} else if (!iconsMipmaps.isnil() && iconsMipmaps.toint() > 0) {
+					// sanity check is also in base game and gives warning in log
+					if (layer.getWidth() == layerIconSize) {
+						System.err.println("Icon layer of '" + name
+								+ "' has mimaps defined but isnt big enough to actually be using mipmaps.");
+					} else {
+						layer = layer.getSubimage(0, 0, layerIconSize, layerIconSize);
+					}
+				}
 
 				LuaValue tintLua = l.get("tint");
 				if (!tintLua.isnil()) {
-					image = Utils.tintImage(image, Utils.parseColor(tintLua));
+					layer = Utils.tintImage(layer, Utils.parseColor(tintLua));
 				}
 
-				double scale = l.get("scale").optdouble(1.0);
-				Point shift = Utils.parsePoint(l.get("shift"));
+				/*
+				 * All vanilla icons are defined with icon size 64. However, the game "expects"
+				 * icons to have a size of 32. Because these sizes differ, we observe the
+				 * behavior that the game does not apply shift and scale values directly.
+				 * Instead, shift and scale are multiplied by real_size / expected_size. In our
+				 * case, that means we have to multiply them by 2, because 64 / 32 = 2; this
+				 * value is represented by the below variable.
+				 */
+				int scaleAndShiftScaling = layerIconSize / 32;
 
+				double scale = l.get("scale").optdouble(1.0);
+				// scale has to be multiplied by scaleAndShiftScaling, see above
+				if (!l.get("scale").isnil()) // but only if it was defined
+					scale *= scaleAndShiftScaling;
+
+				// move icon into the center
+				g.translate((icon.getWidth() / 2) - (layer.getWidth() * (scale)) / 2,
+						(icon.getHeight() / 2) - (layer.getHeight() * (scale)) / 2);
+
+				Point shift = Utils.parsePoint(l.get("shift"));
+				// shift has to be multiplied by scaleAndShiftScaling, see above
+				shift.x *= scaleAndShiftScaling;
+				shift.y *= scaleAndShiftScaling;
 				g.translate(shift.x, shift.y);
-				g.translate((icon.getWidth() / 2) - (image.getWidth() * (scale)) / 2,
-						(icon.getHeight() / 2) - (image.getHeight() * (scale)) / 2);
+
 				g.scale(scale, scale);
-				g.drawImage(image, 0, 0, null);
+				g.drawImage(layer, 0, 0, null);
 				g.setTransform(pat);
 			});
 			g.dispose();

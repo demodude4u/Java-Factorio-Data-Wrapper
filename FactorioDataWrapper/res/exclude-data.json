@@ -39,7 +39,8 @@
 	  "crash-site-generator",
 	  "crash-site-lab-broken",
 	  "crash-site-lab-repaired",
-	  "pollution"
+	  "pollution",
+	  "burner-generator"
    ],
     "technologies":[
       "active-defense",
