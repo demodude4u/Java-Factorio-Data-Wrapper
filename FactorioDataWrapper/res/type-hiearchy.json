@@ -135,6 +135,7 @@
   "gate": "entity-with-health",
   "gui-style": null,
   "loader": "transport-belt-connectable",
+  "loader-1x1": "transport-belt-connectable",
   "offshore-pump": "entity-with-health",
   "power-switch": "entity-with-health",
   "rail-chain-signal": "rail-signal-base",
