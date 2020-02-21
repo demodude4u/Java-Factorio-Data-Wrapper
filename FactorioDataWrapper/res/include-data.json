@@ -1,0 +1,9 @@
+{
+  "entities":[
+    "cliff",
+    "defender",
+    "destroyer",
+    "distractor",  
+    "fish"
+  ]
+}

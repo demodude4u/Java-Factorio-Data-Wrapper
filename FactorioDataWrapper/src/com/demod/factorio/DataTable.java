@@ -52,15 +52,19 @@ public class DataTable {
 
 	private final Map<String, List<EntityPrototype>> craftingCategories = new LinkedHashMap<>();
 
+	// probably bad code style
+	private final Set<String> explicitelyIncludedEntities = new LinkedHashSet<>();;
+
 	private final Set<String> worldInputs = new LinkedHashSet<>();
 
 	public DataTable(TypeHierarchy typeHierarchy, LuaTable dataLua, JSONObject excludeDataJson,
-			JSONObject wikiNamingJson) {
+			JSONObject includeDataJson, JSONObject wikiNamingJson) {
 		this.typeHierarchy = typeHierarchy;
 		this.rawLua = dataLua.get("raw").checktable();
 
 		Set<String> excludedRecipesAndItems = asStringSet(excludeDataJson.getJSONArray("recipes-and-items"));
 		Set<String> excludedTechnologies = asStringSet(excludeDataJson.getJSONArray("technologies"));
+		this.explicitelyIncludedEntities.addAll(asStringSet(includeDataJson.getJSONArray("entities")));
 
 		nameMappingTechnologies = wikiNamingJson.getJSONObject("technologies");
 		nameMappingItemsRecipes = wikiNamingJson.getJSONObject("items and recipes");
@@ -169,6 +173,10 @@ public class DataTable {
 
 	public Map<String, RecipePrototype> getExpensiveRecipes() {
 		return expensiveRecipes;
+	}
+
+	public Set<String> getExplicitelyIncludedEntities() {
+		return explicitelyIncludedEntities;
 	}
 
 	public Optional<FluidPrototype> getFluid(String name) {

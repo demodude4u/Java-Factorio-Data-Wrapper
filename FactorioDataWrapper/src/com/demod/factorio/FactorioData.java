@@ -281,15 +281,14 @@ public class FactorioData {
 		loadStage(globals, loadOrder, currentMod, "/data-updates.lua");
 		loadStage(globals, loadOrder, currentMod, "/data-final-fixes.lua");
 
-		// XXX Do I need to do anything with control.lua things?
-		// http://lua-api.factorio.com/latest/Data-Lifecycle.html
-
 		JSONObject excludeDataJson = Utils
 				.readJsonFromStream(FactorioData.class.getClassLoader().getResourceAsStream("exclude-data.json"));
+		JSONObject includeDataJson = Utils
+				.readJsonFromStream(FactorioData.class.getClassLoader().getResourceAsStream("include-data.json"));
 		JSONObject wikiNamingJson = Utils
 				.readJsonFromStream(FactorioData.class.getClassLoader().getResourceAsStream("wiki-naming.json"));
 		DataTable dataTable = new DataTable(typeHiearchy, globals.get("data").checktable(), excludeDataJson,
-				wikiNamingJson);
+				includeDataJson, wikiNamingJson);
 
 		return dataTable;
 	}

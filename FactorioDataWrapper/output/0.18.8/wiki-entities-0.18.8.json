@@ -201,6 +201,7 @@
     "mining-time": 0.1,
     "pollution": 4
   },
+  "Cliff": {"map-color": "907757"},
   "Coal": {
     "map-color": "000000",
     "mining-time": 1
@@ -230,6 +231,45 @@
     "map-color": "006191",
     "health": 150,
     "mining-time": 0.1
+  },
+  "Defender capsule": {
+    "health": 60,
+    "resistances": {
+      "fire": {
+        "percent": 95,
+        "decrease": 0
+      },
+      "acid": {
+        "percent": 80,
+        "decrease": 0
+      }
+    }
+  },
+  "Destroyer capsule": {
+    "health": 60,
+    "resistances": {
+      "fire": {
+        "percent": 95,
+        "decrease": 0
+      },
+      "acid": {
+        "percent": 90,
+        "decrease": 0
+      }
+    }
+  },
+  "Distractor capsule": {
+    "health": 90,
+    "resistances": {
+      "fire": {
+        "percent": 95,
+        "decrease": 0
+      },
+      "acid": {
+        "percent": 85,
+        "decrease": 0
+      }
+    }
   },
   "Electric furnace": {
     "map-color": "006191",
@@ -330,6 +370,10 @@
       "percent": 90,
       "decrease": 0
     }}
+  },
+  "Raw fish": {
+    "health": 20,
+    "mining-time": 0.4
   },
   "Flamethrower turret": {
     "map-color": "eb751a",
