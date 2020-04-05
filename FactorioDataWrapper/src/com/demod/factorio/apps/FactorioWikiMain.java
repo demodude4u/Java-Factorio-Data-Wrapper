@@ -215,7 +215,9 @@ public class FactorioWikiMain {
 		});
 
 		table.getEntities().values().stream().sorted((e1, e2) -> e1.getName().compareTo(e2.getName()))
-				.filter(e -> !wikiTypes.get(e.getName()).toString().equals("N/A")).forEach(e -> {
+				.filter(e -> (!wikiTypes.get(e.getName()).toString().equals("N/A")
+						|| table.getExplicitelyIncludedEntities().contains(e.getName())))
+				.forEach(e -> {
 					Color mapColor = null;
 					LuaValue friendlyMapColorLua = e.lua().get("friendly_map_color");
 					if (!friendlyMapColorLua.isnil()) {
