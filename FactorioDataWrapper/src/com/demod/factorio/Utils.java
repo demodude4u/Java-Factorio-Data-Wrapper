@@ -192,6 +192,26 @@ public final class Utils {
 				.forEach(p -> consumer.accept(p.getKey(), p.getValue()));
 	}
 
+	public static BufferedImage halfAlphaImage(BufferedImage image) {
+		int w = image.getWidth();
+		int h = image.getHeight();
+		BufferedImage ret = new BufferedImage(w, h, image.getType());
+		int[] pixels = new int[w * h];
+		image.getRGB(0, 0, w, h, pixels, 0, w);
+		for (int i = 0; i < pixels.length; i++) {
+			int argb = pixels[i];
+
+			int a = ((argb >> 24) & 0xFF);
+			if (a != 0)
+				a = 128;
+			int rgb = (argb & 0xFFFFFF);
+
+			pixels[i] = (a << 24) | rgb;
+		}
+		ret.setRGB(0, 0, w, h, pixels, 0, w);
+		return ret;
+	}
+
 	private static boolean isLuaArray(LuaValue value) {
 		if (value.istable()) {
 			LuaValue k = LuaValue.NIL;
