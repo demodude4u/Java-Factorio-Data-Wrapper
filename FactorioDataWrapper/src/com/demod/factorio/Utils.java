@@ -200,13 +200,9 @@ public final class Utils {
 		image.getRGB(0, 0, w, h, pixels, 0, w);
 		for (int i = 0; i < pixels.length; i++) {
 			int argb = pixels[i];
-
 			int a = ((argb >> 24) & 0xFF);
-			if (a != 0)
-				a = 128;
-			int rgb = (argb & 0xFFFFFF);
 
-			pixels[i] = (a << 24) | rgb;
+			pixels[i] = ((a / 2) << 24) | (argb & 0xFFFFFF);
 		}
 		ret.setRGB(0, 0, w, h, pixels, 0, w);
 		return ret;
