@@ -40,35 +40,8 @@
 	  "crash-site-lab-broken",
 	  "crash-site-lab-repaired",
 	  "pollution",
-	  "burner-generator"
+	  "burner-generator",
+	  "item-unknown"
    ],
-    "technologies":[
-      "active-defense",
-      "basic-military",
-	  "demo-shooting-speed",
-	  "passive-defense",
-	  "analyse-ship",
-	  "basic-mapping",
-	  "improved-equipment",
-	  "electric-mining",
-	  "basic-electronics",
-	  "basic-mining",
-	  "electric-inserter",
-	  "basic-logistics",
-	  "repair-tech",
-	  "basic-optics",
-	  "demo-logistics",
-	  "demo-science-pack",
-	  "demo-shooting-speed-1",
-	  "demo-productivity-1",
-	  "demo-steel-processing",
-	  "demo-gates",
-	  "demo-military-equipment",
-	  "demo-munitions-upgrade",
-	  "demo-shooting-speed-4",
-	  "demo-steel-furnace",
-	  "demo-steel-poles",
-	  "demo-automation-upgrade",
-	  "radar"
-   ]
+    "technologies":[]
 }
