@@ -178,7 +178,7 @@ public class FactorioWikiMain {
 		return json;
 	}
 
-	private static <T> Collector<T, Object, JSONArray> toJsonArray() {
+	private static <T> Collector<T, ?, JSONArray> toJsonArray() {
 		return Collectors.collectingAndThen(Collectors.toList(), JSONArray::new);
 	}
 
