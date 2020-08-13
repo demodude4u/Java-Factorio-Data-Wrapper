@@ -287,7 +287,8 @@
 		"weapon-shooting-speed":"Weapon shooting speed",
 		"stronger-explosives":"Stronger explosives",
 		"space-science-pack":"Space science pack",
-		"steel-axe":"Steel axe"
+		"steel-axe":"Steel axe",
+		"spidertron":"Spidertron"
 	},
 	"items and recipes": {
 		"accumulator": "Accumulator",
@@ -554,6 +555,8 @@
 		"water": "Water",
 		"water-barrel": "Water barrel",
 		"wood": "Wood",
-		"wooden-chest": "Wooden chest"
+		"wooden-chest": "Wooden chest",
+		"spidertron-remote":"Spidertron remote",
+		"spidertron":"Spidertron"
 	}
 }

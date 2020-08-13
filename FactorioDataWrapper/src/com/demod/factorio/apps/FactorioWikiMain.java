@@ -235,7 +235,7 @@ public class FactorioWikiMain {
 					}
 
 					if (e.getType().equals("car") || e.getType().equals("locomotive") || e.getType().contains("wagon")
-							|| e.getType().equals("train-stop")) {
+							|| e.getType().equals("train-stop") || e.getType().equals("spider-vehicle")) {
 						mapColor = null; // these entity types are not drawn on map normally
 					}
 

@@ -41,7 +41,14 @@
 	  "crash-site-lab-repaired",
 	  "pollution",
 	  "burner-generator",
-	  "item-unknown"
+	  "item-unknown",
+	  "spidertron-rocket-launcher-1",
+	  "spidertron-rocket-launcher-2",
+	  "spidertron-rocket-launcher-3",
+	  "spidertron-rocket-launcher-4"
    ],
-    "technologies":[]
+    "technologies":[],
+    "fluids":[
+	  "fluid-unknown"
+	]
 }
