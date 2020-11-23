@@ -202,5 +202,9 @@
   "tile-effect" : null,
   "spidertron-remote" : "item",
   "spider-vehicle" : "vehicle",
-  "spider-leg" : "entity-with-health"
+  "spider-leg" : "entity-with-health",
+  "linked-container" : "entity-with-health",
+  "tips-and-tricks-item-category" : null,
+  "tips-and-tricks-item" : null
+  
 }
