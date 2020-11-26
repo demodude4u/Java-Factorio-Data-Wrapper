@@ -631,7 +631,7 @@ public class FactorioWikiMain {
 
 					int count = tech.getEffectiveCount();
 					itemJson.put("cost-multiplier", count);
-					itemJson.put("expensive-cost-multiplier", (count * 4));
+					itemJson.put("expensive-cost-multiplier", (count * tech.getExpensiveCostMultiplier()));
 
 					if (!tech.getPrerequisites().isEmpty()) {
 						itemJson.put("required-technologies",

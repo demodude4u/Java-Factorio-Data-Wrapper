@@ -60,6 +60,7 @@ public class TechPrototype extends DataPrototype {
 	private final List<String> recipeUnlocks = new ArrayList<>();
 	private final Optional<String> maxLevel;
 	private final boolean maxLevelInfinite;
+	private final double expensiveCostMultiplier;
 
 	private boolean firstBonus;
 	private boolean bonus;
@@ -108,6 +109,12 @@ public class TechPrototype extends DataPrototype {
 			maxLevel = Optional.empty();
 			maxLevelInfinite = false;
 		}
+
+		if (lua.get("ignore_tech_cost_multiplier").optboolean(false)) {
+			expensiveCostMultiplier = 1;
+		} else {
+			expensiveCostMultiplier = 4;
+		}
 	}
 
 	public Optional<IntUnaryOperator> getBonusCountFormula() {
@@ -136,11 +143,16 @@ public class TechPrototype extends DataPrototype {
 
 	public int getEffectiveCount() {
 		return (isBonus() && getBonusCountFormula().isPresent())
-				? getBonusCountFormula().get().applyAsInt(getBonusLevel()) : getCount();
+				? getBonusCountFormula().get().applyAsInt(getBonusLevel())
+				: getCount();
 	}
 
 	public List<Effect> getEffects() {
 		return effects;
+	}
+
+	public double getExpensiveCostMultiplier() {
+		return expensiveCostMultiplier;
 	}
 
 	public LinkedHashMap<String, Integer> getIngredients() {
