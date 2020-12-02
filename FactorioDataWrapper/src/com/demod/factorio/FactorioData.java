@@ -241,6 +241,19 @@ public class FactorioData {
 		globals.finder = new ResourceFinder() {
 			@Override
 			public InputStream findResource(String filename) {
+                            	String firstSegment = filename.split("\\/")[0];
+                                if (firstSegment.startsWith("__") && firstSegment.endsWith("__")) {
+                                    String modName = firstSegment.substring(2, firstSegment.length() - 2);
+                                    Optional<Mod> mod = modLoader.getMod(modName);
+                                    if(mod.isPresent()) {
+                                        try {
+                                            return mod.get().getResource(filename.replace(firstSegment, "")).orElse(null);
+ 					} catch (Exception e) {
+                                            e.printStackTrace();
+                                            throw new InternalError(e);
+					}
+                                    }
+                                }
 				if (filename.startsWith(SEARCH_MOD) && currentMod.get() != null) {
 					try {
 						return currentMod.get().getResource(filename.replace(SEARCH_MOD, "")).orElse(null);
