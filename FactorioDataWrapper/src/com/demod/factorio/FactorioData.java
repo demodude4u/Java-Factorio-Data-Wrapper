@@ -205,9 +205,6 @@ public class FactorioData {
 
 		File[] luaFolders = new File[] { //
 				new File(factorio, "data/core/lualib"), //
-				// new File(factorio, "data"), //
-				// new File(factorio, "data/core"), //
-				// new File(factorio, "data/base"), //
 		};
 
 		JSONArray modExcludeJson = Config.get().optJSONArray("mod-exclude");
@@ -241,19 +238,6 @@ public class FactorioData {
 		globals.finder = new ResourceFinder() {
 			@Override
 			public InputStream findResource(String filename) {
-                            	String firstSegment = filename.split("\\/")[0];
-                                if (firstSegment.startsWith("__") && firstSegment.endsWith("__")) {
-                                    String modName = firstSegment.substring(2, firstSegment.length() - 2);
-                                    Optional<Mod> mod = modLoader.getMod(modName);
-                                    if(mod.isPresent()) {
-                                        try {
-                                            return mod.get().getResource(filename.replace(firstSegment, "")).orElse(null);
- 					} catch (Exception e) {
-                                            e.printStackTrace();
-                                            throw new InternalError(e);
-					}
-                                    }
-                                }
 				if (filename.startsWith(SEARCH_MOD) && currentMod.get() != null) {
 					try {
 						return currentMod.get().getResource(filename.replace(SEARCH_MOD, "")).orElse(null);
@@ -266,6 +250,19 @@ public class FactorioData {
 							.getResourceAsStream(filename.replace(SEARCH_RESOURCE, "lua"));
 					// System.out.println(stream != null);
 					return stream;
+				} else if (filename.startsWith("__") && (filename.indexOf("__", 2) > -1)) {
+					int matchEnd = filename.indexOf("__", 2);
+					String modName = filename.substring(2, matchEnd);
+					Optional<Mod> mod = modLoader.getMod(modName);
+					if (!mod.isPresent()) {
+						throw new IllegalStateException("Mod does not exist: " + modName);
+					}
+					try {
+						return mod.get().getResource(filename.substring(matchEnd + 2)).orElse(null);
+					} catch (Exception e) {
+						e.printStackTrace();
+						throw new InternalError(e);
+					}
 				} else {
 					File file = new File(filename);
 					// System.out.println(file.exists());
