@@ -34,6 +34,7 @@ import org.luaj.vm2.Globals;
 import org.luaj.vm2.LuaTable;
 import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.lib.BaseLib;
+import org.luaj.vm2.lib.Bit32Lib;
 import org.luaj.vm2.lib.DebugLib;
 import org.luaj.vm2.lib.ResourceFinder;
 import org.luaj.vm2.lib.jse.JsePlatform;
@@ -242,6 +243,7 @@ public class FactorioData {
 		Globals globals = JsePlatform.standardGlobals();
 		globals.load(new BaseLib());
 		globals.load(new DebugLib());
+		globals.load(new Bit32Lib());
 		globals.load(new StringReader("package.path = package.path .. ';" + luaPath + "'"), "initLuaPath").call();
 		globals.finder = new ResourceFinder() {
 			@Override
