@@ -291,6 +291,14 @@ public class FactorioData {
 
 		List<Mod> loadOrder = modLoader.getModsInLoadOrder();
 
+		LuaValue modsTable = LuaValue.tableOf(0, loadOrder.size());
+		for (Mod mod : loadOrder) {
+			ModInfo info = mod.getInfo();
+			if (!info.getName().equals("core"))
+				modsTable.set(info.getName(), info.getVersion());
+		}
+		globals.set("mods", modsTable);
+
 		loadStage(globals, loadOrder, currentMod, "/settings.lua");
 		loadStage(globals, loadOrder, currentMod, "/settings-updates.lua");
 		loadStage(globals, loadOrder, currentMod, "/settings-final-fixes.lua");
