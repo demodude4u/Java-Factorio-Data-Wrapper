@@ -1,0 +1,3766 @@
+{
+  "Advanced electronics": {
+    "internal-name": "advanced-electronics",
+    "cost": [
+      [
+        "Time",
+        15
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 200,
+    "expensive-cost-multiplier": 800,
+    "required-technologies": ["Plastics"],
+    "allows": [
+      "Chemical science pack",
+      "Mining productivity",
+      "Modular armor",
+      "Modules",
+      "Stack inserter"
+    ],
+    "effects": ["Advanced circuit"]
+  },
+  "Advanced electronics 2": {
+    "internal-name": "advanced-electronics-2",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 300,
+    "expensive-cost-multiplier": 1200,
+    "required-technologies": ["Chemical science pack"],
+    "allows": [
+      "Effect transmission",
+      "Efficiency module 2, 2",
+      "Exoskeleton equipment",
+      "Power armor",
+      "Productivity module 2, 2",
+      "Speed module 2, 2",
+      "Utility science pack"
+    ],
+    "effects": ["Processing unit"]
+  },
+  "Advanced material processing": {
+    "internal-name": "advanced-material-processing",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 75,
+    "expensive-cost-multiplier": 300,
+    "required-technologies": [
+      "Logistic science pack",
+      "Steel processing"
+    ],
+    "allows": [
+      "Advanced material processing 2, 2",
+      "Concrete",
+      "Low density structure"
+    ],
+    "effects": ["Steel furnace"]
+  },
+  "Advanced material processing 2": {
+    "internal-name": "advanced-material-processing-2",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 250,
+    "expensive-cost-multiplier": 1000,
+    "required-technologies": [
+      "Advanced material processing",
+      "Chemical science pack"
+    ],
+    "allows": ["Production science pack"],
+    "effects": ["Electric furnace"]
+  },
+  "Advanced oil processing": {
+    "internal-name": "advanced-oil-processing",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 75,
+    "expensive-cost-multiplier": 300,
+    "required-technologies": ["Chemical science pack"],
+    "allows": [
+      "Coal liquefaction",
+      "Lubricant",
+      "Rocket fuel"
+    ],
+    "effects": [
+      "Advanced oil processing",
+      "Heavy oil cracking",
+      "Light oil cracking",
+      "Solid fuel from heavy oil",
+      "Solid fuel from light oil"
+    ]
+  },
+  "Artillery": {
+    "internal-name": "artillery",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Military science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ],
+      [
+        "Utility science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 2000,
+    "expensive-cost-multiplier": 8000,
+    "required-technologies": [
+      "Military 4, 4",
+      "Tank"
+    ],
+    "allows": [
+      "Artillery shell range",
+      "Artillery shell shooting speed"
+    ],
+    "effects": [
+      "Artillery shell",
+      "Artillery targeting remote",
+      "Artillery turret",
+      "Artillery wagon"
+    ]
+  },
+  "Artillery shell range": {
+    "internal-name": "artillery-shell-range-1",
+    "cost": [
+      [
+        "Time",
+        60
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Military science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ],
+      [
+        "Utility science pack",
+        1
+      ],
+      [
+        "Space science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 2000,
+    "expensive-cost-multiplier": 8000,
+    "required-technologies": [
+      "Artillery",
+      "Space science pack"
+    ],
+    "allows": ["Artillery shell range, 2-&infin;"]
+  },
+  "Artillery shell shooting speed": {
+    "internal-name": "artillery-shell-speed-1",
+    "cost": [
+      [
+        "Time",
+        60
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Military science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ],
+      [
+        "Utility science pack",
+        1
+      ],
+      [
+        "Space science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 2000,
+    "expensive-cost-multiplier": 8000,
+    "required-technologies": [
+      "Artillery",
+      "Space science pack"
+    ],
+    "allows": ["Artillery shell shooting speed, 2-&infin;"]
+  },
+  "Atomic bomb": {
+    "internal-name": "atomic-bomb",
+    "cost": [
+      [
+        "Time",
+        45
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Military science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ],
+      [
+        "Production science pack",
+        1
+      ],
+      [
+        "Utility science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 5000,
+    "expensive-cost-multiplier": 20000,
+    "required-technologies": [
+      "Kovarex enrichment process",
+      "Military 4, 4",
+      "Rocket control unit",
+      "Rocketry"
+    ],
+    "effects": ["Atomic bomb"]
+  },
+  "Automated rail transportation": {
+    "internal-name": "automated-rail-transportation",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 75,
+    "expensive-cost-multiplier": 300,
+    "required-technologies": ["Railway"],
+    "allows": ["Rail signals"],
+    "effects": ["Train stop"]
+  },
+  "Automation": {
+    "internal-name": "automation",
+    "cost": [
+      [
+        "Time",
+        10
+      ],
+      [
+        "Automation science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 10,
+    "expensive-cost-multiplier": 40,
+    "allows": ["Electronics"],
+    "effects": [
+      "Assembling machine 1",
+      "Long handed inserter"
+    ]
+  },
+  "Automation 2": {
+    "internal-name": "automation-2",
+    "cost": [
+      [
+        "Time",
+        15
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 40,
+    "expensive-cost-multiplier": 160,
+    "required-technologies": [
+      "Electronics",
+      "Logistic science pack",
+      "Steel processing"
+    ],
+    "allows": [
+      "Concrete",
+      "Fluid handling",
+      "Lab research speed"
+    ],
+    "effects": ["Assembling machine 2"]
+  },
+  "Automation 3": {
+    "internal-name": "automation-3",
+    "cost": [
+      [
+        "Time",
+        60
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ],
+      [
+        "Production science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 150,
+    "expensive-cost-multiplier": 600,
+    "required-technologies": [
+      "Production science pack",
+      "Speed module"
+    ],
+    "effects": ["Assembling machine 3"]
+  },
+  "Automobilism": {
+    "internal-name": "automobilism",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 100,
+    "expensive-cost-multiplier": 400,
+    "required-technologies": [
+      "Engine",
+      "Logistics 2, 2"
+    ],
+    "allows": ["Tank"],
+    "effects": ["Car"]
+  },
+  "Battery": {
+    "internal-name": "battery",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 150,
+    "expensive-cost-multiplier": 600,
+    "required-technologies": ["Sulfur processing"],
+    "allows": [
+      "Personal battery",
+      "Electric energy accumulators",
+      "Laser",
+      "Robotics"
+    ],
+    "effects": ["Battery"]
+  },
+  "Personal battery": {
+    "internal-name": "battery-equipment",
+    "cost": [
+      [
+        "Time",
+        15
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 50,
+    "expensive-cost-multiplier": 200,
+    "required-technologies": [
+      "Battery",
+      "Portable solar panel"
+    ],
+    "allows": ["Personal battery MK2"],
+    "effects": ["Personal battery"]
+  },
+  "Personal battery MK2": {
+    "internal-name": "battery-mk2-equipment",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 100,
+    "expensive-cost-multiplier": 400,
+    "required-technologies": [
+      "Personal battery",
+      "Low density structure",
+      "Power armor"
+    ],
+    "effects": ["Personal battery MK2"]
+  },
+  "Belt immunity equipment": {
+    "internal-name": "belt-immunity-equipment",
+    "cost": [
+      [
+        "Time",
+        15
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 50,
+    "expensive-cost-multiplier": 200,
+    "required-technologies": ["Portable solar panel"],
+    "effects": ["Belt immunity equipment"]
+  },
+  "Braking force": {
+    "internal-name": "braking-force-1",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 100,
+    "expensive-cost-multiplier": 400,
+    "required-technologies": [
+      "Chemical science pack",
+      "Railway"
+    ],
+    "allows": ["Braking force, 2-7"]
+  },
+  "Chemical science pack": {
+    "internal-name": "chemical-science-pack",
+    "cost": [
+      [
+        "Time",
+        10
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 75,
+    "expensive-cost-multiplier": 300,
+    "required-technologies": [
+      "Advanced electronics",
+      "Sulfur processing"
+    ],
+    "allows": [
+      "Advanced electronics 2, 2",
+      "Advanced material processing 2, 2",
+      "Advanced oil processing",
+      "Braking force",
+      "Electric energy distribution 2, 2",
+      "Laser",
+      "Low density structure",
+      "Military 3, 3",
+      "Uranium processing"
+    ],
+    "effects": ["Chemical science pack"]
+  },
+  "Circuit network": {
+    "internal-name": "circuit-network",
+    "cost": [
+      [
+        "Time",
+        15
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 100,
+    "expensive-cost-multiplier": 400,
+    "required-technologies": [
+      "Electronics",
+      "Logistic science pack"
+    ],
+    "effects": [
+      "Arithmetic combinator",
+      "Constant combinator",
+      "Decider combinator",
+      "Green wire",
+      "Power switch",
+      "Programmable speaker",
+      "Red wire"
+    ]
+  },
+  "Cliff explosives": {
+    "internal-name": "cliff-explosives",
+    "cost": [
+      [
+        "Time",
+        15
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 200,
+    "expensive-cost-multiplier": 800,
+    "required-technologies": [
+      "Explosives",
+      "Military 2, 2"
+    ],
+    "effects": ["Cliff explosives"]
+  },
+  "Coal liquefaction": {
+    "internal-name": "coal-liquefaction",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ],
+      [
+        "Production science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 200,
+    "expensive-cost-multiplier": 800,
+    "required-technologies": [
+      "Advanced oil processing",
+      "Production science pack"
+    ],
+    "effects": ["Coal liquefaction"]
+  },
+  "Concrete": {
+    "internal-name": "concrete",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 250,
+    "expensive-cost-multiplier": 1000,
+    "required-technologies": [
+      "Advanced material processing",
+      "Automation 2, 2"
+    ],
+    "allows": [
+      "Rocket silo",
+      "Uranium processing"
+    ],
+    "effects": [
+      "Concrete",
+      "Hazard concrete",
+      "Refined concrete",
+      "Refined hazard concrete"
+    ]
+  },
+  "Construction robotics": {
+    "internal-name": "construction-robotics",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 100,
+    "expensive-cost-multiplier": 400,
+    "required-technologies": ["Robotics"],
+    "allows": ["Personal roboport"],
+    "effects": [
+      "Construction robot",
+      "Passive provider chest",
+      "Storage chest",
+      "Roboport"
+    ]
+  },
+  "Defender": {
+    "internal-name": "defender",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Military science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 100,
+    "expensive-cost-multiplier": 400,
+    "required-technologies": ["Military science pack"],
+    "allows": [
+      "Distractor",
+      "Follower robot count"
+    ],
+    "effects": ["Defender capsule"]
+  },
+  "Destroyer": {
+    "internal-name": "destroyer",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Military science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ],
+      [
+        "Utility science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 300,
+    "expensive-cost-multiplier": 1200,
+    "required-technologies": [
+      "Distractor",
+      "Military 4, 4",
+      "Speed module"
+    ],
+    "allows": ["Follower robot count"],
+    "effects": ["Destroyer capsule"]
+  },
+  "Discharge defense": {
+    "internal-name": "discharge-defense-equipment",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Military science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 100,
+    "expensive-cost-multiplier": 400,
+    "required-technologies": [
+      "Laser turret",
+      "Military 3, 3",
+      "Power armor",
+      "Portable solar panel"
+    ],
+    "effects": [
+      "Discharge defense",
+      "Discharge defense remote"
+    ]
+  },
+  "Distractor": {
+    "internal-name": "distractor",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Military science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 200,
+    "expensive-cost-multiplier": 800,
+    "required-technologies": [
+      "Defender",
+      "Laser",
+      "Military 3, 3"
+    ],
+    "allows": ["Destroyer"],
+    "effects": ["Distractor capsule"]
+  },
+  "Effect transmission": {
+    "internal-name": "effect-transmission",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ],
+      [
+        "Production science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 75,
+    "expensive-cost-multiplier": 300,
+    "required-technologies": [
+      "Advanced electronics 2, 2",
+      "Production science pack"
+    ],
+    "effects": ["Beacon"]
+  },
+  "Efficiency module": {
+    "internal-name": "effectivity-module",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 50,
+    "expensive-cost-multiplier": 200,
+    "required-technologies": ["Modules"],
+    "allows": ["Efficiency module 2, 2"],
+    "effects": ["Efficiency module"]
+  },
+  "Efficiency module 2": {
+    "internal-name": "effectivity-module-2",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 75,
+    "expensive-cost-multiplier": 300,
+    "required-technologies": [
+      "Advanced electronics 2, 2",
+      "Efficiency module"
+    ],
+    "allows": [
+      "Efficiency module 3, 3",
+      "Power armor MK2"
+    ],
+    "effects": ["Efficiency module 2"]
+  },
+  "Efficiency module 3": {
+    "internal-name": "effectivity-module-3",
+    "cost": [
+      [
+        "Time",
+        60
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ],
+      [
+        "Production science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 300,
+    "expensive-cost-multiplier": 1200,
+    "required-technologies": [
+      "Efficiency module 2, 2",
+      "Production science pack"
+    ],
+    "allows": ["Spidertron"],
+    "effects": ["Efficiency module 3"]
+  },
+  "Electric energy accumulators": {
+    "internal-name": "electric-energy-accumulators",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 150,
+    "expensive-cost-multiplier": 600,
+    "required-technologies": [
+      "Battery",
+      "Electric energy distribution 1, 1"
+    ],
+    "allows": ["Space science pack"],
+    "effects": ["Accumulator"]
+  },
+  "Electric energy distribution 1": {
+    "internal-name": "electric-energy-distribution-1",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 120,
+    "expensive-cost-multiplier": 480,
+    "required-technologies": [
+      "Electronics",
+      "Logistic science pack",
+      "Steel processing"
+    ],
+    "allows": [
+      "Electric energy accumulators",
+      "Electric energy distribution 2, 2"
+    ],
+    "effects": [
+      "Big electric pole",
+      "Medium electric pole"
+    ]
+  },
+  "Electric energy distribution 2": {
+    "internal-name": "electric-energy-distribution-2",
+    "cost": [
+      [
+        "Time",
+        45
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 100,
+    "expensive-cost-multiplier": 400,
+    "required-technologies": [
+      "Chemical science pack",
+      "Electric energy distribution 1, 1"
+    ],
+    "effects": ["Substation"]
+  },
+  "Electric engine": {
+    "internal-name": "electric-engine",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 50,
+    "expensive-cost-multiplier": 200,
+    "required-technologies": ["Lubricant"],
+    "allows": [
+      "Exoskeleton equipment",
+      "Power armor",
+      "Robotics"
+    ],
+    "effects": ["Electric engine unit"]
+  },
+  "Electronics": {
+    "internal-name": "electronics",
+    "cost": [
+      [
+        "Time",
+        15
+      ],
+      [
+        "Automation science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 30,
+    "expensive-cost-multiplier": 120,
+    "required-technologies": ["Automation"],
+    "allows": [
+      "Automation 2, 2",
+      "Circuit network",
+      "Electric energy distribution 1, 1",
+      "Fast inserter",
+      "Solar energy"
+    ]
+  },
+  "Energy shield equipment": {
+    "internal-name": "energy-shield-equipment",
+    "cost": [
+      [
+        "Time",
+        15
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Military science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 150,
+    "expensive-cost-multiplier": 600,
+    "required-technologies": [
+      "Military science pack",
+      "Portable solar panel"
+    ],
+    "allows": ["Energy shield MK2 equipment"],
+    "effects": ["Energy shield"]
+  },
+  "Energy shield MK2 equipment": {
+    "internal-name": "energy-shield-mk2-equipment",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Military science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 200,
+    "expensive-cost-multiplier": 800,
+    "required-technologies": [
+      "Energy shield equipment",
+      "Low density structure",
+      "Military 3, 3",
+      "Power armor"
+    ],
+    "effects": ["Energy shield MK2"]
+  },
+  "Energy weapons damage": {
+    "internal-name": "energy-weapons-damage-1",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Military science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 100,
+    "expensive-cost-multiplier": 400,
+    "required-technologies": [
+      "Laser",
+      "Military science pack"
+    ],
+    "allows": ["Energy weapons damage, 2-&infin;"]
+  },
+  "Engine": {
+    "internal-name": "engine",
+    "cost": [
+      [
+        "Time",
+        15
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 100,
+    "expensive-cost-multiplier": 400,
+    "required-technologies": [
+      "Logistic science pack",
+      "Steel processing"
+    ],
+    "allows": [
+      "Automobilism",
+      "Fluid handling",
+      "Railway"
+    ],
+    "effects": ["Engine unit"]
+  },
+  "Exoskeleton equipment": {
+    "internal-name": "exoskeleton-equipment",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 50,
+    "expensive-cost-multiplier": 200,
+    "required-technologies": [
+      "Advanced electronics 2, 2",
+      "Electric engine",
+      "Portable solar panel"
+    ],
+    "allows": ["Spidertron"],
+    "effects": ["Exoskeleton"]
+  },
+  "Explosive rocketry": {
+    "internal-name": "explosive-rocketry",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Military science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 100,
+    "expensive-cost-multiplier": 400,
+    "required-technologies": [
+      "Military 3, 3",
+      "Rocketry"
+    ],
+    "effects": ["Explosive rocket"]
+  },
+  "Explosives": {
+    "internal-name": "explosives",
+    "cost": [
+      [
+        "Time",
+        15
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 100,
+    "expensive-cost-multiplier": 400,
+    "required-technologies": ["Sulfur processing"],
+    "allows": [
+      "Cliff explosives",
+      "Land mines",
+      "Military 4, 4",
+      "Rocketry",
+      "Tank"
+    ],
+    "effects": ["Explosives"]
+  },
+  "Fast inserter": {
+    "internal-name": "fast-inserter",
+    "cost": [
+      [
+        "Time",
+        15
+      ],
+      [
+        "Automation science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 30,
+    "expensive-cost-multiplier": 120,
+    "required-technologies": ["Electronics"],
+    "allows": ["Stack inserter"],
+    "effects": [
+      "Fast inserter",
+      "Filter inserter"
+    ]
+  },
+  "Flamethrower": {
+    "internal-name": "flamethrower",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Military science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 50,
+    "expensive-cost-multiplier": 200,
+    "required-technologies": [
+      "Flammables",
+      "Military science pack"
+    ],
+    "allows": ["Refined flammables"],
+    "effects": [
+      "Flamethrower",
+      "Flamethrower ammo",
+      "Flamethrower turret"
+    ]
+  },
+  "Flammables": {
+    "internal-name": "flammables",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 50,
+    "expensive-cost-multiplier": 200,
+    "required-technologies": ["Oil processing"],
+    "allows": [
+      "Flamethrower",
+      "Rocket fuel",
+      "Rocketry"
+    ]
+  },
+  "Fluid handling": {
+    "internal-name": "fluid-handling",
+    "cost": [
+      [
+        "Time",
+        15
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 50,
+    "expensive-cost-multiplier": 200,
+    "required-technologies": [
+      "Automation 2, 2",
+      "Engine"
+    ],
+    "allows": [
+      "Fluid wagon",
+      "Oil processing"
+    ],
+    "effects": [
+      "Empty barrel",
+      "Empty crude oil barrel",
+      "Empty heavy oil barrel",
+      "Empty light oil barrel",
+      "Empty lubricant barrel",
+      "Empty petroleum gas barrel",
+      "Empty sulfuric acid barrel",
+      "Empty water barrel",
+      "Fill crude oil barrel",
+      "Fill heavy oil barrel",
+      "Fill light oil barrel",
+      "Fill lubricant barrel",
+      "Fill petroleum gas barrel",
+      "Fill sulfuric acid barrel",
+      "Fill water barrel",
+      "Pump",
+      "Storage tank"
+    ]
+  },
+  "Fluid wagon": {
+    "internal-name": "fluid-wagon",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 200,
+    "expensive-cost-multiplier": 800,
+    "required-technologies": [
+      "Fluid handling",
+      "Railway"
+    ],
+    "effects": ["Fluid wagon"]
+  },
+  "Follower robot count": {
+    "internal-name": "follower-robot-count-1",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Military science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 200,
+    "expensive-cost-multiplier": 800,
+    "required-technologies": ["Defender"],
+    "allows": ["Follower robot count, 2-&infin;"]
+  },
+  "Portable fusion reactor": {
+    "internal-name": "fusion-reactor-equipment",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Military science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ],
+      [
+        "Utility science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 200,
+    "expensive-cost-multiplier": 800,
+    "required-technologies": [
+      "Military science pack",
+      "Power armor",
+      "Utility science pack"
+    ],
+    "allows": ["Spidertron"],
+    "effects": ["Portable fusion reactor"]
+  },
+  "Gate": {
+    "internal-name": "gate",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 100,
+    "expensive-cost-multiplier": 400,
+    "required-technologies": [
+      "Military 2, 2",
+      "Stone wall"
+    ],
+    "effects": ["Gate"]
+  },
+  "Gun turret": {
+    "internal-name": "gun-turret",
+    "cost": [
+      [
+        "Time",
+        10
+      ],
+      [
+        "Automation science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 10,
+    "expensive-cost-multiplier": 40,
+    "effects": ["Gun turret"]
+  },
+  "Heavy armor": {
+    "internal-name": "heavy-armor",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 30,
+    "expensive-cost-multiplier": 120,
+    "required-technologies": [
+      "Military",
+      "Steel processing"
+    ],
+    "allows": ["Modular armor"],
+    "effects": ["Heavy armor"]
+  },
+  "Inserter capacity bonus": {
+    "internal-name": "inserter-capacity-bonus-1",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 200,
+    "expensive-cost-multiplier": 800,
+    "required-technologies": ["Stack inserter"],
+    "allows": ["Inserter capacity bonus, 2-7"]
+  },
+  "Kovarex enrichment process": {
+    "internal-name": "kovarex-enrichment-process",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ],
+      [
+        "Production science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 1500,
+    "expensive-cost-multiplier": 6000,
+    "required-technologies": [
+      "Production science pack",
+      "Rocket fuel",
+      "Uranium processing"
+    ],
+    "allows": ["Atomic bomb"],
+    "effects": [
+      "Kovarex enrichment process",
+      "Nuclear fuel"
+    ]
+  },
+  "Land mines": {
+    "internal-name": "land-mine",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Military science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 100,
+    "expensive-cost-multiplier": 400,
+    "required-technologies": [
+      "Explosives",
+      "Military science pack"
+    ],
+    "effects": ["Land mine"]
+  },
+  "Landfill": {
+    "internal-name": "landfill",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 50,
+    "expensive-cost-multiplier": 200,
+    "required-technologies": ["Logistic science pack"],
+    "effects": ["Landfill"]
+  },
+  "Laser": {
+    "internal-name": "laser",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 100,
+    "expensive-cost-multiplier": 400,
+    "required-technologies": [
+      "Battery",
+      "Chemical science pack",
+      "Optics"
+    ],
+    "allows": [
+      "Distractor",
+      "Energy weapons damage",
+      "Laser shooting speed",
+      "Laser turret"
+    ]
+  },
+  "Laser shooting speed": {
+    "internal-name": "laser-shooting-speed-1",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Military science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 50,
+    "expensive-cost-multiplier": 200,
+    "required-technologies": ["Laser"],
+    "allows": ["Laser shooting speed, 2-7"]
+  },
+  "Laser turret": {
+    "internal-name": "laser-turret",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Military science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 150,
+    "expensive-cost-multiplier": 600,
+    "required-technologies": [
+      "Laser",
+      "Military science pack"
+    ],
+    "allows": [
+      "Discharge defense",
+      "Personal laser defense"
+    ],
+    "effects": ["Laser turret"]
+  },
+  "Logistic robotics": {
+    "internal-name": "logistic-robotics",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 250,
+    "expensive-cost-multiplier": 1000,
+    "required-technologies": ["Robotics"],
+    "allows": ["Logistic system"],
+    "effects": [
+      "Passive provider chest",
+      "Storage chest",
+      "Logistic robot",
+      "Roboport"
+    ]
+  },
+  "Logistic science pack": {
+    "internal-name": "logistic-science-pack",
+    "cost": [
+      [
+        "Time",
+        5
+      ],
+      [
+        "Automation science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 75,
+    "expensive-cost-multiplier": 300,
+    "allows": [
+      "Advanced material processing",
+      "Automation 2, 2",
+      "Circuit network",
+      "Electric energy distribution 1, 1",
+      "Engine",
+      "Landfill",
+      "Logistics 2, 2",
+      "Military 2, 2",
+      "Solar energy",
+      "Toolbelt"
+    ],
+    "effects": ["Logistic science pack"]
+  },
+  "Logistic system": {
+    "internal-name": "logistic-system",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ],
+      [
+        "Utility science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 500,
+    "expensive-cost-multiplier": 2000,
+    "required-technologies": [
+      "Logistic robotics",
+      "Utility science pack"
+    ],
+    "effects": [
+      "Active provider chest",
+      "Buffer chest",
+      "Requester chest"
+    ]
+  },
+  "Logistics": {
+    "internal-name": "logistics",
+    "cost": [
+      [
+        "Time",
+        15
+      ],
+      [
+        "Automation science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 20,
+    "expensive-cost-multiplier": 80,
+    "allows": ["Logistics 2, 2"],
+    "effects": [
+      "Splitter",
+      "Underground belt"
+    ]
+  },
+  "Logistics 2": {
+    "internal-name": "logistics-2",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 200,
+    "expensive-cost-multiplier": 800,
+    "required-technologies": [
+      "Logistic science pack",
+      "Logistics"
+    ],
+    "allows": [
+      "Automobilism",
+      "Railway",
+      "Stack inserter"
+    ],
+    "effects": [
+      "Fast splitter",
+      "Fast transport belt",
+      "Fast underground belt"
+    ]
+  },
+  "Logistics 3": {
+    "internal-name": "logistics-3",
+    "cost": [
+      [
+        "Time",
+        15
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ],
+      [
+        "Production science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 300,
+    "expensive-cost-multiplier": 1200,
+    "required-technologies": [
+      "Lubricant",
+      "Production science pack"
+    ],
+    "effects": [
+      "Express splitter",
+      "Express transport belt",
+      "Express underground belt"
+    ]
+  },
+  "Low density structure": {
+    "internal-name": "low-density-structure",
+    "cost": [
+      [
+        "Time",
+        45
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 300,
+    "expensive-cost-multiplier": 1200,
+    "required-technologies": [
+      "Advanced material processing",
+      "Chemical science pack"
+    ],
+    "allows": [
+      "Personal battery MK2",
+      "Energy shield MK2 equipment",
+      "Personal laser defense",
+      "Utility science pack"
+    ],
+    "effects": ["Low density structure"]
+  },
+  "Lubricant": {
+    "internal-name": "lubricant",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 50,
+    "expensive-cost-multiplier": 200,
+    "required-technologies": ["Advanced oil processing"],
+    "allows": [
+      "Electric engine",
+      "Logistics 3, 3"
+    ],
+    "effects": ["Lubricant"]
+  },
+  "Military": {
+    "internal-name": "military",
+    "cost": [
+      [
+        "Time",
+        15
+      ],
+      [
+        "Automation science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 10,
+    "expensive-cost-multiplier": 40,
+    "allows": [
+      "Heavy armor",
+      "Military 2, 2",
+      "Physical projectile damage",
+      "Weapon shooting speed"
+    ],
+    "effects": [
+      "Shotgun",
+      "Shotgun shells",
+      "Submachine gun"
+    ]
+  },
+  "Military 2": {
+    "internal-name": "military-2",
+    "cost": [
+      [
+        "Time",
+        15
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 20,
+    "expensive-cost-multiplier": 80,
+    "required-technologies": [
+      "Logistic science pack",
+      "Military",
+      "Steel processing"
+    ],
+    "allows": [
+      "Cliff explosives",
+      "Gate",
+      "Military science pack",
+      "Stronger explosives"
+    ],
+    "effects": [
+      "Grenade",
+      "Piercing rounds magazine"
+    ]
+  },
+  "Military 3": {
+    "internal-name": "military-3",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Military science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 100,
+    "expensive-cost-multiplier": 400,
+    "required-technologies": [
+      "Chemical science pack",
+      "Military science pack"
+    ],
+    "allows": [
+      "Discharge defense",
+      "Distractor",
+      "Energy shield MK2 equipment",
+      "Explosive rocketry",
+      "Military 4, 4",
+      "Personal laser defense",
+      "Tank"
+    ],
+    "effects": [
+      "Combat shotgun",
+      "Poison capsule",
+      "Slowdown capsule"
+    ]
+  },
+  "Military 4": {
+    "internal-name": "military-4",
+    "cost": [
+      [
+        "Time",
+        45
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Military science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ],
+      [
+        "Utility science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 150,
+    "expensive-cost-multiplier": 600,
+    "required-technologies": [
+      "Explosives",
+      "Military 3, 3",
+      "Utility science pack"
+    ],
+    "allows": [
+      "Artillery",
+      "Atomic bomb",
+      "Destroyer",
+      "Power armor MK2",
+      "Spidertron",
+      "Uranium ammo"
+    ],
+    "effects": [
+      "Cluster grenade",
+      "Piercing shotgun shells"
+    ]
+  },
+  "Military science pack": {
+    "internal-name": "military-science-pack",
+    "cost": [
+      [
+        "Time",
+        15
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 30,
+    "expensive-cost-multiplier": 120,
+    "required-technologies": [
+      "Military 2, 2",
+      "Stone wall"
+    ],
+    "allows": [
+      "Defender",
+      "Energy shield equipment",
+      "Energy weapons damage",
+      "Flamethrower",
+      "Portable fusion reactor",
+      "Land mines",
+      "Laser turret",
+      "Military 3, 3",
+      "Rocketry"
+    ],
+    "effects": ["Military science pack"]
+  },
+  "Mining productivity": {
+    "internal-name": "mining-productivity-1",
+    "cost": [
+      [
+        "Time",
+        60
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 250,
+    "expensive-cost-multiplier": 1000,
+    "required-technologies": ["Advanced electronics"],
+    "allows": ["Mining productivity, 2-&infin;"]
+  },
+  "Modular armor": {
+    "internal-name": "modular-armor",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 100,
+    "expensive-cost-multiplier": 400,
+    "required-technologies": [
+      "Advanced electronics",
+      "Heavy armor"
+    ],
+    "allows": [
+      "Power armor",
+      "Portable solar panel"
+    ],
+    "effects": ["Modular armor"]
+  },
+  "Modules": {
+    "internal-name": "modules",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 100,
+    "expensive-cost-multiplier": 400,
+    "required-technologies": ["Advanced electronics"],
+    "allows": [
+      "Efficiency module",
+      "Productivity module",
+      "Speed module"
+    ]
+  },
+  "Nightvision equipment": {
+    "internal-name": "night-vision-equipment",
+    "cost": [
+      [
+        "Time",
+        15
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 50,
+    "expensive-cost-multiplier": 200,
+    "required-technologies": ["Portable solar panel"],
+    "effects": ["Nightvision"]
+  },
+  "Nuclear fuel reprocessing": {
+    "internal-name": "nuclear-fuel-reprocessing",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ],
+      [
+        "Production science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 50,
+    "expensive-cost-multiplier": 200,
+    "required-technologies": [
+      "Nuclear power",
+      "Production science pack"
+    ],
+    "effects": ["Nuclear fuel reprocessing"]
+  },
+  "Nuclear power": {
+    "internal-name": "nuclear-power",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 800,
+    "expensive-cost-multiplier": 3200,
+    "required-technologies": ["Uranium processing"],
+    "allows": ["Nuclear fuel reprocessing"],
+    "effects": [
+      "Heat exchanger",
+      "Heat pipe",
+      "Nuclear reactor",
+      "Steam turbine"
+    ]
+  },
+  "Oil processing": {
+    "internal-name": "oil-processing",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 100,
+    "expensive-cost-multiplier": 400,
+    "required-technologies": ["Fluid handling"],
+    "allows": [
+      "Flammables",
+      "Plastics",
+      "Sulfur processing"
+    ],
+    "effects": [
+      "Basic oil processing",
+      "Chemical plant",
+      "Oil refinery",
+      "Pumpjack",
+      "Solid fuel from petroleum gas"
+    ]
+  },
+  "Optics": {
+    "internal-name": "optics",
+    "cost": [
+      [
+        "Time",
+        15
+      ],
+      [
+        "Automation science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 10,
+    "expensive-cost-multiplier": 40,
+    "allows": [
+      "Laser",
+      "Solar energy"
+    ],
+    "effects": ["Lamp"]
+  },
+  "Personal laser defense": {
+    "internal-name": "personal-laser-defense-equipment",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Military science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 100,
+    "expensive-cost-multiplier": 400,
+    "required-technologies": [
+      "Laser turret",
+      "Low density structure",
+      "Military 3, 3",
+      "Power armor",
+      "Portable solar panel"
+    ],
+    "effects": ["Personal laser defense"]
+  },
+  "Personal roboport": {
+    "internal-name": "personal-roboport-equipment",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 50,
+    "expensive-cost-multiplier": 200,
+    "required-technologies": [
+      "Construction robotics",
+      "Portable solar panel"
+    ],
+    "allows": ["Personal roboport MK2"],
+    "effects": ["Personal roboport"]
+  },
+  "Personal roboport MK2": {
+    "internal-name": "personal-roboport-mk2-equipment",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ],
+      [
+        "Utility science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 250,
+    "expensive-cost-multiplier": 1000,
+    "required-technologies": [
+      "Personal roboport",
+      "Utility science pack"
+    ],
+    "effects": ["Personal roboport MK2"]
+  },
+  "Physical projectile damage": {
+    "internal-name": "physical-projectile-damage-1",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 100,
+    "expensive-cost-multiplier": 400,
+    "required-technologies": ["Military"],
+    "allows": ["Physical projectile damage, 2-&infin;"]
+  },
+  "Plastics": {
+    "internal-name": "plastics",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 200,
+    "expensive-cost-multiplier": 800,
+    "required-technologies": ["Oil processing"],
+    "allows": ["Advanced electronics"],
+    "effects": ["Plastic bar"]
+  },
+  "Power armor": {
+    "internal-name": "power-armor",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 200,
+    "expensive-cost-multiplier": 800,
+    "required-technologies": [
+      "Advanced electronics 2, 2",
+      "Electric engine",
+      "Modular armor"
+    ],
+    "allows": [
+      "Personal battery MK2",
+      "Discharge defense",
+      "Energy shield MK2 equipment",
+      "Portable fusion reactor",
+      "Personal laser defense",
+      "Power armor MK2"
+    ],
+    "effects": ["Power armor"]
+  },
+  "Power armor MK2": {
+    "internal-name": "power-armor-mk2",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Military science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ],
+      [
+        "Utility science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 400,
+    "expensive-cost-multiplier": 1600,
+    "required-technologies": [
+      "Efficiency module 2, 2",
+      "Military 4, 4",
+      "Power armor",
+      "Speed module 2, 2"
+    ],
+    "effects": ["Power armor MK2"]
+  },
+  "Production science pack": {
+    "internal-name": "production-science-pack",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 100,
+    "expensive-cost-multiplier": 400,
+    "required-technologies": [
+      "Advanced material processing 2, 2",
+      "Productivity module",
+      "Railway"
+    ],
+    "allows": [
+      "Automation 3, 3",
+      "Coal liquefaction",
+      "Effect transmission",
+      "Efficiency module 3, 3",
+      "Kovarex enrichment process",
+      "Logistics 3, 3",
+      "Nuclear fuel reprocessing",
+      "Productivity module 3, 3",
+      "Speed module 3, 3"
+    ],
+    "effects": ["Production science pack"]
+  },
+  "Productivity module": {
+    "internal-name": "productivity-module",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 50,
+    "expensive-cost-multiplier": 200,
+    "required-technologies": ["Modules"],
+    "allows": [
+      "Production science pack",
+      "Productivity module 2, 2"
+    ],
+    "effects": ["Productivity module"]
+  },
+  "Productivity module 2": {
+    "internal-name": "productivity-module-2",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 75,
+    "expensive-cost-multiplier": 300,
+    "required-technologies": [
+      "Advanced electronics 2, 2",
+      "Productivity module"
+    ],
+    "allows": ["Productivity module 3, 3"],
+    "effects": ["Productivity module 2"]
+  },
+  "Productivity module 3": {
+    "internal-name": "productivity-module-3",
+    "cost": [
+      [
+        "Time",
+        60
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ],
+      [
+        "Production science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 300,
+    "expensive-cost-multiplier": 1200,
+    "required-technologies": [
+      "Production science pack",
+      "Productivity module 2, 2"
+    ],
+    "allows": ["Rocket silo"],
+    "effects": ["Productivity module 3"]
+  },
+  "Rail signals": {
+    "internal-name": "rail-signals",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 100,
+    "expensive-cost-multiplier": 400,
+    "required-technologies": ["Automated rail transportation"],
+    "effects": [
+      "Rail chain signal",
+      "Rail signal"
+    ]
+  },
+  "Railway": {
+    "internal-name": "railway",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 75,
+    "expensive-cost-multiplier": 300,
+    "required-technologies": [
+      "Engine",
+      "Logistics 2, 2"
+    ],
+    "allows": [
+      "Automated rail transportation",
+      "Braking force",
+      "Fluid wagon",
+      "Production science pack"
+    ],
+    "effects": [
+      "Cargo wagon",
+      "Locomotive",
+      "Rail"
+    ]
+  },
+  "Refined flammables": {
+    "internal-name": "refined-flammables-1",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Military science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 100,
+    "expensive-cost-multiplier": 400,
+    "required-technologies": ["Flamethrower"],
+    "allows": ["Refined flammables, 2-&infin;"]
+  },
+  "Lab research speed": {
+    "internal-name": "research-speed-1",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 100,
+    "expensive-cost-multiplier": 400,
+    "required-technologies": ["Automation 2, 2"],
+    "allows": ["Lab research speed, 2-6"]
+  },
+  "Robotics": {
+    "internal-name": "robotics",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 75,
+    "expensive-cost-multiplier": 300,
+    "required-technologies": [
+      "Battery",
+      "Electric engine"
+    ],
+    "allows": [
+      "Construction robotics",
+      "Logistic robotics",
+      "Utility science pack",
+      "Worker robot speed",
+      "Worker robot cargo size"
+    ],
+    "effects": ["Flying robot frame"]
+  },
+  "Rocket control unit": {
+    "internal-name": "rocket-control-unit",
+    "cost": [
+      [
+        "Time",
+        45
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ],
+      [
+        "Utility science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 300,
+    "expensive-cost-multiplier": 1200,
+    "required-technologies": [
+      "Speed module",
+      "Utility science pack"
+    ],
+    "allows": [
+      "Atomic bomb",
+      "Rocket silo",
+      "Spidertron"
+    ],
+    "effects": ["Rocket control unit"]
+  },
+  "Rocket fuel": {
+    "internal-name": "rocket-fuel",
+    "cost": [
+      [
+        "Time",
+        45
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 300,
+    "expensive-cost-multiplier": 1200,
+    "required-technologies": [
+      "Advanced oil processing",
+      "Flammables"
+    ],
+    "allows": [
+      "Kovarex enrichment process",
+      "Rocket silo"
+    ],
+    "effects": ["Rocket fuel"]
+  },
+  "Rocket silo": {
+    "internal-name": "rocket-silo",
+    "cost": [
+      [
+        "Time",
+        60
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ],
+      [
+        "Production science pack",
+        1
+      ],
+      [
+        "Utility science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 1000,
+    "expensive-cost-multiplier": 4000,
+    "required-technologies": [
+      "Concrete",
+      "Productivity module 3, 3",
+      "Rocket control unit",
+      "Rocket fuel",
+      "Speed module 3, 3"
+    ],
+    "allows": ["Space science pack"],
+    "effects": [
+      "Rocket part",
+      "Rocket silo"
+    ]
+  },
+  "Rocketry": {
+    "internal-name": "rocketry",
+    "cost": [
+      [
+        "Time",
+        15
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Military science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 120,
+    "expensive-cost-multiplier": 480,
+    "required-technologies": [
+      "Explosives",
+      "Flammables",
+      "Military science pack"
+    ],
+    "allows": [
+      "Atomic bomb",
+      "Explosive rocketry",
+      "Spidertron"
+    ],
+    "effects": [
+      "Rocket",
+      "Rocket launcher"
+    ]
+  },
+  "Solar energy": {
+    "internal-name": "solar-energy",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 250,
+    "expensive-cost-multiplier": 1000,
+    "required-technologies": [
+      "Electronics",
+      "Logistic science pack",
+      "Optics",
+      "Steel processing"
+    ],
+    "allows": [
+      "Portable solar panel",
+      "Space science pack"
+    ],
+    "effects": ["Solar panel"]
+  },
+  "Portable solar panel": {
+    "internal-name": "solar-panel-equipment",
+    "cost": [
+      [
+        "Time",
+        15
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 100,
+    "expensive-cost-multiplier": 400,
+    "required-technologies": [
+      "Modular armor",
+      "Solar energy"
+    ],
+    "allows": [
+      "Personal battery",
+      "Belt immunity equipment",
+      "Discharge defense",
+      "Energy shield equipment",
+      "Exoskeleton equipment",
+      "Nightvision equipment",
+      "Personal laser defense",
+      "Personal roboport"
+    ],
+    "effects": ["Portable solar panel"]
+  },
+  "Space science pack": {
+    "internal-name": "space-science-pack",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ],
+      [
+        "Production science pack",
+        1
+      ],
+      [
+        "Utility science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 2000,
+    "expensive-cost-multiplier": 8000,
+    "required-technologies": [
+      "Electric energy accumulators",
+      "Rocket silo",
+      "Solar energy"
+    ],
+    "allows": [
+      "Artillery shell range",
+      "Artillery shell shooting speed",
+      "Energy weapons damage",
+      "Follower robot count",
+      "Mining productivity",
+      "Physical projectile damage",
+      "Refined flammables",
+      "Stronger explosives",
+      "Worker robot speed"
+    ],
+    "effects": ["Satellite"]
+  },
+  "Speed module": {
+    "internal-name": "speed-module",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 50,
+    "expensive-cost-multiplier": 200,
+    "required-technologies": ["Modules"],
+    "allows": [
+      "Automation 3, 3",
+      "Destroyer",
+      "Rocket control unit",
+      "Speed module 2, 2"
+    ],
+    "effects": ["Speed module"]
+  },
+  "Speed module 2": {
+    "internal-name": "speed-module-2",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 75,
+    "expensive-cost-multiplier": 300,
+    "required-technologies": [
+      "Advanced electronics 2, 2",
+      "Speed module"
+    ],
+    "allows": [
+      "Power armor MK2",
+      "Speed module 3, 3"
+    ],
+    "effects": ["Speed module 2"]
+  },
+  "Speed module 3": {
+    "internal-name": "speed-module-3",
+    "cost": [
+      [
+        "Time",
+        60
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ],
+      [
+        "Production science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 300,
+    "expensive-cost-multiplier": 1200,
+    "required-technologies": [
+      "Production science pack",
+      "Speed module 2, 2"
+    ],
+    "allows": ["Rocket silo"],
+    "effects": ["Speed module 3"]
+  },
+  "Spidertron": {
+    "internal-name": "spidertron",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Military science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ],
+      [
+        "Production science pack",
+        1
+      ],
+      [
+        "Utility science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 2500,
+    "expensive-cost-multiplier": 10000,
+    "required-technologies": [
+      "Efficiency module 3, 3",
+      "Exoskeleton equipment",
+      "Portable fusion reactor",
+      "Military 4, 4",
+      "Rocket control unit",
+      "Rocketry"
+    ],
+    "effects": [
+      "Spidertron",
+      "Spidertron remote"
+    ]
+  },
+  "Stack inserter": {
+    "internal-name": "stack-inserter",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 150,
+    "expensive-cost-multiplier": 600,
+    "required-technologies": [
+      "Advanced electronics",
+      "Fast inserter",
+      "Logistics 2, 2"
+    ],
+    "allows": ["Inserter capacity bonus"],
+    "effects": [
+      "Stack filter inserter",
+      "Stack inserter"
+    ]
+  },
+  "Steel axe": {
+    "internal-name": "steel-axe",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 50,
+    "expensive-cost-multiplier": 200,
+    "required-technologies": ["Steel processing"]
+  },
+  "Steel processing": {
+    "internal-name": "steel-processing",
+    "cost": [
+      [
+        "Time",
+        5
+      ],
+      [
+        "Automation science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 50,
+    "expensive-cost-multiplier": 200,
+    "allows": [
+      "Advanced material processing",
+      "Automation 2, 2",
+      "Electric energy distribution 1, 1",
+      "Engine",
+      "Heavy armor",
+      "Military 2, 2",
+      "Solar energy",
+      "Steel axe"
+    ],
+    "effects": [
+      "Steel chest",
+      "Steel plate"
+    ]
+  },
+  "Stone wall": {
+    "internal-name": "stone-wall",
+    "cost": [
+      [
+        "Time",
+        10
+      ],
+      [
+        "Automation science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 10,
+    "expensive-cost-multiplier": 40,
+    "allows": [
+      "Gate",
+      "Military science pack"
+    ],
+    "effects": ["Wall"]
+  },
+  "Stronger explosives": {
+    "internal-name": "stronger-explosives-1",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 100,
+    "expensive-cost-multiplier": 400,
+    "required-technologies": ["Military 2, 2"],
+    "allows": ["Stronger explosives, 2-&infin;"]
+  },
+  "Sulfur processing": {
+    "internal-name": "sulfur-processing",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 150,
+    "expensive-cost-multiplier": 600,
+    "required-technologies": ["Oil processing"],
+    "allows": [
+      "Battery",
+      "Chemical science pack",
+      "Explosives"
+    ],
+    "effects": [
+      "Sulfur",
+      "Sulfuric acid"
+    ]
+  },
+  "Tank": {
+    "internal-name": "tank",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Military science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 250,
+    "expensive-cost-multiplier": 1000,
+    "required-technologies": [
+      "Automobilism",
+      "Explosives",
+      "Military 3, 3"
+    ],
+    "allows": [
+      "Artillery",
+      "Uranium ammo"
+    ],
+    "effects": [
+      "Cannon shell",
+      "Explosive cannon shell",
+      "Tank"
+    ]
+  },
+  "Toolbelt": {
+    "internal-name": "toolbelt",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 100,
+    "expensive-cost-multiplier": 400,
+    "required-technologies": ["Logistic science pack"]
+  },
+  "Uranium ammo": {
+    "internal-name": "uranium-ammo",
+    "cost": [
+      [
+        "Time",
+        45
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Military science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ],
+      [
+        "Utility science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 1000,
+    "expensive-cost-multiplier": 4000,
+    "required-technologies": [
+      "Military 4, 4",
+      "Tank",
+      "Uranium processing"
+    ],
+    "effects": [
+      "Explosive uranium cannon shell",
+      "Uranium cannon shell",
+      "Uranium rounds magazine"
+    ]
+  },
+  "Uranium processing": {
+    "internal-name": "uranium-processing",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 200,
+    "expensive-cost-multiplier": 800,
+    "required-technologies": [
+      "Chemical science pack",
+      "Concrete"
+    ],
+    "allows": [
+      "Kovarex enrichment process",
+      "Nuclear power",
+      "Uranium ammo"
+    ],
+    "effects": [
+      "Centrifuge",
+      "Uranium fuel cell",
+      "Uranium processing"
+    ]
+  },
+  "Utility science pack": {
+    "internal-name": "utility-science-pack",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 100,
+    "expensive-cost-multiplier": 400,
+    "required-technologies": [
+      "Advanced electronics 2, 2",
+      "Low density structure",
+      "Robotics"
+    ],
+    "allows": [
+      "Portable fusion reactor",
+      "Logistic system",
+      "Military 4, 4",
+      "Personal roboport MK2",
+      "Rocket control unit"
+    ],
+    "effects": ["Utility science pack"]
+  },
+  "Weapon shooting speed": {
+    "internal-name": "weapon-shooting-speed-1",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 100,
+    "expensive-cost-multiplier": 400,
+    "required-technologies": ["Military"],
+    "allows": ["Weapon shooting speed, 2-6"]
+  },
+  "Worker robot speed": {
+    "internal-name": "worker-robots-speed-1",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 50,
+    "expensive-cost-multiplier": 200,
+    "required-technologies": ["Robotics"],
+    "allows": ["Worker robot speed, 2-&infin;"]
+  },
+  "Worker robot cargo size": {
+    "internal-name": "worker-robots-storage-1",
+    "cost": [
+      [
+        "Time",
+        30
+      ],
+      [
+        "Automation science pack",
+        1
+      ],
+      [
+        "Logistic science pack",
+        1
+      ],
+      [
+        "Chemical science pack",
+        1
+      ]
+    ],
+    "cost-multiplier": 200,
+    "expensive-cost-multiplier": 800,
+    "required-technologies": ["Robotics"],
+    "allows": ["Worker robot cargo size, 2-3"]
+  }
+}

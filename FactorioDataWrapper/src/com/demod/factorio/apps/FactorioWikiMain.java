@@ -166,7 +166,8 @@ public class FactorioWikiMain {
 
 		// Output icons outside of versions because these are a lot of icons and they
 		// dont change so often. No need to spam the repository with them.
-		wiki_GenerateIcons(table, new File(outputPath, "icons"));
+		File icons = new File(outputPath, "icons");
+		wiki_GenerateIcons(table, icons, new File(icons, "technology"));
 
 		Desktop.getDesktop().open(folder);
 	}
@@ -401,8 +402,9 @@ public class FactorioWikiMain {
 		return json;
 	}
 
-	private static void wiki_GenerateIcons(DataTable table, File folder) {
+	private static void wiki_GenerateIcons(DataTable table, File folder, File techIconFolder) {
 		folder.mkdirs();
+		techIconFolder.mkdirs();
 
 		table.getRecipes().values().stream().filter(
 				r -> (!table.getItems().containsKey(r.getName()) && !table.getFluids().containsKey(r.getName())))
@@ -428,6 +430,15 @@ public class FactorioWikiMain {
 			try {
 				ImageIO.write(FactorioData.getIcon(fluid), "PNG",
 						new File(folder, table.getWikiFluidName(fluid.getName()) + ".png"));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		});
+
+		table.getTechnologies().values().stream().filter(t -> !t.isBonus() || t.isFirstBonus()).forEach(tech -> {
+			try {
+				ImageIO.write(FactorioData.getIcon(tech), "PNG",
+						new File(techIconFolder, table.getWikiTechnologyName(tech.getName()) + ".png"));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -620,7 +631,7 @@ public class FactorioWikiMain {
 
 					int count = tech.getEffectiveCount();
 					itemJson.put("cost-multiplier", count);
-					itemJson.put("expensive-cost-multiplier", (count * 4));
+					itemJson.put("expensive-cost-multiplier", (count * tech.getExpensiveCostMultiplier()));
 
 					if (!tech.getPrerequisites().isEmpty()) {
 						itemJson.put("required-technologies",

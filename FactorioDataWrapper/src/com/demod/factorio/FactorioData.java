@@ -81,6 +81,9 @@ public class FactorioData {
 
 	public static BufferedImage getIcon(DataPrototype prototype) {
 		String name = prototype.getName();
+		if (prototype.lua().get("type").checkjstring().equals("technology")) {
+			name += ".tech"; // HACK
+		}
 		return modIconCache.computeIfAbsent(name, n -> {
 			LuaValue iconLua = prototype.lua().get("icon");
 			if (!iconLua.isnil()) {
@@ -111,7 +114,7 @@ public class FactorioData {
 				} else if (!iconsMipmaps.isnil() && iconsMipmaps.toint() > 0) {
 					// sanity check is also in base game and gives warning in log
 					if (layer.getWidth() == layerIconSize) {
-						System.err.println("Icon layer of '" + name
+						System.err.println("Icon layer using '" + l.get("icon").tojstring()
 								+ "' has mimaps defined but isnt big enough to actually be using mipmaps.");
 					} else {
 						layer = layer.getSubimage(0, 0, layerIconSize, layerIconSize);
@@ -123,15 +126,20 @@ public class FactorioData {
 					layer = Utils.tintImage(layer, Utils.parseColor(tintLua));
 				}
 
+				int expectedSize = 32; // items and recipes
+				if (prototype.lua().get("type").checkjstring().equals("technology"))
+					expectedSize = 128;
+
 				/*
-				 * All vanilla icons are defined with icon size 64. However, the game "expects"
-				 * icons to have a size of 32. Because these sizes differ, we observe the
-				 * behavior that the game does not apply shift and scale values directly.
-				 * Instead, shift and scale are multiplied by real_size / expected_size. In our
-				 * case, that means we have to multiply them by 2, because 64 / 32 = 2; this
-				 * value is represented by the below variable.
+				 * All vanilla item and recipe icons are defined with icon size 64 (technologies
+				 * with 256). However, the game "expects" icons to have a size of 32 (or 128 for
+				 * technologies). Because these sizes differ, we observe the behavior that the
+				 * game does not apply shift and scale values directly. Instead, shift and scale
+				 * are multiplied by real_size / expected_size. In the case of items case, that
+				 * means we have to multiply them by 2, because 64 / 32 = 2; this value is
+				 * represented by the below variable.
 				 */
-				int scaleAndShiftScaling = layerIconSize / 32;
+				int scaleAndShiftScaling = layerIconSize / expectedSize;
 
 				double scale = l.get("scale").optdouble(1.0);
 				// scale has to be multiplied by scaleAndShiftScaling, see above
