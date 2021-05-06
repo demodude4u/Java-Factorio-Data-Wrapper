@@ -30,7 +30,8 @@
 	  "spidertron-rocket-launcher-3",
 	  "spidertron-rocket-launcher-4",
 	  "linked-chest",
-	  "player-port"
+	  "player-port",
+	  "linked-belt"
    ],
     "technologies":[],
     "fluids":[

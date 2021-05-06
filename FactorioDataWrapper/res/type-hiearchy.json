@@ -205,6 +205,7 @@
   "spider-leg" : "entity-with-health",
   "linked-container" : "entity-with-health",
   "tips-and-tricks-item-category" : null,
-  "tips-and-tricks-item" : null
+  "tips-and-tricks-item" : null,
+  "linked-belt" : "transport-belt-connectable"
   
 }
