@@ -1,11 +1,10 @@
 {
-   "recipes-and-items":[
-      "loader",
-      "fast-loader",
-      "express-loader",
-      "electric-energy-interface",
+	"recipes-and-items":[
+	  "loader",
+	  "fast-loader",
+	  "express-loader",
+	  "electric-energy-interface",
 	  "coin",
-	  "dummy-selection-tool",
 	  "simple-entity-with-force",
 	  "simple-entity-with-owner",
 	  "tank-cannon",
@@ -32,9 +31,9 @@
 	  "linked-chest",
 	  "player-port",
 	  "linked-belt"
-   ],
-    "technologies":[],
-    "fluids":[
+	],
+	"technologies":[],
+	"fluids":[
 	  "fluid-unknown"
 	]
 }
