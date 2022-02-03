@@ -157,6 +157,16 @@ public class FactorioData {
 				shift.y *= scaleAndShiftScaling;
 				g.translate(shift.x, shift.y);
 
+				// HACK
+				// Overlay icon of equipment technology icons are outside bounds of base icon.
+				// So, move the overlay icon up. Do the same for mining productivity tech.
+				String path = l.get("icon").tojstring();
+				if (path.equals("__core__/graphics/icons/technology/constants/constant-equipment.png")) {
+					g.translate(0, -20);
+				} else if (path.equals("__core__/graphics/icons/technology/constants/constant-mining-productivity.png")) {
+					g.translate(-8, -7);
+				}
+
 				g.scale(scale, scale);
 				g.drawImage(layer, 0, 0, null);
 				g.setTransform(pat);
