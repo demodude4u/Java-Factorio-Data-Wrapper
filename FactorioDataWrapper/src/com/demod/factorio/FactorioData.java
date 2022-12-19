@@ -383,7 +383,14 @@ public class FactorioData {
 			currentMod.set(mod);
 			Optional<InputStream> resource = mod.getResource(filename);
 			if (resource.isPresent()) {
-				globals.load(new InputStreamReader(resource.get()), mod.getInfo().getName() + "_" + filename).call();
+				try
+				{
+					globals.load(new InputStreamReader(resource.get()), mod.getInfo().getName() + "_" + filename).call();
+				}
+				catch (RuntimeException e)
+				{
+					throw new RuntimeException("Error loading " + filename + " from mod " + mod.getInfo().getName(), e);
+				}
 			}
 		}
 	}
