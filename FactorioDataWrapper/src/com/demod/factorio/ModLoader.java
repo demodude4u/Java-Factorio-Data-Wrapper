@@ -17,6 +17,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
 
 import org.json.JSONException;
@@ -64,19 +65,26 @@ public class ModLoader {
 
 		private volatile Optional<String> lastResourceFolder = Optional.empty();
 
-		public ModZip(File zipFile) throws FileNotFoundException, IOException {
-			String prefix = zipFile.getName().substring(0, zipFile.getName().length() - 4);
-			try (ZipInputStream zis = new ZipInputStream(new FileInputStream(zipFile))) {
-				ZipEntry entry;
-				while ((entry = zis.getNextEntry()) != null) {
-					byte[] data = new byte[(int) entry.getSize()];
-					ByteStreams.readFully(zis, data);
-					files.put(entry.getName().replace(prefix, ""), data);
-					System.out.println("ZIP ENTRY " + zipFile.getName() + ": " + entry.getName());// XXX
-				}
+		public ModZip(File file) throws FileNotFoundException, IOException {
+			String prefix = file.getName().substring(0, file.getName().length() - 4);
+			try (ZipFile zipFile = new ZipFile(file)) {
+				zipFile.stream().forEach(entry -> {
+					String name = entry.getName().replace(prefix, "");
+
+					try (InputStream inputStream = zipFile.getInputStream(entry)) {
+						files.put(name, ByteStreams.toByteArray(inputStream));
+						System.out.println("ZIP ENTRY " + file.getName() + ": " + entry.getName());// XXX
+					} catch (IOException e) {
+						throw new RuntimeException(e);
+					}
+				});
 			}
 
-			try (ByteArrayInputStream bais = new ByteArrayInputStream(files.get("/info.json"))) {
+			byte[] buf = files.get("/info.json");
+			if (buf == null) {
+				throw new FileNotFoundException(file.getName() + " does not contain info.json");
+			}
+			try (ByteArrayInputStream bais = new ByteArrayInputStream(buf)) {
 				info = new ModInfo(Utils.readJsonFromStream(bais));
 			}
 		}
