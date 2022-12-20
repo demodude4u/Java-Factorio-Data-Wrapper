@@ -54,7 +54,11 @@ public class ModInfo {
 		contact = json.optString("contact", "");
 		homepage = json.optString("homepage", "");
 		description = json.optString("description", "");
-		JSONArray dependenciesJson = json.getJSONArray("dependencies");
+		JSONArray dependenciesJson = json.optJSONArray("dependencies");
+		if (dependenciesJson == null)
+		{
+			dependenciesJson = new JSONArray();
+		}
 		for (int i = 0; i < dependenciesJson.length(); i++) {
 			String depString = dependenciesJson.getString(i);
 			String[] depSplit = depString.split("\\s");
