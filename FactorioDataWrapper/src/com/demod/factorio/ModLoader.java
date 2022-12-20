@@ -6,10 +6,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Comparator;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -115,39 +114,53 @@ public class ModLoader {
 		return Optional.ofNullable(mods.get(name));
 	}
 
-	public List<Mod> getModsInLoadOrder() {
-		LinkedList<Mod> work = new LinkedList<>();
-		mods.values().stream().sorted((m1, m2) -> m1.getInfo().getName().compareTo(m2.getInfo().getName()))
-				.forEach(n -> work.add(n));
-		List<String> order = new ArrayList<>();
-		while (!work.isEmpty()) {
-			Iterator<Mod> iter = work.iterator();
-			while (iter.hasNext()) {
-				Mod mod = iter.next();
-				boolean missingDep = false;
-				for (Dependency dependency : mod.getInfo().getDependencies()) {
-					String depName = dependency.getName();
-					if (getMod(depName).isPresent()) {
-						if (!order.contains(depName)) {
-							missingDep = true;
-							break;
-						}
-					} else if (!dependency.isOptional()) {
-						throw new InternalError("MISSING DEPENDENCY FOR " + mod.getInfo().getName() + " : " + depName);
-					}
-				}
-				if (!missingDep) {
-					order.add(mod.getInfo().getName());
-					iter.remove();
-				}
+	private Map<String, Integer> getDepths() {
+		Map<String, Integer> depths = new LinkedHashMap<>();
+		Set<String> visited = new HashSet<>();
+
+		for (Mod mod : this.mods.values()) {
+			populateDepth(mod, depths, visited);
+		}
+
+		return depths;
+	}
+
+	private void populateDepth(Mod mod, Map<String, Integer> depths, Set<String> visited) {
+		ModInfo modInfo = mod.getInfo();
+		String modName = modInfo.getName();
+		if (depths.containsKey(modName)) {
+			return;
+		}
+		if (visited.contains(modName)) {
+			return;
+		}
+		visited.add(modName);
+
+		int depth = 0;
+		for (Dependency dependency : modInfo.getDependencies()) {
+			String dependencyName = dependency.getName();
+			Optional<Mod> maybeDependencyMod = getMod(dependencyName);
+			if (maybeDependencyMod.isPresent()) {
+				Mod dependencyMod = maybeDependencyMod.get();
+				populateDepth(dependencyMod, depths, visited);
+				Integer dependencyDepth = depths.getOrDefault(dependencyMod.getInfo().getName(), 0);
+				depth = Math.max(depth, dependencyDepth + 1);
 			}
 		}
-		// Make sure core loads first
-		if (order.contains("core") && order.indexOf("core") != 0) {
-			order.remove("core");
-			order.add(0, "core");
-		}
-		return order.stream().map(this::getMod).map(Optional::get).collect(Collectors.toList());
+
+		depths.put(modName, depth);
+		visited.remove(modName);
+	}
+
+	public List<Mod> getModsInLoadOrder() {
+		Map<String, Integer> depths = getDepths();
+		Comparator<Mod> comparator = Comparator.comparing((Mod mod) -> depths.get(mod.getInfo().getName()));
+		List<Mod> result = mods.values().stream().sorted(comparator).collect(Collectors.toList());
+		result.remove(mods.get("core"));
+		result.remove(mods.get("base"));
+		result.add(0, mods.get("core"));
+		result.add(1, mods.get("base"));
+		return result;
 	}
 
 	public void loadFolder(File folder) throws IOException {
