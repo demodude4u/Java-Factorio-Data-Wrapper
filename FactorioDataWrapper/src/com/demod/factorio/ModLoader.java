@@ -56,8 +56,18 @@ public class ModLoader {
 			}
 		}
 	}
+
 	public static class ModZip implements Mod {
+		private static String stripDirectoryName(String name) throws RuntimeException {
+			int firstSlash = name.indexOf('/');
+			if (firstSlash == -1) {
+				return name;
+			}
+			return name.substring(firstSlash);
+		}
+
 		private final Map<String, byte[]> files = new LinkedHashMap<>();
+
 		private ModInfo info;
 
 		private volatile Optional<String> lastResourceFolder = Optional.empty();
@@ -66,6 +76,9 @@ public class ModLoader {
 			try (ZipFile zipFile = new ZipFile(file)) {
 				zipFile.stream().forEach(entry -> {
 					String name = stripDirectoryName(entry.getName());
+					if (name.equals(entry.getName())) {
+						throw new RuntimeException(file.getName() + " missing the inner directory for the mod files.");
+					}
 
 					try (InputStream inputStream = zipFile.getInputStream(entry)) {
 						files.put(name, ByteStreams.toByteArray(inputStream));
@@ -83,14 +96,6 @@ public class ModLoader {
 			try (ByteArrayInputStream bais = new ByteArrayInputStream(buf)) {
 				info = new ModInfo(Utils.readJsonFromStream(bais));
 			}
-		}
-
-		private static String stripDirectoryName(String name) {
-			int firstSlash = name.indexOf('/');
-			if (firstSlash == -1) {
-				return name;
-			}
-			return name.substring(firstSlash);
 		}
 
 		@Override
