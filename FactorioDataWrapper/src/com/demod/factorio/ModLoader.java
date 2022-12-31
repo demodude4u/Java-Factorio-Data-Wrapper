@@ -62,7 +62,7 @@ public class ModLoader {
 
 		private volatile Optional<String> lastResourceFolder = Optional.empty();
 
-		public ModZip(File file) throws IOException {
+		public ModZip(File file) throws FileNotFoundException, IOException {
 			try (ZipFile zipFile = new ZipFile(file)) {
 				zipFile.stream().forEach(entry -> {
 					String name = stripDirectoryName(entry.getName());
@@ -76,7 +76,11 @@ public class ModLoader {
 				});
 			}
 
-			try (ByteArrayInputStream bais = new ByteArrayInputStream(files.get("/info.json"))) {
+			byte[] buf = files.get("/info.json");
+			if (buf == null) {
+				throw new FileNotFoundException(file.getName() + " does not contain info.json");
+			}
+			try (ByteArrayInputStream bais = new ByteArrayInputStream(buf)) {
 				info = new ModInfo(Utils.readJsonFromStream(bais));
 			}
 		}
