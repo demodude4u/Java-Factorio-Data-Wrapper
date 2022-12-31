@@ -16,9 +16,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
-import java.util.zip.ZipInputStream;
 
 import org.json.JSONException;
 
@@ -58,7 +56,6 @@ public class ModLoader {
 			}
 		}
 	}
-
 	public static class ModZip implements Mod {
 		private final Map<String, byte[]> files = new LinkedHashMap<>();
 		private ModInfo info;
@@ -66,10 +63,9 @@ public class ModLoader {
 		private volatile Optional<String> lastResourceFolder = Optional.empty();
 
 		public ModZip(File file) throws FileNotFoundException, IOException {
-			String prefix = file.getName().substring(0, file.getName().length() - 4);
 			try (ZipFile zipFile = new ZipFile(file)) {
 				zipFile.stream().forEach(entry -> {
-					String name = entry.getName().replace(prefix, "");
+					String name = stripDirectoryName(entry.getName());
 
 					try (InputStream inputStream = zipFile.getInputStream(entry)) {
 						files.put(name, ByteStreams.toByteArray(inputStream));
@@ -87,6 +83,14 @@ public class ModLoader {
 			try (ByteArrayInputStream bais = new ByteArrayInputStream(buf)) {
 				info = new ModInfo(Utils.readJsonFromStream(bais));
 			}
+		}
+
+		private static String stripDirectoryName(String name) {
+			int firstSlash = name.indexOf('/');
+			if (firstSlash == -1) {
+				return name;
+			}
+			return name.substring(firstSlash);
 		}
 
 		@Override
