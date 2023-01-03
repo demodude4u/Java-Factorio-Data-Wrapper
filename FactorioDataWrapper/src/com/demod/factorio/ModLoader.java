@@ -21,6 +21,8 @@ import java.util.zip.ZipFile;
 import org.json.JSONException;
 
 import com.demod.factorio.ModInfo.Dependency;
+import com.demod.factorio.ModInfo.DependencyType;
+
 import com.google.common.io.ByteStreams;
 
 public class ModLoader {
@@ -145,11 +147,11 @@ public class ModLoader {
 				for (Dependency dependency : mod.getInfo().getDependencies()) {
 					String depName = dependency.getName();
 					if (getMod(depName).isPresent()) {
-						if (!order.contains(depName)) {
+						if (!order.contains(depName) && dependency.getType() != DependencyType.DOES_NOT_AFFECT_LOAD_ORDER) {
 							missingDep = true;
 							break;
 						}
-					} else if (!dependency.isOptional()) {
+					} else if (!dependency.isOptional() && dependency.getType() != DependencyType.INCOMPATIBLE) {
 						throw new InternalError("MISSING DEPENDENCY FOR " + mod.getInfo().getName() + " : " + depName);
 					}
 				}
