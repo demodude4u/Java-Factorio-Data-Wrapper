@@ -42,7 +42,7 @@ In eclipse -> Help -> Install New Software... -> Work with: --All Available Site
 
 The value for "factorio" must point a Factorio install. It must point to the root Factorio directory which contains the `data` directory.
 
-The value for "mod-exclude" can be empty. If it is filled with an array of mod names, mods by that name that are found in `data` on in the `mods` directory are ignored by the data wrapper and not loaded. By default, this exclude list is empty.
+The value for "mod-exclude" can be empty. If it is filled with an array of mod names, mods by that name that are found in `data` or in the `mods` directory are ignored by the data wrapper and not loaded. By default, this exclude list is empty.
 
 The value for "output" can be empty. If it is filled with a string, this is used as the directory name for the output directory of FactorioWikiMain. It is set to "output" by default.
 
