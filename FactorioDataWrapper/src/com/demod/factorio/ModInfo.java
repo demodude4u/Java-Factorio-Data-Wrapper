@@ -2,22 +2,64 @@ package com.demod.factorio;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class ModInfo {
+	public static final Pattern DEPENDENCY_REGEX = Pattern.compile(
+			"(^(?:(\\?|\\(\\?\\)|!|~) *)?(.+?)(?: *([<>=]=?) *([0-9.]+))?$)");
+
+	// https://wiki.factorio.com/Tutorial:Mod_structure#dependencies
+	public static enum DependencyType {
+		// ! for incompatibility
+		INCOMPATIBLE,
+		// ? for an optional dependency
+		OPTIONAL,
+		// (?) for a hidden optional dependency
+		HIDDEN_OPTIONAL,
+		// ~ for a dependency that does not affect load order
+		DOES_NOT_AFFECT_LOAD_ORDER,
+		// no prefix for a hard requirement for the other mod.
+		REQUIRED,
+		;
+
+		private static DependencyType fromSymbol(String symbol) {
+			if (symbol == null) {
+				return REQUIRED;
+			}
+			switch (symbol) {
+				case "!":
+					return INCOMPATIBLE;
+				case "?":
+					return OPTIONAL;
+				case "(?)":
+					return HIDDEN_OPTIONAL;
+				case "~":
+					return DOES_NOT_AFFECT_LOAD_ORDER;
+				default:
+					throw new RuntimeException("Invalid dependency symbol: " + symbol);
+			}
+		}
+	}
+
 	public static class Dependency {
-		private final boolean optional;
+		private final DependencyType type;
 		private final String name;
 		private final String conditional;
 		private final String version;
 
-		private Dependency(boolean optional, String name, String conditional, String version) {
-			this.optional = optional;
+		private Dependency(DependencyType type, String name, String conditional, String version) {
+			this.type = type;
 			this.name = name;
 			this.conditional = conditional;
 			this.version = version;
+		}
+
+		public DependencyType getType() {
+			return this.type;
 		}
 
 		public String getConditional() {
@@ -33,7 +75,7 @@ public class ModInfo {
 		}
 
 		public boolean isOptional() {
-			return optional;
+			return this.type == DependencyType.OPTIONAL || this.type == DependencyType.HIDDEN_OPTIONAL;
 		}
 	}
 
@@ -60,15 +102,16 @@ public class ModInfo {
 		}
 		for (int i = 0; i < dependenciesJson.length(); i++) {
 			String depString = dependenciesJson.getString(i);
-			String[] depSplit = depString.split("\\s");
-			if (depSplit.length == 1) {
-				dependencies.add(new Dependency(false, depSplit[0], null, null));
-			} else if (depSplit.length == 2) {
-				dependencies.add(new Dependency(true, depSplit[1], null, null));
-			} else if (depSplit.length == 3) {
-				dependencies.add(new Dependency(false, depSplit[0], depSplit[1], depSplit[2]));
-			} else if (depSplit.length == 4) {
-				dependencies.add(new Dependency(true, depSplit[1], depSplit[2], depSplit[3]));
+			Matcher matcher = DEPENDENCY_REGEX.matcher(depString);
+			if (matcher.matches()) {
+				String symbol = matcher.group(2);
+				DependencyType type = DependencyType.fromSymbol(symbol);
+				String name = matcher.group(3);
+				String conditional = matcher.group(4);
+				String version = matcher.group(5);
+				dependencies.add(new Dependency(type, name, conditional, version));
+			} else {
+				throw new RuntimeException("Invalid dependency string: " + depString);
 			}
 		}
 	}
