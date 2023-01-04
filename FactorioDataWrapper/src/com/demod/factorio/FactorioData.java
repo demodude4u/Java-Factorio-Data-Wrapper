@@ -258,6 +258,31 @@ public class FactorioData {
 		globals.finder = new ResourceFinder() {
 			@Override
 			public InputStream findResource(String filename) {
+				/*
+				 * Problematic call stack: PackageLib$searchpath.invoke(Varargs) line: 291
+				 * PackageLib$lua_searcher.invoke(Varargs) line: 263
+				 * PackageLib$require.call(LuaValue) line: 217
+				 * 
+				 * PackageLib$searchpath.invoke(Varargs) line: 291 replaces all "." with
+				 * FILE_SEP ( = System.getProperty("file.separator")), on windows this is "\".
+				 * This means that if a require uses "file.lua" as the file name, this is
+				 * converted to "file\lua".
+				 * 
+				 * So now when applying the package path, LuaJ will add the ".lua" from the
+				 * "?.lua" package path back on it and it turns into "file\lua.lua". And then
+				 * the file isn't found!
+				 * 
+				 * Solution: Hack it by turning "\lua.lua" back into ".lua".
+				 * 
+				 * This will give wrong results if someone has a file named "lua.lua". I
+				 * consider this less likely than a require that contains the file extension.
+				 * 
+				 * TODO: Test if this works on Linux
+				 * 
+				 */
+				if (filename.endsWith(File.separator + "lua.lua")) {
+					filename = filename.replace(File.separator + "lua.lua", ".lua");
+				}
 				if (filename.startsWith(SEARCH_MOD) && currentMod.get() != null) {
 					try {
 						return currentMod.get().getResource(filename.replace(SEARCH_MOD, "")).orElse(null);
