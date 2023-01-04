@@ -76,7 +76,7 @@ public class ModInfo {
 	}
 
 	public static final Pattern DEPENDENCY_REGEX = Pattern
-			.compile("(^(?:(\\?|\\(\\?\\)|!|~) *)?(.+?)(?: *([<>=]=?) *([0-9.]+))?$)");
+			.compile("^(?:(\\?|\\(\\?\\)|!|~) *)?(.+?)(?: *([<>=]=?) *([0-9.]+))?$");
 
 	private final String name;
 	private final String version;
@@ -103,11 +103,11 @@ public class ModInfo {
 			String depString = dependenciesJson.getString(i);
 			Matcher matcher = DEPENDENCY_REGEX.matcher(depString);
 			if (matcher.matches()) {
-				String symbol = matcher.group(2);
+				String symbol = matcher.group(1);
 				DependencyType type = DependencyType.fromSymbol(symbol);
-				String name = matcher.group(3);
-				String conditional = matcher.group(4);
-				String version = matcher.group(5);
+				String name = matcher.group(2);
+				String conditional = matcher.group(3);
+				String version = matcher.group(4);
 				dependencies.add(new Dependency(type, name, conditional, version));
 			} else {
 				throw new RuntimeException("Invalid dependency string: " + depString);

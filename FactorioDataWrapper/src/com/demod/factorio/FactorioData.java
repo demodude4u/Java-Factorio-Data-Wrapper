@@ -301,6 +301,12 @@ public class FactorioData {
 
 		List<Mod> loadOrder = modLoader.getModsInLoadOrder();
 
+		System.out.println("LOAD ORDER:");
+		for (Mod mod : loadOrder) {
+			ModInfo info = mod.getInfo();
+			System.out.println(" " + info.getName());
+		}
+
 		LuaValue modsTable = LuaValue.tableOf(0, loadOrder.size());
 		for (Mod mod : loadOrder) {
 			ModInfo info = mod.getInfo();
