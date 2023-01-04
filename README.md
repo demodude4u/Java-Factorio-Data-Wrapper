@@ -26,7 +26,7 @@ The "Console" shows possible errors. If there are no errors, the output can be f
 
 Tested with Eclipse IDE for Java Developers Version 2022-12 (4.26.0) on Windows 10.
 -->
-### It's missing dependencies
+### Help, it's missing dependencies
 
 The project is missing dependencies if it shows hundreds of errors and running it fails with this console message:
 ```
