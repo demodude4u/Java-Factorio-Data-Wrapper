@@ -9,42 +9,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class ModInfo {
-	public static final Pattern DEPENDENCY_REGEX = Pattern.compile(
-			"(^(?:(\\?|\\(\\?\\)|!|~) *)?(.+?)(?: *([<>=]=?) *([0-9.]+))?$)");
-
-	// https://wiki.factorio.com/Tutorial:Mod_structure#dependencies
-	public static enum DependencyType {
-		// ! for incompatibility
-		INCOMPATIBLE,
-		// ? for an optional dependency
-		OPTIONAL,
-		// (?) for a hidden optional dependency
-		HIDDEN_OPTIONAL,
-		// ~ for a dependency that does not affect load order
-		DOES_NOT_AFFECT_LOAD_ORDER,
-		// no prefix for a hard requirement for the other mod.
-		REQUIRED,
-		;
-
-		private static DependencyType fromSymbol(String symbol) {
-			if (symbol == null) {
-				return REQUIRED;
-			}
-			switch (symbol) {
-				case "!":
-					return INCOMPATIBLE;
-				case "?":
-					return OPTIONAL;
-				case "(?)":
-					return HIDDEN_OPTIONAL;
-				case "~":
-					return DOES_NOT_AFFECT_LOAD_ORDER;
-				default:
-					throw new RuntimeException("Invalid dependency symbol: " + symbol);
-			}
-		}
-	}
-
 	public static class Dependency {
 		private final DependencyType type;
 		private final String name;
@@ -58,16 +22,16 @@ public class ModInfo {
 			this.version = version;
 		}
 
-		public DependencyType getType() {
-			return this.type;
-		}
-
 		public String getConditional() {
 			return conditional;
 		}
 
 		public String getName() {
 			return name;
+		}
+
+		public DependencyType getType() {
+			return this.type;
 		}
 
 		public String getVersion() {
@@ -78,6 +42,41 @@ public class ModInfo {
 			return this.type == DependencyType.OPTIONAL || this.type == DependencyType.HIDDEN_OPTIONAL;
 		}
 	}
+
+	// https://wiki.factorio.com/Tutorial:Mod_structure#dependencies
+	public static enum DependencyType {
+		// ! for incompatibility
+		INCOMPATIBLE,
+		// ? for an optional dependency
+		OPTIONAL,
+		// (?) for a hidden optional dependency
+		HIDDEN_OPTIONAL,
+		// ~ for a dependency that does not affect load order
+		DOES_NOT_AFFECT_LOAD_ORDER,
+		// no prefix for a hard requirement for the other mod.
+		REQUIRED,;
+
+		private static DependencyType fromSymbol(String symbol) {
+			if (symbol == null) {
+				return REQUIRED;
+			}
+			switch (symbol) {
+			case "!":
+				return INCOMPATIBLE;
+			case "?":
+				return OPTIONAL;
+			case "(?)":
+				return HIDDEN_OPTIONAL;
+			case "~":
+				return DOES_NOT_AFFECT_LOAD_ORDER;
+			default:
+				throw new RuntimeException("Invalid dependency symbol: " + symbol);
+			}
+		}
+	}
+
+	public static final Pattern DEPENDENCY_REGEX = Pattern
+			.compile("(^(?:(\\?|\\(\\?\\)|!|~) *)?(.+?)(?: *([<>=]=?) *([0-9.]+))?$)");
 
 	private final String name;
 	private final String version;
