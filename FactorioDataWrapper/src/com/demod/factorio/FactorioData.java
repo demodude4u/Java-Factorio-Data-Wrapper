@@ -161,10 +161,10 @@ public class FactorioData {
 				// Overlay icon of equipment technology icons are outside bounds of base icon.
 				// So, move the overlay icon up. Do the same for mining productivity tech.
 				String path = l.get("icon").tojstring();
-				if (path.equals("__core__/graphics/icons/technology/constants/constant-equipment.png")) {
-					g.translate(0, -20);
-				} else if (path.equals("__core__/graphics/icons/technology/constants/constant-mining-productivity.png")) {
+				if (path.equals("__core__/graphics/icons/technology/constants/constant-mining-productivity.png")) {
 					g.translate(-8, -7);
+				} else if (path.equals("__core__/graphics/icons/technology/constants/constant-equipment.png")) {
+					g.translate(0, -20);
 				}
 
 				g.scale(scale, scale);
@@ -248,82 +248,6 @@ public class FactorioData {
 		TypeHierarchy typeHiearchy = new TypeHierarchy(Utils
 				.readJsonFromStream(FactorioData.class.getClassLoader().getResourceAsStream("type-hiearchy.json")));
 
-		Box<Mod> currentMod = Box.of(modLoader.getMod("core").get());
-
-		Globals globals = JsePlatform.standardGlobals();
-		globals.load(new BaseLib());
-		globals.load(new DebugLib());
-		globals.load(new Bit32Lib());
-		globals.load(new StringReader("package.path = package.path .. ';" + luaPath + "'"), "initLuaPath").call();
-		globals.finder = new ResourceFinder() {
-			@Override
-			public InputStream findResource(String filename) {
-				/*
-				 * Problematic call stack: PackageLib$searchpath.invoke(Varargs) line: 291
-				 * PackageLib$lua_searcher.invoke(Varargs) line: 263
-				 * PackageLib$require.call(LuaValue) line: 217
-				 * 
-				 * PackageLib$searchpath.invoke(Varargs) line: 291 replaces all "." with
-				 * FILE_SEP ( = System.getProperty("file.separator")), on windows this is "\".
-				 * This means that if a require uses "file.lua" as the file name, this is
-				 * converted to "file\lua".
-				 * 
-				 * So now when applying the package path, LuaJ will add the ".lua" from the
-				 * "?.lua" package path back on it and it turns into "file\lua.lua". And then
-				 * the file isn't found!
-				 * 
-				 * Solution: Hack it by turning "\lua.lua" back into ".lua".
-				 * 
-				 * This will give wrong results if someone has a file named "lua.lua". I
-				 * consider this less likely than a require that contains the file extension.
-				 * 
-				 * TODO: Test if this works on Linux
-				 * 
-				 */
-				if (filename.endsWith(File.separator + "lua.lua")) {
-					filename = filename.replace(File.separator + "lua.lua", ".lua");
-				}
-				if (filename.startsWith(SEARCH_MOD) && currentMod.get() != null) {
-					try {
-						return currentMod.get().getResource(filename.replace(SEARCH_MOD, "")).orElse(null);
-					} catch (Exception e) {
-						e.printStackTrace();
-						throw new InternalError(e);
-					}
-				} else if (filename.startsWith(SEARCH_RESOURCE)) {
-					InputStream stream = FactorioData.class.getClassLoader()
-							.getResourceAsStream(filename.replace(SEARCH_RESOURCE, "lua"));
-					// System.out.println(stream != null);
-					return stream;
-				} else if (filename.startsWith("__") && (filename.indexOf("__", 2) > -1)) {
-					int matchEnd = filename.indexOf("__", 2);
-					String modName = filename.substring(2, matchEnd);
-					Optional<Mod> mod = modLoader.getMod(modName);
-					if (!mod.isPresent()) {
-						throw new IllegalStateException("Mod does not exist: " + modName);
-					}
-					try {
-						return mod.get().getResource(filename.substring(matchEnd + 2)).orElse(null);
-					} catch (Exception e) {
-						e.printStackTrace();
-						throw new InternalError(e);
-					}
-				} else {
-					File file = new File(filename);
-					// System.out.println(file.exists());
-					try {
-						return file.exists() ? new FileInputStream(file) : null;
-					} catch (FileNotFoundException e) {
-						e.printStackTrace();
-						throw new InternalError(e);
-					}
-				}
-			}
-		};
-
-		globals.load(new InputStreamReader(globals.finder.findResource(SEARCH_RESOURCE + "/loader.lua")), "loader")
-				.call();
-
 		List<Mod> loadOrder = modLoader.getModsInLoadOrder();
 
 		System.out.println("LOAD ORDER:");
@@ -332,19 +256,19 @@ public class FactorioData {
 			System.out.println(" " + info.getName());
 		}
 
-		LuaValue modsTable = LuaValue.tableOf(0, loadOrder.size());
-		for (Mod mod : loadOrder) {
-			ModInfo info = mod.getInfo();
-			if (!info.getName().equals("core"))
-				modsTable.set(info.getName(), info.getVersion());
-		}
-		globals.set("mods", modsTable);
+		Box<Mod> currentMod = Box.of(modLoader.getMod("core").get());
+
+		Globals globals = setupLuaState(luaPath, loadOrder, currentMod);
 
 		loadStage(globals, loadOrder, currentMod, "/settings.lua");
 		loadStage(globals, loadOrder, currentMod, "/settings-updates.lua");
 		loadStage(globals, loadOrder, currentMod, "/settings-final-fixes.lua");
 
-		initializeSettings(globals);
+		// TODO make new lua state
+		// TODO push defines, mods, data loader again
+		// TODO save the above package.loaded state
+		initializeSettings(globals); // TODO this needs to be done both before (read) and after (write) the lua state
+										// recreation - split the function
 
 		loadStage(globals, loadOrder, currentMod, "/data.lua");
 		loadStage(globals, loadOrder, currentMod, "/data-updates.lua");
@@ -411,6 +335,7 @@ public class FactorioData {
 	private static void loadStage(Globals globals, List<Mod> loadOrder, Box<Mod> currentMod, String filename)
 			throws IOException {
 		for (Mod mod : loadOrder) {
+			// TODO restore the initial package.loaded state
 			currentMod.set(mod);
 			Optional<InputStream> resource = mod.getResource(filename);
 			if (resource.isPresent()) {
@@ -433,6 +358,91 @@ public class FactorioData {
 			values.put("L", (double) level);
 			return (int) expression.evaluate(values);
 		};
+	}
+
+	private static Globals setupLuaState(String luaPath, List<Mod> loadOrder, Box<Mod> currentMod) {
+		Globals globals = JsePlatform.standardGlobals();
+		globals.load(new BaseLib());
+		globals.load(new DebugLib());
+		globals.load(new Bit32Lib());
+		globals.load(new StringReader("package.path = package.path .. ';" + luaPath + "'"), "initLuaPath").call();
+		globals.finder = new ResourceFinder() {
+			@Override
+			public InputStream findResource(String filename) {
+				/*
+				 * Problematic call stack: PackageLib$searchpath.invoke(Varargs) line: 291
+				 * PackageLib$lua_searcher.invoke(Varargs) line: 263
+				 * PackageLib$require.call(LuaValue) line: 217
+				 * 
+				 * PackageLib$searchpath.invoke(Varargs) line: 291 replaces all "." with
+				 * FILE_SEP ( = System.getProperty("file.separator")), on Windows this is "\".
+				 * This means that if a require uses "file.lua" as the file name, this is
+				 * converted to "file\lua".
+				 * 
+				 * So now when applying the package path, LuaJ will add the ".lua" from the
+				 * "?.lua" package path back on it and it turns into "file\lua.lua". And then
+				 * the file isn't found!
+				 * 
+				 * Solution: Hack it by turning "\lua.lua" back into ".lua".
+				 * 
+				 * This will give wrong results if someone has a file named "lua.lua". I
+				 * consider this less likely than a require that contains the file extension.
+				 * 
+				 */
+				if (filename.endsWith(File.separator + "lua.lua")) {
+					filename = filename.replace(File.separator + "lua.lua", ".lua");
+				}
+				if (filename.startsWith(SEARCH_MOD) && currentMod.get() != null) {
+					try {
+						return currentMod.get().getResource(filename.replace(SEARCH_MOD, "")).orElse(null);
+					} catch (Exception e) {
+						e.printStackTrace();
+						throw new InternalError(e);
+					}
+				} else if (filename.startsWith(SEARCH_RESOURCE)) {
+					InputStream stream = FactorioData.class.getClassLoader()
+							.getResourceAsStream(filename.replace(SEARCH_RESOURCE, "lua"));
+					// System.out.println(stream != null);
+					return stream;
+				} else if (filename.startsWith("__") && (filename.indexOf("__", 2) > -1)) {
+					int matchEnd = filename.indexOf("__", 2);
+					String modName = filename.substring(2, matchEnd);
+					Optional<Mod> mod = modLoader.getMod(modName);
+					if (!mod.isPresent()) {
+						throw new IllegalStateException("Mod does not exist: " + modName);
+					}
+					try {
+						return mod.get().getResource(filename.substring(matchEnd + 2)).orElse(null);
+					} catch (Exception e) {
+						e.printStackTrace();
+						throw new InternalError(e);
+					}
+				} else {
+					File file = new File(filename);
+					// System.out.println(file.exists());
+					try {
+						return file.exists() ? new FileInputStream(file) : null;
+					} catch (FileNotFoundException e) {
+						e.printStackTrace();
+						throw new InternalError(e);
+					}
+				}
+			}
+		};
+
+		globals.load(new InputStreamReader(globals.finder.findResource(SEARCH_RESOURCE + "/loader.lua")), "loader")
+				.call();
+
+		LuaValue modsTable = LuaValue.tableOf(0, loadOrder.size());
+		for (Mod mod : loadOrder) {
+			ModInfo info = mod.getInfo();
+			if (!info.getName().equals("core"))
+				modsTable.set(info.getName(), info.getVersion());
+		}
+		globals.set("mods", modsTable);
+		// TODO save the above package.loaded state
+
+		return globals;
 	}
 
 	private static void setupWorkingDirectory() {
