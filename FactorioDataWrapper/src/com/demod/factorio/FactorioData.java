@@ -15,6 +15,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -31,6 +32,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.luaj.vm2.Globals;
+import org.luaj.vm2.LuaString;
 import org.luaj.vm2.LuaTable;
 import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.lib.BaseLib;
@@ -161,10 +163,10 @@ public class FactorioData {
 				// Overlay icon of equipment technology icons are outside bounds of base icon.
 				// So, move the overlay icon up. Do the same for mining productivity tech.
 				String path = l.get("icon").tojstring();
-				if (path.equals("__core__/graphics/icons/technology/constants/constant-equipment.png")) {
-					g.translate(0, -20);
-				} else if (path.equals("__core__/graphics/icons/technology/constants/constant-mining-productivity.png")) {
+				if (path.equals("__core__/graphics/icons/technology/constants/constant-mining-productivity.png")) {
 					g.translate(-8, -7);
+				} else if (path.equals("__core__/graphics/icons/technology/constants/constant-equipment.png")) {
+					g.translate(0, -20);
 				}
 
 				g.scale(scale, scale);
@@ -248,8 +250,136 @@ public class FactorioData {
 		TypeHierarchy typeHiearchy = new TypeHierarchy(Utils
 				.readJsonFromStream(FactorioData.class.getClassLoader().getResourceAsStream("type-hiearchy.json")));
 
+		List<Mod> loadOrder = modLoader.getModsInLoadOrder();
+
+		System.out.println("LOAD ORDER:");
+		for (Mod mod : loadOrder) {
+			ModInfo info = mod.getInfo();
+			System.out.println(" " + info.getName());
+		}
+
 		Box<Mod> currentMod = Box.of(modLoader.getMod("core").get());
 
+		Globals globals = setupLuaState(luaPath, loadOrder, currentMod);
+		List<LuaString> initialPackages = new ArrayList<>();
+		Utils.forEach(globals.get("package").get("loaded"), (k, v) -> {
+			initialPackages.add(k.checkstring());
+		});
+
+		loadStage(globals, initialPackages, loadOrder, currentMod, "/settings.lua");
+		loadStage(globals, initialPackages, loadOrder, currentMod, "/settings-updates.lua");
+		loadStage(globals, initialPackages, loadOrder, currentMod, "/settings-final-fixes.lua");
+
+		LuaTable settingsLua = initializeSettings(globals);
+
+		// Discard the LuaState from settings and create a new one for data
+		globals = setupLuaState(luaPath, loadOrder, currentMod);
+		globals.set("settings", settingsLua);
+
+		loadStage(globals, initialPackages, loadOrder, currentMod, "/data.lua");
+		loadStage(globals, initialPackages, loadOrder, currentMod, "/data-updates.lua");
+		loadStage(globals, initialPackages, loadOrder, currentMod, "/data-final-fixes.lua");
+
+		JSONObject excludeDataJson = Utils
+				.readJsonFromStream(FactorioData.class.getClassLoader().getResourceAsStream("exclude-data.json"));
+		JSONObject includeDataJson = Utils
+				.readJsonFromStream(FactorioData.class.getClassLoader().getResourceAsStream("include-data.json"));
+		JSONObject wikiNamingJson = Utils
+				.readJsonFromStream(FactorioData.class.getClassLoader().getResourceAsStream("wiki-naming.json"));
+		DataTable dataTable = new DataTable(typeHiearchy, globals.get("data").checktable(), excludeDataJson,
+				includeDataJson, wikiNamingJson);
+
+		return dataTable;
+	}
+
+	private static LuaTable initializeSettings(Globals globals) {
+		LuaTable settingsLua = new LuaTable();
+		LuaTable startupLua = new LuaTable();
+		settingsLua.set("startup", startupLua);
+		LuaTable runtimeLua = new LuaTable();
+		settingsLua.set("runtime", runtimeLua);
+		LuaTable runtimePerUserLua = new LuaTable();
+		settingsLua.set("runtime-per-user", runtimePerUserLua);
+
+		Utils.forEach(globals.get("data").get("raw"), v -> {
+			Utils.forEach(v.checktable(), protoLua -> {
+				String type = protoLua.get("type").tojstring();
+				String name = protoLua.get("name").tojstring();
+
+				if (type.endsWith("-setting")) {
+					LuaTable lua = new LuaTable();
+					lua.set("value", protoLua.get("default_value"));
+
+					LuaTable settingTypeLua = null;
+					switch (protoLua.get("setting_type").tojstring()) {
+					case "startup":
+						settingTypeLua = startupLua;
+						break;
+					case "runtime-global":
+						settingTypeLua = runtimeLua;
+						break;
+					case "runtime-per-user":
+						settingTypeLua = runtimePerUserLua;
+						break;
+					}
+					settingTypeLua.set(name, lua);
+				}
+			});
+		});
+
+		return settingsLua;
+	}
+
+	private static BufferedImage loadImage(InputStream is) throws IOException {
+		BufferedImage image = ImageIO.read(is);
+		if (image.getType() == BufferedImage.TYPE_CUSTOM) {
+			image = convertCustomImage(image);
+		}
+		return image;
+	}
+
+	private static void loadStage(Globals globals, List<LuaString> initialPackages, List<Mod> loadOrder,
+			Box<Mod> currentMod, String filename) throws IOException {
+		for (Mod mod : loadOrder) {
+			resetPackagesLoaded(globals, initialPackages);
+			currentMod.set(mod);
+			Optional<InputStream> resource = mod.getResource(filename);
+			if (resource.isPresent()) {
+				globals.load(new InputStreamReader(resource.get()), mod.getInfo().getName() + "_" + filename).call();
+			}
+		}
+	}
+
+	public static IntUnaryOperator parseCountFormula(String countFormula) {
+		Expression expression;
+		try {
+			expression = SimpleMathFormula.Expression.parse(countFormula, 0);
+		} catch (InputException e) {
+			System.err.println("COUNT FORMULA PARSE FAIL: " + countFormula);
+			e.printStackTrace();
+			return l -> -1;
+		}
+		Map<String, Double> values = new HashMap<>();
+		return level -> {
+			values.put("L", (double) level);
+			return (int) expression.evaluate(values);
+		};
+	}
+
+	private static void resetPackagesLoaded(Globals globals, List<LuaString> initialPackages) {
+		List<LuaString> toErase = new ArrayList<>();
+		LuaTable loaded = globals.get("package").get("loaded").checktable();
+		Utils.forEach(loaded, (k, v) -> {
+			LuaString packageName = k.checkstring();
+			if (!initialPackages.contains(packageName))
+				toErase.add(packageName);
+		});
+		for (LuaString packageName : toErase) {
+			loaded.set(packageName, LuaValue.NIL);
+		}
+	}
+
+	private static Globals setupLuaState(String luaPath, List<Mod> loadOrder, Box<Mod> currentMod) {
 		Globals globals = JsePlatform.standardGlobals();
 		globals.load(new BaseLib());
 		globals.load(new DebugLib());
@@ -264,7 +394,7 @@ public class FactorioData {
 				 * PackageLib$require.call(LuaValue) line: 217
 				 * 
 				 * PackageLib$searchpath.invoke(Varargs) line: 291 replaces all "." with
-				 * FILE_SEP ( = System.getProperty("file.separator")), on windows this is "\".
+				 * FILE_SEP ( = System.getProperty("file.separator")), on Windows this is "\".
 				 * This means that if a require uses "file.lua" as the file name, this is
 				 * converted to "file\lua".
 				 * 
@@ -276,8 +406,6 @@ public class FactorioData {
 				 * 
 				 * This will give wrong results if someone has a file named "lua.lua". I
 				 * consider this less likely than a require that contains the file extension.
-				 * 
-				 * TODO: Test if this works on Linux
 				 * 
 				 */
 				if (filename.endsWith(File.separator + "lua.lua")) {
@@ -324,14 +452,6 @@ public class FactorioData {
 		globals.load(new InputStreamReader(globals.finder.findResource(SEARCH_RESOURCE + "/loader.lua")), "loader")
 				.call();
 
-		List<Mod> loadOrder = modLoader.getModsInLoadOrder();
-
-		System.out.println("LOAD ORDER:");
-		for (Mod mod : loadOrder) {
-			ModInfo info = mod.getInfo();
-			System.out.println(" " + info.getName());
-		}
-
 		LuaValue modsTable = LuaValue.tableOf(0, loadOrder.size());
 		for (Mod mod : loadOrder) {
 			ModInfo info = mod.getInfo();
@@ -340,99 +460,7 @@ public class FactorioData {
 		}
 		globals.set("mods", modsTable);
 
-		loadStage(globals, loadOrder, currentMod, "/settings.lua");
-		loadStage(globals, loadOrder, currentMod, "/settings-updates.lua");
-		loadStage(globals, loadOrder, currentMod, "/settings-final-fixes.lua");
-
-		initializeSettings(globals);
-
-		loadStage(globals, loadOrder, currentMod, "/data.lua");
-		loadStage(globals, loadOrder, currentMod, "/data-updates.lua");
-		loadStage(globals, loadOrder, currentMod, "/data-final-fixes.lua");
-
-		JSONObject excludeDataJson = Utils
-				.readJsonFromStream(FactorioData.class.getClassLoader().getResourceAsStream("exclude-data.json"));
-		JSONObject includeDataJson = Utils
-				.readJsonFromStream(FactorioData.class.getClassLoader().getResourceAsStream("include-data.json"));
-		JSONObject wikiNamingJson = Utils
-				.readJsonFromStream(FactorioData.class.getClassLoader().getResourceAsStream("wiki-naming.json"));
-		DataTable dataTable = new DataTable(typeHiearchy, globals.get("data").checktable(), excludeDataJson,
-				includeDataJson, wikiNamingJson);
-
-		return dataTable;
-	}
-
-	private static void initializeSettings(Globals globals) {
-		LuaTable settingsLua = new LuaTable();
-		LuaTable startupLua = new LuaTable();
-		settingsLua.set("startup", startupLua);
-		LuaTable runtimeLua = new LuaTable();
-		settingsLua.set("runtime", runtimeLua);
-		LuaTable runtimePerUserLua = new LuaTable();
-		settingsLua.set("runtime-per-user", runtimePerUserLua);
-
-		Utils.forEach(globals.get("data").get("raw"), v -> {
-			Utils.forEach(v.checktable(), protoLua -> {
-				String type = protoLua.get("type").tojstring();
-				String name = protoLua.get("name").tojstring();
-
-				if (type.endsWith("-setting")) {
-					LuaTable lua = new LuaTable();
-					lua.set("value", protoLua.get("default_value"));
-
-					LuaTable settingTypeLua = null;
-					switch (protoLua.get("setting_type").tojstring()) {
-					case "startup":
-						settingTypeLua = startupLua;
-						break;
-					case "runtime-global":
-						settingTypeLua = runtimeLua;
-						break;
-					case "runtime-per-user":
-						settingTypeLua = runtimePerUserLua;
-						break;
-					}
-					settingTypeLua.set(name, lua);
-				}
-			});
-		});
-
-		globals.set("settings", settingsLua);
-	}
-
-	private static BufferedImage loadImage(InputStream is) throws IOException {
-		BufferedImage image = ImageIO.read(is);
-		if (image.getType() == BufferedImage.TYPE_CUSTOM) {
-			image = convertCustomImage(image);
-		}
-		return image;
-	}
-
-	private static void loadStage(Globals globals, List<Mod> loadOrder, Box<Mod> currentMod, String filename)
-			throws IOException {
-		for (Mod mod : loadOrder) {
-			currentMod.set(mod);
-			Optional<InputStream> resource = mod.getResource(filename);
-			if (resource.isPresent()) {
-				globals.load(new InputStreamReader(resource.get()), mod.getInfo().getName() + "_" + filename).call();
-			}
-		}
-	}
-
-	public static IntUnaryOperator parseCountFormula(String countFormula) {
-		Expression expression;
-		try {
-			expression = SimpleMathFormula.Expression.parse(countFormula, 0);
-		} catch (InputException e) {
-			System.err.println("COUNT FORMULA PARSE FAIL: " + countFormula);
-			e.printStackTrace();
-			return l -> -1;
-		}
-		Map<String, Double> values = new HashMap<>();
-		return level -> {
-			values.put("L", (double) level);
-			return (int) expression.evaluate(values);
-		};
+		return globals;
 	}
 
 	private static void setupWorkingDirectory() {
