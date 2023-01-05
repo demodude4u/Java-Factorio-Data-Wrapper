@@ -460,6 +460,10 @@ public class FactorioData {
 		}
 		globals.set("mods", modsTable);
 
+		globals.load(new StringReader(
+				"old_tonumber = tonumber; tonumber = function(e, base) local n = old_tonumber(e, base); if e == \"-\" then return nil end; return n; end"),
+				"overwriteTonumber").call();
+
 		return globals;
 	}
 
