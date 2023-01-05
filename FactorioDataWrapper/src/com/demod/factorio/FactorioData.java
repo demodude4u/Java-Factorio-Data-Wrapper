@@ -15,6 +15,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -31,6 +32,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.luaj.vm2.Globals;
+import org.luaj.vm2.LuaString;
 import org.luaj.vm2.LuaTable;
 import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.lib.BaseLib;
@@ -259,20 +261,24 @@ public class FactorioData {
 		Box<Mod> currentMod = Box.of(modLoader.getMod("core").get());
 
 		Globals globals = setupLuaState(luaPath, loadOrder, currentMod);
+		List<LuaString> initialPackages = new ArrayList<>();
+		Utils.forEach(globals.get("package").get("loaded"), (k, v) -> {
+			initialPackages.add(k.checkstring());
+		});
 
-		loadStage(globals, loadOrder, currentMod, "/settings.lua");
-		loadStage(globals, loadOrder, currentMod, "/settings-updates.lua");
-		loadStage(globals, loadOrder, currentMod, "/settings-final-fixes.lua");
+		loadStage(globals, initialPackages, loadOrder, currentMod, "/settings.lua");
+		loadStage(globals, initialPackages, loadOrder, currentMod, "/settings-updates.lua");
+		loadStage(globals, initialPackages, loadOrder, currentMod, "/settings-final-fixes.lua");
 
-		// TODO make new lua state
-		// TODO push defines, mods, data loader again
-		// TODO save the above package.loaded state
-		initializeSettings(globals); // TODO this needs to be done both before (read) and after (write) the lua state
-										// recreation - split the function
+		LuaTable settingsLua = initializeSettings(globals);
 
-		loadStage(globals, loadOrder, currentMod, "/data.lua");
-		loadStage(globals, loadOrder, currentMod, "/data-updates.lua");
-		loadStage(globals, loadOrder, currentMod, "/data-final-fixes.lua");
+		// Discard the LuaState from settings and create a new one for data
+		globals = setupLuaState(luaPath, loadOrder, currentMod);
+		globals.set("settings", settingsLua);
+
+		loadStage(globals, initialPackages, loadOrder, currentMod, "/data.lua");
+		loadStage(globals, initialPackages, loadOrder, currentMod, "/data-updates.lua");
+		loadStage(globals, initialPackages, loadOrder, currentMod, "/data-final-fixes.lua");
 
 		JSONObject excludeDataJson = Utils
 				.readJsonFromStream(FactorioData.class.getClassLoader().getResourceAsStream("exclude-data.json"));
@@ -286,7 +292,7 @@ public class FactorioData {
 		return dataTable;
 	}
 
-	private static void initializeSettings(Globals globals) {
+	private static LuaTable initializeSettings(Globals globals) {
 		LuaTable settingsLua = new LuaTable();
 		LuaTable startupLua = new LuaTable();
 		settingsLua.set("startup", startupLua);
@@ -321,7 +327,7 @@ public class FactorioData {
 			});
 		});
 
-		globals.set("settings", settingsLua);
+		return settingsLua;
 	}
 
 	private static BufferedImage loadImage(InputStream is) throws IOException {
@@ -332,10 +338,10 @@ public class FactorioData {
 		return image;
 	}
 
-	private static void loadStage(Globals globals, List<Mod> loadOrder, Box<Mod> currentMod, String filename)
-			throws IOException {
+	private static void loadStage(Globals globals, List<LuaString> initialPackages, List<Mod> loadOrder,
+			Box<Mod> currentMod, String filename) throws IOException {
 		for (Mod mod : loadOrder) {
-			// TODO restore the initial package.loaded state
+			resetPackagesLoaded(globals, initialPackages);
 			currentMod.set(mod);
 			Optional<InputStream> resource = mod.getResource(filename);
 			if (resource.isPresent()) {
@@ -358,6 +364,19 @@ public class FactorioData {
 			values.put("L", (double) level);
 			return (int) expression.evaluate(values);
 		};
+	}
+
+	private static void resetPackagesLoaded(Globals globals, List<LuaString> initialPackages) {
+		List<LuaString> toErase = new ArrayList<>();
+		LuaTable loaded = globals.get("package").get("loaded").checktable();
+		Utils.forEach(loaded, (k, v) -> {
+			LuaString packageName = k.checkstring();
+			if (!initialPackages.contains(packageName))
+				toErase.add(packageName);
+		});
+		for (LuaString packageName : toErase) {
+			loaded.set(packageName, LuaValue.NIL);
+		}
 	}
 
 	private static Globals setupLuaState(String luaPath, List<Mod> loadOrder, Box<Mod> currentMod) {
@@ -440,7 +459,6 @@ public class FactorioData {
 				modsTable.set(info.getName(), info.getVersion());
 		}
 		globals.set("mods", modsTable);
-		// TODO save the above package.loaded state
 
 		return globals;
 	}
