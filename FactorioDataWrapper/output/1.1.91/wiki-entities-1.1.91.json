@@ -1,0 +1,1062 @@
+{
+  "Accumulator": {
+    "map-color": "7a7a7a",
+    "health": 150,
+    "mining-time": 0.1
+  },
+  "Arithmetic combinator": {
+    "map-color": "006191",
+    "health": 150,
+    "mining-time": 0.1
+  },
+  "Artillery turret": {
+    "map-color": "006191",
+    "health": 2000,
+    "mining-time": 0.5,
+    "resistances": {
+      "fire": {
+        "percent": 50,
+        "decrease": 15
+      },
+      "physical": {
+        "percent": 30,
+        "decrease": 15
+      },
+      "impact": {
+        "percent": 50,
+        "decrease": 50
+      },
+      "explosion": {
+        "percent": 30,
+        "decrease": 15
+      },
+      "acid": {
+        "percent": 20,
+        "decrease": 3
+      }
+    }
+  },
+  "Artillery wagon": {
+    "health": 600,
+    "mining-time": 0.5,
+    "resistances": {
+      "fire": {
+        "percent": 50,
+        "decrease": 15
+      },
+      "physical": {
+        "percent": 30,
+        "decrease": 15
+      },
+      "impact": {
+        "percent": 50,
+        "decrease": 50
+      },
+      "explosion": {
+        "percent": 30,
+        "decrease": 15
+      },
+      "acid": {
+        "percent": 20,
+        "decrease": 3
+      }
+    }
+  },
+  "Assembling machine 1": {
+    "map-color": "006191",
+    "health": 300,
+    "mining-time": 0.2,
+    "pollution": 4,
+    "resistances": {"fire": {
+      "percent": 70,
+      "decrease": 0
+    }}
+  },
+  "Assembling machine 2": {
+    "map-color": "006191",
+    "health": 350,
+    "mining-time": 0.2,
+    "pollution": 3,
+    "resistances": {"fire": {
+      "percent": 70,
+      "decrease": 0
+    }}
+  },
+  "Assembling machine 3": {
+    "map-color": "006191",
+    "health": 400,
+    "mining-time": 0.2,
+    "pollution": 2,
+    "resistances": {"fire": {
+      "percent": 70,
+      "decrease": 0
+    }}
+  },
+  "Beacon": {
+    "map-color": "074468",
+    "health": 200,
+    "mining-time": 0.2
+  },
+  "Big electric pole": {
+    "map-color": "006191",
+    "health": 150,
+    "mining-time": 0.1,
+    "resistances": {"fire": {
+      "percent": 100,
+      "decrease": 0
+    }}
+  },
+  "Boiler": {
+    "map-color": "006191",
+    "health": 200,
+    "mining-time": 0.2,
+    "pollution": 30,
+    "resistances": {
+      "fire": {
+        "percent": 90,
+        "decrease": 0
+      },
+      "explosion": {
+        "percent": 30,
+        "decrease": 0
+      },
+      "impact": {
+        "percent": 30,
+        "decrease": 0
+      }
+    }
+  },
+  "Burner inserter": {
+    "map-color": "006191",
+    "health": 100,
+    "mining-time": 0.1,
+    "resistances": {"fire": {
+      "percent": 90,
+      "decrease": 0
+    }}
+  },
+  "Burner mining drill": {
+    "map-color": "006191",
+    "health": 150,
+    "mining-time": 0.3,
+    "pollution": 12
+  },
+  "Car": {
+    "health": 450,
+    "mining-time": 0.4,
+    "resistances": {
+      "fire": {
+        "percent": 50,
+        "decrease": 0
+      },
+      "impact": {
+        "percent": 30,
+        "decrease": 50
+      },
+      "acid": {
+        "percent": 20,
+        "decrease": 0
+      }
+    }
+  },
+  "Cargo wagon": {
+    "health": 600,
+    "mining-time": 0.5,
+    "resistances": {
+      "fire": {
+        "percent": 50,
+        "decrease": 15
+      },
+      "physical": {
+        "percent": 30,
+        "decrease": 15
+      },
+      "impact": {
+        "percent": 60,
+        "decrease": 50
+      },
+      "explosion": {
+        "percent": 30,
+        "decrease": 15
+      },
+      "acid": {
+        "percent": 20,
+        "decrease": 3
+      }
+    }
+  },
+  "Centrifuge": {
+    "map-color": "006191",
+    "health": 350,
+    "mining-time": 0.1,
+    "pollution": 4,
+    "resistances": {"fire": {
+      "percent": 70,
+      "decrease": 0
+    }}
+  },
+  "Chemical plant": {
+    "map-color": "006191",
+    "health": 300,
+    "mining-time": 0.1,
+    "pollution": 4
+  },
+  "Cliff": {"map-color": "907757"},
+  "Coal": {
+    "map-color": "000000",
+    "mining-time": 1
+  },
+  "Constant combinator": {
+    "map-color": "006191",
+    "health": 120,
+    "mining-time": 0.1
+  },
+  "Construction robot": {
+    "health": 100,
+    "mining-time": 0.1,
+    "resistances": {"fire": {
+      "percent": 85,
+      "decrease": 0
+    }}
+  },
+  "Copper ore": {
+    "map-color": "cd6337",
+    "mining-time": 1
+  },
+  "Crude oil": {
+    "map-color": "c733c4",
+    "mining-time": 1
+  },
+  "Decider combinator": {
+    "map-color": "006191",
+    "health": 150,
+    "mining-time": 0.1
+  },
+  "Defender capsule": {
+    "health": 60,
+    "resistances": {
+      "fire": {
+        "percent": 95,
+        "decrease": 0
+      },
+      "acid": {
+        "percent": 80,
+        "decrease": 0
+      }
+    }
+  },
+  "Destroyer capsule": {
+    "health": 60,
+    "resistances": {
+      "fire": {
+        "percent": 95,
+        "decrease": 0
+      },
+      "acid": {
+        "percent": 90,
+        "decrease": 0
+      }
+    }
+  },
+  "Distractor capsule": {
+    "health": 90,
+    "resistances": {
+      "fire": {
+        "percent": 95,
+        "decrease": 0
+      },
+      "acid": {
+        "percent": 85,
+        "decrease": 0
+      }
+    }
+  },
+  "Electric furnace": {
+    "map-color": "006191",
+    "health": 350,
+    "mining-time": 0.2,
+    "pollution": 1,
+    "resistances": {"fire": {
+      "percent": 80,
+      "decrease": 0
+    }}
+  },
+  "Electric mining drill": {
+    "map-color": "006191",
+    "health": 300,
+    "mining-time": 0.3,
+    "pollution": 10
+  },
+  "Express splitter": {
+    "map-color": "ffd100",
+    "health": 190,
+    "mining-time": 0.1,
+    "resistances": {"fire": {
+      "percent": 60,
+      "decrease": 0
+    }}
+  },
+  "Express transport belt": {
+    "map-color": "cca147",
+    "health": 170,
+    "mining-time": 0.1,
+    "resistances": {"fire": {
+      "percent": 50,
+      "decrease": 0
+    }}
+  },
+  "Express underground belt": {
+    "map-color": "705c00",
+    "health": 170,
+    "mining-time": 0.1,
+    "resistances": {
+      "fire": {
+        "percent": 60,
+        "decrease": 0
+      },
+      "impact": {
+        "percent": 30,
+        "decrease": 0
+      }
+    }
+  },
+  "Fast inserter": {
+    "map-color": "006191",
+    "health": 150,
+    "mining-time": 0.1,
+    "resistances": {"fire": {
+      "percent": 90,
+      "decrease": 0
+    }}
+  },
+  "Fast splitter": {
+    "map-color": "ffd100",
+    "health": 180,
+    "mining-time": 0.1,
+    "resistances": {"fire": {
+      "percent": 60,
+      "decrease": 0
+    }}
+  },
+  "Fast transport belt": {
+    "map-color": "cca147",
+    "health": 160,
+    "mining-time": 0.1,
+    "resistances": {"fire": {
+      "percent": 50,
+      "decrease": 0
+    }}
+  },
+  "Fast underground belt": {
+    "map-color": "705c00",
+    "health": 160,
+    "mining-time": 0.1,
+    "resistances": {
+      "fire": {
+        "percent": 60,
+        "decrease": 0
+      },
+      "impact": {
+        "percent": 30,
+        "decrease": 0
+      }
+    }
+  },
+  "Filter inserter": {
+    "map-color": "006191",
+    "health": 150,
+    "mining-time": 0.1,
+    "resistances": {"fire": {
+      "percent": 90,
+      "decrease": 0
+    }}
+  },
+  "Raw fish": {
+    "health": 20,
+    "mining-time": 0.4
+  },
+  "Flamethrower turret": {
+    "map-color": "eb751a",
+    "health": 1400,
+    "mining-time": 0.5,
+    "resistances": {"fire": {
+      "percent": 100,
+      "decrease": 0
+    }}
+  },
+  "Fluid wagon": {
+    "health": 600,
+    "mining-time": 0.5,
+    "resistances": {
+      "fire": {
+        "percent": 50,
+        "decrease": 15
+      },
+      "physical": {
+        "percent": 30,
+        "decrease": 15
+      },
+      "impact": {
+        "percent": 60,
+        "decrease": 50
+      },
+      "explosion": {
+        "percent": 30,
+        "decrease": 15
+      },
+      "acid": {
+        "percent": 20,
+        "decrease": 3
+      }
+    }
+  },
+  "Gate": {
+    "map-color": "808080",
+    "health": 350,
+    "mining-time": 0.1,
+    "resistances": {
+      "physical": {
+        "percent": 20,
+        "decrease": 3
+      },
+      "impact": {
+        "percent": 60,
+        "decrease": 45
+      },
+      "explosion": {
+        "percent": 30,
+        "decrease": 10
+      },
+      "fire": {
+        "percent": 100,
+        "decrease": 0
+      },
+      "acid": {
+        "percent": 80,
+        "decrease": 0
+      },
+      "laser": {
+        "percent": 70,
+        "decrease": 0
+      }
+    }
+  },
+  "Gun turret": {
+    "map-color": "caa718",
+    "health": 400,
+    "mining-time": 0.5
+  },
+  "Heat exchanger": {
+    "map-color": "006191",
+    "health": 200,
+    "mining-time": 0.1,
+    "resistances": {
+      "fire": {
+        "percent": 90,
+        "decrease": 0
+      },
+      "explosion": {
+        "percent": 30,
+        "decrease": 0
+      },
+      "impact": {
+        "percent": 30,
+        "decrease": 0
+      }
+    }
+  },
+  "Heat pipe": {
+    "map-color": "3a82ac",
+    "health": 200,
+    "mining-time": 0.1,
+    "resistances": {
+      "fire": {
+        "percent": 90,
+        "decrease": 0
+      },
+      "explosion": {
+        "percent": 30,
+        "decrease": 0
+      },
+      "impact": {
+        "percent": 30,
+        "decrease": 0
+      }
+    }
+  },
+  "Inserter": {
+    "map-color": "006191",
+    "health": 150,
+    "mining-time": 0.1,
+    "resistances": {"fire": {
+      "percent": 90,
+      "decrease": 0
+    }}
+  },
+  "Iron chest": {
+    "map-color": "006191",
+    "health": 200,
+    "mining-time": 0.2,
+    "resistances": {
+      "fire": {
+        "percent": 80,
+        "decrease": 0
+      },
+      "impact": {
+        "percent": 30,
+        "decrease": 0
+      }
+    }
+  },
+  "Iron ore": {
+    "map-color": "6a8694",
+    "mining-time": 1
+  },
+  "Lab": {
+    "map-color": "006191",
+    "health": 150,
+    "mining-time": 0.2
+  },
+  "Land mine": {
+    "health": 15,
+    "mining-time": 0.5
+  },
+  "Laser turret": {
+    "map-color": "d92e2e",
+    "health": 1000,
+    "mining-time": 0.5
+  },
+  "Locomotive": {
+    "health": 1000,
+    "mining-time": 0.5,
+    "resistances": {
+      "fire": {
+        "percent": 50,
+        "decrease": 15
+      },
+      "physical": {
+        "percent": 30,
+        "decrease": 15
+      },
+      "impact": {
+        "percent": 60,
+        "decrease": 50
+      },
+      "explosion": {
+        "percent": 30,
+        "decrease": 15
+      },
+      "acid": {
+        "percent": 20,
+        "decrease": 3
+      }
+    }
+  },
+  "Active provider chest": {
+    "map-color": "006191",
+    "health": 350,
+    "mining-time": 0.1,
+    "resistances": {
+      "fire": {
+        "percent": 90,
+        "decrease": 0
+      },
+      "impact": {
+        "percent": 60,
+        "decrease": 0
+      }
+    }
+  },
+  "Buffer chest": {
+    "map-color": "006191",
+    "health": 350,
+    "mining-time": 0.1,
+    "resistances": {
+      "fire": {
+        "percent": 90,
+        "decrease": 0
+      },
+      "impact": {
+        "percent": 60,
+        "decrease": 0
+      }
+    }
+  },
+  "Passive provider chest": {
+    "map-color": "006191",
+    "health": 350,
+    "mining-time": 0.1,
+    "resistances": {
+      "fire": {
+        "percent": 90,
+        "decrease": 0
+      },
+      "impact": {
+        "percent": 60,
+        "decrease": 0
+      }
+    }
+  },
+  "Requester chest": {
+    "map-color": "006191",
+    "health": 350,
+    "mining-time": 0.1,
+    "resistances": {
+      "fire": {
+        "percent": 90,
+        "decrease": 0
+      },
+      "impact": {
+        "percent": 60,
+        "decrease": 0
+      }
+    }
+  },
+  "Storage chest": {
+    "map-color": "006191",
+    "health": 350,
+    "mining-time": 0.1,
+    "resistances": {
+      "fire": {
+        "percent": 90,
+        "decrease": 0
+      },
+      "impact": {
+        "percent": 60,
+        "decrease": 0
+      }
+    }
+  },
+  "Logistic robot": {
+    "health": 100,
+    "mining-time": 0.1,
+    "resistances": {"fire": {
+      "percent": 85,
+      "decrease": 0
+    }}
+  },
+  "Long-handed inserter": {
+    "map-color": "006191",
+    "health": 160,
+    "mining-time": 0.1,
+    "resistances": {"fire": {
+      "percent": 90,
+      "decrease": 0
+    }}
+  },
+  "Medium electric pole": {
+    "map-color": "006191",
+    "health": 100,
+    "mining-time": 0.1,
+    "resistances": {"fire": {
+      "percent": 100,
+      "decrease": 0
+    }}
+  },
+  "Nuclear reactor": {
+    "map-color": "006191",
+    "health": 500,
+    "mining-time": 0.5
+  },
+  "Offshore pump": {
+    "map-color": "006191",
+    "health": 150,
+    "mining-time": 0.1,
+    "resistances": {
+      "fire": {
+        "percent": 70,
+        "decrease": 0
+      },
+      "impact": {
+        "percent": 30,
+        "decrease": 0
+      }
+    }
+  },
+  "Oil refinery": {
+    "map-color": "006191",
+    "health": 350,
+    "mining-time": 0.2,
+    "pollution": 6
+  },
+  "Pipe": {
+    "map-color": "4582a5",
+    "health": 100,
+    "mining-time": 0.1,
+    "resistances": {
+      "fire": {
+        "percent": 80,
+        "decrease": 0
+      },
+      "impact": {
+        "percent": 30,
+        "decrease": 0
+      }
+    }
+  },
+  "Pipe to ground": {
+    "map-color": "196796",
+    "health": 150,
+    "mining-time": 0.1,
+    "resistances": {
+      "fire": {
+        "percent": 80,
+        "decrease": 0
+      },
+      "impact": {
+        "percent": 40,
+        "decrease": 0
+      }
+    }
+  },
+  "Power switch": {
+    "map-color": "006191",
+    "health": 200,
+    "mining-time": 0.2
+  },
+  "Programmable speaker": {
+    "map-color": "006191",
+    "health": 150,
+    "mining-time": 0.1
+  },
+  "Pump": {
+    "map-color": "6d9ab5",
+    "health": 180,
+    "mining-time": 0.2,
+    "resistances": {
+      "fire": {
+        "percent": 80,
+        "decrease": 0
+      },
+      "impact": {
+        "percent": 30,
+        "decrease": 0
+      }
+    }
+  },
+  "Pumpjack": {
+    "map-color": "006191",
+    "health": 200,
+    "mining-time": 0.5,
+    "pollution": 10
+  },
+  "Radar": {
+    "map-color": "006191",
+    "health": 250,
+    "mining-time": 0.1,
+    "resistances": {
+      "fire": {
+        "percent": 70,
+        "decrease": 0
+      },
+      "impact": {
+        "percent": 30,
+        "decrease": 0
+      }
+    }
+  },
+  "Rail chain signal": {
+    "map-color": "006191",
+    "health": 100,
+    "mining-time": 0.1
+  },
+  "Rail signal": {
+    "map-color": "006191",
+    "health": 100,
+    "mining-time": 0.1
+  },
+  "Roboport": {
+    "map-color": "d3cf88",
+    "health": 500,
+    "mining-time": 0.1,
+    "resistances": {
+      "fire": {
+        "percent": 60,
+        "decrease": 0
+      },
+      "impact": {
+        "percent": 30,
+        "decrease": 0
+      }
+    }
+  },
+  "Rocket silo": {
+    "map-color": "006191",
+    "health": 5000,
+    "mining-time": 1,
+    "resistances": {
+      "fire": {
+        "percent": 60,
+        "decrease": 0
+      },
+      "impact": {
+        "percent": 60,
+        "decrease": 0
+      }
+    }
+  },
+  "Small electric pole": {
+    "map-color": "006191",
+    "health": 100,
+    "mining-time": 0.1
+  },
+  "Lamp": {
+    "map-color": "006191",
+    "health": 100,
+    "mining-time": 0.1
+  },
+  "Solar panel": {
+    "map-color": "1f2124",
+    "health": 200,
+    "mining-time": 0.1
+  },
+  "Spidertron": {
+    "health": 3000,
+    "mining-time": 1,
+    "resistances": {
+      "fire": {
+        "percent": 60,
+        "decrease": 15
+      },
+      "physical": {
+        "percent": 60,
+        "decrease": 15
+      },
+      "impact": {
+        "percent": 80,
+        "decrease": 50
+      },
+      "explosion": {
+        "percent": 75,
+        "decrease": 20
+      },
+      "acid": {
+        "percent": 70,
+        "decrease": 0
+      },
+      "laser": {
+        "percent": 70,
+        "decrease": 0
+      },
+      "electric": {
+        "percent": 70,
+        "decrease": 0
+      }
+    }
+  },
+  "Splitter": {
+    "map-color": "ffd100",
+    "health": 170,
+    "mining-time": 0.1,
+    "resistances": {"fire": {
+      "percent": 60,
+      "decrease": 0
+    }}
+  },
+  "Stack filter inserter": {
+    "map-color": "006191",
+    "health": 160,
+    "mining-time": 0.1,
+    "resistances": {"fire": {
+      "percent": 90,
+      "decrease": 0
+    }}
+  },
+  "Stack inserter": {
+    "map-color": "006191",
+    "health": 160,
+    "mining-time": 0.1,
+    "resistances": {"fire": {
+      "percent": 90,
+      "decrease": 0
+    }}
+  },
+  "Steam engine": {
+    "map-color": "007fa0",
+    "health": 400,
+    "mining-time": 0.3,
+    "resistances": {
+      "fire": {
+        "percent": 70,
+        "decrease": 0
+      },
+      "impact": {
+        "percent": 30,
+        "decrease": 0
+      }
+    }
+  },
+  "Steam turbine": {
+    "map-color": "007fa0",
+    "health": 300,
+    "mining-time": 0.3,
+    "resistances": {"fire": {
+      "percent": 70,
+      "decrease": 0
+    }}
+  },
+  "Steel chest": {
+    "map-color": "006191",
+    "health": 350,
+    "mining-time": 0.2,
+    "resistances": {
+      "fire": {
+        "percent": 90,
+        "decrease": 0
+      },
+      "impact": {
+        "percent": 60,
+        "decrease": 0
+      }
+    }
+  },
+  "Steel furnace": {
+    "map-color": "006191",
+    "health": 300,
+    "mining-time": 0.2,
+    "pollution": 4,
+    "resistances": {"fire": {
+      "percent": 100,
+      "decrease": 0
+    }}
+  },
+  "Stone": {
+    "map-color": "b09c6d",
+    "mining-time": 1
+  },
+  "Stone furnace": {
+    "map-color": "006191",
+    "health": 200,
+    "mining-time": 0.2,
+    "pollution": 2,
+    "resistances": {
+      "fire": {
+        "percent": 90,
+        "decrease": 0
+      },
+      "explosion": {
+        "percent": 30,
+        "decrease": 0
+      },
+      "impact": {
+        "percent": 30,
+        "decrease": 0
+      }
+    }
+  },
+  "Wall": {
+    "map-color": "ccd9cc",
+    "health": 350,
+    "mining-time": 0.2,
+    "resistances": {
+      "physical": {
+        "percent": 20,
+        "decrease": 3
+      },
+      "impact": {
+        "percent": 60,
+        "decrease": 45
+      },
+      "explosion": {
+        "percent": 30,
+        "decrease": 10
+      },
+      "fire": {
+        "percent": 100,
+        "decrease": 0
+      },
+      "acid": {
+        "percent": 80,
+        "decrease": 0
+      },
+      "laser": {
+        "percent": 70,
+        "decrease": 0
+      }
+    }
+  },
+  "Storage tank": {
+    "map-color": "83a6bc",
+    "health": 500,
+    "mining-time": 0.5
+  },
+  "Substation": {
+    "map-color": "006191",
+    "health": 200,
+    "mining-time": 0.1,
+    "resistances": {"fire": {
+      "percent": 90,
+      "decrease": 0
+    }}
+  },
+  "Tank": {
+    "health": 2000,
+    "mining-time": 0.5,
+    "resistances": {
+      "fire": {
+        "percent": 60,
+        "decrease": 15
+      },
+      "physical": {
+        "percent": 60,
+        "decrease": 15
+      },
+      "impact": {
+        "percent": 80,
+        "decrease": 50
+      },
+      "explosion": {
+        "percent": 70,
+        "decrease": 15
+      },
+      "acid": {
+        "percent": 70,
+        "decrease": 0
+      }
+    }
+  },
+  "Train stop": {
+    "health": 250,
+    "mining-time": 0.2
+  },
+  "Transport belt": {
+    "map-color": "cca147",
+    "health": 150,
+    "mining-time": 0.1,
+    "resistances": {"fire": {
+      "percent": 90,
+      "decrease": 0
+    }}
+  },
+  "Underground belt": {
+    "map-color": "705c00",
+    "health": 150,
+    "mining-time": 0.1,
+    "resistances": {
+      "fire": {
+        "percent": 60,
+        "decrease": 0
+      },
+      "impact": {
+        "percent": 30,
+        "decrease": 0
+      }
+    }
+  },
+  "Uranium ore": {
+    "map-color": "00b300",
+    "mining-time": 2
+  },
+  "Wooden chest": {
+    "map-color": "006191",
+    "health": 100,
+    "mining-time": 0.1
+  },
+  "Concrete": {"map-color": "3f3d3b"},
+  "Hazard concrete": {"map-color": "b08e27"},
+  "Landfill": {"map-color": "39271a"},
+  "Refined concrete": {"map-color": "31302d"},
+  "Refined hazard concrete": {"map-color": "745e1a"},
+  "Stone brick": {"map-color": "56524a"},
+  "Water": {"map-color": "33535f"}
+}

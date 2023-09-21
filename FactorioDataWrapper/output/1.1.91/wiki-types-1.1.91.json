@@ -1,0 +1,950 @@
+{
+  "Accumulator": {
+    "internal-name": "accumulator",
+    "prototype-type": "accumulator"
+  },
+  "Advanced circuit": {
+    "internal-name": "advanced-circuit",
+    "prototype-type": "item"
+  },
+  "Advanced oil processing": {
+    "internal-name": "advanced-oil-processing",
+    "prototype-type": "recipe"
+  },
+  "Arithmetic combinator": {
+    "internal-name": "arithmetic-combinator",
+    "prototype-type": "arithmetic-combinator"
+  },
+  "Artillery shell": {
+    "internal-name": "artillery-shell",
+    "prototype-type": "ammo"
+  },
+  "Artillery targeting remote": {
+    "internal-name": "artillery-targeting-remote",
+    "prototype-type": "capsule"
+  },
+  "Artillery turret": {
+    "internal-name": "artillery-turret",
+    "prototype-type": "artillery-turret"
+  },
+  "Artillery wagon": {
+    "internal-name": "artillery-wagon",
+    "prototype-type": "artillery-wagon"
+  },
+  "Assembling machine 1": {
+    "internal-name": "assembling-machine-1",
+    "prototype-type": "assembling-machine"
+  },
+  "Assembling machine 2": {
+    "internal-name": "assembling-machine-2",
+    "prototype-type": "assembling-machine"
+  },
+  "Assembling machine 3": {
+    "internal-name": "assembling-machine-3",
+    "prototype-type": "assembling-machine"
+  },
+  "Atomic bomb": {
+    "internal-name": "atomic-bomb",
+    "prototype-type": "ammo"
+  },
+  "Automation science pack": {
+    "internal-name": "automation-science-pack",
+    "prototype-type": "tool"
+  },
+  "Basic oil processing": {
+    "internal-name": "basic-oil-processing",
+    "prototype-type": "recipe"
+  },
+  "Battery": {
+    "internal-name": "battery",
+    "prototype-type": "item"
+  },
+  "Personal battery": {
+    "internal-name": "battery-equipment",
+    "prototype-type": "battery-equipment"
+  },
+  "Personal battery MK2": {
+    "internal-name": "battery-mk2-equipment",
+    "prototype-type": "battery-equipment"
+  },
+  "Beacon": {
+    "internal-name": "beacon",
+    "prototype-type": "beacon"
+  },
+  "Belt immunity equipment": {
+    "internal-name": "belt-immunity-equipment",
+    "prototype-type": "belt-immunity-equipment"
+  },
+  "Big electric pole": {
+    "internal-name": "big-electric-pole",
+    "prototype-type": "electric-pole"
+  },
+  "Blueprint": {
+    "internal-name": "blueprint",
+    "prototype-type": "blueprint"
+  },
+  "Blueprint book": {
+    "internal-name": "blueprint-book",
+    "prototype-type": "blueprint-book"
+  },
+  "Boiler": {
+    "internal-name": "boiler",
+    "prototype-type": "boiler"
+  },
+  "Burner inserter": {
+    "internal-name": "burner-inserter",
+    "prototype-type": "inserter"
+  },
+  "Burner mining drill": {
+    "internal-name": "burner-mining-drill",
+    "prototype-type": "mining-drill"
+  },
+  "Cannon shell": {
+    "internal-name": "cannon-shell",
+    "prototype-type": "ammo"
+  },
+  "Car": {
+    "internal-name": "car",
+    "prototype-type": "car"
+  },
+  "Cargo wagon": {
+    "internal-name": "cargo-wagon",
+    "prototype-type": "cargo-wagon"
+  },
+  "Centrifuge": {
+    "internal-name": "centrifuge",
+    "prototype-type": "assembling-machine"
+  },
+  "Chemical plant": {
+    "internal-name": "chemical-plant",
+    "prototype-type": "assembling-machine"
+  },
+  "Chemical science pack": {
+    "internal-name": "chemical-science-pack",
+    "prototype-type": "tool"
+  },
+  "Cliff explosives": {
+    "internal-name": "cliff-explosives",
+    "prototype-type": "projectile"
+  },
+  "Cluster grenade": {
+    "internal-name": "cluster-grenade",
+    "prototype-type": "projectile"
+  },
+  "Coal": {
+    "internal-name": "coal",
+    "prototype-type": "resource"
+  },
+  "Coal liquefaction": {
+    "internal-name": "coal-liquefaction",
+    "prototype-type": "recipe"
+  },
+  "Combat shotgun": {
+    "internal-name": "combat-shotgun",
+    "prototype-type": "gun"
+  },
+  "Concrete": {
+    "internal-name": "concrete",
+    "prototype-type": "tile"
+  },
+  "Constant combinator": {
+    "internal-name": "constant-combinator",
+    "prototype-type": "constant-combinator"
+  },
+  "Construction robot": {
+    "internal-name": "construction-robot",
+    "prototype-type": "construction-robot"
+  },
+  "Copper cable": {
+    "internal-name": "copper-cable",
+    "prototype-type": "item"
+  },
+  "Copper ore": {
+    "internal-name": "copper-ore",
+    "prototype-type": "resource"
+  },
+  "Copper plate": {
+    "internal-name": "copper-plate",
+    "prototype-type": "item"
+  },
+  "Crude oil": {
+    "internal-name": "crude-oil",
+    "prototype-type": "fluid"
+  },
+  "Crude oil barrel": {
+    "internal-name": "crude-oil-barrel",
+    "prototype-type": "item"
+  },
+  "Decider combinator": {
+    "internal-name": "decider-combinator",
+    "prototype-type": "decider-combinator"
+  },
+  "Deconstruction planner": {
+    "internal-name": "deconstruction-planner",
+    "prototype-type": "deconstruction-item"
+  },
+  "Defender capsule": {
+    "internal-name": "defender-capsule",
+    "prototype-type": "projectile"
+  },
+  "Destroyer capsule": {
+    "internal-name": "destroyer-capsule",
+    "prototype-type": "projectile"
+  },
+  "Discharge defense": {
+    "internal-name": "discharge-defense-equipment",
+    "prototype-type": "active-defense-equipment"
+  },
+  "Discharge defense remote": {
+    "internal-name": "discharge-defense-remote",
+    "prototype-type": "capsule"
+  },
+  "Distractor capsule": {
+    "internal-name": "distractor-capsule",
+    "prototype-type": "projectile"
+  },
+  "Efficiency module": {
+    "internal-name": "effectivity-module",
+    "prototype-type": "module"
+  },
+  "Efficiency module 2": {
+    "internal-name": "effectivity-module-2",
+    "prototype-type": "module"
+  },
+  "Efficiency module 3": {
+    "internal-name": "effectivity-module-3",
+    "prototype-type": "module"
+  },
+  "Electric engine unit": {
+    "internal-name": "electric-engine-unit",
+    "prototype-type": "item"
+  },
+  "Electric furnace": {
+    "internal-name": "electric-furnace",
+    "prototype-type": "furnace"
+  },
+  "Electric mining drill": {
+    "internal-name": "electric-mining-drill",
+    "prototype-type": "mining-drill"
+  },
+  "Electronic circuit": {
+    "internal-name": "electronic-circuit",
+    "prototype-type": "item"
+  },
+  "Empty barrel": {
+    "internal-name": "empty-barrel",
+    "prototype-type": "item"
+  },
+  "Empty crude oil barrel": {
+    "internal-name": "empty-crude-oil-barrel",
+    "prototype-type": "recipe"
+  },
+  "Empty heavy oil barrel": {
+    "internal-name": "empty-heavy-oil-barrel",
+    "prototype-type": "recipe"
+  },
+  "Empty light oil barrel": {
+    "internal-name": "empty-light-oil-barrel",
+    "prototype-type": "recipe"
+  },
+  "Empty lubricant barrel": {
+    "internal-name": "empty-lubricant-barrel",
+    "prototype-type": "recipe"
+  },
+  "Empty petroleum gas barrel": {
+    "internal-name": "empty-petroleum-gas-barrel",
+    "prototype-type": "recipe"
+  },
+  "Empty sulfuric acid barrel": {
+    "internal-name": "empty-sulfuric-acid-barrel",
+    "prototype-type": "recipe"
+  },
+  "Empty water barrel": {
+    "internal-name": "empty-water-barrel",
+    "prototype-type": "recipe"
+  },
+  "Energy shield": {
+    "internal-name": "energy-shield-equipment",
+    "prototype-type": "energy-shield-equipment"
+  },
+  "Energy shield MK2": {
+    "internal-name": "energy-shield-mk2-equipment",
+    "prototype-type": "energy-shield-equipment"
+  },
+  "Engine unit": {
+    "internal-name": "engine-unit",
+    "prototype-type": "item"
+  },
+  "Exoskeleton": {
+    "internal-name": "exoskeleton-equipment",
+    "prototype-type": "movement-bonus-equipment"
+  },
+  "Explosive cannon shell": {
+    "internal-name": "explosive-cannon-shell",
+    "prototype-type": "ammo"
+  },
+  "Explosive rocket": {
+    "internal-name": "explosive-rocket",
+    "prototype-type": "projectile"
+  },
+  "Explosive uranium cannon shell": {
+    "internal-name": "explosive-uranium-cannon-shell",
+    "prototype-type": "ammo"
+  },
+  "Explosives": {
+    "internal-name": "explosives",
+    "prototype-type": "item"
+  },
+  "Express splitter": {
+    "internal-name": "express-splitter",
+    "prototype-type": "splitter"
+  },
+  "Express transport belt": {
+    "internal-name": "express-transport-belt",
+    "prototype-type": "transport-belt"
+  },
+  "Express underground belt": {
+    "internal-name": "express-underground-belt",
+    "prototype-type": "underground-belt"
+  },
+  "Fast inserter": {
+    "internal-name": "fast-inserter",
+    "prototype-type": "inserter"
+  },
+  "Fast splitter": {
+    "internal-name": "fast-splitter",
+    "prototype-type": "splitter"
+  },
+  "Fast transport belt": {
+    "internal-name": "fast-transport-belt",
+    "prototype-type": "transport-belt"
+  },
+  "Fast underground belt": {
+    "internal-name": "fast-underground-belt",
+    "prototype-type": "underground-belt"
+  },
+  "Fill crude oil barrel": {
+    "internal-name": "fill-crude-oil-barrel",
+    "prototype-type": "recipe"
+  },
+  "Fill heavy oil barrel": {
+    "internal-name": "fill-heavy-oil-barrel",
+    "prototype-type": "recipe"
+  },
+  "Fill light oil barrel": {
+    "internal-name": "fill-light-oil-barrel",
+    "prototype-type": "recipe"
+  },
+  "Fill lubricant barrel": {
+    "internal-name": "fill-lubricant-barrel",
+    "prototype-type": "recipe"
+  },
+  "Fill petroleum gas barrel": {
+    "internal-name": "fill-petroleum-gas-barrel",
+    "prototype-type": "recipe"
+  },
+  "Fill sulfuric acid barrel": {
+    "internal-name": "fill-sulfuric-acid-barrel",
+    "prototype-type": "recipe"
+  },
+  "Fill water barrel": {
+    "internal-name": "fill-water-barrel",
+    "prototype-type": "recipe"
+  },
+  "Filter inserter": {
+    "internal-name": "filter-inserter",
+    "prototype-type": "inserter"
+  },
+  "Firearm magazine": {
+    "internal-name": "firearm-magazine",
+    "prototype-type": "ammo"
+  },
+  "Flamethrower": {
+    "internal-name": "flamethrower",
+    "prototype-type": "gun"
+  },
+  "Flamethrower ammo": {
+    "internal-name": "flamethrower-ammo",
+    "prototype-type": "ammo"
+  },
+  "Flamethrower turret": {
+    "internal-name": "flamethrower-turret",
+    "prototype-type": "fluid-turret"
+  },
+  "Fluid wagon": {
+    "internal-name": "fluid-wagon",
+    "prototype-type": "fluid-wagon"
+  },
+  "Flying robot frame": {
+    "internal-name": "flying-robot-frame",
+    "prototype-type": "item"
+  },
+  "Portable fusion reactor": {
+    "internal-name": "fusion-reactor-equipment",
+    "prototype-type": "generator-equipment"
+  },
+  "Gate": {
+    "internal-name": "gate",
+    "prototype-type": "gate"
+  },
+  "Green wire": {
+    "internal-name": "green-wire",
+    "prototype-type": "item"
+  },
+  "Grenade": {
+    "internal-name": "grenade",
+    "prototype-type": "projectile"
+  },
+  "Gun turret": {
+    "internal-name": "gun-turret",
+    "prototype-type": "ammo-turret"
+  },
+  "Hazard concrete": {
+    "internal-name": "hazard-concrete",
+    "prototype-type": "item"
+  },
+  "Heat exchanger": {
+    "internal-name": "heat-exchanger",
+    "prototype-type": "boiler"
+  },
+  "Heat pipe": {
+    "internal-name": "heat-pipe",
+    "prototype-type": "heat-pipe"
+  },
+  "Heavy armor": {
+    "internal-name": "heavy-armor",
+    "prototype-type": "armor"
+  },
+  "Heavy oil": {
+    "internal-name": "heavy-oil",
+    "prototype-type": "fluid"
+  },
+  "Heavy oil barrel": {
+    "internal-name": "heavy-oil-barrel",
+    "prototype-type": "item"
+  },
+  "Heavy oil cracking": {
+    "internal-name": "heavy-oil-cracking",
+    "prototype-type": "recipe"
+  },
+  "Inserter": {
+    "internal-name": "inserter",
+    "prototype-type": "inserter"
+  },
+  "Iron chest": {
+    "internal-name": "iron-chest",
+    "prototype-type": "container"
+  },
+  "Iron gear wheel": {
+    "internal-name": "iron-gear-wheel",
+    "prototype-type": "item"
+  },
+  "Iron ore": {
+    "internal-name": "iron-ore",
+    "prototype-type": "resource"
+  },
+  "Iron plate": {
+    "internal-name": "iron-plate",
+    "prototype-type": "item"
+  },
+  "Iron stick": {
+    "internal-name": "iron-stick",
+    "prototype-type": "item"
+  },
+  "Kovarex enrichment process": {
+    "internal-name": "kovarex-enrichment-process",
+    "prototype-type": "recipe"
+  },
+  "Lab": {
+    "internal-name": "lab",
+    "prototype-type": "lab"
+  },
+  "Land mine": {
+    "internal-name": "land-mine",
+    "prototype-type": "land-mine"
+  },
+  "Landfill": {
+    "internal-name": "landfill",
+    "prototype-type": "tile"
+  },
+  "Laser turret": {
+    "internal-name": "laser-turret",
+    "prototype-type": "electric-turret"
+  },
+  "Light armor": {
+    "internal-name": "light-armor",
+    "prototype-type": "armor"
+  },
+  "Light oil": {
+    "internal-name": "light-oil",
+    "prototype-type": "fluid"
+  },
+  "Light oil barrel": {
+    "internal-name": "light-oil-barrel",
+    "prototype-type": "item"
+  },
+  "Light oil cracking": {
+    "internal-name": "light-oil-cracking",
+    "prototype-type": "recipe"
+  },
+  "Locomotive": {
+    "internal-name": "locomotive",
+    "prototype-type": "locomotive"
+  },
+  "Active provider chest": {
+    "internal-name": "logistic-chest-active-provider",
+    "prototype-type": "logistic-container"
+  },
+  "Buffer chest": {
+    "internal-name": "logistic-chest-buffer",
+    "prototype-type": "logistic-container"
+  },
+  "Passive provider chest": {
+    "internal-name": "logistic-chest-passive-provider",
+    "prototype-type": "logistic-container"
+  },
+  "Requester chest": {
+    "internal-name": "logistic-chest-requester",
+    "prototype-type": "logistic-container"
+  },
+  "Storage chest": {
+    "internal-name": "logistic-chest-storage",
+    "prototype-type": "logistic-container"
+  },
+  "Logistic robot": {
+    "internal-name": "logistic-robot",
+    "prototype-type": "logistic-robot"
+  },
+  "Logistic science pack": {
+    "internal-name": "logistic-science-pack",
+    "prototype-type": "tool"
+  },
+  "Long-handed inserter": {
+    "internal-name": "long-handed-inserter",
+    "prototype-type": "inserter"
+  },
+  "Low density structure": {
+    "internal-name": "low-density-structure",
+    "prototype-type": "item"
+  },
+  "Lubricant": {
+    "internal-name": "lubricant",
+    "prototype-type": "fluid"
+  },
+  "Lubricant barrel": {
+    "internal-name": "lubricant-barrel",
+    "prototype-type": "item"
+  },
+  "Medium electric pole": {
+    "internal-name": "medium-electric-pole",
+    "prototype-type": "electric-pole"
+  },
+  "Military science pack": {
+    "internal-name": "military-science-pack",
+    "prototype-type": "tool"
+  },
+  "Modular armor": {
+    "internal-name": "modular-armor",
+    "prototype-type": "armor"
+  },
+  "Nightvision": {
+    "internal-name": "night-vision-equipment",
+    "prototype-type": "night-vision-equipment"
+  },
+  "Nuclear fuel": {
+    "internal-name": "nuclear-fuel",
+    "prototype-type": "item"
+  },
+  "Nuclear fuel reprocessing": {
+    "internal-name": "nuclear-fuel-reprocessing",
+    "prototype-type": "recipe"
+  },
+  "Nuclear reactor": {
+    "internal-name": "nuclear-reactor",
+    "prototype-type": "reactor"
+  },
+  "Offshore pump": {
+    "internal-name": "offshore-pump",
+    "prototype-type": "offshore-pump"
+  },
+  "Oil refinery": {
+    "internal-name": "oil-refinery",
+    "prototype-type": "assembling-machine"
+  },
+  "Personal laser defense": {
+    "internal-name": "personal-laser-defense-equipment",
+    "prototype-type": "active-defense-equipment"
+  },
+  "Personal roboport": {
+    "internal-name": "personal-roboport-equipment",
+    "prototype-type": "roboport-equipment"
+  },
+  "Personal roboport MK2": {
+    "internal-name": "personal-roboport-mk2-equipment",
+    "prototype-type": "roboport-equipment"
+  },
+  "Petroleum gas": {
+    "internal-name": "petroleum-gas",
+    "prototype-type": "fluid"
+  },
+  "Petroleum gas barrel": {
+    "internal-name": "petroleum-gas-barrel",
+    "prototype-type": "item"
+  },
+  "Piercing rounds magazine": {
+    "internal-name": "piercing-rounds-magazine",
+    "prototype-type": "ammo"
+  },
+  "Piercing shotgun shells": {
+    "internal-name": "piercing-shotgun-shell",
+    "prototype-type": "ammo"
+  },
+  "Pipe": {
+    "internal-name": "pipe",
+    "prototype-type": "pipe"
+  },
+  "Pipe to ground": {
+    "internal-name": "pipe-to-ground",
+    "prototype-type": "pipe-to-ground"
+  },
+  "Pistol": {
+    "internal-name": "pistol",
+    "prototype-type": "gun"
+  },
+  "Plastic bar": {
+    "internal-name": "plastic-bar",
+    "prototype-type": "item"
+  },
+  "Poison capsule": {
+    "internal-name": "poison-capsule",
+    "prototype-type": "projectile"
+  },
+  "Power armor": {
+    "internal-name": "power-armor",
+    "prototype-type": "armor"
+  },
+  "Power armor MK2": {
+    "internal-name": "power-armor-mk2",
+    "prototype-type": "armor"
+  },
+  "Power switch": {
+    "internal-name": "power-switch",
+    "prototype-type": "power-switch"
+  },
+  "Processing unit": {
+    "internal-name": "processing-unit",
+    "prototype-type": "item"
+  },
+  "Production science pack": {
+    "internal-name": "production-science-pack",
+    "prototype-type": "tool"
+  },
+  "Productivity module": {
+    "internal-name": "productivity-module",
+    "prototype-type": "module"
+  },
+  "Productivity module 2": {
+    "internal-name": "productivity-module-2",
+    "prototype-type": "module"
+  },
+  "Productivity module 3": {
+    "internal-name": "productivity-module-3",
+    "prototype-type": "module"
+  },
+  "Programmable speaker": {
+    "internal-name": "programmable-speaker",
+    "prototype-type": "programmable-speaker"
+  },
+  "Pump": {
+    "internal-name": "pump",
+    "prototype-type": "pump"
+  },
+  "Pumpjack": {
+    "internal-name": "pumpjack",
+    "prototype-type": "mining-drill"
+  },
+  "Radar": {
+    "internal-name": "radar",
+    "prototype-type": "radar"
+  },
+  "Rail": {
+    "internal-name": "rail",
+    "prototype-type": "rail-planner"
+  },
+  "Rail chain signal": {
+    "internal-name": "rail-chain-signal",
+    "prototype-type": "rail-chain-signal"
+  },
+  "Rail signal": {
+    "internal-name": "rail-signal",
+    "prototype-type": "rail-signal"
+  },
+  "Raw fish": {
+    "internal-name": "raw-fish",
+    "prototype-type": "capsule"
+  },
+  "Red wire": {
+    "internal-name": "red-wire",
+    "prototype-type": "item"
+  },
+  "Refined concrete": {
+    "internal-name": "refined-concrete",
+    "prototype-type": "tile"
+  },
+  "Refined hazard concrete": {
+    "internal-name": "refined-hazard-concrete",
+    "prototype-type": "item"
+  },
+  "Repair pack": {
+    "internal-name": "repair-pack",
+    "prototype-type": "repair-tool"
+  },
+  "Roboport": {
+    "internal-name": "roboport",
+    "prototype-type": "roboport"
+  },
+  "Rocket": {
+    "internal-name": "rocket",
+    "prototype-type": "projectile"
+  },
+  "Rocket control unit": {
+    "internal-name": "rocket-control-unit",
+    "prototype-type": "item"
+  },
+  "Rocket fuel": {
+    "internal-name": "rocket-fuel",
+    "prototype-type": "item"
+  },
+  "Rocket launcher": {
+    "internal-name": "rocket-launcher",
+    "prototype-type": "gun"
+  },
+  "Rocket part": {
+    "internal-name": "rocket-part",
+    "prototype-type": "item"
+  },
+  "Rocket silo": {
+    "internal-name": "rocket-silo",
+    "prototype-type": "rocket-silo"
+  },
+  "Satellite": {
+    "internal-name": "satellite",
+    "prototype-type": "item"
+  },
+  "Shotgun": {
+    "internal-name": "shotgun",
+    "prototype-type": "gun"
+  },
+  "Shotgun shells": {
+    "internal-name": "shotgun-shell",
+    "prototype-type": "ammo"
+  },
+  "Slowdown capsule": {
+    "internal-name": "slowdown-capsule",
+    "prototype-type": "projectile"
+  },
+  "Small electric pole": {
+    "internal-name": "small-electric-pole",
+    "prototype-type": "electric-pole"
+  },
+  "Lamp": {
+    "internal-name": "small-lamp",
+    "prototype-type": "lamp"
+  },
+  "Solar panel": {
+    "internal-name": "solar-panel",
+    "prototype-type": "solar-panel"
+  },
+  "Portable solar panel": {
+    "internal-name": "solar-panel-equipment",
+    "prototype-type": "solar-panel-equipment"
+  },
+  "Solid fuel": {
+    "internal-name": "solid-fuel",
+    "prototype-type": "item"
+  },
+  "Solid fuel from heavy oil": {
+    "internal-name": "solid-fuel-from-heavy-oil",
+    "prototype-type": "recipe"
+  },
+  "Solid fuel from light oil": {
+    "internal-name": "solid-fuel-from-light-oil",
+    "prototype-type": "recipe"
+  },
+  "Solid fuel from petroleum gas": {
+    "internal-name": "solid-fuel-from-petroleum-gas",
+    "prototype-type": "recipe"
+  },
+  "Space science pack": {
+    "internal-name": "space-science-pack",
+    "prototype-type": "tool"
+  },
+  "Speed module": {
+    "internal-name": "speed-module",
+    "prototype-type": "module"
+  },
+  "Speed module 2": {
+    "internal-name": "speed-module-2",
+    "prototype-type": "module"
+  },
+  "Speed module 3": {
+    "internal-name": "speed-module-3",
+    "prototype-type": "module"
+  },
+  "Spidertron": {
+    "internal-name": "spidertron",
+    "prototype-type": "spider-vehicle"
+  },
+  "Spidertron remote": {
+    "internal-name": "spidertron-remote",
+    "prototype-type": "spidertron-remote"
+  },
+  "Splitter": {
+    "internal-name": "splitter",
+    "prototype-type": "splitter"
+  },
+  "Stack filter inserter": {
+    "internal-name": "stack-filter-inserter",
+    "prototype-type": "inserter"
+  },
+  "Stack inserter": {
+    "internal-name": "stack-inserter",
+    "prototype-type": "inserter"
+  },
+  "Steam": {
+    "internal-name": "steam",
+    "prototype-type": "fluid"
+  },
+  "Steam engine": {
+    "internal-name": "steam-engine",
+    "prototype-type": "generator"
+  },
+  "Steam turbine": {
+    "internal-name": "steam-turbine",
+    "prototype-type": "generator"
+  },
+  "Steel chest": {
+    "internal-name": "steel-chest",
+    "prototype-type": "container"
+  },
+  "Steel furnace": {
+    "internal-name": "steel-furnace",
+    "prototype-type": "furnace"
+  },
+  "Steel plate": {
+    "internal-name": "steel-plate",
+    "prototype-type": "item"
+  },
+  "Stone": {
+    "internal-name": "stone",
+    "prototype-type": "resource"
+  },
+  "Stone brick": {
+    "internal-name": "stone-brick",
+    "prototype-type": "item"
+  },
+  "Stone furnace": {
+    "internal-name": "stone-furnace",
+    "prototype-type": "furnace"
+  },
+  "Wall": {
+    "internal-name": "stone-wall",
+    "prototype-type": "wall"
+  },
+  "Storage tank": {
+    "internal-name": "storage-tank",
+    "prototype-type": "storage-tank"
+  },
+  "Submachine gun": {
+    "internal-name": "submachine-gun",
+    "prototype-type": "gun"
+  },
+  "Substation": {
+    "internal-name": "substation",
+    "prototype-type": "electric-pole"
+  },
+  "Sulfur": {
+    "internal-name": "sulfur",
+    "prototype-type": "item"
+  },
+  "Sulfuric acid": {
+    "internal-name": "sulfuric-acid",
+    "prototype-type": "fluid"
+  },
+  "Sulfuric acid barrel": {
+    "internal-name": "sulfuric-acid-barrel",
+    "prototype-type": "item"
+  },
+  "Tank": {
+    "internal-name": "tank",
+    "prototype-type": "car"
+  },
+  "Train stop": {
+    "internal-name": "train-stop",
+    "prototype-type": "train-stop"
+  },
+  "Transport belt": {
+    "internal-name": "transport-belt",
+    "prototype-type": "transport-belt"
+  },
+  "Underground belt": {
+    "internal-name": "underground-belt",
+    "prototype-type": "underground-belt"
+  },
+  "Upgrade planner": {
+    "internal-name": "upgrade-planner",
+    "prototype-type": "upgrade-item"
+  },
+  "Uranium-235": {
+    "internal-name": "uranium-235",
+    "prototype-type": "item"
+  },
+  "Uranium-238": {
+    "internal-name": "uranium-238",
+    "prototype-type": "item"
+  },
+  "Uranium cannon shell": {
+    "internal-name": "uranium-cannon-shell",
+    "prototype-type": "ammo"
+  },
+  "Uranium fuel cell": {
+    "internal-name": "uranium-fuel-cell",
+    "prototype-type": "item"
+  },
+  "Uranium ore": {
+    "internal-name": "uranium-ore",
+    "prototype-type": "resource"
+  },
+  "Uranium processing": {
+    "internal-name": "uranium-processing",
+    "prototype-type": "recipe"
+  },
+  "Uranium rounds magazine": {
+    "internal-name": "uranium-rounds-magazine",
+    "prototype-type": "ammo"
+  },
+  "Used up uranium fuel cell": {
+    "internal-name": "used-up-uranium-fuel-cell",
+    "prototype-type": "item"
+  },
+  "Utility science pack": {
+    "internal-name": "utility-science-pack",
+    "prototype-type": "tool"
+  },
+  "Water": {
+    "internal-name": "water",
+    "prototype-type": "fluid"
+  },
+  "Water barrel": {
+    "internal-name": "water-barrel",
+    "prototype-type": "item"
+  },
+  "Wood": {
+    "internal-name": "wood",
+    "prototype-type": "item"
+  },
+  "Wooden chest": {
+    "internal-name": "wooden-chest",
+    "prototype-type": "container"
+  }
+}
