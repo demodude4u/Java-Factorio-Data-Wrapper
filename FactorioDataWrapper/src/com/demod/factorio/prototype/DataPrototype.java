@@ -44,7 +44,7 @@ public abstract class DataPrototype {
 		return name;
 	}
 
-	public boolean getParameter() {
+	public boolean isParameter() {
 		return parameter;
 	}
 

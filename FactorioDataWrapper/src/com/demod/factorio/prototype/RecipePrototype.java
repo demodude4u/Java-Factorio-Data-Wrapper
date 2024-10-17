@@ -15,6 +15,7 @@ public class RecipePrototype extends DataPrototype {
 	private final Map<String, Double> outputs = new LinkedHashMap<>();
 	private final double energyRequired;
 	private final boolean handCraftable;
+	private final boolean recycling;
 
 	public RecipePrototype(LuaTable lua, String name, String type) {
 		super(lua, name, type);
@@ -41,6 +42,7 @@ public class RecipePrototype extends DataPrototype {
 		energyRequired = lua.get("energy_required").optdouble(0.5);
 		category = lua.get("category").optjstring("crafting");
 		handCraftable = category.equals("crafting");
+		recycling = category.equals("recycling");
 	}
 
 	public String getCategory() {
@@ -61,6 +63,10 @@ public class RecipePrototype extends DataPrototype {
 
 	public boolean isHandCraftable() {
 		return handCraftable;
+	}
+
+	public boolean isRecycling() {
+		return recycling;
 	}
 
 	@Override
