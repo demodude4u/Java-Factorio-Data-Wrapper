@@ -8,11 +8,13 @@ public abstract class DataPrototype {
 	private final LuaTable lua;
 	private final String name;
 	private final String type;
+	private final boolean parameter;
 
 	public DataPrototype(LuaTable lua, String name, String type) {
 		this.lua = lua;
 		this.name = name;
 		this.type = type;
+		this.parameter = lua.get("parameter").optboolean(false);
 	}
 
 	public void debugPrint() {
@@ -40,6 +42,10 @@ public abstract class DataPrototype {
 
 	public String getName() {
 		return name;
+	}
+
+	public boolean getParameter() {
+		return parameter;
 	}
 
 	public String getType() {

@@ -44,7 +44,6 @@ public class DataTable {
 	private final Map<String, EntityPrototype> entities = new LinkedHashMap<>();
 	private final Map<String, ItemPrototype> items = new LinkedHashMap<>();
 	private final Map<String, RecipePrototype> recipes = new LinkedHashMap<>();
-	private final Map<String, RecipePrototype> expensiveRecipes = new LinkedHashMap<>();
 	private final Map<String, FluidPrototype> fluids = new LinkedHashMap<>();
 	private final Map<String, TechPrototype> technologies = new LinkedHashMap<>();
 	private final Map<String, EquipmentPrototype> equipments = new LinkedHashMap<>();
@@ -77,8 +76,7 @@ public class DataTable {
 				if (typeHierarchy.isAssignable("item", type) && !excludedRecipesAndItems.contains(name)) {
 					items.put(name, new ItemPrototype(protoLua.checktable(), name, type));
 				} else if (typeHierarchy.isAssignable("recipe", type) && !excludedRecipesAndItems.contains(name)) {
-					recipes.put(name, new RecipePrototype(protoLua.checktable(), name, type, false));
-					expensiveRecipes.put(name, new RecipePrototype(protoLua.checktable(), name, type, true));
+					recipes.put(name, new RecipePrototype(protoLua.checktable(), name, type));
 				} else if (typeHierarchy.isAssignable("entity", type)) {
 					entities.put(name, new EntityPrototype(protoLua.checktable(), name, type));
 				} else if (typeHierarchy.isAssignable("fluid", type) && !excludedFluids.contains(name)) {
@@ -166,14 +164,6 @@ public class DataTable {
 
 	public Map<String, EquipmentPrototype> getEquipments() {
 		return equipments;
-	}
-
-	public Optional<RecipePrototype> getExpensiveRecipe(String name) {
-		return Optional.ofNullable(expensiveRecipes.get(name));
-	}
-
-	public Map<String, RecipePrototype> getExpensiveRecipes() {
-		return expensiveRecipes;
 	}
 
 	public Set<String> getExplicitelyIncludedEntities() {

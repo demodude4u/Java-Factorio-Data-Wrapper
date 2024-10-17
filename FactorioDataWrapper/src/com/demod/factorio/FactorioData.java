@@ -52,6 +52,7 @@ public class FactorioData {
 
 	private static final String SEARCH_MOD = "__MOD__";
 	private static final String SEARCH_RESOURCE = "__RESOURCE__";
+	private static final int defaultIconSize = 64; // TODO read from defines
 
 	private static Map<String, BufferedImage> modImageCache = new HashMap<>();
 	private static Map<String, BufferedImage> modIconCache = new HashMap<>();
@@ -90,46 +91,35 @@ public class FactorioData {
 		return modIconCache.computeIfAbsent(name, n -> {
 			LuaValue iconLua = prototype.lua().get("icon");
 			if (!iconLua.isnil()) {
-				if (prototype.lua().get("icon_mipmaps").isnil()) { // simple icon
-					return getModImage(iconLua.tojstring());
-				}
+				int iconSize = prototype.lua().get("icon_size").optint(defaultIconSize);
 
-				// icon uses mipmaps
-				int iconSize = prototype.lua().get("icon_size").toint();
+				// TODO skip this call if layer.getWidth() == layerIconSize
 				return getModImage(iconLua.tojstring()).getSubimage(0, 0, iconSize, iconSize);
 			}
 			LuaValue iconsLua = prototype.lua().get("icons");
-			LuaValue iconsMipmaps = prototype.lua().get("icon_mipmaps");
-			// technically this shouldn't have a default, but all vanilla icons use size 64
-			int iconsSize = prototype.lua().get("icon_size").optint(64);
 
-			BufferedImage icon = new BufferedImage(iconsSize, iconsSize, BufferedImage.TYPE_INT_ARGB);
+			if (iconsLua.isnil()) {
+				System.err.println(prototype.lua().get("type").checkjstring() + " " + n + " has no icon.");
+				return new BufferedImage(defaultIconSize, defaultIconSize, BufferedImage.TYPE_INT_ARGB);
+			}
+
+			BufferedImage icon = new BufferedImage(defaultIconSize, defaultIconSize, BufferedImage.TYPE_INT_ARGB);
 			Graphics2D g = icon.createGraphics();
 			g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 			g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
 			AffineTransform pat = g.getTransform();
 			Utils.forEach(iconsLua, l -> {
 				BufferedImage layer = getModImage(l.get("icon").tojstring());
-				LuaValue layerMipmaps = l.get("icon_mipmaps");
-				int layerIconSize = l.get("icon_size").optint(iconsSize);
-				if (!layerMipmaps.isnil() && layerMipmaps.toint() > 0) {
-					layer = layer.getSubimage(0, 0, layerIconSize, layerIconSize);
-				} else if (!iconsMipmaps.isnil() && iconsMipmaps.toint() > 0) {
-					// sanity check is also in base game and gives warning in log
-					if (layer.getWidth() == layerIconSize) {
-						System.err.println("Icon layer using '" + l.get("icon").tojstring()
-								+ "' has mimaps defined but isnt big enough to actually be using mipmaps.");
-					} else {
-						layer = layer.getSubimage(0, 0, layerIconSize, layerIconSize);
-					}
-				}
+				int layerIconSize = l.get("icon_size").optint(defaultIconSize);
+				// TODO skip this call if layer.getWidth() == layerIconSize
+				layer = layer.getSubimage(0, 0, layerIconSize, layerIconSize);
 
 				LuaValue tintLua = l.get("tint");
 				if (!tintLua.isnil()) {
 					layer = Utils.tintImage(layer, Utils.parseColor(tintLua));
 				}
 
-				int expectedSize = 32; // items and recipes
+				int expectedSize = 32; // items and recipes (and most other things)
 				if (prototype.lua().get("type").checkjstring().equals("technology"))
 					expectedSize = 128;
 

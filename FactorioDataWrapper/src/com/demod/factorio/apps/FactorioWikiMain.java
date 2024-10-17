@@ -35,7 +35,6 @@ import com.demod.factorio.prototype.RecipePrototype;
 import com.demod.factorio.prototype.TechPrototype;
 import com.google.common.collect.LinkedHashMultimap;
 import com.google.common.collect.Multimap;
-import com.google.common.collect.Sets;
 import com.google.common.collect.Streams;
 import com.google.common.io.Files;
 import com.google.common.primitives.Ints;
@@ -94,6 +93,11 @@ public class FactorioWikiMain {
 		wiki_ScienceOrdering.put("production-science-pack", 5);
 		wiki_ScienceOrdering.put("utility-science-pack", 6);
 		wiki_ScienceOrdering.put("space-science-pack", 7);
+		wiki_ScienceOrdering.put("metallurgic-science-pack", 8);
+		wiki_ScienceOrdering.put("electromagnetic-science-pack", 9);
+		wiki_ScienceOrdering.put("agricultural-science-pack", 10);
+		wiki_ScienceOrdering.put("cryogenic-science-pack", 11);
+		wiki_ScienceOrdering.put("promethium-science-pack", 12);
 	}
 
 	private static Map<String, Function<Double, String>> wiki_EffectModifierFormatter = new LinkedHashMap<>();
@@ -406,17 +410,6 @@ public class FactorioWikiMain {
 		folder.mkdirs();
 		techIconFolder.mkdirs();
 
-		table.getRecipes().values().stream().filter(
-				r -> (!table.getItems().containsKey(r.getName()) && !table.getFluids().containsKey(r.getName())))
-				.forEach(recipe -> {
-					try {
-						ImageIO.write(FactorioData.getIcon(recipe), "PNG",
-								new File(folder, table.getWikiRecipeName(recipe.getName()) + ".png"));
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				});
-
 		table.getItems().values().stream().forEach(item -> {
 			try {
 				ImageIO.write(FactorioData.getIcon(item), "PNG",
@@ -434,6 +427,17 @@ public class FactorioWikiMain {
 				e.printStackTrace();
 			}
 		});
+
+		table.getRecipes().values().stream().filter(
+				r -> (!table.getItems().containsKey(r.getName()) && !table.getFluids().containsKey(r.getName())))
+				.forEach(recipe -> {
+					try {
+						ImageIO.write(FactorioData.getIcon(recipe), "PNG",
+								new File(folder, table.getWikiRecipeName(recipe.getName()) + ".png"));
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				});
 
 		table.getTechnologies().values().stream().filter(t -> !t.isBonus() || t.isFirstBonus()).forEach(tech -> {
 			try {
@@ -454,25 +458,27 @@ public class FactorioWikiMain {
 						.flatMap(r -> r.getOutputs().keySet().stream())
 						.forEach(name -> requiredTechnologies.put(name, tech.getName())));
 
-		table.getItems().values().stream().sorted((i1, i2) -> i1.getName().compareTo(i2.getName())).forEach(item -> {
-			JSONObject itemJson = createOrderedJSONObject();
-			json.put(table.getWikiItemName(item.getName()), itemJson);
+		table.getItems().values().stream().filter(i -> !i.getParameter())
+				.sorted((i1, i2) -> i1.getName().compareTo(i2.getName())).forEach(item -> {
+					JSONObject itemJson = createOrderedJSONObject();
+					json.put(table.getWikiItemName(item.getName()), itemJson);
 
-			List<String> names = table.getRecipes().values().stream()
-					.filter(r -> r.getInputs().containsKey(item.getName())).map(RecipePrototype::getName).sorted()
-					.collect(Collectors.toList());
-			if (!names.isEmpty()) {
-				itemJson.put("consumers", names.stream().map(n -> table.getWikiRecipeName(n)).collect(toJsonArray()));
-			}
+					List<String> names = table.getRecipes().values().stream()
+							.filter(r -> r.getInputs().containsKey(item.getName())).map(RecipePrototype::getName)
+							.sorted().collect(Collectors.toList());
+					if (!names.isEmpty()) {
+						itemJson.put("consumers",
+								names.stream().map(n -> table.getWikiRecipeName(n)).collect(toJsonArray()));
+					}
 
-			itemJson.put("stack-size", item.lua().get("stack_size").toint());
+					itemJson.put("stack-size", item.lua().get("stack_size").toint());
 
-			Collection<String> reqTech = requiredTechnologies.get(item.getName());
-			if (!reqTech.isEmpty()) {
-				itemJson.put("required-technologies",
-						reqTech.stream().sorted().map(n -> table.getWikiTechnologyName(n)).collect(toJsonArray()));
-			}
-		});
+					Collection<String> reqTech = requiredTechnologies.get(item.getName());
+					if (!reqTech.isEmpty()) {
+						itemJson.put("required-technologies", reqTech.stream().sorted()
+								.map(n -> table.getWikiTechnologyName(n)).collect(toJsonArray()));
+					}
+				});
 
 		return json;
 	}
@@ -499,18 +505,13 @@ public class FactorioWikiMain {
 		JSONObject json = createOrderedJSONObject();
 
 		Map<String, RecipePrototype> normalRecipes = table.getRecipes();
-		Map<String, RecipePrototype> expensiveRecipes = table.getExpensiveRecipes();
-
 		TotalRawCalculator normalTotalRawCalculator = new TotalRawCalculator(normalRecipes);
-		TotalRawCalculator expensiveTotalRawCalculator = new TotalRawCalculator(expensiveRecipes);
 
-		Sets.union(normalRecipes.keySet(), expensiveRecipes.keySet()).stream().sorted().forEach(name -> {
-			JSONObject item = createOrderedJSONObject();
-			json.put(table.getWikiRecipeName(name), item);
+		normalRecipes.values().stream().filter(r -> !r.getParameter())
+				.sorted((r1, r2) -> r1.getName().compareTo(r2.getName())).forEach(recipe -> {
+					JSONObject item = createOrderedJSONObject();
+					json.put(table.getWikiItemName(recipe.getName()), item);
 
-			{
-				RecipePrototype recipe = normalRecipes.get(name);
-				if (recipe != null) {
 					JSONArray recipeJson = new JSONArray();
 					item.put("recipe", recipeJson);
 					recipeJson.put(pair("Time", recipe.getEnergyRequired()));
@@ -518,8 +519,8 @@ public class FactorioWikiMain {
 							.forEach(entry -> {
 								recipeJson.put(pair(table.getWikiItemName(entry.getKey()), entry.getValue()));
 							});
-					if (recipe.getOutputs().size() > 1
-							|| recipe.getOutputs().values().stream().findFirst().get() != 1) {
+					if (recipe.getOutputs().size() > 1 || (recipe.getOutputs().values().stream().findFirst().isPresent()
+							&& recipe.getOutputs().values().stream().findFirst().get() != 1)) {
 						JSONArray recipeOutputJson = new JSONArray();
 						item.put("recipe-output", recipeOutputJson);
 						recipe.getOutputs().entrySet().stream().sorted((e1, e2) -> e1.getKey().compareTo(e2.getKey()))
@@ -537,48 +538,20 @@ public class FactorioWikiMain {
 							.sorted((e1, e2) -> e1.getKey().compareTo(e2.getKey())).forEach(entry -> {
 								totalRawJson.put(pair(table.getWikiItemName(entry.getKey()), entry.getValue()));
 							});
-				}
-			}
-			{
-				RecipePrototype recipe = expensiveRecipes.get(name);
-				if (recipe != null) {
-					JSONArray recipeJson = new JSONArray();
-					item.put("expensive-recipe", recipeJson);
-					recipeJson.put(pair("Time", recipe.getEnergyRequired()));
-					recipe.getInputs().entrySet().stream().sorted((e1, e2) -> e1.getKey().compareTo(e2.getKey()))
-							.forEach(entry -> {
-								recipeJson.put(pair(table.getWikiItemName(entry.getKey()), entry.getValue()));
-							});
-					if (recipe.getOutputs().size() > 1
-							|| recipe.getOutputs().values().stream().findFirst().get() != 1) {
-						JSONArray recipeOutputJson = new JSONArray();
-						item.put("expensive-recipe-output", recipeOutputJson);
-						recipe.getOutputs().entrySet().stream().sorted((e1, e2) -> e1.getKey().compareTo(e2.getKey()))
-								.forEach(entry -> {
-									recipeOutputJson.put(pair(table.getWikiItemName(entry.getKey()), entry.getValue()));
-								});
+
+					String category = recipe.getCategory();
+					Map<String, List<EntityPrototype>> craftingCategories = table.getCraftingCategories();
+
+					if (!craftingCategories.containsKey(category)) {
+						System.out.println("recipe " + recipe.getName() + " with recipe category " + category
+								+ " has no producers");
+					} else {
+						item.put("producers",
+								craftingCategories.get(category).stream()
+										.sorted((e1, e2) -> e1.getName().compareTo(e2.getName()))
+										.map(e -> table.getWikiEntityName(e.getName())).collect(toJsonArray()));
 					}
-
-					Map<String, Double> totalRaw = expensiveTotalRawCalculator.compute(recipe);
-
-					JSONArray totalRawJson = new JSONArray();
-					item.put("expensive-total-raw", totalRawJson);
-					totalRawJson.put(pair("Time", totalRaw.get(TotalRawCalculator.RAW_TIME)));
-					totalRaw.entrySet().stream().filter(e -> !e.getKey().equals(TotalRawCalculator.RAW_TIME))
-							.sorted((e1, e2) -> e1.getKey().compareTo(e2.getKey())).forEach(entry -> {
-								totalRawJson.put(pair(table.getWikiItemName(entry.getKey()), entry.getValue()));
-							});
-				}
-			}
-
-			// category must be same for expensive and normal
-			String category = normalRecipes.get(name).getCategory();
-			Map<String, List<EntityPrototype>> craftingCategories = table.getCraftingCategories();
-			item.put("producers",
-					craftingCategories.get(category).stream().sorted((e1, e2) -> e1.getName().compareTo(e2.getName()))
-							.map(e -> table.getWikiEntityName(e.getName())).collect(toJsonArray()));
-
-		});
+				});
 
 		return json;
 	}
@@ -631,7 +604,6 @@ public class FactorioWikiMain {
 
 					int count = tech.getEffectiveCount();
 					itemJson.put("cost-multiplier", count);
-					itemJson.put("expensive-cost-multiplier", (count * tech.getExpensiveCostMultiplier()));
 
 					if (!tech.getPrerequisites().isEmpty()) {
 						itemJson.put("required-technologies",
