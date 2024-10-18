@@ -30,10 +30,42 @@
 	  "spidertron-rocket-launcher-4",
 	  "linked-chest",
 	  "player-port",
-	  "linked-belt"
+	  "linked-belt",
+	  "parameter-0",
+	  "parameter-1",
+	  "parameter-2",
+	  "parameter-3",
+	  "parameter-4",
+	  "parameter-5",
+	  "parameter-6",
+	  "parameter-7",
+	  "parameter-8",
+	  "parameter-9"
 	],
 	"technologies":[],
 	"fluids":[
-	  "fluid-unknown"
-	]
+	  "fluid-unknown",	  
+	  "parameter-0",
+	  "parameter-1",
+	  "parameter-2",
+	  "parameter-3",
+	  "parameter-4",
+	  "parameter-5",
+	  "parameter-6",
+	  "parameter-7",
+	  "parameter-8",
+	  "parameter-9"
+	],
+	"entities":[
+	  "parameter-0",
+	  "parameter-1",
+	  "parameter-2",
+	  "parameter-3",
+	  "parameter-4",
+	  "parameter-5",
+	  "parameter-6",
+	  "parameter-7",
+	  "parameter-8",
+	  "parameter-9"
+    ]
 }
