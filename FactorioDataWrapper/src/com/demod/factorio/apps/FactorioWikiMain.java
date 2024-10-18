@@ -160,7 +160,7 @@ public class FactorioWikiMain {
 		Map<String, WikiTypeMatch> wikiTypes = generateWikiTypes(table);
 
 		write(wiki_Technologies(table), "wiki-technologies");
-		write(wiki_FormulaTechnologies(table), "wiki-formula-technologies");
+		// write(wiki_FormulaTechnologies(table), "wiki-formula-technologies");
 		write(wiki_Recipes(table), "wiki-recipes");
 		write(wiki_Types(table, wikiTypes), "wiki-types");
 		write(wiki_Items(table), "wiki-items");
@@ -330,6 +330,7 @@ public class FactorioWikiMain {
 		return wikiName;
 	}
 
+	@SuppressWarnings("unused")
 	private static JSONObject wiki_FormulaTechnologies(DataTable table) {
 		JSONObject json = createOrderedJSONObject();
 		table.getTechnologies().values().stream().filter(t -> t.isBonus()).map(t -> t.getBonusName()).distinct()
