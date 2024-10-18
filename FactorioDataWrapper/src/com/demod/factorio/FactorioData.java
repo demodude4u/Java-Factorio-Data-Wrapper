@@ -103,7 +103,9 @@ public class FactorioData {
 				return new BufferedImage(defaultIconSize, defaultIconSize, BufferedImage.TYPE_INT_ARGB);
 			}
 
-			BufferedImage icon = new BufferedImage(defaultIconSize, defaultIconSize, BufferedImage.TYPE_INT_ARGB);
+			int sizeOfFirstLayer = iconsLua.get(1).get("icon_size").optint(defaultIconSize);
+
+			BufferedImage icon = new BufferedImage(sizeOfFirstLayer, sizeOfFirstLayer, BufferedImage.TYPE_INT_ARGB);
 			Graphics2D g = icon.createGraphics();
 			g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 			g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
@@ -132,7 +134,7 @@ public class FactorioData {
 				 * means we have to multiply them by 2, because 64 / 32 = 2; this value is
 				 * represented by the below variable.
 				 */
-				int scaleAndShiftScaling = layerIconSize / expectedSize;
+				int scaleAndShiftScaling = sizeOfFirstLayer / expectedSize;
 
 				double scale = l.get("scale").optdouble(1.0);
 				// scale has to be multiplied by scaleAndShiftScaling, see above

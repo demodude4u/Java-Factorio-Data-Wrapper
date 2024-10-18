@@ -429,7 +429,6 @@ public class FactorioWikiMain {
 				e.printStackTrace();
 			}
 		});
-		// TODO some missing barreling and unbarreling. mostly empty base game barrels
 
 		table.getRecipes().values().stream().filter(r -> (!r.isRecycling() && !table.getItems().containsKey(r.getName())
 				&& !table.getFluids().containsKey(r.getName()))).forEach(recipe -> {
