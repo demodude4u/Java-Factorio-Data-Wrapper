@@ -253,6 +253,7 @@ public class FactorioWikiMain {
 					double emissions = 0.0;
 
 					if (!energySource.isnil()) {
+						// TODO update to new format
 						LuaValue prototypeEmissions = energySource.get("emissions_per_minute");
 						if (!prototypeEmissions.isnil())
 							emissions = prototypeEmissions.todouble();
