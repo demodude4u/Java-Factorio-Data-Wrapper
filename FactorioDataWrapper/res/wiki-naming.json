@@ -264,8 +264,10 @@
     "space-platform":"Space platform",
     "transport-belt-capacity":"Transport belt capacity",
     "transport-belt-capacity-1":"Transport belt capacity",
+		"fusion-reactor-equipment":"Portable fusion reactor",
 	},
 	"items and recipes": {
+		"fusion-reactor-equipment":"Portable fusion reactor",
     "molten-copper":"Molten copper",
     "molten-iron":"Molten iron",
     "ammonia":"Ammonia",

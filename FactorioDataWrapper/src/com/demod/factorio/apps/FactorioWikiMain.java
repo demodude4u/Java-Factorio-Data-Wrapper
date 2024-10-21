@@ -248,15 +248,12 @@ public class FactorioWikiMain {
 					LuaValue minableLua = e.lua().get("minable");
 					LuaValue resistances = e.lua().get("resistances");
 					LuaValue energySource = e.lua().get("energy_source");
-					if (energySource.isnil() && !e.lua().get("burner").isnil())
-						energySource = e.lua().get("burner");
 					double emissions = 0.0;
 
 					if (!energySource.isnil()) {
-						// TODO update to new format
 						LuaValue prototypeEmissions = energySource.get("emissions_per_minute");
 						if (!prototypeEmissions.isnil())
-							emissions = prototypeEmissions.todouble();
+							emissions = prototypeEmissions.get("pollution").todouble();
 					}
 
 					if (mapColor != null || health > 0 || !minableLua.isnil() || emissions > 0
