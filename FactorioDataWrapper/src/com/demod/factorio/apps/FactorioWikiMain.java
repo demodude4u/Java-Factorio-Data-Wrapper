@@ -589,17 +589,18 @@ public class FactorioWikiMain {
 
 					itemJson.put("internal-name", tech.getName());
 
-					JSONArray costJson = new JSONArray();
-					costJson.put(pair("Time", tech.getTime()));
-					tech.getIngredients().entrySet().stream().sorted((e1, e2) -> Integer
-							.compare(wiki_ScienceOrdering.get(e1.getKey()), wiki_ScienceOrdering.get(e2.getKey())))
-							.forEach(entry -> {
-								costJson.put(pair(table.getWikiItemName(entry.getKey()), entry.getValue()));
-							});
-					itemJson.put("cost", costJson);
-
-					int count = tech.getEffectiveCount();
-					itemJson.put("cost-multiplier", count);
+					if (!tech.getIngredients().isEmpty()) { // not a trigger technology
+						JSONArray costJson = new JSONArray();
+						costJson.put(pair("Time", tech.getTime()));
+						tech.getIngredients().entrySet().stream().sorted((e1, e2) -> Integer
+								.compare(wiki_ScienceOrdering.get(e1.getKey()), wiki_ScienceOrdering.get(e2.getKey())))
+								.forEach(entry -> {
+									costJson.put(pair(table.getWikiItemName(entry.getKey()), entry.getValue()));
+								});
+						itemJson.put("cost", costJson);
+						int count = tech.getEffectiveCount();
+						itemJson.put("cost-multiplier", count);
+					}
 
 					if (!tech.getPrerequisites().isEmpty()) {
 						itemJson.put("required-technologies",

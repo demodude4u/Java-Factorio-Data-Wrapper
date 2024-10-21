@@ -83,7 +83,7 @@ public class TechPrototype extends DataPrototype {
 			effects.add(new Effect(l));
 		});
 
-		LuaValue unitLua = lua.get("unit"); // TODO research triggers
+		LuaValue unitLua = lua.get("unit"); // TODO research triggers?
 		if (!unitLua.isnil()) {
 			Utils.forEach(unitLua.get("ingredients").opttable(new LuaTable()), lv -> {
 				ingredients.put(lv.get(1).tojstring(), lv.get(2).toint());
