@@ -474,6 +474,10 @@ public class FactorioWikiMain {
 				itemJson.put("required-technologies",
 						reqTech.stream().sorted().map(n -> table.getWikiTechnologyName(n)).collect(toJsonArray()));
 			}
+
+			LuaValue spoilTicksLua = item.lua().get("spoil_ticks");
+			if (!spoilTicksLua.isnil())
+				itemJson.put("spoil-ticks", spoilTicksLua.toint());
 		});
 
 		return json;
@@ -589,7 +593,9 @@ public class FactorioWikiMain {
 
 					itemJson.put("internal-name", tech.getName());
 
-					if (!tech.getIngredients().isEmpty()) { // not a trigger technology
+					LuaValue trigger = tech.lua().get("research_trigger");
+
+					if (!tech.getIngredients().isEmpty()) {
 						JSONArray costJson = new JSONArray();
 						costJson.put(pair("Time", tech.getTime()));
 						tech.getIngredients().entrySet().stream().sorted((e1, e2) -> Integer
@@ -600,6 +606,31 @@ public class FactorioWikiMain {
 						itemJson.put("cost", costJson);
 						int count = tech.getEffectiveCount();
 						itemJson.put("cost-multiplier", count);
+					} else if (!trigger.isnil()) {
+						String trigger_type = trigger.get("type").toString();
+						itemJson.put("trigger-type", trigger_type);
+						String trigger_object = "";
+						double trigger_object_count = 1;
+						if (trigger_type.equals("mine-entity")) {
+							trigger_object = table.getWikiEntityName(trigger.get("entity").toString());
+						} else if (trigger_type.equals("craft-item")) {
+							trigger_object = table.getWikiItemName(trigger.get("item").toString());
+							trigger_object_count = trigger.get("count").optint(1);
+						} else if (trigger_type.equals("craft-fluid")) {
+							trigger_object = table.getWikiFluidName(trigger.get("fluid").toString());
+							trigger_object_count = trigger.get("amount").optdouble(0);
+						} else if (trigger_type.equals("send-item-to-orbit")) {
+							// lazy parsing, could be table in modded
+							trigger_object = table.getWikiItemName(trigger.get("item").toString());
+						} else if (trigger_type.equals("build-entity")) {
+							// lazy parsing, could be table in modded
+							trigger_object = table.getWikiEntityName(trigger.get("entity").toString());
+						}
+						if (!trigger_object.isEmpty()) {
+							itemJson.put("trigger-object", pair(trigger_object, trigger_object_count));
+						}
+					} else {
+						System.err.println("Tech without unit and without research_trigger");
 					}
 
 					if (!tech.getPrerequisites().isEmpty()) {
