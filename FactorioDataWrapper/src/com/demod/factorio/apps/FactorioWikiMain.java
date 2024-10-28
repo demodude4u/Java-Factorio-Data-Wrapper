@@ -514,7 +514,8 @@ public class FactorioWikiMain {
 
 					JSONArray recipeJson = new JSONArray();
 					item.put("recipe", recipeJson);
-					recipeJson.put(pair("Time", recipe.getEnergyRequired()));
+					if (!recipe.getInputs().isEmpty() && !recipe.getOutputs().isEmpty())
+						recipeJson.put(pair("Time", recipe.getEnergyRequired()));
 					recipe.getInputs().entrySet().stream().sorted((e1, e2) -> e1.getKey().compareTo(e2.getKey()))
 							.forEach(entry -> {
 								recipeJson.put(pair(table.getWikiItemName(entry.getKey()), entry.getValue()));
@@ -533,7 +534,8 @@ public class FactorioWikiMain {
 
 					JSONArray totalRawJson = new JSONArray();
 					item.put("total-raw", totalRawJson);
-					totalRawJson.put(pair("Time", totalRaw.get(TotalRawCalculator.RAW_TIME)));
+					if (totalRaw.size() > 1)
+						totalRawJson.put(pair("Time", totalRaw.get(TotalRawCalculator.RAW_TIME)));
 					totalRaw.entrySet().stream().filter(e -> !e.getKey().equals(TotalRawCalculator.RAW_TIME))
 							.sorted((e1, e2) -> e1.getKey().compareTo(e2.getKey())).forEach(entry -> {
 								totalRawJson.put(pair(table.getWikiItemName(entry.getKey()), entry.getValue()));

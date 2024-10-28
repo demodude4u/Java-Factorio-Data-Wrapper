@@ -20,24 +20,30 @@ public class RecipePrototype extends DataPrototype {
 	public RecipePrototype(LuaTable lua, String name, String type) {
 		super(lua, name, type);
 
+		boolean hidden = lua.get("hidden").optboolean(false);
+
 		LuaValue ingredientsLua = lua.get("ingredients").opttable(new LuaTable());
-		Utils.forEach(ingredientsLua, lv -> {
-			if (lv.get("name").isnil()) {
-				inputs.put(lv.get(1).tojstring(), lv.get(2).toint());
-			} else {
-				inputs.put(lv.get("name").tojstring(), lv.get("amount").toint());
-			}
-		});
+		if (!hidden) {
+			Utils.forEach(ingredientsLua, lv -> {
+				if (lv.get("name").isnil()) {
+					inputs.put(lv.get(1).tojstring(), lv.get(2).toint());
+				} else {
+					inputs.put(lv.get("name").tojstring(), lv.get("amount").toint());
+				}
+			});
+		}
 
 		LuaTable resultLua = lua.get("results").opttable(new LuaTable());
-		Utils.forEach(resultLua, lv -> {
-			LuaValue probabilityLua = lv.get("probability");
-			if (probabilityLua.isnil()) {
-				outputs.put(lv.get("name").tojstring(), (double) lv.get("amount").toint());
-			} else {
-				outputs.put(lv.get("name").tojstring(), probabilityLua.todouble());
-			}
-		});
+		if (!hidden) {
+			Utils.forEach(resultLua, lv -> {
+				LuaValue probabilityLua = lv.get("probability");
+				if (probabilityLua.isnil()) {
+					outputs.put(lv.get("name").tojstring(), (double) lv.get("amount").toint());
+				} else {
+					outputs.put(lv.get("name").tojstring(), probabilityLua.todouble());
+				}
+			});
+		}
 
 		energyRequired = lua.get("energy_required").optdouble(0.5);
 		category = lua.get("category").optjstring("crafting");
