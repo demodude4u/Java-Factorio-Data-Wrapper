@@ -148,7 +148,8 @@
   "Biochamber": {
     "map-color": "006191",
     "health": 300,
-    "mining-time": 0.1
+    "mining-time": 0.1,
+    "pollution": -1
   },
   "Biolab": {
     "map-color": "006191",
@@ -226,6 +227,7 @@
   "Captive biter spawner": {
     "map-color": "006191",
     "health": 350,
+    "pollution": -1,
     "resistances": {"fire": {
       "percent": 70,
       "decrease": 0

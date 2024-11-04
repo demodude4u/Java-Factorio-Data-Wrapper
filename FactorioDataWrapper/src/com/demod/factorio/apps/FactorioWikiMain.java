@@ -268,7 +268,7 @@ public class FactorioWikiMain {
 							itemJson.put("health", health);
 						if (!minableLua.isnil())
 							itemJson.put("mining-time", minableLua.get("mining_time").todouble());
-						if (emissions > 0)
+						if (emissions != 0)
 							itemJson.put("pollution", Math.round(emissions * 100) / 100.0);
 						if (!resistances.isnil()) {
 							JSONObject resistancesJson = createOrderedJSONObject();
