@@ -611,7 +611,7 @@
     "internal-name": "fluoroketone-cold-barrel",
     "prototype-type": "item"
   },
-  "Fluoroketone cooling": {
+  "Cooling hot fluoroketone": {
     "internal-name": "fluoroketone-cooling",
     "prototype-type": "recipe"
   },
