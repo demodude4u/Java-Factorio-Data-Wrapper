@@ -19,6 +19,15 @@
       }
     }
   },
+  "Agricultural tower": {
+    "map-color": "006191",
+    "health": 500,
+    "mining-time": 0.2,
+    "resistances": {"fire": {
+      "percent": 100,
+      "decrease": 0
+    }}
+  },
   "Arithmetic combinator": {
     "map-color": "006191",
     "health": 150,
@@ -102,6 +111,15 @@
     "health": 400,
     "mining-time": 0.2,
     "pollution": 2,
+    "resistances": {"fire": {
+      "percent": 70,
+      "decrease": 0
+    }}
+  },
+  "Asteroid collector": {
+    "map-color": "006191",
+    "health": 300,
+    "mining-time": 0.2,
     "resistances": {"fire": {
       "percent": 70,
       "decrease": 0
@@ -230,6 +248,11 @@
         "decrease": 0
       }
     }
+  },
+  "Cargo bay": {
+    "map-color": "4e92c6",
+    "health": 1000,
+    "mining-time": 1
   },
   "Cargo landing pad": {
     "map-color": "67b2eb",
@@ -521,6 +544,24 @@
     "mining-time": 0.2,
     "pollution": 6
   },
+  "Fusion generator": {
+    "map-color": "007fa0",
+    "health": 1000,
+    "mining-time": 0.2,
+    "resistances": {"fire": {
+      "percent": 70,
+      "decrease": 0
+    }}
+  },
+  "Fusion reactor": {
+    "map-color": "8ca014",
+    "health": 1000,
+    "mining-time": 0.2,
+    "resistances": {"fire": {
+      "percent": 70,
+      "decrease": 0
+    }}
+  },
   "Gate": {
     "map-color": "808080",
     "health": 350,
@@ -641,6 +682,36 @@
     "map-color": "d92e2e",
     "health": 1000,
     "mining-time": 0.5
+  },
+  "Lightning collector": {
+    "map-color": "006191",
+    "health": 200,
+    "mining-time": 0.1,
+    "resistances": {
+      "fire": {
+        "percent": 90,
+        "decrease": 0
+      },
+      "electric": {
+        "percent": 100,
+        "decrease": 0
+      }
+    }
+  },
+  "Lightning rod": {
+    "map-color": "006191",
+    "health": 100,
+    "mining-time": 0.1,
+    "resistances": {
+      "fire": {
+        "percent": 90,
+        "decrease": 0
+      },
+      "electric": {
+        "percent": 100,
+        "decrease": 0
+      }
+    }
   },
   "Lithium brine": {
     "map-color": "b3ff99",
@@ -956,6 +1027,11 @@
     "map-color": "e6e6e6",
     "mining-time": 0.5
   },
+  "Selector combinator": {
+    "map-color": "006191",
+    "health": 150,
+    "mining-time": 0.1
+  },
   "Small electric pole": {
     "map-color": "006191",
     "health": 100,
@@ -970,6 +1046,10 @@
     "map-color": "1f2124",
     "health": 200,
     "mining-time": 0.1
+  },
+  "Space platform hub": {
+    "map-color": "67b2eb",
+    "health": 1000
   },
   "Spidertron": {
     "health": 3000,
@@ -1186,6 +1266,11 @@
     "map-color": "d92e2e",
     "health": 1000,
     "mining-time": 0.5
+  },
+  "Thruster": {
+    "map-color": "006191",
+    "health": 300,
+    "mining-time": 0.1
   },
   "Train stop": {
     "health": 250,

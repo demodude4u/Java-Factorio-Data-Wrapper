@@ -45,7 +45,7 @@
   },
   "Agricultural tower": {
     "internal-name": "agricultural-tower",
-    "prototype-type": "item"
+    "prototype-type": "agricultural-tower"
   },
   "Ammonia": {
     "internal-name": "ammonia",
@@ -105,7 +105,7 @@
   },
   "Asteroid collector": {
     "internal-name": "asteroid-collector",
-    "prototype-type": "item"
+    "prototype-type": "asteroid-collector"
   },
   "Atomic bomb": {
     "internal-name": "atomic-bomb",
@@ -257,7 +257,7 @@
   },
   "Cargo bay": {
     "internal-name": "cargo-bay",
-    "prototype-type": "item"
+    "prototype-type": "cargo-bay"
   },
   "Cargo landing pad": {
     "internal-name": "cargo-landing-pad",
@@ -637,7 +637,7 @@
   },
   "Fusion generator": {
     "internal-name": "fusion-generator",
-    "prototype-type": "item"
+    "prototype-type": "fusion-generator"
   },
   "Plasma": {
     "internal-name": "fusion-plasma",
@@ -649,7 +649,7 @@
   },
   "Fusion reactor": {
     "internal-name": "fusion-reactor",
-    "prototype-type": "item"
+    "prototype-type": "fusion-reactor"
   },
   "Portable fusion reactor": {
     "internal-name": "fusion-reactor-equipment",
@@ -817,11 +817,11 @@
   },
   "Lightning collector": {
     "internal-name": "lightning-collector",
-    "prototype-type": "item"
+    "prototype-type": "lightning-attractor"
   },
   "Lightning rod": {
     "internal-name": "lightning-rod",
-    "prototype-type": "item"
+    "prototype-type": "lightning-attractor"
   },
   "Lithium": {
     "internal-name": "lithium",
@@ -1209,7 +1209,7 @@
   },
   "Selector combinator": {
     "internal-name": "selector-combinator",
-    "prototype-type": "item"
+    "prototype-type": "selector-combinator"
   },
   "Shotgun": {
     "internal-name": "shotgun",
@@ -1269,11 +1269,11 @@
   },
   "Space platform hub": {
     "internal-name": "space-platform-hub",
-    "prototype-type": "item"
+    "prototype-type": "space-platform-hub"
   },
   "Space platform starter pack": {
     "internal-name": "space-platform-starter-pack",
-    "prototype-type": "recipe"
+    "prototype-type": "space-platform-starter-pack"
   },
   "Space science pack": {
     "internal-name": "space-science-pack",
@@ -1409,7 +1409,7 @@
   },
   "Thruster": {
     "internal-name": "thruster",
-    "prototype-type": "item"
+    "prototype-type": "thruster"
   },
   "Thruster fuel": {
     "internal-name": "thruster-fuel",
@@ -1421,7 +1421,7 @@
   },
   "Toolbelt equipment": {
     "internal-name": "toolbelt-equipment",
-    "prototype-type": "item"
+    "prototype-type": "inventory-bonus-equipment"
   },
   "Train stop": {
     "internal-name": "train-stop",

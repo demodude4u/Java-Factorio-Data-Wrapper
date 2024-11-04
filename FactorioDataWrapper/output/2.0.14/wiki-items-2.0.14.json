@@ -1658,6 +1658,10 @@
     "required-technologies": ["Rocket silo"]
   },
   "Space platform hub": {"stack-size": 1},
+  "Space platform starter pack": {
+    "stack-size": 1,
+    "required-technologies": ["Rocket silo"]
+  },
   "Space science pack": {
     "stack-size": 200,
     "required-technologies": ["Space science pack"]
