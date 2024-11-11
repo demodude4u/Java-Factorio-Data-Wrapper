@@ -472,7 +472,9 @@ public class FactorioWikiMain {
 			Collection<String> reqTech = requiredTechnologies.get(item.getName());
 			if (!reqTech.isEmpty()) {
 				itemJson.put("required-technologies",
-						reqTech.stream().sorted().map(n -> table.getWikiTechnologyName(n)).collect(toJsonArray()));
+						// XXX filter to make recycling not show as unlock if there is another recipe
+						reqTech.stream().sorted().filter(name -> (reqTech.size() == 1 || !name.equals("recycling")))
+								.map(n -> table.getWikiTechnologyName(n)).collect(toJsonArray()));
 			}
 
 			LuaValue spoilTicksLua = item.lua().get("spoil_ticks");
