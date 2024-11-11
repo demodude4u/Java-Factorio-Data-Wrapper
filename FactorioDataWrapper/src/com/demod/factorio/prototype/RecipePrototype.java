@@ -47,7 +47,10 @@ public class RecipePrototype extends DataPrototype {
 
 		energyRequired = lua.get("energy_required").optdouble(0.5);
 		category = lua.get("category").optjstring("crafting");
-		handCraftable = category.equals("crafting");
+		// FIXME get these from the character prototype
+		handCraftable = category.equals("crafting") || category.equals("electronics") || category.equals("pressing")
+				|| category.equals("recycling-or-hand-crafing") || category.equals("organic-or-hand-crafing")
+				|| category.equals("organic-or-assembling");
 		recycling = category.equals("recycling");
 	}
 
