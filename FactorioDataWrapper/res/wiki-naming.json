@@ -267,8 +267,10 @@
 		"fusion-reactor-equipment":"Portable fusion reactor",
 	},
 	"items and recipes": {
+	"space-platform-hub":"Space platform hub",
 	"jellystem":"Jellystem",
 	"yumako-tree":"Yumako tree",
+		"fluoroketone": "Fluoroketone (hot)",
 		"fluoroketone-cooling": "Cooling hot fluoroketone",
 		"fusion-reactor-equipment":"Portable fusion reactor",
     "molten-copper":"Molten copper",

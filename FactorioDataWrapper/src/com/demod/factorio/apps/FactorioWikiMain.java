@@ -409,6 +409,16 @@ public class FactorioWikiMain {
 		folder.mkdirs();
 		techIconFolder.mkdirs();
 
+		table.getRecipes().values().stream().filter(r -> (!r.isRecycling() && !table.getItems().containsKey(r.getName())
+				&& !table.getFluids().containsKey(r.getName()))).forEach(recipe -> {
+					try {
+						ImageIO.write(FactorioData.getIcon(recipe), "PNG",
+								new File(folder, table.getWikiRecipeName(recipe.getName()) + ".png"));
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				});
+
 		table.getItems().values().stream().forEach(item -> {
 			try {
 				ImageIO.write(FactorioData.getIcon(item), "PNG",
@@ -426,16 +436,6 @@ public class FactorioWikiMain {
 				e.printStackTrace();
 			}
 		});
-
-		table.getRecipes().values().stream().filter(r -> (!r.isRecycling() && !table.getItems().containsKey(r.getName())
-				&& !table.getFluids().containsKey(r.getName()))).forEach(recipe -> {
-					try {
-						ImageIO.write(FactorioData.getIcon(recipe), "PNG",
-								new File(folder, table.getWikiRecipeName(recipe.getName()) + ".png"));
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				});
 
 		table.getTechnologies().values().stream().filter(t -> !t.isBonus() || t.isFirstBonus()).forEach(tech -> {
 			try {
