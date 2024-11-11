@@ -1,0 +1,2109 @@
+{
+  "Accumulator": {
+    "consumers": [
+      "Electromagnetic science pack",
+      "Lightning collector"
+    ],
+    "stack-size": 50,
+    "required-technologies": ["Electric energy accumulators"]
+  },
+  "Active provider chest": {
+    "stack-size": 50,
+    "required-technologies": ["Logistic system"]
+  },
+  "Advanced circuit": {
+    "consumers": [
+      "Active provider chest",
+      "Beacon",
+      "Belt immunity equipment",
+      "Big mining drill",
+      "Buffer chest",
+      "Bulk inserter",
+      "Centrifuge",
+      "Chemical science pack",
+      "Distractor capsule",
+      "Efficiency module",
+      "Efficiency module 2",
+      "Efficiency module 3",
+      "Electric furnace",
+      "Energy shield",
+      "Express splitter",
+      "Logistic robot",
+      "Modular armor",
+      "Nightvision",
+      "Nuclear reactor",
+      "Passive provider chest",
+      "Personal roboport",
+      "Processing unit",
+      "Productivity module",
+      "Productivity module 2",
+      "Productivity module 3",
+      "Quality module",
+      "Quality module 2",
+      "Quality module 3",
+      "Requester chest",
+      "Roboport",
+      "Selector combinator",
+      "Portable solar panel",
+      "Speed module",
+      "Speed module 2",
+      "Speed module 3",
+      "Storage chest",
+      "Substation",
+      "Tank",
+      "Toolbelt equipment"
+    ],
+    "stack-size": 200,
+    "required-technologies": ["Advanced circuit"]
+  },
+  "Agricultural science pack": {
+    "stack-size": 200,
+    "required-technologies": ["Agricultural science pack"],
+    "spoil-ticks": 216000
+  },
+  "Agricultural tower": {
+    "stack-size": 20,
+    "required-technologies": ["Agriculture"]
+  },
+  "Arithmetic combinator": {
+    "stack-size": 50,
+    "required-technologies": ["Circuit network"]
+  },
+  "Artificial jellynut soil": {
+    "consumers": ["Overgrowth jellynut soil"],
+    "stack-size": 100,
+    "required-technologies": ["Artificial soil"]
+  },
+  "Artificial yumako soil": {
+    "consumers": ["Overgrowth yumako soil"],
+    "stack-size": 100,
+    "required-technologies": ["Artificial soil"]
+  },
+  "Artillery shell": {
+    "stack-size": 1,
+    "required-technologies": ["Artillery"]
+  },
+  "Artillery targeting remote": {"stack-size": 1},
+  "Artillery turret": {
+    "stack-size": 10,
+    "required-technologies": ["Artillery"]
+  },
+  "Artillery wagon": {
+    "stack-size": 5,
+    "required-technologies": ["Artillery"]
+  },
+  "Assembling machine 1": {
+    "consumers": ["Assembling machine 2"],
+    "stack-size": 50,
+    "required-technologies": ["Automation"]
+  },
+  "Assembling machine 2": {
+    "consumers": ["Assembling machine 3"],
+    "stack-size": 50,
+    "required-technologies": ["Automation 2"]
+  },
+  "Assembling machine 3": {
+    "stack-size": 50,
+    "required-technologies": ["Automation 3"]
+  },
+  "Asteroid collector": {
+    "stack-size": 10,
+    "required-technologies": ["Space platform"]
+  },
+  "Atomic bomb": {
+    "stack-size": 10,
+    "required-technologies": ["Atomic bomb"]
+  },
+  "Automation science pack": {
+    "stack-size": 200,
+    "required-technologies": ["Automation science pack"]
+  },
+  "Barrel": {
+    "consumers": [
+      "Cliff explosives",
+      "Crude oil barrel",
+      "Fluoroketone (cold) barrel",
+      "Fluoroketone (hot) barrel",
+      "Heavy oil barrel",
+      "Light oil barrel",
+      "Lubricant barrel",
+      "Petroleum gas barrel",
+      "Sulfuric acid barrel",
+      "Water barrel"
+    ],
+    "stack-size": 10,
+    "required-technologies": ["Fluid handling"]
+  },
+  "Battery": {
+    "consumers": [
+      "Accumulator",
+      "Personal battery",
+      "Flying robot frame",
+      "Laser turret",
+      "Personal roboport",
+      "Supercapacitor"
+    ],
+    "stack-size": 200,
+    "required-technologies": ["Battery"]
+  },
+  "Personal battery": {
+    "consumers": ["Personal battery MK2"],
+    "stack-size": 20,
+    "required-technologies": ["Personal battery"]
+  },
+  "Personal battery MK2": {
+    "consumers": ["Personal battery MK3"],
+    "stack-size": 20,
+    "required-technologies": ["Personal battery MK2"]
+  },
+  "Personal battery MK3": {
+    "stack-size": 20,
+    "required-technologies": ["Personal battery MK3"]
+  },
+  "Beacon": {
+    "stack-size": 20,
+    "required-technologies": ["Effect transmission"]
+  },
+  "Belt immunity equipment": {
+    "stack-size": 20,
+    "required-technologies": ["Belt immunity equipment"]
+  },
+  "Big electric pole": {
+    "stack-size": 50,
+    "required-technologies": ["Electric energy distribution 1"]
+  },
+  "Big mining drill": {
+    "stack-size": 20,
+    "required-technologies": ["Big mining drill"]
+  },
+  "Biochamber": {
+    "stack-size": 20,
+    "required-technologies": ["Biochamber"]
+  },
+  "Bioflux": {
+    "consumers": [
+      "Agricultural science pack",
+      "Bioplastic",
+      "Biosulfur",
+      "Capture bot rocket",
+      "Copper bacteria cultivation",
+      "Iron bacteria cultivation",
+      "Nutrients from bioflux",
+      "Rocket fuel from jelly"
+    ],
+    "stack-size": 100,
+    "required-technologies": ["Bioflux"],
+    "spoil-ticks": 432000
+  },
+  "Biolab": {
+    "stack-size": 5,
+    "required-technologies": ["Biolab"]
+  },
+  "Biter egg": {
+    "consumers": [
+      "Biolab",
+      "Captive biter spawner",
+      "Nutrients from biter egg",
+      "Overgrowth jellynut soil",
+      "Overgrowth yumako soil",
+      "Productivity module 3",
+      "Promethium science pack"
+    ],
+    "stack-size": 100,
+    "required-technologies": ["Captivity"],
+    "spoil-ticks": 108000
+  },
+  "Blueprint": {"stack-size": 1},
+  "Blueprint book": {"stack-size": 1},
+  "Boiler": {
+    "consumers": ["Heating tower"],
+    "stack-size": 50,
+    "required-technologies": ["Steam power"]
+  },
+  "Buffer chest": {
+    "stack-size": 50,
+    "required-technologies": ["Logistic system"]
+  },
+  "Bulk inserter": {
+    "consumers": ["Stack inserter"],
+    "stack-size": 50,
+    "required-technologies": ["Bulk inserter"]
+  },
+  "Burner inserter": {"stack-size": 50},
+  "Burner mining drill": {"stack-size": 50},
+  "Calcite": {
+    "consumers": [
+      "Acid neutralisation",
+      "Advanced thruster fuel",
+      "Advanced thruster oxidizer",
+      "Artillery shell",
+      "Cliff explosives",
+      "Molten copper",
+      "Molten copper from lava",
+      "Molten iron",
+      "Molten iron from lava",
+      "Simple coal liquefaction"
+    ],
+    "stack-size": 50,
+    "required-technologies": ["Advanced asteroid processing"]
+  },
+  "Cannon shell": {
+    "consumers": ["Uranium cannon shell"],
+    "stack-size": 100,
+    "required-technologies": ["Tank"]
+  },
+  "Captive biter spawner": {
+    "stack-size": 1,
+    "required-technologies": ["Captive biter spawner"],
+    "spoil-ticks": 108000
+  },
+  "Capture bot rocket": {
+    "consumers": [
+      "Biolab",
+      "Captive biter spawner"
+    ],
+    "stack-size": 10,
+    "required-technologies": ["Captivity"]
+  },
+  "Car": {
+    "stack-size": 1,
+    "required-technologies": ["Automobilism"]
+  },
+  "Carbon": {
+    "consumers": [
+      "Advanced thruster fuel",
+      "Carbon fiber",
+      "Coal synthesis",
+      "Space science pack",
+      "Thruster fuel",
+      "Tungsten carbide"
+    ],
+    "stack-size": 50,
+    "required-technologies": [
+      "Advanced asteroid processing",
+      "Biochamber",
+      "Space platform",
+      "Tungsten carbide"
+    ]
+  },
+  "Carbon fiber": {
+    "consumers": [
+      "Foundation",
+      "Portable fusion reactor",
+      "Quantum processor",
+      "Railgun turret",
+      "Rocket turret",
+      "Stack inserter",
+      "Toolbelt equipment"
+    ],
+    "stack-size": 100,
+    "required-technologies": ["Carbon fiber"]
+  },
+  "Carbonic asteroid chunk": {
+    "consumers": [
+      "Advanced carbonic asteroid crushing",
+      "Carbonic asteroid crushing",
+      "Carbonic asteroid reprocessing"
+    ],
+    "stack-size": 1,
+    "required-technologies": [
+      "Advanced asteroid processing",
+      "Asteroid reprocessing",
+      "Space platform"
+    ]
+  },
+  "Cargo bay": {
+    "stack-size": 10,
+    "required-technologies": ["Space platform"]
+  },
+  "Cargo landing pad": {
+    "stack-size": 1,
+    "required-technologies": ["Rocket silo"]
+  },
+  "Cargo wagon": {
+    "stack-size": 5,
+    "required-technologies": ["Railway"]
+  },
+  "Centrifuge": {
+    "stack-size": 50,
+    "required-technologies": ["Uranium processing"]
+  },
+  "Chemical plant": {
+    "stack-size": 10,
+    "required-technologies": ["Oil processing"]
+  },
+  "Chemical science pack": {
+    "stack-size": 200,
+    "required-technologies": ["Chemical science pack"]
+  },
+  "Cliff explosives": {
+    "stack-size": 20,
+    "required-technologies": ["Cliff explosives"]
+  },
+  "Cluster grenade": {
+    "stack-size": 100,
+    "required-technologies": ["Military 4"]
+  },
+  "Coal": {
+    "consumers": [
+      "Carbon",
+      "Coal liquefaction",
+      "Explosives",
+      "Grenade",
+      "Plastic bar",
+      "Poison capsule",
+      "Simple coal liquefaction",
+      "Slowdown capsule"
+    ],
+    "stack-size": 50,
+    "required-technologies": ["Rocket turret"]
+  },
+  "Combat shotgun": {
+    "stack-size": 5,
+    "required-technologies": ["Military 3"]
+  },
+  "Concrete": {
+    "consumers": [
+      "Cargo landing pad",
+      "Centrifuge",
+      "Hazard concrete",
+      "Heating tower",
+      "Nuclear reactor",
+      "Recycler",
+      "Refined concrete",
+      "Rocket silo"
+    ],
+    "stack-size": 100,
+    "required-technologies": [
+      "Concrete",
+      "Foundry"
+    ]
+  },
+  "Constant combinator": {
+    "stack-size": 50,
+    "required-technologies": ["Circuit network"]
+  },
+  "Construction robot": {
+    "stack-size": 50,
+    "required-technologies": ["Construction robotics"]
+  },
+  "Copper bacteria": {
+    "consumers": ["Copper bacteria cultivation"],
+    "stack-size": 50,
+    "required-technologies": [
+      "Bacteria cultivation",
+      "Yumako"
+    ],
+    "spoil-ticks": 3600
+  },
+  "Copper cable": {
+    "consumers": [
+      "Advanced circuit",
+      "Arithmetic combinator",
+      "Beacon",
+      "Big electric pole",
+      "Constant combinator",
+      "Decider combinator",
+      "Electronic circuit",
+      "Lightning rod",
+      "Medium electric pole",
+      "Power switch",
+      "Programmable speaker",
+      "Railgun ammo",
+      "Small electric pole",
+      "Lamp",
+      "Space platform foundation",
+      "Substation"
+    ],
+    "stack-size": 200,
+    "required-technologies": [
+      "Electronics",
+      "Foundry"
+    ]
+  },
+  "Copper ore": {
+    "consumers": [
+      "Copper plate",
+      "Molten copper"
+    ],
+    "stack-size": 50,
+    "required-technologies": ["Advanced asteroid processing"]
+  },
+  "Copper plate": {
+    "consumers": [
+      "Automation science pack",
+      "Battery",
+      "Combat shotgun",
+      "Copper cable",
+      "Gun turret",
+      "Heat exchanger",
+      "Heat pipe",
+      "Heavy armor",
+      "Low density structure",
+      "Nuclear reactor",
+      "Piercing rounds magazine",
+      "Piercing shotgun shells",
+      "Shotgun",
+      "Shotgun shells",
+      "Solar panel",
+      "Steam turbine",
+      "Submachine gun",
+      "Superconductor"
+    ],
+    "stack-size": 100,
+    "required-technologies": ["Foundry"]
+  },
+  "Crude oil barrel": {
+    "consumers": ["Empty crude oil barrel"],
+    "stack-size": 10,
+    "required-technologies": ["Fluid handling"]
+  },
+  "Crusher": {
+    "stack-size": 10,
+    "required-technologies": ["Space platform"]
+  },
+  "Cryogenic plant": {
+    "stack-size": 20,
+    "required-technologies": ["Cryogenic plant"]
+  },
+  "Cryogenic science pack": {
+    "stack-size": 200,
+    "required-technologies": ["Cryogenic science pack"]
+  },
+  "Decider combinator": {
+    "consumers": ["Selector combinator"],
+    "stack-size": 50,
+    "required-technologies": ["Circuit network"]
+  },
+  "Deconstruction planner": {"stack-size": 1},
+  "Defender capsule": {
+    "consumers": ["Distractor capsule"],
+    "stack-size": 100,
+    "required-technologies": ["Defender"]
+  },
+  "Depleted uranium fuel cell": {
+    "consumers": ["Nuclear fuel reprocessing"],
+    "stack-size": 50
+  },
+  "Destroyer capsule": {
+    "stack-size": 100,
+    "required-technologies": ["Destroyer"]
+  },
+  "Discharge defense": {
+    "stack-size": 20,
+    "required-technologies": ["Discharge defense"]
+  },
+  "Discharge defense remote": {"stack-size": 1},
+  "Display panel": {
+    "stack-size": 10,
+    "required-technologies": ["Circuit network"]
+  },
+  "Distractor capsule": {
+    "consumers": ["Destroyer capsule"],
+    "stack-size": 100,
+    "required-technologies": ["Distractor"]
+  },
+  "Efficiency module": {
+    "consumers": [
+      "Efficiency module 2",
+      "Power armor MK2"
+    ],
+    "stack-size": 50,
+    "required-technologies": ["Efficiency module"]
+  },
+  "Efficiency module 2": {
+    "consumers": ["Efficiency module 3"],
+    "stack-size": 50,
+    "required-technologies": ["Efficiency module 2"]
+  },
+  "Efficiency module 3": {
+    "stack-size": 50,
+    "required-technologies": ["Efficiency module 3"]
+  },
+  "Electric engine unit": {
+    "consumers": [
+      "Asteroid collector",
+      "Big mining drill",
+      "Crusher",
+      "Exoskeleton",
+      "Flying robot frame",
+      "Power armor",
+      "Power armor MK2",
+      "Rocket silo",
+      "Thruster"
+    ],
+    "stack-size": 50,
+    "required-technologies": ["Electric engine"]
+  },
+  "Electric furnace": {
+    "consumers": ["Production science pack"],
+    "stack-size": 50,
+    "required-technologies": ["Advanced material processing 2"]
+  },
+  "Electric mining drill": {
+    "consumers": ["Big mining drill"],
+    "stack-size": 50,
+    "required-technologies": ["Electric mining drill"]
+  },
+  "Electromagnetic plant": {
+    "stack-size": 20,
+    "required-technologies": ["Electromagnetic plant"]
+  },
+  "Electromagnetic science pack": {
+    "stack-size": 200,
+    "required-technologies": ["Electromagnetic science pack"]
+  },
+  "Electronic circuit": {
+    "consumers": [
+      "Active provider chest",
+      "Advanced circuit",
+      "Agricultural tower",
+      "Arithmetic combinator",
+      "Assembling machine 1",
+      "Assembling machine 2",
+      "Beacon",
+      "Biochamber",
+      "Buffer chest",
+      "Bulk inserter",
+      "Chemical plant",
+      "Constant combinator",
+      "Construction robot",
+      "Decider combinator",
+      "Defender capsule",
+      "Display panel",
+      "Efficiency module",
+      "Electric engine unit",
+      "Electric mining drill",
+      "Fast inserter",
+      "Fast splitter",
+      "Flying robot frame",
+      "Foundry",
+      "Gate",
+      "Inserter",
+      "Lab",
+      "Laser turret",
+      "Locomotive",
+      "Oil refinery",
+      "Passive provider chest",
+      "Poison capsule",
+      "Power switch",
+      "Processing unit",
+      "Productivity module",
+      "Programmable speaker",
+      "Pumpjack",
+      "Quality module",
+      "Radar",
+      "Rail chain signal",
+      "Rail signal",
+      "Repair pack",
+      "Requester chest",
+      "Rocket launcher",
+      "Slowdown capsule",
+      "Lamp",
+      "Solar panel",
+      "Speed module",
+      "Splitter",
+      "Storage chest",
+      "Supercapacitor",
+      "Train stop"
+    ],
+    "stack-size": 200,
+    "required-technologies": ["Electronics"]
+  },
+  "Energy shield": {
+    "consumers": ["Energy shield MK2"],
+    "stack-size": 20,
+    "required-technologies": ["Energy shield equipment"]
+  },
+  "Energy shield MK2": {
+    "stack-size": 20,
+    "required-technologies": ["Energy shield MK2 equipment"]
+  },
+  "Engine unit": {
+    "consumers": [
+      "Artillery wagon",
+      "Car",
+      "Chemical science pack",
+      "Electric engine unit",
+      "Flamethrower turret",
+      "Locomotive",
+      "Pump",
+      "Tank"
+    ],
+    "stack-size": 50,
+    "required-technologies": ["Engine"]
+  },
+  "Exoskeleton": {
+    "consumers": ["Spidertron"],
+    "stack-size": 20,
+    "required-technologies": ["Exoskeleton equipment"]
+  },
+  "Explosive cannon shell": {
+    "consumers": ["Explosive uranium cannon shell"],
+    "stack-size": 100,
+    "required-technologies": ["Tank"]
+  },
+  "Explosive rocket": {
+    "stack-size": 100,
+    "required-technologies": ["Explosive rocketry"]
+  },
+  "Explosive uranium cannon shell": {
+    "stack-size": 100,
+    "required-technologies": ["Uranium ammo"]
+  },
+  "Explosives": {
+    "consumers": [
+      "Artillery shell",
+      "Atomic bomb",
+      "Cannon shell",
+      "Cliff explosives",
+      "Cluster grenade",
+      "Explosive cannon shell",
+      "Explosive rocket",
+      "Land mine",
+      "Railgun ammo",
+      "Rocket"
+    ],
+    "stack-size": 50,
+    "required-technologies": ["Explosives"]
+  },
+  "Express splitter": {
+    "consumers": ["Turbo splitter"],
+    "stack-size": 50,
+    "required-technologies": ["Logistics 3"]
+  },
+  "Express transport belt": {
+    "consumers": ["Turbo transport belt"],
+    "stack-size": 100,
+    "required-technologies": ["Logistics 3"]
+  },
+  "Express underground belt": {
+    "consumers": ["Turbo underground belt"],
+    "stack-size": 50,
+    "required-technologies": ["Logistics 3"]
+  },
+  "Fast inserter": {
+    "consumers": ["Bulk inserter"],
+    "stack-size": 50,
+    "required-technologies": ["Fast inserter"]
+  },
+  "Fast splitter": {
+    "consumers": ["Express splitter"],
+    "stack-size": 50,
+    "required-technologies": ["Logistics 2"]
+  },
+  "Fast transport belt": {
+    "consumers": ["Express transport belt"],
+    "stack-size": 100,
+    "required-technologies": ["Logistics 2"]
+  },
+  "Fast underground belt": {
+    "consumers": ["Express underground belt"],
+    "stack-size": 50,
+    "required-technologies": ["Logistics 2"]
+  },
+  "Firearm magazine": {
+    "consumers": ["Piercing rounds magazine"],
+    "stack-size": 100
+  },
+  "Portable fission reactor": {
+    "consumers": [
+      "Portable fusion reactor",
+      "Spidertron"
+    ],
+    "stack-size": 20,
+    "required-technologies": ["Portable fission reactor"]
+  },
+  "Flamethrower": {
+    "stack-size": 5,
+    "required-technologies": ["Flamethrower"]
+  },
+  "Flamethrower ammo": {
+    "stack-size": 100,
+    "required-technologies": ["Flamethrower"]
+  },
+  "Flamethrower turret": {
+    "stack-size": 50,
+    "required-technologies": ["Flamethrower"]
+  },
+  "Fluid wagon": {
+    "stack-size": 5,
+    "required-technologies": ["Fluid wagon"]
+  },
+  "Fluoroketone (cold) barrel": {
+    "consumers": ["Empty fluoroketone (cold) barrel"],
+    "stack-size": 10,
+    "required-technologies": ["Fluid handling"]
+  },
+  "Fluoroketone (hot) barrel": {
+    "consumers": ["Empty fluoroketone (hot) barrel"],
+    "stack-size": 10,
+    "required-technologies": ["Fluid handling"]
+  },
+  "Flying robot frame": {
+    "consumers": [
+      "Capture bot rocket",
+      "Construction robot",
+      "Logistic robot",
+      "Utility science pack"
+    ],
+    "stack-size": 50,
+    "required-technologies": ["Robotics"]
+  },
+  "Foundation": {
+    "stack-size": 50,
+    "required-technologies": ["Foundation"]
+  },
+  "Foundry": {
+    "stack-size": 20,
+    "required-technologies": ["Foundry"]
+  },
+  "Fusion generator": {
+    "stack-size": 5,
+    "required-technologies": ["Fusion reactor"]
+  },
+  "Fusion power cell": {
+    "consumers": ["Portable fusion reactor"],
+    "stack-size": 50,
+    "required-technologies": ["Fusion reactor"]
+  },
+  "Fusion reactor": {
+    "stack-size": 1,
+    "required-technologies": ["Fusion reactor"]
+  },
+  "Portable fusion reactor": {
+    "stack-size": 20,
+    "required-technologies": ["Portable fusion reactor"]
+  },
+  "Gate": {
+    "stack-size": 50,
+    "required-technologies": ["Gate"]
+  },
+  "Green wire": {"stack-size": 1},
+  "Grenade": {
+    "consumers": [
+      "Cliff explosives",
+      "Cluster grenade",
+      "Military science pack"
+    ],
+    "stack-size": 100,
+    "required-technologies": ["Military 2"]
+  },
+  "Gun turret": {
+    "stack-size": 50,
+    "required-technologies": ["Gun turret"]
+  },
+  "Hazard concrete": {
+    "stack-size": 100,
+    "required-technologies": ["Concrete"]
+  },
+  "Heat exchanger": {
+    "stack-size": 50,
+    "required-technologies": [
+      "Heating tower",
+      "Nuclear power"
+    ]
+  },
+  "Heat pipe": {
+    "consumers": ["Heating tower"],
+    "stack-size": 50,
+    "required-technologies": [
+      "Heating tower",
+      "Nuclear power"
+    ]
+  },
+  "Heating tower": {
+    "stack-size": 20,
+    "required-technologies": ["Heating tower"]
+  },
+  "Heavy armor": {
+    "stack-size": 1,
+    "required-technologies": ["Heavy armor"]
+  },
+  "Heavy oil barrel": {
+    "consumers": ["Empty heavy oil barrel"],
+    "stack-size": 10,
+    "required-technologies": ["Fluid handling"]
+  },
+  "Holmium ore": {
+    "consumers": ["Holmium solution"],
+    "stack-size": 50,
+    "required-technologies": ["Recycling"]
+  },
+  "Holmium plate": {
+    "consumers": [
+      "Electromagnetic plant",
+      "Fusion power cell",
+      "Lithium",
+      "Mech armor",
+      "Supercapacitor",
+      "Superconductor",
+      "Tesla gun"
+    ],
+    "stack-size": 100,
+    "required-technologies": ["Holmium processing"]
+  },
+  "Ice": {
+    "consumers": [
+      "Cryogenic science pack",
+      "Ice melting",
+      "Ice platform",
+      "Space science pack"
+    ],
+    "stack-size": 50,
+    "required-technologies": [
+      "Advanced asteroid processing",
+      "Planet discovery Aquilo",
+      "Space platform"
+    ]
+  },
+  "Ice platform": {
+    "stack-size": 100,
+    "required-technologies": ["Planet discovery Aquilo"]
+  },
+  "Inserter": {
+    "consumers": [
+      "Fast inserter",
+      "Logistic science pack",
+      "Long-handed inserter"
+    ],
+    "stack-size": 50,
+    "required-technologies": ["Electronics"]
+  },
+  "Iron bacteria": {
+    "consumers": ["Iron bacteria cultivation"],
+    "stack-size": 50,
+    "required-technologies": [
+      "Bacteria cultivation",
+      "Jellynut"
+    ],
+    "spoil-ticks": 3600
+  },
+  "Iron chest": {"stack-size": 50},
+  "Iron gear wheel": {
+    "consumers": [
+      "Artillery turret",
+      "Artillery wagon",
+      "Assembling machine 1",
+      "Assembling machine 2",
+      "Automation science pack",
+      "Bulk inserter",
+      "Burner inserter",
+      "Burner mining drill",
+      "Cargo wagon",
+      "Centrifuge",
+      "Chemical plant",
+      "Combat shotgun",
+      "Defender capsule",
+      "Electric mining drill",
+      "Engine unit",
+      "Express splitter",
+      "Express transport belt",
+      "Express underground belt",
+      "Fast splitter",
+      "Fast transport belt",
+      "Fast underground belt",
+      "Flamethrower",
+      "Flamethrower turret",
+      "Fluid wagon",
+      "Gun turret",
+      "Inserter",
+      "Lab",
+      "Long-handed inserter",
+      "Offshore pump",
+      "Oil refinery",
+      "Personal roboport",
+      "Pumpjack",
+      "Radar",
+      "Recycler",
+      "Repair pack",
+      "Roboport",
+      "Rocket launcher",
+      "Rocket turret",
+      "Shotgun",
+      "Steam engine",
+      "Steam turbine",
+      "Submachine gun",
+      "Tank",
+      "Transport belt"
+    ],
+    "stack-size": 100,
+    "required-technologies": ["Foundry"]
+  },
+  "Iron ore": {
+    "consumers": [
+      "Advanced thruster oxidizer",
+      "Concrete",
+      "Iron plate",
+      "Molten iron",
+      "Thruster oxidizer"
+    ],
+    "stack-size": 50,
+    "required-technologies": [
+      "Advanced asteroid processing",
+      "Space platform"
+    ]
+  },
+  "Iron plate": {
+    "consumers": [
+      "Accumulator",
+      "Assembling machine 1",
+      "Battery",
+      "Biochamber",
+      "Burner inserter",
+      "Burner mining drill",
+      "Car",
+      "Cargo wagon",
+      "Display panel",
+      "Electric mining drill",
+      "Electronic circuit",
+      "Fast inserter",
+      "Firearm magazine",
+      "Grenade",
+      "Gun turret",
+      "Inserter",
+      "Iron chest",
+      "Iron gear wheel",
+      "Iron stick",
+      "Light armor",
+      "Long-handed inserter",
+      "Pipe",
+      "Pipe to ground",
+      "Power switch",
+      "Programmable speaker",
+      "Radar",
+      "Rail chain signal",
+      "Rail signal",
+      "Rocket",
+      "Rocket launcher",
+      "Shotgun",
+      "Shotgun shells",
+      "Lamp",
+      "Space science pack",
+      "Splitter",
+      "Steam engine",
+      "Steel plate",
+      "Storage tank",
+      "Submachine gun",
+      "Sulfuric acid",
+      "Train stop",
+      "Transport belt",
+      "Underground belt",
+      "Uranium fuel cell"
+    ],
+    "stack-size": 100,
+    "required-technologies": ["Foundry"]
+  },
+  "Iron stick": {
+    "consumers": [
+      "Big electric pole",
+      "Medium electric pole",
+      "Programmable speaker",
+      "Rail",
+      "Refined concrete",
+      "Train stop"
+    ],
+    "stack-size": 100,
+    "required-technologies": [
+      "Circuit network",
+      "Concrete",
+      "Electric energy distribution 1",
+      "Foundry",
+      "Railway"
+    ]
+  },
+  "Jelly": {
+    "consumers": [
+      "Bioflux",
+      "Biolubricant",
+      "Iron bacteria",
+      "Rocket fuel from jelly",
+      "Stack inserter"
+    ],
+    "stack-size": 100,
+    "required-technologies": ["Jellynut"],
+    "spoil-ticks": 14400
+  },
+  "Jellynut": {
+    "consumers": ["Jellynut processing"],
+    "stack-size": 50,
+    "spoil-ticks": 216000
+  },
+  "Jellynut seed": {
+    "consumers": [
+      "Artificial jellynut soil",
+      "Overgrowth jellynut soil"
+    ],
+    "stack-size": 10,
+    "required-technologies": ["Jellynut"]
+  },
+  "Lab": {
+    "consumers": ["Biolab"],
+    "stack-size": 10,
+    "required-technologies": ["Electronics"]
+  },
+  "Land mine": {
+    "stack-size": 100,
+    "required-technologies": ["Land mines"]
+  },
+  "Landfill": {
+    "consumers": [
+      "Agricultural tower",
+      "Artificial jellynut soil",
+      "Artificial yumako soil",
+      "Biochamber"
+    ],
+    "stack-size": 100,
+    "required-technologies": ["Landfill"]
+  },
+  "Laser turret": {
+    "consumers": [
+      "Discharge defense",
+      "Personal laser defense"
+    ],
+    "stack-size": 50,
+    "required-technologies": ["Laser turret"]
+  },
+  "Light armor": {"stack-size": 1},
+  "Light oil barrel": {
+    "consumers": ["Empty light oil barrel"],
+    "stack-size": 10,
+    "required-technologies": ["Fluid handling"]
+  },
+  "Lightning collector": {
+    "stack-size": 20,
+    "required-technologies": ["Lightning collector"]
+  },
+  "Lightning rod": {
+    "consumers": ["Lightning collector"],
+    "stack-size": 50,
+    "required-technologies": ["Planet discovery Fulgora"]
+  },
+  "Lithium": {
+    "consumers": [
+      "Fluoroketone (hot)",
+      "Lithium plate"
+    ],
+    "stack-size": 50,
+    "required-technologies": ["Lithium processing"]
+  },
+  "Lithium plate": {
+    "consumers": [
+      "Cryogenic plant",
+      "Cryogenic science pack",
+      "Foundation",
+      "Fusion power cell",
+      "Quantum processor"
+    ],
+    "stack-size": 100,
+    "required-technologies": ["Lithium processing"]
+  },
+  "Locomotive": {
+    "stack-size": 5,
+    "required-technologies": ["Railway"]
+  },
+  "Logistic robot": {
+    "stack-size": 50,
+    "required-technologies": ["Logistic robotics"]
+  },
+  "Logistic science pack": {
+    "stack-size": 200,
+    "required-technologies": ["Logistic science pack"]
+  },
+  "Long-handed inserter": {
+    "stack-size": 50,
+    "required-technologies": ["Automation"]
+  },
+  "Low density structure": {
+    "consumers": [
+      "Asteroid collector",
+      "Personal battery MK2",
+      "Cargo bay",
+      "Crusher",
+      "Energy shield MK2",
+      "Portable fission reactor",
+      "Personal laser defense",
+      "Power armor MK2",
+      "Rocket part",
+      "Utility science pack"
+    ],
+    "stack-size": 50,
+    "required-technologies": [
+      "Foundry",
+      "Low density structure"
+    ]
+  },
+  "Lubricant barrel": {
+    "consumers": ["Empty lubricant barrel"],
+    "stack-size": 10,
+    "required-technologies": ["Fluid handling"]
+  },
+  "Mech armor": {
+    "stack-size": 1,
+    "required-technologies": ["Mech armor"]
+  },
+  "Medium electric pole": {
+    "stack-size": 50,
+    "required-technologies": ["Electric energy distribution 1"]
+  },
+  "Metallic asteroid chunk": {
+    "consumers": [
+      "Advanced metallic asteroid crushing",
+      "Metallic asteroid crushing",
+      "Metallic asteroid reprocessing"
+    ],
+    "stack-size": 1,
+    "required-technologies": [
+      "Advanced asteroid processing",
+      "Asteroid reprocessing",
+      "Space platform"
+    ]
+  },
+  "Metallurgic science pack": {
+    "stack-size": 200,
+    "required-technologies": ["Metallurgic science pack"]
+  },
+  "Military science pack": {
+    "stack-size": 200,
+    "required-technologies": ["Military science pack"]
+  },
+  "Modular armor": {
+    "stack-size": 1,
+    "required-technologies": ["Modular armor"]
+  },
+  "Nightvision": {
+    "stack-size": 20,
+    "required-technologies": ["Nightvision equipment"]
+  },
+  "Nuclear fuel": {
+    "stack-size": 1,
+    "required-technologies": ["Kovarex enrichment process"]
+  },
+  "Nuclear reactor": {
+    "stack-size": 10,
+    "required-technologies": ["Nuclear power"]
+  },
+  "Nutrients": {
+    "consumers": [
+      "Artificial jellynut soil",
+      "Artificial yumako soil",
+      "Biochamber",
+      "Fish breeding",
+      "Pentapod egg"
+    ],
+    "stack-size": 100,
+    "required-technologies": [
+      "Agriculture",
+      "Biochamber",
+      "Bioflux",
+      "Captivity",
+      "Fish breeding"
+    ],
+    "spoil-ticks": 18000
+  },
+  "Offshore pump": {
+    "stack-size": 20,
+    "required-technologies": ["Steam power"]
+  },
+  "Oil refinery": {
+    "stack-size": 10,
+    "required-technologies": ["Oil processing"]
+  },
+  "Overgrowth jellynut soil": {
+    "stack-size": 100,
+    "required-technologies": ["Overgrowth soil"]
+  },
+  "Overgrowth yumako soil": {
+    "stack-size": 100,
+    "required-technologies": ["Overgrowth soil"]
+  },
+  "Oxide asteroid chunk": {
+    "consumers": [
+      "Advanced oxide asteroid crushing",
+      "Oxide asteroid crushing",
+      "Oxide asteroid reprocessing"
+    ],
+    "stack-size": 1,
+    "required-technologies": [
+      "Advanced asteroid processing",
+      "Asteroid reprocessing",
+      "Space platform"
+    ]
+  },
+  "Passive provider chest": {
+    "stack-size": 50,
+    "required-technologies": [
+      "Construction robotics",
+      "Logistic robotics"
+    ]
+  },
+  "Pentapod egg": {
+    "consumers": [
+      "Agricultural science pack",
+      "Biochamber",
+      "Pentapod egg"
+    ],
+    "stack-size": 20,
+    "required-technologies": ["Biochamber"],
+    "spoil-ticks": 54000
+  },
+  "Personal laser defense": {
+    "stack-size": 20,
+    "required-technologies": ["Personal laser defense"]
+  },
+  "Personal roboport": {
+    "consumers": ["Personal roboport MK2"],
+    "stack-size": 20,
+    "required-technologies": ["Personal roboport"]
+  },
+  "Personal roboport MK2": {
+    "stack-size": 20,
+    "required-technologies": ["Personal roboport MK2"]
+  },
+  "Petroleum gas barrel": {
+    "consumers": ["Empty petroleum gas barrel"],
+    "stack-size": 10,
+    "required-technologies": ["Fluid handling"]
+  },
+  "Piercing rounds magazine": {
+    "consumers": [
+      "Defender capsule",
+      "Military science pack",
+      "Uranium rounds magazine"
+    ],
+    "stack-size": 100,
+    "required-technologies": ["Military 2"]
+  },
+  "Piercing shotgun shells": {
+    "stack-size": 100,
+    "required-technologies": ["Military 4"]
+  },
+  "Pipe": {
+    "consumers": [
+      "Boiler",
+      "Casting pipe to ground",
+      "Chemical plant",
+      "Engine unit",
+      "Flamethrower turret",
+      "Fluid wagon",
+      "Heat exchanger",
+      "Offshore pump",
+      "Oil refinery",
+      "Pipe to ground",
+      "Pump",
+      "Pumpjack",
+      "Rocket silo",
+      "Steam engine",
+      "Steam turbine"
+    ],
+    "stack-size": 100,
+    "required-technologies": [
+      "Foundry",
+      "Steam power"
+    ]
+  },
+  "Pipe to ground": {
+    "stack-size": 50,
+    "required-technologies": [
+      "Foundry",
+      "Steam power"
+    ]
+  },
+  "Pistol": {"stack-size": 5},
+  "Plastic bar": {
+    "consumers": [
+      "Advanced circuit",
+      "Cannon shell",
+      "Casting low density structure",
+      "Explosive cannon shell",
+      "Low density structure",
+      "Superconductor",
+      "Tesla ammo",
+      "Tesla gun"
+    ],
+    "stack-size": 100,
+    "required-technologies": [
+      "Bioflux processing",
+      "Plastics"
+    ]
+  },
+  "Poison capsule": {
+    "stack-size": 100,
+    "required-technologies": ["Military 3"]
+  },
+  "Power armor": {
+    "stack-size": 1,
+    "required-technologies": ["Power armor"]
+  },
+  "Power armor MK2": {
+    "consumers": ["Mech armor"],
+    "stack-size": 1,
+    "required-technologies": ["Power armor MK2"]
+  },
+  "Power switch": {
+    "stack-size": 10,
+    "required-technologies": ["Circuit network"]
+  },
+  "Processing unit": {
+    "consumers": [
+      "Artillery turret",
+      "Artillery wagon",
+      "Asteroid collector",
+      "Atomic bomb",
+      "Personal battery MK2",
+      "Capture bot rocket",
+      "Cargo bay",
+      "Cargo landing pad",
+      "Cryogenic plant",
+      "Destroyer capsule",
+      "Discharge defense",
+      "Efficiency module 2",
+      "Efficiency module 3",
+      "Electromagnetic plant",
+      "Energy shield MK2",
+      "Exoskeleton",
+      "Portable fission reactor",
+      "Mech armor",
+      "Personal laser defense",
+      "Personal roboport MK2",
+      "Power armor",
+      "Power armor MK2",
+      "Productivity module 2",
+      "Productivity module 3",
+      "Quality module 2",
+      "Quality module 3",
+      "Quantum processor",
+      "Recycler",
+      "Rocket part",
+      "Rocket silo",
+      "Rocket turret",
+      "Space platform starter pack",
+      "Speed module 2",
+      "Speed module 3",
+      "Stack inserter",
+      "Tesla turret",
+      "Thruster",
+      "Turbo splitter",
+      "Utility science pack"
+    ],
+    "stack-size": 100,
+    "required-technologies": ["Processing unit"]
+  },
+  "Production science pack": {
+    "stack-size": 200,
+    "required-technologies": ["Production science pack"]
+  },
+  "Productivity module": {
+    "consumers": [
+      "Production science pack",
+      "Productivity module 2"
+    ],
+    "stack-size": 50,
+    "required-technologies": ["Productivity module"]
+  },
+  "Productivity module 2": {
+    "consumers": ["Productivity module 3"],
+    "stack-size": 50,
+    "required-technologies": ["Productivity module 2"]
+  },
+  "Productivity module 3": {
+    "stack-size": 50,
+    "required-technologies": ["Productivity module 3"]
+  },
+  "Programmable speaker": {
+    "stack-size": 10,
+    "required-technologies": ["Circuit network"]
+  },
+  "Promethium asteroid chunk": {
+    "consumers": ["Promethium science pack"],
+    "stack-size": 1
+  },
+  "Promethium science pack": {
+    "stack-size": 200,
+    "required-technologies": ["Promethium science pack"]
+  },
+  "Pump": {
+    "stack-size": 50,
+    "required-technologies": ["Fluid handling"]
+  },
+  "Pumpjack": {
+    "stack-size": 20,
+    "required-technologies": ["Oil gathering"]
+  },
+  "Quality module": {
+    "consumers": ["Quality module 2"],
+    "stack-size": 50,
+    "required-technologies": ["Quality module"]
+  },
+  "Quality module 2": {
+    "consumers": ["Quality module 3"],
+    "stack-size": 50,
+    "required-technologies": ["Quality module 2"]
+  },
+  "Quality module 3": {
+    "stack-size": 50,
+    "required-technologies": ["Quality module 3"]
+  },
+  "Quantum processor": {
+    "consumers": [
+      "Fusion generator",
+      "Fusion reactor",
+      "Portable fusion reactor",
+      "Promethium science pack",
+      "Railgun",
+      "Railgun turret"
+    ],
+    "stack-size": 100,
+    "required-technologies": ["Quantum processor"]
+  },
+  "Radar": {
+    "consumers": [
+      "Artillery shell",
+      "Spidertron"
+    ],
+    "stack-size": 50,
+    "required-technologies": ["Radar"]
+  },
+  "Rail": {
+    "consumers": [
+      "Production science pack",
+      "Rail ramp"
+    ],
+    "stack-size": 100,
+    "required-technologies": ["Railway"]
+  },
+  "Rail chain signal": {
+    "stack-size": 50,
+    "required-technologies": ["Automated rail transportation"]
+  },
+  "Rail ramp": {
+    "stack-size": 10,
+    "required-technologies": ["Elevated rail"]
+  },
+  "Rail signal": {
+    "stack-size": 50,
+    "required-technologies": ["Automated rail transportation"]
+  },
+  "Rail support": {
+    "stack-size": 20,
+    "required-technologies": ["Elevated rail"]
+  },
+  "Railgun": {
+    "stack-size": 1,
+    "required-technologies": ["Railgun"]
+  },
+  "Railgun ammo": {
+    "stack-size": 10,
+    "required-technologies": ["Railgun"]
+  },
+  "Railgun turret": {
+    "stack-size": 10,
+    "required-technologies": ["Railgun"]
+  },
+  "Raw fish": {
+    "consumers": [
+      "Fish breeding",
+      "Nutrients from fish",
+      "Spidertron"
+    ],
+    "stack-size": 100,
+    "required-technologies": ["Fish breeding"],
+    "spoil-ticks": 453000
+  },
+  "Recycler": {
+    "stack-size": 20,
+    "required-technologies": ["Recycling"]
+  },
+  "Red wire": {"stack-size": 1},
+  "Refined concrete": {
+    "consumers": [
+      "Artillery turret",
+      "Artillery wagon",
+      "Biolab",
+      "Cryogenic plant",
+      "Electromagnetic plant",
+      "Foundry",
+      "Rail ramp",
+      "Rail support",
+      "Refined hazard concrete"
+    ],
+    "stack-size": 100,
+    "required-technologies": ["Concrete"]
+  },
+  "Refined hazard concrete": {
+    "stack-size": 100,
+    "required-technologies": ["Concrete"]
+  },
+  "Repair pack": {
+    "stack-size": 100,
+    "required-technologies": ["Repair pack"]
+  },
+  "Requester chest": {
+    "stack-size": 50,
+    "required-technologies": ["Logistic system"]
+  },
+  "Roboport": {
+    "stack-size": 10,
+    "required-technologies": [
+      "Construction robotics",
+      "Logistic robotics"
+    ]
+  },
+  "Rocket": {
+    "consumers": ["Explosive rocket"],
+    "stack-size": 100,
+    "required-technologies": ["Rocketry"]
+  },
+  "Rocket fuel": {
+    "consumers": [
+      "Nuclear fuel",
+      "Rocket part"
+    ],
+    "stack-size": 20,
+    "required-technologies": [
+      "Bioflux processing",
+      "Planet discovery Aquilo",
+      "Rocket fuel"
+    ]
+  },
+  "Rocket launcher": {
+    "consumers": ["Rocket turret"],
+    "stack-size": 5,
+    "required-technologies": ["Rocketry"]
+  },
+  "Rocket part": {
+    "stack-size": 5,
+    "required-technologies": ["Rocket silo"]
+  },
+  "Rocket silo": {
+    "stack-size": 1,
+    "required-technologies": ["Rocket silo"]
+  },
+  "Rocket turret": {
+    "consumers": ["Spidertron"],
+    "stack-size": 10,
+    "required-technologies": ["Rocket turret"]
+  },
+  "Scrap": {
+    "consumers": ["Scrap recycling"],
+    "stack-size": 50
+  },
+  "Selector combinator": {
+    "stack-size": 50,
+    "required-technologies": ["Advanced combinators"]
+  },
+  "Shotgun": {
+    "stack-size": 5,
+    "required-technologies": ["Military"]
+  },
+  "Shotgun shells": {
+    "consumers": ["Piercing shotgun shells"],
+    "stack-size": 100,
+    "required-technologies": ["Military"]
+  },
+  "Slowdown capsule": {
+    "stack-size": 100,
+    "required-technologies": ["Military 3"]
+  },
+  "Small electric pole": {
+    "stack-size": 50,
+    "required-technologies": ["Electronics"]
+  },
+  "Lamp": {
+    "stack-size": 50,
+    "required-technologies": ["Lamp"]
+  },
+  "Solar panel": {
+    "consumers": ["Portable solar panel"],
+    "stack-size": 50,
+    "required-technologies": ["Solar energy"]
+  },
+  "Portable solar panel": {
+    "stack-size": 20,
+    "required-technologies": ["Portable solar panel"]
+  },
+  "Solid fuel": {
+    "consumers": [
+      "Ammonia rocket fuel",
+      "Fluoroketone (hot)",
+      "Rocket fuel"
+    ],
+    "stack-size": 50,
+    "required-technologies": [
+      "Advanced oil processing",
+      "Oil processing",
+      "Planet discovery Aquilo"
+    ]
+  },
+  "Space platform foundation": {
+    "consumers": ["Space platform starter pack"],
+    "stack-size": 100,
+    "required-technologies": ["Rocket silo"]
+  },
+  "Space platform hub": {"stack-size": 1},
+  "Space platform starter pack": {
+    "stack-size": 1,
+    "required-technologies": ["Rocket silo"]
+  },
+  "Space science pack": {
+    "stack-size": 200,
+    "required-technologies": ["Space science pack"]
+  },
+  "Speed module": {
+    "consumers": [
+      "Assembling machine 3",
+      "Power armor MK2",
+      "Speed module 2"
+    ],
+    "stack-size": 50,
+    "required-technologies": ["Speed module"]
+  },
+  "Speed module 2": {
+    "consumers": ["Speed module 3"],
+    "stack-size": 50,
+    "required-technologies": ["Speed module 2"]
+  },
+  "Speed module 3": {
+    "stack-size": 50,
+    "required-technologies": ["Speed module 3"]
+  },
+  "Spidertron": {
+    "stack-size": 1,
+    "required-technologies": ["Spidertron"]
+  },
+  "Spidertron remote": {"stack-size": 1},
+  "Splitter": {
+    "consumers": ["Fast splitter"],
+    "stack-size": 50,
+    "required-technologies": ["Logistics"]
+  },
+  "Spoilage": {
+    "consumers": [
+      "Agricultural tower",
+      "Biosulfur",
+      "Burnt spoilage",
+      "Efficiency module 3",
+      "Nutrients from spoilage",
+      "Overgrowth jellynut soil",
+      "Overgrowth yumako soil"
+    ],
+    "stack-size": 200,
+    "required-technologies": [
+      "Jellynut",
+      "Yumako"
+    ]
+  },
+  "Stack inserter": {
+    "stack-size": 50,
+    "required-technologies": ["Stack inserter"]
+  },
+  "Steam engine": {
+    "stack-size": 10,
+    "required-technologies": ["Steam power"]
+  },
+  "Steam turbine": {
+    "stack-size": 10,
+    "required-technologies": [
+      "Heating tower",
+      "Nuclear power"
+    ]
+  },
+  "Steel chest": {
+    "consumers": [
+      "Active provider chest",
+      "Buffer chest",
+      "Passive provider chest",
+      "Requester chest",
+      "Storage chest"
+    ],
+    "stack-size": 50,
+    "required-technologies": ["Steel processing"]
+  },
+  "Steel furnace": {
+    "stack-size": 50,
+    "required-technologies": ["Advanced material processing"]
+  },
+  "Steel plate": {
+    "consumers": [
+      "Agricultural tower",
+      "Assembling machine 2",
+      "Barrel",
+      "Personal battery",
+      "Beacon",
+      "Belt immunity equipment",
+      "Big electric pole",
+      "Cannon shell",
+      "Capture bot rocket",
+      "Car",
+      "Cargo bay",
+      "Cargo landing pad",
+      "Cargo wagon",
+      "Centrifuge",
+      "Chemical plant",
+      "Cluster grenade",
+      "Combat shotgun",
+      "Crusher",
+      "Destroyer capsule",
+      "Discharge defense",
+      "Electric furnace",
+      "Electromagnetic plant",
+      "Energy shield",
+      "Engine unit",
+      "Exoskeleton",
+      "Explosive cannon shell",
+      "Flamethrower",
+      "Flamethrower ammo",
+      "Flamethrower turret",
+      "Fluid wagon",
+      "Flying robot frame",
+      "Foundry",
+      "Gate",
+      "Heat exchanger",
+      "Heat pipe",
+      "Heavy armor",
+      "Land mine",
+      "Laser turret",
+      "Lightning rod",
+      "Locomotive",
+      "Low density structure",
+      "Medium electric pole",
+      "Modular armor",
+      "Nightvision",
+      "Nuclear reactor",
+      "Oil refinery",
+      "Personal roboport",
+      "Piercing rounds magazine",
+      "Piercing shotgun shells",
+      "Poison capsule",
+      "Power armor",
+      "Pump",
+      "Pumpjack",
+      "Rail",
+      "Rail ramp",
+      "Rail support",
+      "Railgun ammo",
+      "Recycler",
+      "Refined concrete",
+      "Roboport",
+      "Rocket silo",
+      "Rocket turret",
+      "Slowdown capsule",
+      "Solar panel",
+      "Portable solar panel",
+      "Space platform foundation",
+      "Space platform starter pack",
+      "Steel chest",
+      "Steel furnace",
+      "Storage tank",
+      "Substation",
+      "Tank",
+      "Thruster",
+      "Train stop"
+    ],
+    "stack-size": 100,
+    "required-technologies": [
+      "Foundry",
+      "Steel processing"
+    ]
+  },
+  "Stone": {
+    "consumers": [
+      "Electrolyte",
+      "Foundation",
+      "Holmium solution",
+      "Landfill",
+      "Rail",
+      "Stone brick",
+      "Stone furnace"
+    ],
+    "stack-size": 50,
+    "required-technologies": ["Foundry"]
+  },
+  "Stone brick": {
+    "consumers": [
+      "Concrete",
+      "Concrete from molten iron",
+      "Electric furnace",
+      "Lightning rod",
+      "Oil refinery",
+      "Steel furnace",
+      "Wall"
+    ],
+    "stack-size": 100
+  },
+  "Stone furnace": {
+    "consumers": [
+      "Boiler",
+      "Burner mining drill"
+    ],
+    "stack-size": 50
+  },
+  "Wall": {
+    "consumers": [
+      "Gate",
+      "Military science pack"
+    ],
+    "stack-size": 100,
+    "required-technologies": ["Stone wall"]
+  },
+  "Storage chest": {
+    "stack-size": 50,
+    "required-technologies": [
+      "Construction robotics",
+      "Logistic robotics"
+    ]
+  },
+  "Storage tank": {
+    "consumers": ["Fluid wagon"],
+    "stack-size": 50,
+    "required-technologies": ["Fluid handling"]
+  },
+  "Submachine gun": {
+    "stack-size": 5,
+    "required-technologies": ["Military"]
+  },
+  "Substation": {
+    "stack-size": 50,
+    "required-technologies": ["Electric energy distribution 2"]
+  },
+  "Sulfur": {
+    "consumers": [
+      "Chemical science pack",
+      "Coal synthesis",
+      "Explosives",
+      "Sulfuric acid"
+    ],
+    "stack-size": 50,
+    "required-technologies": [
+      "Advanced asteroid processing",
+      "Bioflux processing",
+      "Sulfur processing"
+    ]
+  },
+  "Sulfuric acid barrel": {
+    "consumers": ["Empty sulfuric acid barrel"],
+    "stack-size": 10,
+    "required-technologies": ["Fluid handling"]
+  },
+  "Supercapacitor": {
+    "consumers": [
+      "Personal battery MK3",
+      "Electromagnetic science pack",
+      "Portable fusion reactor",
+      "Lightning collector",
+      "Mech armor",
+      "Tesla ammo",
+      "Tesla turret"
+    ],
+    "stack-size": 100,
+    "required-technologies": ["Electromagnetic plant"]
+  },
+  "Superconductor": {
+    "consumers": [
+      "Cryogenic plant",
+      "Fusion generator",
+      "Fusion reactor",
+      "Mech armor",
+      "Personal roboport MK2",
+      "Quality module 3",
+      "Quantum processor",
+      "Railgun",
+      "Railgun turret",
+      "Supercapacitor",
+      "Tesla turret",
+      "Tesla gun"
+    ],
+    "stack-size": 200,
+    "required-technologies": ["Electromagnetic plant"]
+  },
+  "Tank": {
+    "stack-size": 1,
+    "required-technologies": ["Tank"]
+  },
+  "Tesla ammo": {
+    "stack-size": 100,
+    "required-technologies": ["Tesla weapons"]
+  },
+  "Tesla turret": {
+    "stack-size": 10,
+    "required-technologies": ["Tesla weapons"]
+  },
+  "Tesla gun": {
+    "consumers": ["Tesla turret"],
+    "stack-size": 5,
+    "required-technologies": ["Tesla weapons"]
+  },
+  "Thruster": {
+    "stack-size": 10,
+    "required-technologies": ["Space platform thruster"]
+  },
+  "Toolbelt equipment": {
+    "stack-size": 20,
+    "required-technologies": ["Toolbelt equipment"]
+  },
+  "Train stop": {
+    "stack-size": 10,
+    "required-technologies": ["Automated rail transportation"]
+  },
+  "Transport belt": {
+    "consumers": [
+      "Fast transport belt",
+      "Lab",
+      "Logistic science pack",
+      "Splitter",
+      "Underground belt"
+    ],
+    "stack-size": 100
+  },
+  "Tree seed": {
+    "stack-size": 10,
+    "required-technologies": ["Tree seeding"]
+  },
+  "Tungsten carbide": {
+    "consumers": [
+      "Big mining drill",
+      "Foundry",
+      "Metallurgic science pack",
+      "Quantum processor",
+      "Speed module 3"
+    ],
+    "stack-size": 50,
+    "required-technologies": ["Tungsten carbide"]
+  },
+  "Tungsten ore": {
+    "consumers": [
+      "Tungsten carbide",
+      "Tungsten plate"
+    ],
+    "stack-size": 50
+  },
+  "Tungsten plate": {
+    "consumers": [
+      "Artillery shell",
+      "Artillery turret",
+      "Artillery wagon",
+      "Foundation",
+      "Fusion generator",
+      "Fusion reactor",
+      "Portable fusion reactor",
+      "Metallurgic science pack",
+      "Railgun",
+      "Railgun turret",
+      "Turbo splitter",
+      "Turbo transport belt",
+      "Turbo underground belt"
+    ],
+    "stack-size": 50,
+    "required-technologies": ["Tungsten steel"]
+  },
+  "Turbo splitter": {
+    "stack-size": 50,
+    "required-technologies": ["Turbo transport belt"]
+  },
+  "Turbo transport belt": {
+    "stack-size": 100,
+    "required-technologies": ["Turbo transport belt"]
+  },
+  "Turbo underground belt": {
+    "stack-size": 50,
+    "required-technologies": ["Turbo transport belt"]
+  },
+  "Underground belt": {
+    "consumers": ["Fast underground belt"],
+    "stack-size": 50,
+    "required-technologies": ["Logistics"]
+  },
+  "Upgrade planner": {"stack-size": 1},
+  "Uranium-235": {
+    "consumers": [
+      "Atomic bomb",
+      "Biolab",
+      "Captive biter spawner",
+      "Kovarex enrichment process",
+      "Nuclear fuel",
+      "Uranium fuel cell"
+    ],
+    "stack-size": 100,
+    "required-technologies": [
+      "Kovarex enrichment process",
+      "Uranium processing"
+    ]
+  },
+  "Uranium-238": {
+    "consumers": [
+      "Explosive uranium cannon shell",
+      "Kovarex enrichment process",
+      "Uranium cannon shell",
+      "Uranium fuel cell",
+      "Uranium rounds magazine"
+    ],
+    "stack-size": 100,
+    "required-technologies": [
+      "Kovarex enrichment process",
+      "Nuclear fuel reprocessing",
+      "Uranium processing"
+    ]
+  },
+  "Uranium cannon shell": {
+    "stack-size": 100,
+    "required-technologies": ["Uranium ammo"]
+  },
+  "Uranium fuel cell": {
+    "consumers": ["Portable fission reactor"],
+    "stack-size": 50,
+    "required-technologies": ["Nuclear power"]
+  },
+  "Uranium ore": {
+    "consumers": ["Uranium processing"],
+    "stack-size": 50
+  },
+  "Uranium rounds magazine": {
+    "stack-size": 100,
+    "required-technologies": ["Uranium ammo"]
+  },
+  "Utility science pack": {
+    "stack-size": 200,
+    "required-technologies": ["Utility science pack"]
+  },
+  "Water barrel": {
+    "consumers": ["Empty water barrel"],
+    "stack-size": 10,
+    "required-technologies": ["Fluid handling"]
+  },
+  "Wood": {
+    "consumers": [
+      "Combat shotgun",
+      "Shotgun",
+      "Small electric pole",
+      "Wood processing",
+      "Wooden chest"
+    ],
+    "stack-size": 100
+  },
+  "Wooden chest": {"stack-size": 50},
+  "Yumako": {
+    "consumers": ["Yumako processing"],
+    "stack-size": 50,
+    "spoil-ticks": 216000
+  },
+  "Yumako mash": {
+    "consumers": [
+      "Bioflux",
+      "Bioplastic",
+      "Carbon fiber",
+      "Copper bacteria",
+      "Nutrients from yumako mash"
+    ],
+    "stack-size": 100,
+    "required-technologies": ["Yumako"],
+    "spoil-ticks": 10800
+  },
+  "Yumako seed": {
+    "consumers": [
+      "Artificial yumako soil",
+      "Overgrowth yumako soil"
+    ],
+    "stack-size": 10,
+    "required-technologies": ["Yumako"]
+  }
+}
