@@ -1,0 +1,1342 @@
+{
+  "Accumulator": {
+    "consumers": ["Satellite"],
+    "stack-size": 50,
+    "required-technologies": ["Electric energy accumulators"]
+  },
+  "Active provider chest": {
+    "stack-size": 50,
+    "required-technologies": ["Logistic system"]
+  },
+  "Advanced circuit": {
+    "consumers": [
+      "Active provider chest",
+      "Artillery turret",
+      "Artillery wagon",
+      "Beacon",
+      "Belt immunity equipment",
+      "Buffer chest",
+      "Bulk inserter",
+      "Centrifuge",
+      "Chemical science pack",
+      "Distractor capsule",
+      "Efficiency module",
+      "Efficiency module 2",
+      "Efficiency module 3",
+      "Electric furnace",
+      "Energy shield",
+      "Express splitter",
+      "Logistic robot",
+      "Modular armor",
+      "Nightvision",
+      "Nuclear reactor",
+      "Passive provider chest",
+      "Personal roboport",
+      "Processing unit",
+      "Productivity module",
+      "Productivity module 2",
+      "Productivity module 3",
+      "Requester chest",
+      "Roboport",
+      "Selector combinator",
+      "Portable solar panel",
+      "Speed module",
+      "Speed module 2",
+      "Speed module 3",
+      "Storage chest",
+      "Substation",
+      "Tank"
+    ],
+    "stack-size": 200,
+    "required-technologies": ["Advanced circuit"]
+  },
+  "Arithmetic combinator": {
+    "stack-size": 50,
+    "required-technologies": ["Circuit network"]
+  },
+  "Artillery shell": {
+    "stack-size": 1,
+    "required-technologies": ["Artillery"]
+  },
+  "Artillery targeting remote": {"stack-size": 1},
+  "Artillery turret": {
+    "stack-size": 10,
+    "required-technologies": ["Artillery"]
+  },
+  "Artillery wagon": {
+    "stack-size": 5,
+    "required-technologies": ["Artillery"]
+  },
+  "Assembling machine 1": {
+    "consumers": ["Assembling machine 2"],
+    "stack-size": 50,
+    "required-technologies": ["Automation"]
+  },
+  "Assembling machine 2": {
+    "consumers": ["Assembling machine 3"],
+    "stack-size": 50,
+    "required-technologies": ["Automation 2"]
+  },
+  "Assembling machine 3": {
+    "stack-size": 50,
+    "required-technologies": ["Automation 3"]
+  },
+  "Atomic bomb": {
+    "stack-size": 10,
+    "required-technologies": ["Atomic bomb"]
+  },
+  "Automation science pack": {
+    "stack-size": 200,
+    "required-technologies": ["Automation science pack"]
+  },
+  "Barrel": {
+    "consumers": [
+      "Cliff explosives",
+      "Crude oil barrel",
+      "Heavy oil barrel",
+      "Light oil barrel",
+      "Lubricant barrel",
+      "Petroleum gas barrel",
+      "Sulfuric acid barrel",
+      "Water barrel"
+    ],
+    "stack-size": 10,
+    "required-technologies": ["Fluid handling"]
+  },
+  "Battery": {
+    "consumers": [
+      "Accumulator",
+      "Personal battery",
+      "Flying robot frame",
+      "Laser turret",
+      "Personal roboport"
+    ],
+    "stack-size": 200,
+    "required-technologies": ["Battery"]
+  },
+  "Personal battery": {
+    "consumers": ["Personal battery MK2"],
+    "stack-size": 20,
+    "required-technologies": ["Personal battery"]
+  },
+  "Personal battery MK2": {
+    "stack-size": 20,
+    "required-technologies": ["Personal battery MK2"]
+  },
+  "Beacon": {
+    "stack-size": 20,
+    "required-technologies": ["Effect transmission"]
+  },
+  "Belt immunity equipment": {
+    "stack-size": 20,
+    "required-technologies": ["Belt immunity equipment"]
+  },
+  "Big electric pole": {
+    "stack-size": 50,
+    "required-technologies": ["Electric energy distribution 1"]
+  },
+  "Blueprint": {"stack-size": 1},
+  "Blueprint book": {"stack-size": 1},
+  "Boiler": {
+    "stack-size": 50,
+    "required-technologies": ["Steam power"]
+  },
+  "Buffer chest": {
+    "stack-size": 50,
+    "required-technologies": ["Logistic system"]
+  },
+  "Bulk inserter": {
+    "stack-size": 50,
+    "required-technologies": ["Bulk inserter"]
+  },
+  "Burner inserter": {"stack-size": 50},
+  "Burner mining drill": {"stack-size": 50},
+  "Cannon shell": {
+    "consumers": ["Uranium cannon shell"],
+    "stack-size": 100,
+    "required-technologies": ["Tank"]
+  },
+  "Car": {
+    "stack-size": 1,
+    "required-technologies": ["Automobilism"]
+  },
+  "Cargo landing pad": {
+    "stack-size": 1,
+    "required-technologies": ["Rocket silo"]
+  },
+  "Cargo wagon": {
+    "stack-size": 5,
+    "required-technologies": ["Railway"]
+  },
+  "Centrifuge": {
+    "stack-size": 50,
+    "required-technologies": ["Uranium processing"]
+  },
+  "Chemical plant": {
+    "stack-size": 10,
+    "required-technologies": ["Oil processing"]
+  },
+  "Chemical science pack": {
+    "stack-size": 200,
+    "required-technologies": ["Chemical science pack"]
+  },
+  "Cliff explosives": {
+    "stack-size": 20,
+    "required-technologies": ["Cliff explosives"]
+  },
+  "Cluster grenade": {
+    "stack-size": 100,
+    "required-technologies": ["Military 4"]
+  },
+  "Coal": {
+    "consumers": [
+      "Coal liquefaction",
+      "Explosives",
+      "Grenade",
+      "Plastic bar",
+      "Poison capsule",
+      "Slowdown capsule"
+    ],
+    "stack-size": 50
+  },
+  "Combat shotgun": {
+    "stack-size": 5,
+    "required-technologies": ["Military 3"]
+  },
+  "Concrete": {
+    "consumers": [
+      "Artillery turret",
+      "Cargo landing pad",
+      "Centrifuge",
+      "Hazard concrete",
+      "Nuclear reactor",
+      "Refined concrete",
+      "Rocket silo"
+    ],
+    "stack-size": 100,
+    "required-technologies": ["Concrete"]
+  },
+  "Constant combinator": {
+    "stack-size": 50,
+    "required-technologies": ["Circuit network"]
+  },
+  "Construction robot": {
+    "stack-size": 50,
+    "required-technologies": ["Construction robotics"]
+  },
+  "Copper cable": {
+    "consumers": [
+      "Advanced circuit",
+      "Arithmetic combinator",
+      "Beacon",
+      "Big electric pole",
+      "Constant combinator",
+      "Decider combinator",
+      "Electronic circuit",
+      "Medium electric pole",
+      "Power switch",
+      "Programmable speaker",
+      "Small electric pole",
+      "Lamp",
+      "Substation"
+    ],
+    "stack-size": 200,
+    "required-technologies": ["Electronics"]
+  },
+  "Copper ore": {
+    "consumers": ["Copper plate"],
+    "stack-size": 50
+  },
+  "Copper plate": {
+    "consumers": [
+      "Automation science pack",
+      "Battery",
+      "Combat shotgun",
+      "Copper cable",
+      "Gun turret",
+      "Heat exchanger",
+      "Heat pipe",
+      "Heavy armor",
+      "Low density structure",
+      "Nuclear reactor",
+      "Piercing rounds magazine",
+      "Piercing shotgun shells",
+      "Shotgun",
+      "Shotgun shells",
+      "Solar panel",
+      "Steam turbine",
+      "Submachine gun"
+    ],
+    "stack-size": 100
+  },
+  "Crude oil barrel": {
+    "consumers": ["Empty crude oil barrel"],
+    "stack-size": 10,
+    "required-technologies": ["Fluid handling"]
+  },
+  "Decider combinator": {
+    "consumers": ["Selector combinator"],
+    "stack-size": 50,
+    "required-technologies": ["Circuit network"]
+  },
+  "Deconstruction planner": {"stack-size": 1},
+  "Defender capsule": {
+    "consumers": ["Distractor capsule"],
+    "stack-size": 100,
+    "required-technologies": ["Defender"]
+  },
+  "Depleted uranium fuel cell": {
+    "consumers": ["Nuclear fuel reprocessing"],
+    "stack-size": 50
+  },
+  "Destroyer capsule": {
+    "stack-size": 100,
+    "required-technologies": ["Destroyer"]
+  },
+  "Discharge defense": {
+    "stack-size": 20,
+    "required-technologies": ["Discharge defense"]
+  },
+  "Discharge defense remote": {"stack-size": 1},
+  "Display panel": {
+    "stack-size": 10,
+    "required-technologies": ["Circuit network"]
+  },
+  "Distractor capsule": {
+    "consumers": ["Destroyer capsule"],
+    "stack-size": 100,
+    "required-technologies": ["Distractor"]
+  },
+  "Efficiency module": {
+    "consumers": ["Efficiency module 2"],
+    "stack-size": 50,
+    "required-technologies": ["Efficiency module"]
+  },
+  "Efficiency module 2": {
+    "consumers": [
+      "Efficiency module 3",
+      "Power armor MK2"
+    ],
+    "stack-size": 50,
+    "required-technologies": ["Efficiency module 2"]
+  },
+  "Efficiency module 3": {
+    "consumers": ["Spidertron"],
+    "stack-size": 50,
+    "required-technologies": ["Efficiency module 3"]
+  },
+  "Electric engine unit": {
+    "consumers": [
+      "Exoskeleton",
+      "Flying robot frame",
+      "Power armor",
+      "Power armor MK2",
+      "Rocket silo"
+    ],
+    "stack-size": 50,
+    "required-technologies": ["Electric engine"]
+  },
+  "Electric furnace": {
+    "consumers": ["Production science pack"],
+    "stack-size": 50,
+    "required-technologies": ["Advanced material processing 2"]
+  },
+  "Electric mining drill": {
+    "stack-size": 50,
+    "required-technologies": ["Electric mining drill"]
+  },
+  "Electronic circuit": {
+    "consumers": [
+      "Active provider chest",
+      "Advanced circuit",
+      "Arithmetic combinator",
+      "Assembling machine 1",
+      "Assembling machine 2",
+      "Beacon",
+      "Buffer chest",
+      "Bulk inserter",
+      "Chemical plant",
+      "Constant combinator",
+      "Construction robot",
+      "Decider combinator",
+      "Defender capsule",
+      "Display panel",
+      "Efficiency module",
+      "Electric engine unit",
+      "Electric mining drill",
+      "Fast inserter",
+      "Fast splitter",
+      "Flying robot frame",
+      "Gate",
+      "Inserter",
+      "Lab",
+      "Laser turret",
+      "Locomotive",
+      "Oil refinery",
+      "Passive provider chest",
+      "Poison capsule",
+      "Power switch",
+      "Processing unit",
+      "Productivity module",
+      "Programmable speaker",
+      "Pumpjack",
+      "Radar",
+      "Rail chain signal",
+      "Rail signal",
+      "Repair pack",
+      "Requester chest",
+      "Rocket launcher",
+      "Slowdown capsule",
+      "Lamp",
+      "Solar panel",
+      "Speed module",
+      "Splitter",
+      "Storage chest",
+      "Train stop"
+    ],
+    "stack-size": 200,
+    "required-technologies": ["Electronics"]
+  },
+  "Energy shield": {
+    "consumers": ["Energy shield MK2"],
+    "stack-size": 20,
+    "required-technologies": ["Energy shield equipment"]
+  },
+  "Energy shield MK2": {
+    "stack-size": 20,
+    "required-technologies": ["Energy shield MK2 equipment"]
+  },
+  "Engine unit": {
+    "consumers": [
+      "Artillery wagon",
+      "Car",
+      "Chemical science pack",
+      "Electric engine unit",
+      "Flamethrower turret",
+      "Locomotive",
+      "Pump",
+      "Tank"
+    ],
+    "stack-size": 50,
+    "required-technologies": ["Engine"]
+  },
+  "Exoskeleton": {
+    "consumers": ["Spidertron"],
+    "stack-size": 20,
+    "required-technologies": ["Exoskeleton equipment"]
+  },
+  "Explosive cannon shell": {
+    "consumers": [
+      "Artillery shell",
+      "Explosive uranium cannon shell"
+    ],
+    "stack-size": 100,
+    "required-technologies": ["Tank"]
+  },
+  "Explosive rocket": {
+    "stack-size": 100,
+    "required-technologies": ["Explosive rocketry"]
+  },
+  "Explosive uranium cannon shell": {
+    "stack-size": 100,
+    "required-technologies": ["Uranium ammo"]
+  },
+  "Explosives": {
+    "consumers": [
+      "Artillery shell",
+      "Atomic bomb",
+      "Cannon shell",
+      "Cliff explosives",
+      "Cluster grenade",
+      "Explosive cannon shell",
+      "Explosive rocket",
+      "Land mine",
+      "Rocket"
+    ],
+    "stack-size": 50,
+    "required-technologies": ["Explosives"]
+  },
+  "Express splitter": {
+    "stack-size": 50,
+    "required-technologies": ["Logistics 3"]
+  },
+  "Express transport belt": {
+    "stack-size": 100,
+    "required-technologies": ["Logistics 3"]
+  },
+  "Express underground belt": {
+    "stack-size": 50,
+    "required-technologies": ["Logistics 3"]
+  },
+  "Fast inserter": {
+    "consumers": ["Bulk inserter"],
+    "stack-size": 50,
+    "required-technologies": ["Fast inserter"]
+  },
+  "Fast splitter": {
+    "consumers": ["Express splitter"],
+    "stack-size": 50,
+    "required-technologies": ["Logistics 2"]
+  },
+  "Fast transport belt": {
+    "consumers": ["Express transport belt"],
+    "stack-size": 100,
+    "required-technologies": ["Logistics 2"]
+  },
+  "Fast underground belt": {
+    "consumers": ["Express underground belt"],
+    "stack-size": 50,
+    "required-technologies": ["Logistics 2"]
+  },
+  "Firearm magazine": {
+    "consumers": ["Piercing rounds magazine"],
+    "stack-size": 100
+  },
+  "Portable fission reactor": {
+    "consumers": ["Spidertron"],
+    "stack-size": 20,
+    "required-technologies": ["Portable fission reactor"]
+  },
+  "Flamethrower": {
+    "stack-size": 5,
+    "required-technologies": ["Flamethrower"]
+  },
+  "Flamethrower ammo": {
+    "stack-size": 100,
+    "required-technologies": ["Flamethrower"]
+  },
+  "Flamethrower turret": {
+    "stack-size": 50,
+    "required-technologies": ["Flamethrower"]
+  },
+  "Fluid wagon": {
+    "stack-size": 5,
+    "required-technologies": ["Fluid wagon"]
+  },
+  "Flying robot frame": {
+    "consumers": [
+      "Construction robot",
+      "Logistic robot",
+      "Utility science pack"
+    ],
+    "stack-size": 50,
+    "required-technologies": ["Robotics"]
+  },
+  "Gate": {
+    "stack-size": 50,
+    "required-technologies": ["Gate"]
+  },
+  "Green wire": {"stack-size": 1},
+  "Grenade": {
+    "consumers": [
+      "Cliff explosives",
+      "Cluster grenade",
+      "Military science pack"
+    ],
+    "stack-size": 100,
+    "required-technologies": ["Military 2"]
+  },
+  "Gun turret": {
+    "stack-size": 50,
+    "required-technologies": ["Gun turret"]
+  },
+  "Hazard concrete": {
+    "stack-size": 100,
+    "required-technologies": ["Concrete"]
+  },
+  "Heat exchanger": {
+    "stack-size": 50,
+    "required-technologies": ["Nuclear power"]
+  },
+  "Heat pipe": {
+    "stack-size": 50,
+    "required-technologies": ["Nuclear power"]
+  },
+  "Heavy armor": {
+    "stack-size": 1,
+    "required-technologies": ["Heavy armor"]
+  },
+  "Heavy oil barrel": {
+    "consumers": ["Empty heavy oil barrel"],
+    "stack-size": 10,
+    "required-technologies": ["Fluid handling"]
+  },
+  "Inserter": {
+    "consumers": [
+      "Fast inserter",
+      "Logistic science pack",
+      "Long-handed inserter"
+    ],
+    "stack-size": 50,
+    "required-technologies": ["Electronics"]
+  },
+  "Iron chest": {"stack-size": 50},
+  "Iron gear wheel": {
+    "consumers": [
+      "Artillery turret",
+      "Artillery wagon",
+      "Assembling machine 1",
+      "Assembling machine 2",
+      "Automation science pack",
+      "Bulk inserter",
+      "Burner inserter",
+      "Burner mining drill",
+      "Cargo wagon",
+      "Centrifuge",
+      "Chemical plant",
+      "Combat shotgun",
+      "Defender capsule",
+      "Electric mining drill",
+      "Engine unit",
+      "Express splitter",
+      "Express transport belt",
+      "Express underground belt",
+      "Fast splitter",
+      "Fast transport belt",
+      "Fast underground belt",
+      "Flamethrower",
+      "Flamethrower turret",
+      "Fluid wagon",
+      "Gun turret",
+      "Inserter",
+      "Lab",
+      "Long-handed inserter",
+      "Offshore pump",
+      "Oil refinery",
+      "Personal roboport",
+      "Pumpjack",
+      "Radar",
+      "Repair pack",
+      "Roboport",
+      "Rocket launcher",
+      "Shotgun",
+      "Steam engine",
+      "Steam turbine",
+      "Submachine gun",
+      "Tank",
+      "Transport belt"
+    ],
+    "stack-size": 100
+  },
+  "Iron ore": {
+    "consumers": [
+      "Concrete",
+      "Iron plate"
+    ],
+    "stack-size": 50
+  },
+  "Iron plate": {
+    "consumers": [
+      "Accumulator",
+      "Assembling machine 1",
+      "Battery",
+      "Burner inserter",
+      "Burner mining drill",
+      "Car",
+      "Cargo wagon",
+      "Display panel",
+      "Electric mining drill",
+      "Electronic circuit",
+      "Fast inserter",
+      "Firearm magazine",
+      "Grenade",
+      "Gun turret",
+      "Inserter",
+      "Iron chest",
+      "Iron gear wheel",
+      "Iron stick",
+      "Light armor",
+      "Long-handed inserter",
+      "Pipe",
+      "Pipe to ground",
+      "Power switch",
+      "Programmable speaker",
+      "Radar",
+      "Rail chain signal",
+      "Rail signal",
+      "Rocket",
+      "Rocket launcher",
+      "Shotgun",
+      "Shotgun shells",
+      "Lamp",
+      "Splitter",
+      "Steam engine",
+      "Steel plate",
+      "Storage tank",
+      "Submachine gun",
+      "Sulfuric acid",
+      "Train stop",
+      "Transport belt",
+      "Underground belt",
+      "Uranium fuel cell"
+    ],
+    "stack-size": 100
+  },
+  "Iron stick": {
+    "consumers": [
+      "Big electric pole",
+      "Medium electric pole",
+      "Programmable speaker",
+      "Rail",
+      "Refined concrete",
+      "Train stop"
+    ],
+    "stack-size": 100,
+    "required-technologies": [
+      "Circuit network",
+      "Concrete",
+      "Electric energy distribution 1",
+      "Railway"
+    ]
+  },
+  "Lab": {
+    "stack-size": 10,
+    "required-technologies": ["Electronics"]
+  },
+  "Land mine": {
+    "stack-size": 100,
+    "required-technologies": ["Land mines"]
+  },
+  "Landfill": {
+    "stack-size": 100,
+    "required-technologies": ["Landfill"]
+  },
+  "Laser turret": {
+    "consumers": [
+      "Discharge defense",
+      "Personal laser defense"
+    ],
+    "stack-size": 50,
+    "required-technologies": ["Laser turret"]
+  },
+  "Light armor": {"stack-size": 1},
+  "Light oil barrel": {
+    "consumers": ["Empty light oil barrel"],
+    "stack-size": 10,
+    "required-technologies": ["Fluid handling"]
+  },
+  "Locomotive": {
+    "stack-size": 5,
+    "required-technologies": ["Railway"]
+  },
+  "Logistic robot": {
+    "stack-size": 50,
+    "required-technologies": ["Logistic robotics"]
+  },
+  "Logistic science pack": {
+    "stack-size": 200,
+    "required-technologies": ["Logistic science pack"]
+  },
+  "Long-handed inserter": {
+    "stack-size": 50,
+    "required-technologies": ["Automation"]
+  },
+  "Low density structure": {
+    "consumers": [
+      "Personal battery MK2",
+      "Energy shield MK2",
+      "Portable fission reactor",
+      "Personal laser defense",
+      "Personal roboport MK2",
+      "Power armor MK2",
+      "Rocket part",
+      "Satellite",
+      "Spidertron",
+      "Utility science pack"
+    ],
+    "stack-size": 50,
+    "required-technologies": ["Low density structure"]
+  },
+  "Lubricant barrel": {
+    "consumers": ["Empty lubricant barrel"],
+    "stack-size": 10,
+    "required-technologies": ["Fluid handling"]
+  },
+  "Medium electric pole": {
+    "stack-size": 50,
+    "required-technologies": ["Electric energy distribution 1"]
+  },
+  "Military science pack": {
+    "stack-size": 200,
+    "required-technologies": ["Military science pack"]
+  },
+  "Modular armor": {
+    "stack-size": 1,
+    "required-technologies": ["Modular armor"]
+  },
+  "Nightvision": {
+    "stack-size": 20,
+    "required-technologies": ["Nightvision equipment"]
+  },
+  "Nuclear fuel": {
+    "stack-size": 1,
+    "required-technologies": ["Kovarex enrichment process"]
+  },
+  "Nuclear reactor": {
+    "stack-size": 10,
+    "required-technologies": ["Nuclear power"]
+  },
+  "Offshore pump": {
+    "stack-size": 20,
+    "required-technologies": ["Steam power"]
+  },
+  "Oil refinery": {
+    "stack-size": 10,
+    "required-technologies": ["Oil processing"]
+  },
+  "Passive provider chest": {
+    "stack-size": 50,
+    "required-technologies": [
+      "Construction robotics",
+      "Logistic robotics"
+    ]
+  },
+  "Personal laser defense": {
+    "stack-size": 20,
+    "required-technologies": ["Personal laser defense"]
+  },
+  "Personal roboport": {
+    "consumers": ["Personal roboport MK2"],
+    "stack-size": 20,
+    "required-technologies": ["Personal roboport"]
+  },
+  "Personal roboport MK2": {
+    "stack-size": 20,
+    "required-technologies": ["Personal roboport MK2"]
+  },
+  "Petroleum gas barrel": {
+    "consumers": ["Empty petroleum gas barrel"],
+    "stack-size": 10,
+    "required-technologies": ["Fluid handling"]
+  },
+  "Piercing rounds magazine": {
+    "consumers": [
+      "Defender capsule",
+      "Military science pack",
+      "Uranium rounds magazine"
+    ],
+    "stack-size": 100,
+    "required-technologies": ["Military 2"]
+  },
+  "Piercing shotgun shells": {
+    "stack-size": 100,
+    "required-technologies": ["Military 4"]
+  },
+  "Pipe": {
+    "consumers": [
+      "Artillery wagon",
+      "Boiler",
+      "Chemical plant",
+      "Engine unit",
+      "Flamethrower turret",
+      "Fluid wagon",
+      "Heat exchanger",
+      "Offshore pump",
+      "Oil refinery",
+      "Pipe to ground",
+      "Pump",
+      "Pumpjack",
+      "Rocket silo",
+      "Steam engine",
+      "Steam turbine"
+    ],
+    "stack-size": 100,
+    "required-technologies": ["Steam power"]
+  },
+  "Pipe to ground": {
+    "stack-size": 50,
+    "required-technologies": ["Steam power"]
+  },
+  "Pistol": {"stack-size": 5},
+  "Plastic bar": {
+    "consumers": [
+      "Advanced circuit",
+      "Cannon shell",
+      "Explosive cannon shell",
+      "Low density structure"
+    ],
+    "stack-size": 100,
+    "required-technologies": ["Plastics"]
+  },
+  "Poison capsule": {
+    "stack-size": 100,
+    "required-technologies": ["Military 3"]
+  },
+  "Power armor": {
+    "stack-size": 1,
+    "required-technologies": ["Power armor"]
+  },
+  "Power armor MK2": {
+    "stack-size": 1,
+    "required-technologies": ["Power armor MK2"]
+  },
+  "Power switch": {
+    "stack-size": 10,
+    "required-technologies": ["Circuit network"]
+  },
+  "Processing unit": {
+    "consumers": [
+      "Atomic bomb",
+      "Personal battery MK2",
+      "Cargo landing pad",
+      "Discharge defense",
+      "Efficiency module 2",
+      "Efficiency module 3",
+      "Energy shield MK2",
+      "Exoskeleton",
+      "Portable fission reactor",
+      "Personal laser defense",
+      "Personal roboport MK2",
+      "Power armor",
+      "Power armor MK2",
+      "Productivity module 2",
+      "Productivity module 3",
+      "Rocket part",
+      "Rocket silo",
+      "Satellite",
+      "Speed module 2",
+      "Speed module 3",
+      "Spidertron",
+      "Utility science pack"
+    ],
+    "stack-size": 100,
+    "required-technologies": ["Processing unit"]
+  },
+  "Production science pack": {
+    "stack-size": 200,
+    "required-technologies": ["Production science pack"]
+  },
+  "Productivity module": {
+    "consumers": [
+      "Production science pack",
+      "Productivity module 2"
+    ],
+    "stack-size": 50,
+    "required-technologies": ["Productivity module"]
+  },
+  "Productivity module 2": {
+    "consumers": ["Productivity module 3"],
+    "stack-size": 50,
+    "required-technologies": ["Productivity module 2"]
+  },
+  "Productivity module 3": {
+    "stack-size": 50,
+    "required-technologies": ["Productivity module 3"]
+  },
+  "Programmable speaker": {
+    "stack-size": 10,
+    "required-technologies": ["Circuit network"]
+  },
+  "Pump": {
+    "stack-size": 50,
+    "required-technologies": ["Fluid handling"]
+  },
+  "Pumpjack": {
+    "stack-size": 20,
+    "required-technologies": ["Oil gathering"]
+  },
+  "Radar": {
+    "consumers": [
+      "Artillery shell",
+      "Satellite",
+      "Spidertron"
+    ],
+    "stack-size": 50,
+    "required-technologies": ["Radar"]
+  },
+  "Rail": {
+    "consumers": ["Production science pack"],
+    "stack-size": 100,
+    "required-technologies": ["Railway"]
+  },
+  "Rail chain signal": {
+    "stack-size": 50,
+    "required-technologies": ["Automated rail transportation"]
+  },
+  "Rail signal": {
+    "stack-size": 50,
+    "required-technologies": ["Automated rail transportation"]
+  },
+  "Raw fish": {
+    "consumers": ["Spidertron"],
+    "stack-size": 100
+  },
+  "Red wire": {"stack-size": 1},
+  "Refined concrete": {
+    "consumers": ["Refined hazard concrete"],
+    "stack-size": 100,
+    "required-technologies": ["Concrete"]
+  },
+  "Refined hazard concrete": {
+    "stack-size": 100,
+    "required-technologies": ["Concrete"]
+  },
+  "Repair pack": {
+    "stack-size": 100,
+    "required-technologies": ["Repair pack"]
+  },
+  "Requester chest": {
+    "stack-size": 50,
+    "required-technologies": ["Logistic system"]
+  },
+  "Roboport": {
+    "stack-size": 10,
+    "required-technologies": [
+      "Construction robotics",
+      "Logistic robotics"
+    ]
+  },
+  "Rocket": {
+    "consumers": ["Explosive rocket"],
+    "stack-size": 100,
+    "required-technologies": ["Rocketry"]
+  },
+  "Rocket fuel": {
+    "consumers": [
+      "Nuclear fuel",
+      "Rocket part",
+      "Satellite"
+    ],
+    "stack-size": 20,
+    "required-technologies": ["Rocket fuel"]
+  },
+  "Rocket launcher": {
+    "consumers": ["Spidertron"],
+    "stack-size": 5,
+    "required-technologies": ["Rocketry"]
+  },
+  "Rocket part": {
+    "stack-size": 5,
+    "required-technologies": ["Rocket silo"]
+  },
+  "Rocket silo": {
+    "stack-size": 1,
+    "required-technologies": ["Rocket silo"]
+  },
+  "Satellite": {
+    "stack-size": 1,
+    "required-technologies": ["Rocket silo"]
+  },
+  "Selector combinator": {
+    "stack-size": 50,
+    "required-technologies": ["Advanced combinators"]
+  },
+  "Shotgun": {
+    "stack-size": 5,
+    "required-technologies": ["Military"]
+  },
+  "Shotgun shells": {
+    "consumers": ["Piercing shotgun shells"],
+    "stack-size": 100,
+    "required-technologies": ["Military"]
+  },
+  "Slowdown capsule": {
+    "stack-size": 100,
+    "required-technologies": ["Military 3"]
+  },
+  "Small electric pole": {
+    "stack-size": 50,
+    "required-technologies": ["Electronics"]
+  },
+  "Lamp": {
+    "stack-size": 50,
+    "required-technologies": ["Lamp"]
+  },
+  "Solar panel": {
+    "consumers": [
+      "Satellite",
+      "Portable solar panel"
+    ],
+    "stack-size": 50,
+    "required-technologies": ["Solar energy"]
+  },
+  "Portable solar panel": {
+    "stack-size": 20,
+    "required-technologies": ["Portable solar panel"]
+  },
+  "Solid fuel": {
+    "consumers": ["Rocket fuel"],
+    "stack-size": 50,
+    "required-technologies": [
+      "Advanced oil processing",
+      "Oil processing"
+    ]
+  },
+  "Space science pack": {"stack-size": 2000},
+  "Speed module": {
+    "consumers": [
+      "Assembling machine 3",
+      "Destroyer capsule",
+      "Speed module 2"
+    ],
+    "stack-size": 50,
+    "required-technologies": ["Speed module"]
+  },
+  "Speed module 2": {
+    "consumers": [
+      "Power armor MK2",
+      "Speed module 3"
+    ],
+    "stack-size": 50,
+    "required-technologies": ["Speed module 2"]
+  },
+  "Speed module 3": {
+    "stack-size": 50,
+    "required-technologies": ["Speed module 3"]
+  },
+  "Spidertron": {
+    "stack-size": 1,
+    "required-technologies": ["Spidertron"]
+  },
+  "Spidertron remote": {"stack-size": 1},
+  "Splitter": {
+    "consumers": ["Fast splitter"],
+    "stack-size": 50,
+    "required-technologies": ["Logistics"]
+  },
+  "Steam engine": {
+    "stack-size": 10,
+    "required-technologies": ["Steam power"]
+  },
+  "Steam turbine": {
+    "stack-size": 10,
+    "required-technologies": ["Nuclear power"]
+  },
+  "Steel chest": {
+    "consumers": [
+      "Active provider chest",
+      "Buffer chest",
+      "Passive provider chest",
+      "Requester chest",
+      "Storage chest"
+    ],
+    "stack-size": 50,
+    "required-technologies": ["Steel processing"]
+  },
+  "Steel furnace": {
+    "stack-size": 50,
+    "required-technologies": ["Advanced material processing"]
+  },
+  "Steel plate": {
+    "consumers": [
+      "Artillery turret",
+      "Artillery wagon",
+      "Assembling machine 2",
+      "Barrel",
+      "Personal battery",
+      "Beacon",
+      "Belt immunity equipment",
+      "Big electric pole",
+      "Cannon shell",
+      "Car",
+      "Cargo landing pad",
+      "Cargo wagon",
+      "Centrifuge",
+      "Chemical plant",
+      "Cluster grenade",
+      "Combat shotgun",
+      "Discharge defense",
+      "Electric furnace",
+      "Energy shield",
+      "Engine unit",
+      "Exoskeleton",
+      "Explosive cannon shell",
+      "Flamethrower",
+      "Flamethrower ammo",
+      "Flamethrower turret",
+      "Fluid wagon",
+      "Flying robot frame",
+      "Gate",
+      "Heat exchanger",
+      "Heat pipe",
+      "Heavy armor",
+      "Land mine",
+      "Laser turret",
+      "Locomotive",
+      "Low density structure",
+      "Medium electric pole",
+      "Modular armor",
+      "Nightvision",
+      "Nuclear reactor",
+      "Oil refinery",
+      "Personal roboport",
+      "Piercing rounds magazine",
+      "Piercing shotgun shells",
+      "Poison capsule",
+      "Power armor",
+      "Pump",
+      "Pumpjack",
+      "Rail",
+      "Refined concrete",
+      "Roboport",
+      "Rocket silo",
+      "Slowdown capsule",
+      "Solar panel",
+      "Portable solar panel",
+      "Steel chest",
+      "Steel furnace",
+      "Storage tank",
+      "Substation",
+      "Tank",
+      "Train stop"
+    ],
+    "stack-size": 100,
+    "required-technologies": ["Steel processing"]
+  },
+  "Stone": {
+    "consumers": [
+      "Landfill",
+      "Rail",
+      "Stone brick",
+      "Stone furnace"
+    ],
+    "stack-size": 50
+  },
+  "Stone brick": {
+    "consumers": [
+      "Concrete",
+      "Electric furnace",
+      "Oil refinery",
+      "Steel furnace",
+      "Wall"
+    ],
+    "stack-size": 100
+  },
+  "Stone furnace": {
+    "consumers": [
+      "Boiler",
+      "Burner mining drill"
+    ],
+    "stack-size": 50
+  },
+  "Wall": {
+    "consumers": [
+      "Gate",
+      "Military science pack"
+    ],
+    "stack-size": 100,
+    "required-technologies": ["Stone wall"]
+  },
+  "Storage chest": {
+    "stack-size": 50,
+    "required-technologies": [
+      "Construction robotics",
+      "Logistic robotics"
+    ]
+  },
+  "Storage tank": {
+    "consumers": ["Fluid wagon"],
+    "stack-size": 50,
+    "required-technologies": ["Fluid handling"]
+  },
+  "Submachine gun": {
+    "stack-size": 5,
+    "required-technologies": ["Military"]
+  },
+  "Substation": {
+    "stack-size": 50,
+    "required-technologies": ["Electric energy distribution 2"]
+  },
+  "Sulfur": {
+    "consumers": [
+      "Chemical science pack",
+      "Explosives",
+      "Sulfuric acid"
+    ],
+    "stack-size": 50,
+    "required-technologies": ["Sulfur processing"]
+  },
+  "Sulfuric acid barrel": {
+    "consumers": ["Empty sulfuric acid barrel"],
+    "stack-size": 10,
+    "required-technologies": ["Fluid handling"]
+  },
+  "Tank": {
+    "stack-size": 1,
+    "required-technologies": ["Tank"]
+  },
+  "Train stop": {
+    "stack-size": 10,
+    "required-technologies": ["Automated rail transportation"]
+  },
+  "Transport belt": {
+    "consumers": [
+      "Fast transport belt",
+      "Lab",
+      "Logistic science pack",
+      "Splitter",
+      "Underground belt"
+    ],
+    "stack-size": 100
+  },
+  "Underground belt": {
+    "consumers": ["Fast underground belt"],
+    "stack-size": 50,
+    "required-technologies": ["Logistics"]
+  },
+  "Upgrade planner": {"stack-size": 1},
+  "Uranium-235": {
+    "consumers": [
+      "Atomic bomb",
+      "Kovarex enrichment process",
+      "Nuclear fuel",
+      "Uranium fuel cell"
+    ],
+    "stack-size": 100,
+    "required-technologies": [
+      "Kovarex enrichment process",
+      "Uranium processing"
+    ]
+  },
+  "Uranium-238": {
+    "consumers": [
+      "Explosive uranium cannon shell",
+      "Kovarex enrichment process",
+      "Uranium cannon shell",
+      "Uranium fuel cell",
+      "Uranium rounds magazine"
+    ],
+    "stack-size": 100,
+    "required-technologies": [
+      "Kovarex enrichment process",
+      "Nuclear fuel reprocessing",
+      "Uranium processing"
+    ]
+  },
+  "Uranium cannon shell": {
+    "stack-size": 100,
+    "required-technologies": ["Uranium ammo"]
+  },
+  "Uranium fuel cell": {
+    "consumers": ["Portable fission reactor"],
+    "stack-size": 50,
+    "required-technologies": ["Nuclear power"]
+  },
+  "Uranium ore": {
+    "consumers": ["Uranium processing"],
+    "stack-size": 50
+  },
+  "Uranium rounds magazine": {
+    "stack-size": 100,
+    "required-technologies": ["Uranium ammo"]
+  },
+  "Utility science pack": {
+    "stack-size": 200,
+    "required-technologies": ["Utility science pack"]
+  },
+  "Water barrel": {
+    "consumers": ["Empty water barrel"],
+    "stack-size": 10,
+    "required-technologies": ["Fluid handling"]
+  },
+  "Wood": {
+    "consumers": [
+      "Combat shotgun",
+      "Shotgun",
+      "Small electric pole",
+      "Wooden chest"
+    ],
+    "stack-size": 100
+  },
+  "Wooden chest": {"stack-size": 50}
+}

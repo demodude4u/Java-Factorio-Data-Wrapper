@@ -60,7 +60,6 @@ public class TechPrototype extends DataPrototype {
 	private final List<String> recipeUnlocks = new ArrayList<>();
 	private final Optional<String> maxLevel;
 	private final boolean maxLevelInfinite;
-	private final double expensiveCostMultiplier;
 
 	private boolean firstBonus;
 	private boolean bonus;
@@ -84,12 +83,16 @@ public class TechPrototype extends DataPrototype {
 			effects.add(new Effect(l));
 		});
 
-		LuaValue unitLua = lua.get("unit");
-		Utils.forEach(unitLua.get("ingredients"), lv -> {
-			ingredients.put(lv.get(1).tojstring(), lv.get(2).toint());
-		});
-		count = unitLua.get("count").toint();
-		time = unitLua.get("time").todouble();
+		LuaValue unitLua = lua.get("unit"); // TODO research triggers?
+		if (!unitLua.isnil()) {
+			Utils.forEach(unitLua.get("ingredients").opttable(new LuaTable()), lv -> {
+				ingredients.put(lv.get(1).tojstring(), lv.get(2).toint());
+			});
+			count = unitLua.get("count").toint();
+			time = unitLua.get("time").todouble();
+		} else {
+			time = 0;
+		}
 
 		for (Effect effect : getEffects()) {
 			if (effect.getType().equals("unlock-recipe")) {
@@ -108,12 +111,6 @@ public class TechPrototype extends DataPrototype {
 		} else {
 			maxLevel = Optional.empty();
 			maxLevelInfinite = false;
-		}
-
-		if (lua.get("ignore_tech_cost_multiplier").optboolean(false)) {
-			expensiveCostMultiplier = 1;
-		} else {
-			expensiveCostMultiplier = 4;
 		}
 	}
 
@@ -149,10 +146,6 @@ public class TechPrototype extends DataPrototype {
 
 	public List<Effect> getEffects() {
 		return effects;
-	}
-
-	public double getExpensiveCostMultiplier() {
-		return expensiveCostMultiplier;
 	}
 
 	public LinkedHashMap<String, Integer> getIngredients() {

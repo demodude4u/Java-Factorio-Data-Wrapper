@@ -15,50 +15,43 @@ public class RecipePrototype extends DataPrototype {
 	private final Map<String, Double> outputs = new LinkedHashMap<>();
 	private final double energyRequired;
 	private final boolean handCraftable;
+	private final boolean recycling;
 
-	public RecipePrototype(LuaTable lua, String name, String type, boolean expensive) {
+	public RecipePrototype(LuaTable lua, String name, String type) {
 		super(lua, name, type);
 
-		LuaValue difficultyLua = lua.get(expensive ? "expensive" : "normal");
-		if (!difficultyLua.isnil()) {
-			Utils.forEach(difficultyLua, (k, v) -> {
-				lua.set(k, v);
-			});
-		}
+		boolean hidden = lua.get("hidden").optboolean(false);
 
-		LuaValue ingredientsLua = lua.get("ingredients");
-		Utils.forEach(ingredientsLua, lv -> {
-			if (lv.get("name").isnil()) {
-				inputs.put(lv.get(1).tojstring(), lv.get(2).toint());
-			} else {
-				inputs.put(lv.get("name").tojstring(), lv.get("amount").toint());
-			}
-		});
-
-		LuaValue resultLua = lua.get("result");
-		if (resultLua.isnil()) {
-			resultLua = lua.get("results");
-		}
-		if (resultLua.istable()) {
-			Utils.forEach(resultLua, lv -> {
+		LuaValue ingredientsLua = lua.get("ingredients").opttable(new LuaTable());
+		if (!hidden) {
+			Utils.forEach(ingredientsLua, lv -> {
 				if (lv.get("name").isnil()) {
-					outputs.put(lv.get(1).tojstring(), (double) lv.get(2).toint());
+					inputs.put(lv.get(1).tojstring(), lv.get(2).toint());
 				} else {
-					LuaValue probabilityLua = lv.get("probability");
-					if (probabilityLua.isnil()) {
-						outputs.put(lv.get("name").tojstring(), (double) lv.get("amount").toint());
-					} else {
-						outputs.put(lv.get("name").tojstring(), probabilityLua.todouble());
-					}
+					inputs.put(lv.get("name").tojstring(), lv.get("amount").toint());
 				}
 			});
-		} else {
-			outputs.put(resultLua.tojstring(), (double) lua.get("result_count").optint(1));
+		}
+
+		LuaTable resultLua = lua.get("results").opttable(new LuaTable());
+		if (!hidden) {
+			Utils.forEach(resultLua, lv -> {
+				LuaValue probabilityLua = lv.get("probability");
+				if (probabilityLua.isnil()) {
+					outputs.put(lv.get("name").tojstring(), (double) lv.get("amount").toint());
+				} else {
+					outputs.put(lv.get("name").tojstring(), probabilityLua.todouble());
+				}
+			});
 		}
 
 		energyRequired = lua.get("energy_required").optdouble(0.5);
 		category = lua.get("category").optjstring("crafting");
-		handCraftable = category.equals("crafting");
+		// FIXME get these from the character prototype
+		handCraftable = category.equals("crafting") || category.equals("electronics") || category.equals("pressing")
+				|| category.equals("recycling-or-hand-crafing") || category.equals("organic-or-hand-crafing")
+				|| category.equals("organic-or-assembling");
+		recycling = category.equals("recycling");
 	}
 
 	public String getCategory() {
@@ -79,6 +72,10 @@ public class RecipePrototype extends DataPrototype {
 
 	public boolean isHandCraftable() {
 		return handCraftable;
+	}
+
+	public boolean isRecycling() {
+		return recycling;
 	}
 
 	@Override

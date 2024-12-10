@@ -108,6 +108,5 @@ public class FactorioXMLMain {
 				Utils.readJsonFromStream(new FileInputStream(new File(FactorioData.factorio, "data/base/info.json"))));
 
 		generateRecipesXML(table.getRecipes(), table, "recipes-normal-" + baseInfo.getVersion() + ".xml");
-		generateRecipesXML(table.getExpensiveRecipes(), table, "recipes-expensive-" + baseInfo.getVersion() + ".xml");
 	}
 }
