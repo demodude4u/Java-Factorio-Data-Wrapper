@@ -180,28 +180,38 @@ public class FactorioData {
 
 	private static BufferedImage getModImage(String path, Optional<Color> tint) {
 		return modImageCache.computeIfAbsent(path, p -> {
-			String firstSegment = path.split("\\/")[0];
-			if (firstSegment.length() < 4) {
-				throw new IllegalArgumentException("Path is not valid: \"" + path + "\"");
-			}
-			String modName = firstSegment.substring(2, firstSegment.length() - 2);
-			Optional<Mod> mod = modLoader.getMod(modName);
-			if (!mod.isPresent()) {
-				throw new IllegalStateException("Mod does not exist: " + modName);
-			}
-			String modPath = path.replace(firstSegment, "");
 			try {
-				BufferedImage image = loadImage(mod.get().getResource(modPath).get());
+				BufferedImage image = loadImage(getModResource(path).get());
 				if (tint.isPresent()) {
 					image = Utils.tintImage(image, tint.get());
 				}
 				return image;
 			} catch (Exception e) {
-				System.err.println("MISSING MOD IMAGE " + modName + " : " + modPath);
+				System.err.println("MISSING MOD IMAGE: " + path);
 				e.printStackTrace();
 				throw new RuntimeException(e);
 			}
 		});
+	}
+
+	public static Optional<InputStream> getModResource(String path) {
+		String firstSegment = path.split("\\/")[0];
+		if (firstSegment.length() < 4) {
+			throw new IllegalArgumentException("Path is not valid: \"" + path + "\"");
+		}
+		String modName = firstSegment.substring(2, firstSegment.length() - 2);
+		Optional<Mod> mod = modLoader.getMod(modName);
+		if (!mod.isPresent()) {
+			throw new IllegalStateException("Mod does not exist: " + modName);
+		}
+		String modPath = path.replace(firstSegment, "");
+		try {
+			return mod.get().getResource(modPath);
+		} catch (IOException e) {
+			System.err.println(path);
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
 	}
 
 	public static synchronized DataTable getTable() throws JSONException, IOException {
@@ -466,7 +476,7 @@ public class FactorioData {
 			try {
 				File jarFolder = new File(
 						FactorioData.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath())
-								.getParentFile();
+						.getParentFile();
 				// System.out.println("Jar Folder: " +
 				// jarFolder.getAbsolutePath());
 				System.setProperty("user.dir", jarFolder.getAbsolutePath());
