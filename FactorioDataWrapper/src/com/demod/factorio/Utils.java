@@ -164,7 +164,7 @@ public final class Utils {
 		}
 	}
 
-	private static void forEachSorted(LuaValue table, BiConsumer<LuaValue, LuaValue> consumer) {
+	public static void forEachSorted(LuaValue table, BiConsumer<LuaValue, LuaValue> consumer) {
 		Streams.stream(new Iterator<Entry<LuaValue, LuaValue>>() {
 			LuaValue k = LuaValue.NIL;
 			Varargs next = null;
