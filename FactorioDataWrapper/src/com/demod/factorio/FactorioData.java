@@ -214,9 +214,13 @@ public class FactorioData {
 		}
 	}
 
-	public static synchronized DataTable getTable() throws JSONException, IOException {
+	public static synchronized DataTable getTable() {
 		if (dataTable == null) {
-			dataTable = initializeDataTable();
+			try {
+				dataTable = initializeDataTable();
+			} catch (JSONException | IOException e) {
+				throw new InternalError(e);
+			}
 		}
 		return dataTable;
 	}
