@@ -7,10 +7,11 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.function.IntUnaryOperator;
 
-import org.luaj.vm2.LuaTable;
-import org.luaj.vm2.LuaValue;
+import org.json.JSONArray;
 
 import com.demod.factorio.Utils;
+import com.demod.factorio.fakelua.LuaTable;
+import com.demod.factorio.fakelua.LuaValue;
 
 public class TechPrototype extends DataPrototype {
 
@@ -72,23 +73,23 @@ public class TechPrototype extends DataPrototype {
 	public TechPrototype(LuaTable lua, String name, String type, Set<String> excludedRecipesAndItems) {
 		super(lua, name, type);
 
-		upgrade = lua.get("upgrade").toboolean();
-		order = lua.get("order").tojstring();
+		upgrade = lua.get("upgrade").optboolean(false);
+		order = lua.get("order").optjstring("");
 
-		Utils.forEach(lua.get("prerequisites").opttable(new LuaTable()), l -> {
+		Utils.forEach(lua.get("prerequisites").opttable(new LuaTable(new JSONArray())), l -> {
 			prerequisites.add(l.tojstring());
 		});
 
-		Utils.forEach(lua.get("effects").opttable(new LuaTable()), l -> {
+		Utils.forEach(lua.get("effects").opttable(new LuaTable(new JSONArray())), l -> {
 			effects.add(new Effect(l));
 		});
 
 		LuaValue unitLua = lua.get("unit"); // TODO research triggers?
 		if (!unitLua.isnil()) {
-			Utils.forEach(unitLua.get("ingredients").opttable(new LuaTable()), lv -> {
+			Utils.forEach(unitLua.get("ingredients").opttable(new LuaTable(new JSONArray())), lv -> {
 				ingredients.put(lv.get(1).tojstring(), lv.get(2).toint());
 			});
-			count = unitLua.get("count").toint();
+			count = unitLua.get("count").optint(0);
 			time = unitLua.get("time").todouble();
 		} else {
 			time = 0;

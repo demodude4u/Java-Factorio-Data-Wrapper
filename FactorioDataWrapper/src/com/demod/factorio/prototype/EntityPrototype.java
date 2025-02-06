@@ -4,10 +4,11 @@ import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.luaj.vm2.LuaTable;
-import org.luaj.vm2.LuaValue;
+import org.json.JSONArray;
 
 import com.demod.factorio.Utils;
+import com.demod.factorio.fakelua.LuaTable;
+import com.demod.factorio.fakelua.LuaValue;
 
 public class EntityPrototype extends DataPrototype {
 
@@ -23,7 +24,7 @@ public class EntityPrototype extends DataPrototype {
 			selectionBox = new Rectangle2D.Double();
 		}
 
-		Utils.forEach(lua.get("flags").opttable(new LuaTable()), l -> {
+		Utils.forEach(lua.get("flags").opttable(new LuaTable(new JSONArray())), l -> {
 			flags.add(l.tojstring());
 		});
 

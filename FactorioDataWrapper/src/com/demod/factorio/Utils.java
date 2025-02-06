@@ -9,10 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.lang.reflect.Field;
-import java.util.AbstractMap.SimpleImmutableEntry;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.Map.Entry;
 import java.util.Scanner;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
@@ -20,29 +17,31 @@ import java.util.function.Consumer;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.luaj.vm2.LuaTable;
-import org.luaj.vm2.LuaValue;
-import org.luaj.vm2.Varargs;
 
-import com.diffplug.common.base.Errors;
-import com.diffplug.common.base.Throwing;
+import com.demod.factorio.fakelua.LuaTable;
+import com.demod.factorio.fakelua.LuaValue;
 import com.google.common.collect.Streams;
 
 public final class Utils {
+
+	@FunctionalInterface
+	public static interface ThrowingBiConsumer<T, U> {
+		void accept(T t, U u) throws Throwable;
+	}
 
 	@SuppressWarnings("unchecked")
 	public static <T> T convertLuaToJson(LuaValue value) {
 		if (value.istable()) {
 			if (isLuaArray(value)) {
 				JSONArray json = new JSONArray();
-				Utils.forEach(value, (v) -> {
+				Utils.forEach(value.totableArray(), (v) -> {
 					json.put(Utils.<Object>convertLuaToJson(v));
 				});
 				return (T) json;
 			} else {
 				JSONObject json = new JSONObject();
 				terribleHackToHaveOrderedJSONObject(json);
-				Utils.forEach(value, (k, v) -> {
+				Utils.forEach(value.totableObject(), (k, v) -> {
 					json.put(k.tojstring(), Utils.<Object>convertLuaToJson(v));
 				});
 				return (T) json;
@@ -51,7 +50,7 @@ public final class Utils {
 			if (value.isnil()) {
 				return null;
 			} else if (value.isboolean()) {
-				return (T) (Boolean) value.toboolean();
+				return (T) value.toboolean();
 			} else if (value.isnumber()) {
 				Double number = value.todouble();
 				if (number == Double.POSITIVE_INFINITY) {
@@ -137,82 +136,108 @@ public final class Utils {
 	}
 
 	@SuppressWarnings("unchecked")
-	public static <T> void forEach(JSONObject json, Throwing.BiConsumer<String, T> consumer) {
-		json.keySet().stream().sorted()
-				.forEach(Errors.rethrow().wrap((String k) -> consumer.accept(k, (T) json.get(k))));
+	public static <T> void forEach(JSONObject json, ThrowingBiConsumer<String, T> consumer) {
+		json.keySet().stream().sorted().forEach((String k) -> {
+			try {
+				consumer.accept(k, (T) json.get(k));
+			} catch (Throwable e) {
+				throw new RuntimeException(e);
+			}
+		});
 	}
 
-	public static void forEach(LuaValue table, BiConsumer<LuaValue, LuaValue> consumer) {
-		LuaValue k = LuaValue.NIL;
-		while (true) {
-			Varargs n = table.next(k);
-			if ((k = n.arg1()).isnil())
-				break;
-			LuaValue v = n.arg(2);
-			consumer.accept(k, v);
+	public static void forEach(LuaTable table, BiConsumer<LuaValue, LuaValue> consumer) {
+//		LuaValue k = LuaValue.NIL;
+//		while (true) {
+//			Varargs n = table.next(k);
+//			if ((k = n.arg1()).isnil())
+//				break;
+//			LuaValue v = n.arg(2);
+//			consumer.accept(k, v);
+//		}
+		Object json = table.getJson();
+		if (json instanceof JSONObject) {
+			forEach((JSONObject) json, (k, v) -> consumer.accept(new LuaValue(k), new LuaValue(v)));
+		} else {
+			forEach((JSONArray) json, (i, v) -> consumer.accept(new LuaValue(i), new LuaValue(v)));
 		}
+
 	}
 
-	public static void forEach(LuaValue table, Consumer<LuaValue> consumer) {
-		LuaValue k = LuaValue.NIL;
-		while (true) {
-			Varargs n = table.next(k);
-			if ((k = n.arg1()).isnil())
-				break;
-			LuaValue v = n.arg(2);
-			consumer.accept(v);
+	public static void forEach(LuaTable table, Consumer<LuaValue> consumer) {
+//		LuaValue k = LuaValue.NIL;
+//		while (true) {
+//			Varargs n = table.next(k);
+//			if ((k = n.arg1()).isnil())
+//				break;
+//			LuaValue v = n.arg(2);
+//			consumer.accept(v);
+//		}
+		Object json = table.getJson();
+		if (json instanceof JSONObject) {
+			forEach((JSONObject) json, (k, v) -> consumer.accept(new LuaValue(v)));
+		} else {
+			forEach((JSONArray) json, (v) -> consumer.accept(new LuaValue(v)));
 		}
 	}
 
 	public static void forEachSorted(LuaValue table, BiConsumer<LuaValue, LuaValue> consumer) {
-		Streams.stream(new Iterator<Entry<LuaValue, LuaValue>>() {
-			LuaValue k = LuaValue.NIL;
-			Varargs next = null;
-
-			@Override
-			public boolean hasNext() {
-				if (next == null) {
-					next = table.next(k);
-					k = next.arg1();
-				}
-				return !k.isnil();
-			}
-
-			@Override
-			public Entry<LuaValue, LuaValue> next() {
-				if (next == null) {
-					next = table.next(k);
-					k = next.arg1();
-				}
-				Entry<LuaValue, LuaValue> ret = new SimpleImmutableEntry<>(k, next.arg(2));
-				next = null;
-				return ret;
-			}
-		}).sorted((p1, p2) -> p1.getKey().toString().compareTo(p2.getKey().toString()))
-				.forEach(p -> consumer.accept(p.getKey(), p.getValue()));
+//		Streams.stream(new Iterator<Entry<LuaValue, LuaValue>>() {
+//			LuaValue k = LuaValue.NIL;
+//			Varargs next = null;
+//
+//			@Override
+//			public boolean hasNext() {
+//				if (next == null) {
+//					next = table.next(k);
+//					k = next.arg1();
+//				}
+//				return !k.isnil();
+//			}
+//
+//			@Override
+//			public Entry<LuaValue, LuaValue> next() {
+//				if (next == null) {
+//					next = table.next(k);
+//					k = next.arg1();
+//				}
+//				Entry<LuaValue, LuaValue> ret = new SimpleImmutableEntry<>(k, next.arg(2));
+//				next = null;
+//				return ret;
+//			}
+//		}).sorted((p1, p2) -> p1.getKey().toString().compareTo(p2.getKey().toString()))
+//				.forEach(p -> consumer.accept(p.getKey(), p.getValue()));
+		Object json = table.getJson();
+		if (json instanceof JSONObject) {
+			Streams.stream(((JSONObject) json).keys()).sorted()
+					.forEach(k -> consumer.accept(new LuaValue(k), new LuaValue(((JSONObject) json).get(k))));
+		} else if (json instanceof JSONArray) {
+			forEach((JSONArray) json, (i, v) -> consumer.accept(new LuaValue(i), new LuaValue(v)));
+		}
 	}
 
 	private static boolean isLuaArray(LuaValue value) {
-		if (value.istable()) {
-			LuaValue k = LuaValue.NIL;
-			int i = 0;
-			while (true) {
-				i++;
-				Varargs n = value.next(k);
-				if ((k = n.arg1()).isnil())
-					break;
-				if (!k.isnumber() || k.toint() != i) {
-					return false;
-				}
-			}
-			return true;
-		}
-		return false;
+//		if (value.istable()) {
+//			LuaValue k = LuaValue.NIL;
+//			int i = 0;
+//			while (true) {
+//				i++;
+//				Varargs n = value.next(k);
+//				if ((k = n.arg1()).isnil())
+//					break;
+//				if (!k.isnumber() || k.toint() != i) {
+//					return false;
+//				}
+//			}
+//			return true;
+//		}
+//		return false;
+		return value.getJson() instanceof JSONArray;
 	}
 
 	public static Color parseColor(LuaValue value) {
 		float red, green, blue, alpha;
-		if (!value.get("r").isnil()) {
+		if (value.checktable().isObject()) {
 			red = value.get("r").tofloat();
 			green = value.get("g").tofloat();
 			blue = value.get("b").tofloat();

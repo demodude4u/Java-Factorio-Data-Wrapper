@@ -22,7 +22,6 @@ import javax.imageio.ImageIO;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.luaj.vm2.LuaValue;
 
 import com.demod.factorio.Config;
 import com.demod.factorio.DataTable;
@@ -30,6 +29,7 @@ import com.demod.factorio.FactorioData;
 import com.demod.factorio.ModInfo;
 import com.demod.factorio.TotalRawCalculator;
 import com.demod.factorio.Utils;
+import com.demod.factorio.fakelua.LuaValue;
 import com.demod.factorio.prototype.EntityPrototype;
 import com.demod.factorio.prototype.RecipePrototype;
 import com.demod.factorio.prototype.TechPrototype;
@@ -215,9 +215,10 @@ public class FactorioWikiMain {
 
 		Color defaultFriendlyColor = Utils.parseColor(utilityConstantsLua.get("chart").get("default_friendly_color"));
 		Map<String, Color> defaultFriendlyColorByType = new HashMap<>();
-		Utils.forEach(utilityConstantsLua.get("chart").get("default_friendly_color_by_type"), (k, v) -> {
-			defaultFriendlyColorByType.put(k.tojstring(), Utils.parseColor(v));
-		});
+		Utils.forEach(utilityConstantsLua.get("chart").get("default_friendly_color_by_type").totableObject(),
+				(k, v) -> {
+					defaultFriendlyColorByType.put(k.tojstring(), Utils.parseColor(v));
+				});
 
 		table.getEntities().values().stream().sorted((e1, e2) -> e1.getName().compareTo(e2.getName()))
 				.filter(e -> (!wikiTypes.get(e.getName()).toString().equals("N/A")
@@ -274,7 +275,7 @@ public class FactorioWikiMain {
 							JSONObject resistancesJson = createOrderedJSONObject();
 							itemJson.put("resistances", resistancesJson);
 
-							Utils.forEach(resistances, resist -> {
+							Utils.forEach(resistances.totableArray(), resist -> {
 								JSONObject resistJson = createOrderedJSONObject();
 								resistancesJson.put(resist.get("type").toString(), resistJson);
 								LuaValue percent = resist.get("percent");

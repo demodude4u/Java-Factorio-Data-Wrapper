@@ -1,8 +1,7 @@
 package com.demod.factorio.prototype;
 
-import org.luaj.vm2.LuaTable;
-
 import com.demod.factorio.Utils;
+import com.demod.factorio.fakelua.LuaTable;
 
 public abstract class DataPrototype {
 	private final LuaTable lua;
@@ -18,7 +17,7 @@ public abstract class DataPrototype {
 	public void debugPrint() {
 		System.out.println();
 		System.out.println(name);
-		Utils.debugPrintLua(lua);
+		Utils.debugPrintLua(lua.tovalue());
 	}
 
 	@Override

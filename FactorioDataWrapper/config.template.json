@@ -1,12 +1,4 @@
 {
   "factorio": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Factorio",
-  "mod-exclude": [
-    "combat-tester",
-    "test-maker",
-    "trailer",
-    "extreme-gui",
-    "trailer-launch",
-    "trailer-switch",
-    "GIF_Tool"
-  ]
+  "force-dump-data": true
 }

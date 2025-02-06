@@ -3,10 +3,11 @@ package com.demod.factorio.prototype;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.luaj.vm2.LuaTable;
-import org.luaj.vm2.LuaValue;
+import org.json.JSONArray;
 
 import com.demod.factorio.Utils;
+import com.demod.factorio.fakelua.LuaTable;
+import com.demod.factorio.fakelua.LuaValue;
 
 public class RecipePrototype extends DataPrototype {
 
@@ -22,7 +23,7 @@ public class RecipePrototype extends DataPrototype {
 
 		boolean hidden = lua.get("hidden").optboolean(false);
 
-		LuaValue ingredientsLua = lua.get("ingredients").opttable(new LuaTable());
+		LuaTable ingredientsLua = lua.get("ingredients").opttable(new LuaTable(new JSONArray()));
 		if (!hidden) {
 			Utils.forEach(ingredientsLua, lv -> {
 				if (lv.get("name").isnil()) {
@@ -33,7 +34,7 @@ public class RecipePrototype extends DataPrototype {
 			});
 		}
 
-		LuaTable resultLua = lua.get("results").opttable(new LuaTable());
+		LuaTable resultLua = lua.get("results").opttable(new LuaTable(new JSONArray()));
 		if (!hidden) {
 			Utils.forEach(resultLua, lv -> {
 				LuaValue probabilityLua = lv.get("probability");

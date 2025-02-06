@@ -11,9 +11,9 @@ import java.util.stream.Collectors;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.luaj.vm2.LuaTable;
-import org.luaj.vm2.LuaValue;
 
+import com.demod.factorio.fakelua.LuaTable;
+import com.demod.factorio.fakelua.LuaValue;
 import com.demod.factorio.prototype.EntityPrototype;
 import com.demod.factorio.prototype.EquipmentPrototype;
 import com.demod.factorio.prototype.FluidPrototype;
@@ -56,10 +56,10 @@ public class DataTable {
 
 	private final Set<String> worldInputs = new LinkedHashSet<>();
 
-	public DataTable(TypeHierarchy typeHierarchy, LuaTable dataLua, JSONObject excludeDataJson,
+	public DataTable(TypeHierarchy typeHierarchy, LuaTable rawLua, JSONObject excludeDataJson,
 			JSONObject includeDataJson, JSONObject wikiNamingJson) {
 		this.typeHierarchy = typeHierarchy;
-		this.rawLua = dataLua.get("raw").checktable();
+		this.rawLua = rawLua;
 
 		Set<String> excludedRecipesAndItems = asStringSet(excludeDataJson.getJSONArray("recipes-and-items"));
 		Set<String> excludedTechnologies = asStringSet(excludeDataJson.getJSONArray("technologies"));
@@ -74,21 +74,27 @@ public class DataTable {
 			Utils.forEach(v.checktable(), protoLua -> {
 				String type = protoLua.get("type").tojstring();
 				String name = protoLua.get("name").tojstring();
-				if (typeHierarchy.isAssignable("item", type) && !excludedRecipesAndItems.contains(name)) {
-					items.put(name, new ItemPrototype(protoLua.checktable(), name, type));
-				} else if (typeHierarchy.isAssignable("recipe", type) && !excludedRecipesAndItems.contains(name)) {
-					recipes.put(name, new RecipePrototype(protoLua.checktable(), name, type));
-				} else if (typeHierarchy.isAssignable("entity", type) && !excludedEntities.contains(name)) {
-					entities.put(name, new EntityPrototype(protoLua.checktable(), name, type));
-				} else if (typeHierarchy.isAssignable("fluid", type) && !excludedFluids.contains(name)) {
-					fluids.put(name, new FluidPrototype(protoLua.checktable(), name, type));
-				} else if (typeHierarchy.isAssignable("technology", type) && !excludedTechnologies.contains(name)) {
-					technologies.put(name,
-							new TechPrototype(protoLua.checktable(), name, type, excludedRecipesAndItems));
-				} else if (typeHierarchy.isAssignable("equipment", type)) {
-					equipments.put(name, new EquipmentPrototype(protoLua.checktable(), name, type));
-				} else if (typeHierarchy.isAssignable("tile", type)) {
-					tiles.put(name, new TilePrototype(protoLua.checktable(), name, type));
+				try {
+					if (typeHierarchy.isAssignable("item", type) && !excludedRecipesAndItems.contains(name)) {
+						items.put(name, new ItemPrototype(protoLua.checktable(), name, type));
+					} else if (typeHierarchy.isAssignable("recipe", type) && !excludedRecipesAndItems.contains(name)) {
+						recipes.put(name, new RecipePrototype(protoLua.checktable(), name, type));
+					} else if (typeHierarchy.isAssignable("entity", type) && !excludedEntities.contains(name)) {
+						entities.put(name, new EntityPrototype(protoLua.checktable(), name, type));
+					} else if (typeHierarchy.isAssignable("fluid", type) && !excludedFluids.contains(name)) {
+						fluids.put(name, new FluidPrototype(protoLua.checktable(), name, type));
+					} else if (typeHierarchy.isAssignable("technology", type) && !excludedTechnologies.contains(name)) {
+						technologies.put(name,
+								new TechPrototype(protoLua.checktable(), name, type, excludedRecipesAndItems));
+					} else if (typeHierarchy.isAssignable("equipment", type)) {
+						equipments.put(name, new EquipmentPrototype(protoLua.checktable(), name, type));
+					} else if (typeHierarchy.isAssignable("tile", type)) {
+						tiles.put(name, new TilePrototype(protoLua.checktable(), name, type));
+					}
+				} catch (Exception e) {
+					System.err.println(">>>>> EXCEPTION FOR " + name + " (" + type + ")");
+					System.err.println(protoLua.getJson());
+					throw e;
 				}
 			});
 		});
@@ -133,7 +139,7 @@ public class DataTable {
 		this.entities.values().stream().filter(e -> !excludedRecipesAndItems.contains(e.getName())).forEach(e -> {
 			LuaValue categories = e.lua().get("crafting_categories");
 			if (!categories.isnil()) {
-				Utils.forEach(categories, cat -> {
+				Utils.forEach(categories.totableArray(), cat -> {
 					this.craftingCategories.putIfAbsent(cat.toString(), new ArrayList<EntityPrototype>());
 					this.craftingCategories.get(cat.toString()).add(e);
 				});
@@ -197,7 +203,7 @@ public class DataTable {
 	}
 
 	public Optional<LuaValue> getRaw(String... path) {
-		LuaValue retLua = rawLua;
+		LuaValue retLua = rawLua.tovalue();
 		for (String key : path) {
 			retLua = retLua.get(key);
 			if (retLua.isnil()) {
