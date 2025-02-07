@@ -1,11 +1,13 @@
 package com.demod.factorio;
 
 import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
+import java.awt.image.RescaleOp;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.lang.reflect.Field;
@@ -189,25 +191,37 @@ public final class Utils {
 	}
 
 	public static Color parseColor(LuaValue value) {
-		float red, green, blue, alpha;
+		float red, green, blue, alpha = 0;
+		boolean alphaPresent = false;
 		if (value.checktable().isObject()) {
 			red = value.get("r").tofloat();
 			green = value.get("g").tofloat();
 			blue = value.get("b").tofloat();
-			alpha = !value.get("a").isnil() ? value.get("a").tofloat() : 1.0f;
+			alphaPresent = !value.get("a").isnil();
+			if (alphaPresent) {
+				alpha = value.get("a").tofloat();
+			}
 		} else { // color defined as array/list
 			red = value.get(1).tofloat();
 			green = value.get(2).tofloat();
 			blue = value.get(3).tofloat();
-			alpha = value.length() == 4 ? value.get(4).tofloat() : 1.0f;
+			alphaPresent = value.length() == 4;
+			if (alphaPresent) {
+				alpha = value.get(4).tofloat();
+			}
 		}
 
-		if (red > 1 || green > 1 || blue > 1 || alpha > 1) {
+		if (red > 1 || green > 1 || blue > 1 || (alphaPresent && alpha > 1)) {
 			red /= 255;
 			green /= 255;
 			blue /= 255;
 			alpha /= 255;
 		}
+
+		if (!alphaPresent) {
+			alpha = 1.0f;
+		}
+
 		return new Color(red, green, blue, alpha);
 	}
 
@@ -266,22 +280,27 @@ public final class Utils {
 	}
 
 	public static BufferedImage tintImage(BufferedImage image, Color tint) {
+		if (image.getType() != BufferedImage.TYPE_INT_ARGB) {
+			BufferedImage converted = new BufferedImage(image.getWidth(), image.getHeight(),
+					BufferedImage.TYPE_INT_ARGB);
+			Graphics2D g = converted.createGraphics();
+			g.drawImage(image, 0, 0, null);
+			g.dispose();
+			image = converted;
+		}
+
 		int w = image.getWidth();
 		int h = image.getHeight();
-		BufferedImage ret = new BufferedImage(w, h, image.getType());
-		int[] pixels = new int[w * h];
-		image.getRGB(0, 0, w, h, pixels, 0, w);
-		for (int i = 0; i < pixels.length; i++) {
-			int argb = pixels[i];
+		BufferedImage ret = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
 
-			int a = (((argb >> 24) & 0xFF) * tint.getAlpha()) / 255;
-			int r = (((argb >> 16) & 0xFF) * tint.getRed()) / 255;
-			int g = (((argb >> 8) & 0xFF) * tint.getGreen()) / 255;
-			int b = (((argb) & 0xFF) * tint.getBlue()) / 255;
-
-			pixels[i] = (a << 24) | (r << 16) | (g << 8) | b;
-		}
-		ret.setRGB(0, 0, w, h, pixels, 0, w);
+		float scaleR = tint.getRed() / 255f;
+		float scaleG = tint.getGreen() / 255f;
+		float scaleB = tint.getBlue() / 255f;
+		float scaleA = tint.getAlpha() / 255f;
+		float[] scales = { scaleR, scaleG, scaleB, scaleA };
+		float[] offsets = { 0f, 0f, 0f, 0f };
+		RescaleOp rescaleOp = new RescaleOp(scales, offsets, null);
+		rescaleOp.filter(image, ret);
 		return ret;
 	}
 

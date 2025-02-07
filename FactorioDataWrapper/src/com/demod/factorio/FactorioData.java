@@ -1,6 +1,5 @@
 package com.demod.factorio;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.RenderingHints;
@@ -179,20 +178,9 @@ public class FactorioData {
 	}
 
 	public static BufferedImage getModImage(String path) {
-		return getModImage(path, Optional.empty());
-	}
-
-	public static BufferedImage getModImage(String path, Color tint) {
-		return getModImage(path, Optional.of(tint));
-	}
-
-	private static BufferedImage getModImage(String path, Optional<Color> tint) {
 		return modImageCache.computeIfAbsent(path, p -> {
 			try {
 				BufferedImage image = loadImage(getModResource(path).get());
-				if (tint.isPresent()) {
-					image = Utils.tintImage(image, tint.get());
-				}
 				return image;
 			} catch (Exception e) {
 				System.err.println("MISSING MOD IMAGE: " + path);
