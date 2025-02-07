@@ -105,7 +105,7 @@ public class FactorioXMLMain {
 			ClassNotFoundException, InstantiationException, IllegalAccessException, ClassCastException {
 		DataTable table = FactorioData.getTable();
 		ModInfo baseInfo = new ModInfo(
-				Utils.readJsonFromStream(new FileInputStream(new File(FactorioData.factorio, "data/base/info.json"))));
+				Utils.readJsonFromStream(new FileInputStream(new File(FactorioData.folderFactorio, "data/base/info.json"))));
 
 		generateRecipesXML(table.getRecipes(), table, "recipes-normal-" + baseInfo.getVersion() + ".xml");
 	}

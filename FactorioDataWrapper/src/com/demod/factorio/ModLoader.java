@@ -22,7 +22,6 @@ import org.json.JSONException;
 
 import com.demod.factorio.ModInfo.Dependency;
 import com.demod.factorio.ModInfo.DependencyType;
-
 import com.google.common.io.ByteStreams;
 
 public class ModLoader {
@@ -84,7 +83,7 @@ public class ModLoader {
 
 					try (InputStream inputStream = zipFile.getInputStream(entry)) {
 						files.put(name, ByteStreams.toByteArray(inputStream));
-						System.out.println("ZIP ENTRY " + file.getName() + ": " + entry.getName());// XXX
+//						System.out.println("ZIP ENTRY " + file.getName() + ": " + entry.getName());// XXX
 					} catch (IOException e) {
 						throw new RuntimeException(e);
 					}
@@ -122,12 +121,12 @@ public class ModLoader {
 		}
 	}
 
-	private final Set<String> modExclude;
+	private final Set<String> modInclude;
 
 	private final Map<String, Mod> mods = new LinkedHashMap<>();
 
-	public ModLoader(Set<String> modExclude) {
-		this.modExclude = modExclude;
+	public ModLoader(Set<String> modInclude) {
+		this.modInclude = modInclude;
 	}
 
 	public Optional<Mod> getMod(String name) {
@@ -147,7 +146,8 @@ public class ModLoader {
 				for (Dependency dependency : mod.getInfo().getDependencies()) {
 					String depName = dependency.getName();
 					if (getMod(depName).isPresent()) {
-						if (!order.contains(depName) && dependency.getType() != DependencyType.DOES_NOT_AFFECT_LOAD_ORDER) {
+						if (!order.contains(depName)
+								&& dependency.getType() != DependencyType.DOES_NOT_AFFECT_LOAD_ORDER) {
 							missingDep = true;
 							break;
 						}
@@ -173,21 +173,24 @@ public class ModLoader {
 		File[] files = folder.listFiles();
 		Objects.requireNonNull(files, folder.toString());
 		for (File file : files) {
-			if (modExclude.contains(file.getName())) {
-				continue;
-			}
 			if (file.isDirectory()) {
 				if (new File(file, "info.json").exists()) {
 					ModFolder mod = new ModFolder(file);
+					if (!modInclude.contains(mod.getInfo().getName())) {
+						continue;
+					}
 					mods.put(mod.getInfo().getName(), mod);
-					System.out.println("MOD FOLDER LOADED: " + file.getName());
+					System.out.println("MOD FOLDER LOADED: " + mod.getInfo().getName());
 				} else {
 					loadFolder(file);
 				}
 			} else if (file.getName().endsWith(".zip")) {
 				ModZip mod = new ModZip(file);
+				if (!modInclude.contains(mod.getInfo().getName())) {
+					continue;
+				}
 				mods.put(mod.getInfo().getName(), mod);
-				System.out.println("MOD ZIP LOADED: " + file.getName());
+				System.out.println("MOD ZIP LOADED: " + mod.getInfo().getName());
 			}
 		}
 	}

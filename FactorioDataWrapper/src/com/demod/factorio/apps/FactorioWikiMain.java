@@ -150,7 +150,7 @@ public class FactorioWikiMain {
 	public static void main(String[] args) throws JSONException, IOException {
 		DataTable table = FactorioData.getTable();
 		baseInfo = new ModInfo(
-				Utils.readJsonFromStream(new FileInputStream(new File(FactorioData.factorio, "data/base/info.json"))));
+				Utils.readJsonFromStream(new FileInputStream(new File(FactorioData.folderFactorio, "data/base/info.json"))));
 
 		String outputPath = Config.get().optString("output", "output");
 

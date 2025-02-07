@@ -23,7 +23,6 @@ import java.util.stream.Collectors;
 
 import javax.imageio.ImageIO;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
@@ -46,7 +45,8 @@ public class FactorioData {
 	private static DataTable dataTable = null;
 	private static ModLoader modLoader;
 
-	public static File factorio;
+	public static File folderFactorio;
+	public static File folderMods;
 
 	/**
 	 * I'm assuming this is some weird grayscale image...
@@ -238,8 +238,8 @@ public class FactorioData {
 
 		JSONObject config = Config.get();
 
-		factorio = new File(config.getString("factorio"));
-		boolean forceDumpData = config.optBoolean("force-dump-data", true);
+		folderFactorio = new File(config.getString("factorio"));
+		boolean forceDumpData = config.optBoolean("force-dump-data");
 
 		// Setup data folder
 
@@ -253,7 +253,7 @@ public class FactorioData {
 			pw.println("write-data=" + folderData.getAbsolutePath());
 		}
 
-		File folderMods = new File(folderData, "mods");
+		folderMods = Optional.of(config.optString("mods", null)).map(File::new).orElse(new File(folderData, "mods"));
 		folderMods.mkdirs();
 
 		File fileModList = new File(folderMods, "mod-list.json");
@@ -261,20 +261,33 @@ public class FactorioData {
 			Files.copy(FactorioData.class.getClassLoader().getResourceAsStream("mod-list.json"), fileModList.toPath());
 		}
 
-		// TODO change this to use mod-list.json instead
-		JSONArray modExcludeJson = config.optJSONArray("mod-exclude");
-		Set<String> modExclude = new HashSet<>();
-		if (modExcludeJson != null) {
-			Utils.forEach(modExcludeJson, modExclude::add);
+		File fileModRendering = new File(folderMods, "mod-rendering.json");
+		if (!fileModRendering.exists()) {
+			Files.copy(FactorioData.class.getClassLoader().getResourceAsStream("mod-rendering.json"),
+					fileModRendering.toPath());
 		}
+
+		JSONObject jsonModList = new JSONObject(Files.readString(fileModList.toPath()));
+		Set<String> modInclude = new HashSet<>();
+		modInclude.add("core");
+		Utils.<JSONObject>forEach(jsonModList.getJSONArray("mods"), j -> {
+			if (j.getBoolean("enabled")) {
+				modInclude.add(j.getString("name"));
+			}
+		});
 
 		File folderScriptOutput = new File(folderData, "script-output");
 		File fileDataRawDump = new File(folderScriptOutput, "data-raw-dump.json");
 
+		System.out.println("Factorio Install: " + folderFactorio.getAbsolutePath());
+		System.out.println("\t(force dump " + forceDumpData + ")");
+		System.out.println("Data: " + folderData.getAbsolutePath());
+		System.out.println("Mods: " + folderMods.getAbsolutePath());
+
 		// Fetch data dump file from factorio.exe
 
 		if (!fileDataRawDump.exists() || forceDumpData) {
-			factorioDataDump(factorio, fileConfig, folderMods);
+			factorioDataDump(folderFactorio, fileConfig, folderMods);
 			if (!fileDataRawDump.exists()) {
 				System.err.println("DATA DUMP FILE MISSING! " + fileDataRawDump.getAbsolutePath());
 				System.exit(-1);
@@ -289,8 +302,8 @@ public class FactorioData {
 			System.exit(-1);
 		}
 
-		modLoader = new ModLoader(modExclude);
-		modLoader.loadFolder(new File(factorio, "data"));
+		modLoader = new ModLoader(modInclude);
+		modLoader.loadFolder(new File(folderFactorio, "data"));
 		modLoader.loadFolder(folderMods);
 
 		TypeHierarchy typeHiearchy = new TypeHierarchy(Utils

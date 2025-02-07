@@ -31,40 +31,7 @@ public final class Utils {
 
 	@SuppressWarnings("unchecked")
 	public static <T> T convertLuaToJson(LuaValue value) {
-		if (value.istable()) {
-			if (isLuaArray(value)) {
-				JSONArray json = new JSONArray();
-				Utils.forEach(value.totableArray(), (v) -> {
-					json.put(Utils.<Object>convertLuaToJson(v));
-				});
-				return (T) json;
-			} else {
-				JSONObject json = new JSONObject();
-				terribleHackToHaveOrderedJSONObject(json);
-				Utils.forEach(value.totableObject(), (k, v) -> {
-					json.put(k.tojstring(), Utils.<Object>convertLuaToJson(v));
-				});
-				return (T) json;
-			}
-		} else {
-			if (value.isnil()) {
-				return null;
-			} else if (value.isboolean()) {
-				return (T) value.toboolean();
-			} else if (value.isnumber()) {
-				Double number = value.todouble();
-				if (number == Double.POSITIVE_INFINITY) {
-					return (T) "infinity";
-				} else if (number == Double.NEGATIVE_INFINITY) {
-					return (T) "-infinity";
-				} else if (number == Double.NaN) {
-					return (T) "NaN";
-				} else {
-					return (T) number;
-				}
-			}
-			return (T) value.tojstring();
-		}
+		return (T) value.getJson();
 	}
 
 	public static void debugPrintJson(JSONArray json) {
@@ -100,25 +67,11 @@ public final class Utils {
 	}
 
 	public static void debugPrintLua(LuaValue value) {
-		debugPrintLua("", value, System.out);
+		debugPrintLua(value, System.out);
 	}
 
 	public static void debugPrintLua(LuaValue value, PrintStream ps) {
-		debugPrintLua("", value, ps);
-	}
-
-	private static void debugPrintLua(String prefix, LuaValue value, PrintStream ps) {
-		if (value.istable()) {
-			forEachSorted(value, (k, v) -> {
-				if (v.istable()) {
-					debugPrintLua(prefix + k + ".", v, ps);
-				} else {
-					ps.println(prefix + k + " = " + v);
-				}
-			});
-		} else {
-			ps.println(prefix.isEmpty() ? value : (prefix + " = " + value));
-		}
+		ps.println(((JSONObject) value.getJson()).toString(2));
 	}
 
 	@SuppressWarnings("unchecked")
