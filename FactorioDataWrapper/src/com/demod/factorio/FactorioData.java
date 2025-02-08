@@ -11,6 +11,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -267,14 +268,27 @@ public class FactorioData {
 		File folderScriptOutput = new File(folderData, "script-output");
 		File fileDataRawDump = new File(folderScriptOutput, "data-raw-dump.json");
 
-		System.out.println("Factorio Install: " + folderFactorio.getAbsolutePath());
-		System.out.println("\t(force dump " + forceDumpData + ")");
-		System.out.println("Data: " + folderData.getAbsolutePath());
-		System.out.println("Mods: " + folderMods.getAbsolutePath());
+		File fileDumpStamp = new File(folderData, "dumpStamp.txt");
+		boolean matchingDumpStamp = false;
+		try (StringWriter sw = new StringWriter(); PrintWriter pw = new PrintWriter(sw)) {
+			pw.println("Factorio Install: " + folderFactorio.getAbsolutePath());
+			pw.println("Data: " + folderData.getAbsolutePath());
+			pw.println("Mods: " + folderMods.getAbsolutePath());
+			pw.flush();
+			String stamp = sw.toString();
+			System.out.println(stamp);
+			if (fileDumpStamp.exists()) {
+				String compareStamp = Files.readString(fileDumpStamp.toPath());
+				if (stamp.equals(compareStamp)) {
+					matchingDumpStamp = true;
+				}
+			}
+			Files.writeString(fileDumpStamp.toPath(), stamp);
+		}
 
 		// Fetch data dump file from factorio.exe
 
-		if (!fileDataRawDump.exists() || forceDumpData) {
+		if (!fileDataRawDump.exists() || !matchingDumpStamp || forceDumpData) {
 			factorioDataDump(folderFactorio, fileConfig, folderMods);
 			if (!fileDataRawDump.exists()) {
 				System.err.println("DATA DUMP FILE MISSING! " + fileDataRawDump.getAbsolutePath());
