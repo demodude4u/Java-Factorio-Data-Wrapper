@@ -249,10 +249,9 @@ public class FactorioData {
 
 		folderFactorio = new File(config.getString("factorio"));
 		boolean forceDumpData = config.optBoolean("force-dump-data");
-
 		// Setup data folder
 
-		File folderData = new File("data");
+		File folderData = new File(config.optString("data", "data"));
 		folderData.mkdirs();
 
 		File fileConfig = new File(folderData, "config.ini");
