@@ -149,8 +149,8 @@ public class FactorioWikiMain {
 
 	public static void main(String[] args) throws JSONException, IOException {
 		DataTable table = FactorioData.getTable();
-		baseInfo = new ModInfo(
-				Utils.readJsonFromStream(new FileInputStream(new File(FactorioData.folderFactorio, "data/base/info.json"))));
+		baseInfo = new ModInfo(Utils.readJsonFromStream(
+				new FileInputStream(new File(table.getFactorio().folderFactorio, "data/base/info.json"))));
 
 		String outputPath = Config.get().optString("output", "output");
 
@@ -413,7 +413,7 @@ public class FactorioWikiMain {
 		table.getRecipes().values().stream().filter(r -> (!r.isRecycling() && !table.getItems().containsKey(r.getName())
 				&& !table.getFluids().containsKey(r.getName()))).forEach(recipe -> {
 					try {
-						ImageIO.write(FactorioData.getIcon(recipe), "PNG",
+						ImageIO.write(table.getFactorio().getIcon(recipe), "PNG",
 								new File(folder, table.getWikiRecipeName(recipe.getName()) + ".png"));
 					} catch (IOException e) {
 						e.printStackTrace();
@@ -422,7 +422,7 @@ public class FactorioWikiMain {
 
 		table.getItems().values().stream().forEach(item -> {
 			try {
-				ImageIO.write(FactorioData.getIcon(item), "PNG",
+				ImageIO.write(table.getFactorio().getIcon(item), "PNG",
 						new File(folder, table.getWikiItemName(item.getName()) + ".png"));
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -431,7 +431,7 @@ public class FactorioWikiMain {
 
 		table.getFluids().values().stream().forEach(fluid -> {
 			try {
-				ImageIO.write(FactorioData.getIcon(fluid), "PNG",
+				ImageIO.write(table.getFactorio().getIcon(fluid), "PNG",
 						new File(folder, table.getWikiFluidName(fluid.getName()) + ".png"));
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -440,7 +440,7 @@ public class FactorioWikiMain {
 
 		table.getTechnologies().values().stream().filter(t -> !t.isBonus() || t.isFirstBonus()).forEach(tech -> {
 			try {
-				ImageIO.write(FactorioData.getIcon(tech), "PNG",
+				ImageIO.write(table.getFactorio().getIcon(tech), "PNG",
 						new File(techIconFolder, table.getWikiTechnologyName(tech.getName()) + ".png"));
 			} catch (IOException e) {
 				e.printStackTrace();

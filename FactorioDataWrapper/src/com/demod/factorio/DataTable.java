@@ -1,12 +1,14 @@
 package com.demod.factorio;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.IntUnaryOperator;
 import java.util.stream.Collectors;
 
 import org.json.JSONArray;
@@ -14,6 +16,9 @@ import org.json.JSONObject;
 
 import com.demod.factorio.fakelua.LuaTable;
 import com.demod.factorio.fakelua.LuaValue;
+import com.demod.factorio.port.SimpleMathFormula;
+import com.demod.factorio.port.SimpleMathFormula.Expression;
+import com.demod.factorio.port.SimpleMathFormula.InputException;
 import com.demod.factorio.prototype.EntityPrototype;
 import com.demod.factorio.prototype.EquipmentPrototype;
 import com.demod.factorio.prototype.FluidPrototype;
@@ -55,6 +60,8 @@ public class DataTable {
 	private final Set<String> explicitelyIncludedEntities = new LinkedHashSet<>();;
 
 	private final Set<String> worldInputs = new LinkedHashSet<>();
+
+	private FactorioData factorio;
 
 	public DataTable(TypeHierarchy typeHierarchy, LuaTable rawLua, JSONObject excludeDataJson,
 			JSONObject includeDataJson, JSONObject wikiNamingJson) {
@@ -131,7 +138,7 @@ public class DataTable {
 						LuaValue countFormulaLua = bonus.lua().get("unit").get("count_formula");
 						if (!countFormulaLua.isnil()) {
 							bonus.setBonusFormula(Optional.of(countFormulaLua.tojstring()),
-									Optional.of(FactorioData.parseCountFormula(countFormulaLua.tojstring())));
+									Optional.of(parseCountFormula(countFormulaLua.tojstring())));
 						}
 					}
 				});
@@ -175,6 +182,10 @@ public class DataTable {
 
 	public Set<String> getExplicitelyIncludedEntities() {
 		return explicitelyIncludedEntities;
+	}
+
+	public FactorioData getFactorio() {
+		return factorio;
 	}
 
 	public Optional<FluidPrototype> getFluid(String name) {
@@ -295,5 +306,25 @@ public class DataTable {
 
 	public boolean hasWikiEntityName(String name) {
 		return nameMappingItemsRecipes.optString(name, null) != null;
+	}
+
+	public IntUnaryOperator parseCountFormula(String countFormula) {
+		Expression expression;
+		try {
+			expression = SimpleMathFormula.Expression.parse(countFormula, 0);
+		} catch (InputException e) {
+			System.err.println("COUNT FORMULA PARSE FAIL: " + countFormula);
+			e.printStackTrace();
+			return l -> -1;
+		}
+		Map<String, Double> values = new HashMap<>();
+		return level -> {
+			values.put("L", (double) level);
+			return (int) expression.evaluate(values);
+		};
+	}
+
+	public void setFactorio(FactorioData factorio) {
+		this.factorio = factorio;
 	}
 }

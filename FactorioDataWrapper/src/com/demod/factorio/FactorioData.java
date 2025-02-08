@@ -18,7 +18,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import java.util.function.IntUnaryOperator;
 import java.util.stream.Collectors;
 
 import javax.imageio.ImageIO;
@@ -30,23 +29,10 @@ import org.json.JSONTokener;
 import com.demod.factorio.ModLoader.Mod;
 import com.demod.factorio.fakelua.LuaTable;
 import com.demod.factorio.fakelua.LuaValue;
-import com.demod.factorio.port.SimpleMathFormula;
-import com.demod.factorio.port.SimpleMathFormula.Expression;
-import com.demod.factorio.port.SimpleMathFormula.InputException;
 import com.demod.factorio.prototype.DataPrototype;
 
 public class FactorioData {
-
-	private static final int defaultIconSize = 64; // TODO read from defines
-
-	private static Map<String, BufferedImage> modImageCache = new HashMap<>();
-	private static Map<String, BufferedImage> modIconCache = new HashMap<>();
-
-	private static DataTable dataTable = null;
-	private static ModLoader modLoader;
-
-	public static File folderFactorio;
-	public static File folderMods;
+	private static FactorioData defaultInstance;
 
 	/**
 	 * I'm assuming this is some weird grayscale image...
@@ -91,7 +77,42 @@ public class FactorioData {
 		}
 	}
 
-	public static BufferedImage getIcon(DataPrototype prototype) {
+	public static synchronized DataTable getTable() {
+		if (defaultInstance == null) {
+			defaultInstance = new FactorioData(Config.get());
+		}
+		return defaultInstance.getOrInitializeTable();
+	}
+
+	private static BufferedImage loadImage(InputStream is) throws IOException {
+		BufferedImage image = ImageIO.read(is);
+		if (image.getType() == BufferedImage.TYPE_CUSTOM) {
+			image = convertCustomImage(image);
+		}
+		return image;
+	}
+
+	private final int defaultIconSize = 64; // TODO read from defines
+
+	private final Map<String, BufferedImage> modImageCache = new HashMap<>();
+
+	private final Map<String, BufferedImage> modIconCache = new HashMap<>();
+
+	private DataTable dataTable = null;
+
+	private ModLoader modLoader;
+
+	public File folderFactorio;
+
+	public File folderMods;
+
+	private final JSONObject config;
+
+	public FactorioData(JSONObject config) {
+		this.config = config;
+	}
+
+	public BufferedImage getIcon(DataPrototype prototype) {
 		String name = prototype.getName();
 		if (prototype.lua().get("type").checkjstring().equals("technology")) {
 			name += ".tech"; // HACK
@@ -178,7 +199,7 @@ public class FactorioData {
 		});
 	}
 
-	public static BufferedImage getModImage(String path) {
+	public BufferedImage getModImage(String path) {
 		return modImageCache.computeIfAbsent(path, p -> {
 			try {
 				BufferedImage image = loadImage(getModResource(path).get());
@@ -191,7 +212,7 @@ public class FactorioData {
 		});
 	}
 
-	public static Optional<InputStream> getModResource(String path) {
+	public Optional<InputStream> getModResource(String path) {
 		String firstSegment = path.split("\\/")[0];
 		if (firstSegment.length() < 4) {
 			throw new IllegalArgumentException("Path is not valid: \"" + path + "\"");
@@ -211,10 +232,11 @@ public class FactorioData {
 		}
 	}
 
-	public static synchronized DataTable getTable() {
+	public synchronized DataTable getOrInitializeTable() {
 		if (dataTable == null) {
 			try {
 				dataTable = initializeDataTable();
+				dataTable.setFactorio(this);
 			} catch (JSONException | IOException e) {
 				throw new InternalError(e);
 			}
@@ -222,10 +244,8 @@ public class FactorioData {
 		return dataTable;
 	}
 
-	private static DataTable initializeDataTable() throws JSONException, IOException {
+	private DataTable initializeDataTable() throws JSONException, IOException {
 //		setupWorkingDirectory();//TODO do we still need this?
-
-		JSONObject config = Config.get();
 
 		folderFactorio = new File(config.getString("factorio"));
 		boolean forceDumpData = config.optBoolean("force-dump-data");
@@ -319,30 +339,6 @@ public class FactorioData {
 		DataTable dataTable = new DataTable(typeHiearchy, lua, excludeDataJson, includeDataJson, wikiNamingJson);
 
 		return dataTable;
-	}
-
-	private static BufferedImage loadImage(InputStream is) throws IOException {
-		BufferedImage image = ImageIO.read(is);
-		if (image.getType() == BufferedImage.TYPE_CUSTOM) {
-			image = convertCustomImage(image);
-		}
-		return image;
-	}
-
-	public static IntUnaryOperator parseCountFormula(String countFormula) {
-		Expression expression;
-		try {
-			expression = SimpleMathFormula.Expression.parse(countFormula, 0);
-		} catch (InputException e) {
-			System.err.println("COUNT FORMULA PARSE FAIL: " + countFormula);
-			e.printStackTrace();
-			return l -> -1;
-		}
-		Map<String, Double> values = new HashMap<>();
-		return level -> {
-			values.put("L", (double) level);
-			return (int) expression.evaluate(values);
-		};
 	}
 
 	// XXX do we still need this?

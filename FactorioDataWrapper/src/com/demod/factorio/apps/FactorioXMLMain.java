@@ -104,8 +104,8 @@ public class FactorioXMLMain {
 	public static void main(String[] args) throws JSONException, IOException, ParserConfigurationException,
 			ClassNotFoundException, InstantiationException, IllegalAccessException, ClassCastException {
 		DataTable table = FactorioData.getTable();
-		ModInfo baseInfo = new ModInfo(
-				Utils.readJsonFromStream(new FileInputStream(new File(FactorioData.folderFactorio, "data/base/info.json"))));
+		ModInfo baseInfo = new ModInfo(Utils.readJsonFromStream(
+				new FileInputStream(new File(table.getFactorio().folderFactorio, "data/base/info.json"))));
 
 		generateRecipesXML(table.getRecipes(), table, "recipes-normal-" + baseInfo.getVersion() + ".xml");
 	}
