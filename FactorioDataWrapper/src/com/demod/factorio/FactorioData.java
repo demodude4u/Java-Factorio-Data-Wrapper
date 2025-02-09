@@ -291,8 +291,14 @@ public class FactorioData {
 		boolean matchingDumpStamp = false;
 		try (StringWriter sw = new StringWriter(); PrintWriter pw = new PrintWriter(sw)) {
 			pw.println("Factorio Install: " + folderFactorio.getAbsolutePath());
-			pw.println("Data: " + folderData.getAbsolutePath());
-			pw.println("Mods: " + folderMods.getAbsolutePath());
+			pw.println("Data Folder: " + folderData.getAbsolutePath());
+			pw.println("Mods Folder: " + folderMods.getAbsolutePath());
+			pw.println("Mods Manifest:");
+			for (File file : folderMods.listFiles()) {
+				if (file.isDirectory() || file.getName().endsWith(".zip")) {
+					pw.println("\t" + file.getName());
+				}
+			}
 			pw.flush();
 			String stamp = sw.toString();
 			System.out.println(stamp);
