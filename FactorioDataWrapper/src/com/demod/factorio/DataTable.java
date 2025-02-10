@@ -61,7 +61,7 @@ public class DataTable {
 
 	private final Set<String> worldInputs = new LinkedHashSet<>();
 
-	private FactorioData factorio;
+	private FactorioData data;
 
 	public DataTable(TypeHierarchy typeHierarchy, LuaTable rawLua, JSONObject excludeDataJson,
 			JSONObject includeDataJson, JSONObject wikiNamingJson) {
@@ -172,6 +172,10 @@ public class DataTable {
 		return craftingCategories;
 	}
 
+	public FactorioData getData() {
+		return data;
+	}
+
 	public Map<String, EntityPrototype> getEntities() {
 		return entities;
 	}
@@ -190,10 +194,6 @@ public class DataTable {
 
 	public Set<String> getExplicitelyIncludedEntities() {
 		return explicitelyIncludedEntities;
-	}
-
-	public FactorioData getFactorio() {
-		return factorio;
 	}
 
 	public Optional<FluidPrototype> getFluid(String name) {
@@ -332,7 +332,7 @@ public class DataTable {
 		};
 	}
 
-	public void setFactorio(FactorioData factorio) {
-		this.factorio = factorio;
+	public void setData(FactorioData data) {
+		this.data = data;
 	}
 }
