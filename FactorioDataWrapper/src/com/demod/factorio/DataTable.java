@@ -106,6 +106,14 @@ public class DataTable {
 			});
 		});
 
+		items.values().forEach(p -> p.setTable(this));
+		recipes.values().forEach(p -> p.setTable(this));
+		entities.values().forEach(p -> p.setTable(this));
+		fluids.values().forEach(p -> p.setTable(this));
+		technologies.values().forEach(p -> p.setTable(this));
+		equipments.values().forEach(p -> p.setTable(this));
+		tiles.values().forEach(p -> p.setTable(this));
+
 		for (RecipePrototype recipe : recipes.values()) {
 			for (String input : recipe.getInputs().keySet()) {
 				worldInputs.add(input);

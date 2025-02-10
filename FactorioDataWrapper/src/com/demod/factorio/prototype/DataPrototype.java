@@ -1,5 +1,6 @@
 package com.demod.factorio.prototype;
 
+import com.demod.factorio.DataTable;
 import com.demod.factorio.Utils;
 import com.demod.factorio.fakelua.LuaTable;
 
@@ -7,6 +8,8 @@ public abstract class DataPrototype {
 	private final LuaTable lua;
 	private final String name;
 	private final String type;
+
+	private DataTable table;
 
 	public DataPrototype(LuaTable lua, String name, String type) {
 		this.lua = lua;
@@ -41,6 +44,10 @@ public abstract class DataPrototype {
 		return name;
 	}
 
+	public DataTable getTable() {
+		return table;
+	}
+
 	public String getType() {
 		return type;
 	}
@@ -52,5 +59,9 @@ public abstract class DataPrototype {
 
 	public LuaTable lua() {
 		return lua;
+	}
+
+	public void setTable(DataTable table) {
+		this.table = table;
 	}
 }
