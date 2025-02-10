@@ -184,7 +184,7 @@ public class ModLoader {
 						continue;
 					}
 					mods.put(mod.getInfo().getName(), mod);
-					System.out.println("MOD FOLDER LOADED: " + mod.getInfo().getName());
+//					System.out.println("MOD FOLDER LOADED: " + mod.getInfo().getName());
 				} else {
 					loadFolder(file);
 				}
@@ -194,7 +194,7 @@ public class ModLoader {
 					continue;
 				}
 				mods.put(mod.getInfo().getName(), mod);
-				System.out.println("MOD ZIP LOADED: " + mod.getInfo().getName());
+//				System.out.println("MOD ZIP LOADED: " + mod.getInfo().getName());
 			}
 		}
 	}

@@ -5,7 +5,6 @@ import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
-import java.awt.image.WritableRaster;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -74,7 +73,7 @@ public class FactorioData {
 				System.exit(-1);
 			}
 		}
-		return defaultInstance.getDataTable();
+		return defaultInstance.getTable();
 	}
 
 	private static BufferedImage loadImage(InputStream is) throws IOException {
@@ -103,10 +102,6 @@ public class FactorioData {
 
 	public FactorioData(JSONObject config) {
 		this.config = config;
-	}
-
-	public DataTable getDataTable() {
-		return dataTable;
 	}
 
 	public BufferedImage getIcon(DataPrototype prototype) {
@@ -233,6 +228,10 @@ public class FactorioData {
 		}
 	}
 
+	public DataTable getTable() {
+		return dataTable;
+	}
+
 	public void initialize() throws JSONException, IOException {
 //		setupWorkingDirectory();//TODO do we still need this?
 
@@ -290,6 +289,7 @@ public class FactorioData {
 			}
 			pw.flush();
 			String stamp = sw.toString();
+			System.out.println();
 			System.out.println(stamp);
 			if (fileDumpStamp.exists()) {
 				String compareStamp = Files.readString(fileDumpStamp.toPath());
@@ -331,6 +331,7 @@ public class FactorioData {
 		JSONObject wikiNamingJson = Utils
 				.readJsonFromStream(FactorioData.class.getClassLoader().getResourceAsStream("wiki-naming.json"));
 		dataTable = new DataTable(typeHiearchy, lua, excludeDataJson, includeDataJson, wikiNamingJson);
+		dataTable.setData(this);
 	}
 
 	// XXX do we still need this?
