@@ -103,7 +103,7 @@ public class FactorioXMLMain {
 
 	public static void main(String[] args) throws JSONException, IOException, ParserConfigurationException,
 			ClassNotFoundException, InstantiationException, IllegalAccessException, ClassCastException {
-		DataTable table = FactorioData.getTable();
+		DataTable table = FactorioData.getDefaultTable();
 		ModInfo baseInfo = new ModInfo(Utils.readJsonFromStream(
 				new FileInputStream(new File(table.getData().folderFactorio, "data/base/info.json"))));
 

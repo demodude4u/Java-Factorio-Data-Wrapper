@@ -77,11 +77,17 @@ public class FactorioData {
 		}
 	}
 
-	public static synchronized DataTable getTable() {
+	public static synchronized DataTable getDefaultTable() {
 		if (defaultInstance == null) {
-			defaultInstance = new FactorioData(Config.get());
+			try {
+				defaultInstance = new FactorioData(Config.get());
+				defaultInstance.initialize();
+			} catch (JSONException | IOException e) {
+				e.printStackTrace();
+				System.exit(-1);
+			}
 		}
-		return defaultInstance.getOrInitializeTable();
+		return defaultInstance.getDataTable();
 	}
 
 	private static BufferedImage loadImage(InputStream is) throws IOException {
@@ -110,6 +116,10 @@ public class FactorioData {
 
 	public FactorioData(JSONObject config) {
 		this.config = config;
+	}
+
+	public DataTable getDataTable() {
+		return dataTable;
 	}
 
 	public BufferedImage getIcon(DataPrototype prototype) {
@@ -236,19 +246,7 @@ public class FactorioData {
 		}
 	}
 
-	public synchronized DataTable getOrInitializeTable() {
-		if (dataTable == null) {
-			try {
-				dataTable = initializeDataTable();
-				dataTable.setFactorio(this);
-			} catch (JSONException | IOException e) {
-				throw new InternalError(e);
-			}
-		}
-		return dataTable;
-	}
-
-	private DataTable initializeDataTable() throws JSONException, IOException {
+	public void initialize() throws JSONException, IOException {
 //		setupWorkingDirectory();//TODO do we still need this?
 
 		folderFactorio = new File(config.getString("factorio"));
@@ -345,9 +343,7 @@ public class FactorioData {
 				.readJsonFromStream(FactorioData.class.getClassLoader().getResourceAsStream("include-data.json"));
 		JSONObject wikiNamingJson = Utils
 				.readJsonFromStream(FactorioData.class.getClassLoader().getResourceAsStream("wiki-naming.json"));
-		DataTable dataTable = new DataTable(typeHiearchy, lua, excludeDataJson, includeDataJson, wikiNamingJson);
-
-		return dataTable;
+		dataTable = new DataTable(typeHiearchy, lua, excludeDataJson, includeDataJson, wikiNamingJson);
 	}
 
 	// XXX do we still need this?
