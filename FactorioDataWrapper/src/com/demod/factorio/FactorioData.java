@@ -212,6 +212,10 @@ public class FactorioData {
 		});
 	}
 
+	public ModLoader getModLoader() {
+		return modLoader;
+	}
+
 	public Optional<InputStream> getModResource(String path) {
 		String firstSegment = path.split("\\/")[0];
 		if (firstSegment.length() < 4) {
