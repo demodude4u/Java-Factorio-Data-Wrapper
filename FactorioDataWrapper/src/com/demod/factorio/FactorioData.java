@@ -34,24 +34,11 @@ import com.demod.factorio.prototype.DataPrototype;
 public class FactorioData {
 	private static FactorioData defaultInstance;
 
-	/**
-	 * I'm assuming this is some weird grayscale image...
-	 */
 	private static BufferedImage convertCustomImage(BufferedImage image) {
-		int width = image.getWidth();
-		int height = image.getHeight();
-		WritableRaster raster = image.getRaster();
-		byte[] pixelData = (byte[]) raster.getDataElements(0, 0, width, height, null);
-		int[] correctedPixels = new int[width * height];
-
-		for (int i = 0; i < correctedPixels.length; i++) {
-			int v = pixelData[i * 2] & 0xFF;
-			int a = pixelData[i * 2 + 1] & 0xFF;
-			correctedPixels[i] = (a << 24) | (v << 16) | (v << 8) | v;
-		}
-
-		BufferedImage ret = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-		ret.setRGB(0, 0, width, height, correctedPixels, 0, width);
+		BufferedImage ret = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g = ret.createGraphics();
+		g.drawImage(image, 0, 0, null);
+		g.dispose();
 		return ret;
 	}
 
