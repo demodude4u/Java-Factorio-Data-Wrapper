@@ -133,6 +133,10 @@ public class ModLoader {
 		return Optional.ofNullable(mods.get(name));
 	}
 
+	public Map<String, Mod> getMods() {
+		return mods;
+	}
+
 	public List<Mod> getModsInLoadOrder() {
 		LinkedList<Mod> work = new LinkedList<>();
 		mods.values().stream().sorted((m1, m2) -> m1.getInfo().getName().compareTo(m2.getInfo().getName()))
