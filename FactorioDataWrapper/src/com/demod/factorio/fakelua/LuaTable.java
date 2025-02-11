@@ -16,16 +16,24 @@ public class LuaTable {
 
 	public LuaValue get(int index) {
 		if (json instanceof JSONObject) {
-			return new LuaValue(null);
+			return LuaValue.NIL;
 		}
-		return new LuaValue(((JSONArray) json).opt(index - 1));
+		Object value = ((JSONArray) json).opt(index - 1);
+		if (value == null) {
+			return LuaValue.NIL;
+		}
+		return new LuaValue(value);
 	}
 
 	public LuaValue get(String key) {
 		if (json instanceof JSONArray) {
-			return new LuaValue(null);
+			return LuaValue.NIL;
 		}
-		return new LuaValue(((JSONObject) json).opt(key));
+		Object value = ((JSONObject) json).opt(key);
+		if (value == null) {
+			return LuaValue.NIL;
+		}
+		return new LuaValue(value);
 	}
 
 	public Object getJson() {
