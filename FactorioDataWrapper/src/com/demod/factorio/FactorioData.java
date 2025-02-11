@@ -5,10 +5,13 @@ import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.math.BigInteger;
@@ -20,6 +23,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -52,8 +57,18 @@ public class FactorioData {
 					"--config", fileConfig.getAbsolutePath(), "--mod-directory", folderMods.getAbsolutePath(),
 					"--dump-data");
 			pb.directory(folderFactorio);
+
 			System.out.println("Running command " + pb.command().stream().collect(Collectors.joining(",", "[", "]")));
+
 			Process process = pb.start();
+
+			// Create separate threads to handle the output streams
+			ExecutorService executor = Executors.newFixedThreadPool(2);
+			executor.submit(() -> streamOutput(process.getInputStream(), System.out));
+			executor.submit(() -> streamOutput(process.getErrorStream(), System.err));
+			executor.shutdown();
+
+			// Wait for Factorio to finish
 			boolean finished = process.waitFor(1, TimeUnit.MINUTES);
 			if (!finished) {
 				System.out.println("Factorio did not exit!");
@@ -61,6 +76,7 @@ public class FactorioData {
 				process.onExit().get();
 				System.out.println("Factorio was force killed.");
 			}
+
 			int exitCode = process.exitValue();
 			if (exitCode != 0) {
 				throw new IOException("Factorio command failed with exit code: " + exitCode);
@@ -94,6 +110,17 @@ public class FactorioData {
 			image = convertCustomImage(image);
 		}
 		return image;
+	}
+
+	private static void streamOutput(InputStream inputStream, PrintStream out) {
+		try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+			String line;
+			while ((line = reader.readLine()) != null) {
+				out.println(line);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private final int defaultIconSize = 64; // TODO read from defines
