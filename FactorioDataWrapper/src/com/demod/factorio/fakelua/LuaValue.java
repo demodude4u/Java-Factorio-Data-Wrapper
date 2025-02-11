@@ -142,6 +142,11 @@ public class LuaValue {
 		return optjstring("");
 	}
 
+	@Override
+	public String toString() {
+		return json.toString();
+	}
+
 	public LuaTable totableArray() {
 		return opttable(new LuaTable(new JSONArray()));
 	}

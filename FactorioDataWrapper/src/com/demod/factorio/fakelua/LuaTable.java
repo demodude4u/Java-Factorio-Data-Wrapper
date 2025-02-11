@@ -48,6 +48,11 @@ public class LuaTable {
 		}
 	}
 
+	@Override
+	public String toString() {
+		return json.toString();
+	}
+
 	public LuaValue tovalue() {
 		return new LuaValue(json);
 	}
