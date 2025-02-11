@@ -11,12 +11,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.math.BigInteger;
 import java.nio.file.Files;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import javax.imageio.ImageIO;
@@ -49,15 +53,22 @@ public class FactorioData {
 			pb.directory(folderFactorio);
 			System.out.println("Running command " + pb.command().stream().collect(Collectors.joining(",", "[", "]")));
 			Process process = pb.start();
-			int exitCode = process.waitFor();
+			boolean finished = process.waitFor(1, TimeUnit.MINUTES);
+			if (!finished) {
+				System.out.println("Factorio did not exit!");
+				process.destroyForcibly();
+				process.onExit().get();
+				System.out.println("Factorio was force killed.");
+			}
+			int exitCode = process.exitValue();
 			if (exitCode != 0) {
 				throw new IOException("Factorio command failed with exit code: " + exitCode);
 			}
 		} catch (Exception e) {
 			System.err.println("FAILED TO DUMP DATA FROM FACTORIO INSTALL!");
-			System.out.println("\t factorio: " + folderFactorio.getAbsolutePath());
-			System.out.println("\t config: " + fileConfig.getAbsolutePath());
-			System.out.println("\t mods: " + folderMods.getAbsolutePath());
+			System.err.println("\t factorio: " + folderFactorio.getAbsolutePath());
+			System.err.println("\t config: " + fileConfig.getAbsolutePath());
+			System.err.println("\t mods: " + folderMods.getAbsolutePath());
 			e.printStackTrace();
 			System.exit(-1);
 		}
@@ -102,6 +113,20 @@ public class FactorioData {
 
 	public FactorioData(JSONObject config) {
 		this.config = config;
+	}
+
+	private String fileMD5(File file) {
+		if (!file.exists()) {
+			return "<none>";
+		}
+		try {
+			return new BigInteger(1, MessageDigest.getInstance("MD5").digest(Files.readAllBytes(file.toPath())))
+					.toString(16);
+		} catch (NoSuchAlgorithmException | IOException e) {
+			e.printStackTrace();
+			System.exit(0);
+			return null;
+		}
 	}
 
 	public BufferedImage getIcon(DataPrototype prototype) {
@@ -281,6 +306,8 @@ public class FactorioData {
 			pw.println("Factorio Install: " + folderFactorio.getAbsolutePath());
 			pw.println("Data Folder: " + folderData.getAbsolutePath());
 			pw.println("Mods Folder: " + folderMods.getAbsolutePath());
+			pw.println("mod-list.json MD5: " + fileMD5(new File(folderMods, "mod-list.json")));
+			pw.println("mod-settings.dat MD5: " + fileMD5(new File(folderMods, "mod-settings.dat")));
 			pw.println("Mods Manifest:");
 			for (File file : folderMods.listFiles()) {
 				if (file.isDirectory() || file.getName().endsWith(".zip")) {
