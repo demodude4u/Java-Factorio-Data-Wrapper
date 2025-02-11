@@ -33,6 +33,7 @@ import com.demod.factorio.ModLoader.Mod;
 import com.demod.factorio.fakelua.LuaTable;
 import com.demod.factorio.fakelua.LuaValue;
 import com.demod.factorio.prototype.DataPrototype;
+import com.google.common.util.concurrent.Uninterruptibles;
 
 public class FactorioData {
 	private static FactorioData defaultInstance;
@@ -106,7 +107,7 @@ public class FactorioData {
 	private ModLoader modLoader;
 
 	public File folderFactorio;
-
+	private File folderData;
 	public File folderMods;
 
 	private final JSONObject config;
@@ -125,6 +126,28 @@ public class FactorioData {
 		} catch (NoSuchAlgorithmException | IOException e) {
 			e.printStackTrace();
 			System.exit(0);
+			return null;
+		}
+	}
+
+	private String generateStamp() {
+		try (StringWriter sw = new StringWriter(); PrintWriter pw = new PrintWriter(sw)) {
+			pw.println("Factorio Install: " + folderFactorio.getAbsolutePath());
+			pw.println("Data Folder: " + folderData.getAbsolutePath());
+			pw.println("Mods Folder: " + folderMods.getAbsolutePath());
+			pw.println("mod-list.json MD5: " + fileMD5(new File(folderMods, "mod-list.json")));
+			pw.println("mod-settings.dat MD5: " + fileMD5(new File(folderMods, "mod-settings.dat")));
+			pw.println("Mods Manifest:");
+			for (File file : folderMods.listFiles()) {
+				if (file.isDirectory() || file.getName().endsWith(".zip")) {
+					pw.println("\t" + file.getName());
+				}
+			}
+			pw.flush();
+			return sw.toString();
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.exit(-1);
 			return null;
 		}
 	}
@@ -264,7 +287,7 @@ public class FactorioData {
 		boolean forceDumpData = config.optBoolean("force-dump-data");
 		// Setup data folder
 
-		File folderData = new File(config.optString("data", "data"));
+		folderData = new File(config.optString("data", "data"));
 		folderData.mkdirs();
 
 		File fileConfig = new File(folderData, "config.ini");
@@ -302,39 +325,31 @@ public class FactorioData {
 
 		File fileDumpStamp = new File(folderData, "dumpStamp.txt");
 		boolean matchingDumpStamp = false;
-		try (StringWriter sw = new StringWriter(); PrintWriter pw = new PrintWriter(sw)) {
-			pw.println("Factorio Install: " + folderFactorio.getAbsolutePath());
-			pw.println("Data Folder: " + folderData.getAbsolutePath());
-			pw.println("Mods Folder: " + folderMods.getAbsolutePath());
-			pw.println("mod-list.json MD5: " + fileMD5(new File(folderMods, "mod-list.json")));
-			pw.println("mod-settings.dat MD5: " + fileMD5(new File(folderMods, "mod-settings.dat")));
-			pw.println("Mods Manifest:");
-			for (File file : folderMods.listFiles()) {
-				if (file.isDirectory() || file.getName().endsWith(".zip")) {
-					pw.println("\t" + file.getName());
-				}
+		String stamp = generateStamp();
+
+		System.out.println();
+		System.out.println(stamp);
+		if (fileDumpStamp.exists()) {
+			String compareStamp = Files.readString(fileDumpStamp.toPath());
+			if (stamp.equals(compareStamp)) {
+				matchingDumpStamp = true;
 			}
-			pw.flush();
-			String stamp = sw.toString();
-			System.out.println();
-			System.out.println(stamp);
-			if (fileDumpStamp.exists()) {
-				String compareStamp = Files.readString(fileDumpStamp.toPath());
-				if (stamp.equals(compareStamp)) {
-					matchingDumpStamp = true;
-				}
-			}
-			Files.writeString(fileDumpStamp.toPath(), stamp);
 		}
 
 		// Fetch data dump file from factorio.exe
 
 		if (!fileDataRawDump.exists() || !matchingDumpStamp || forceDumpData) {
+
 			factorioDataDump(folderFactorio, fileConfig, folderMods);
+
+			Uninterruptibles.sleepUninterruptibly(1, TimeUnit.SECONDS);
+
 			if (!fileDataRawDump.exists()) {
 				System.err.println("DATA DUMP FILE MISSING! " + fileDataRawDump.getAbsolutePath());
 				System.exit(-1);
 			}
+
+			Files.writeString(fileDumpStamp.toPath(), generateStamp());
 		}
 
 		LuaTable lua = null;
