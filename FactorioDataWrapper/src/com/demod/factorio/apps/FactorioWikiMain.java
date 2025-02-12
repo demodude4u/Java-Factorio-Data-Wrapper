@@ -413,7 +413,7 @@ public class FactorioWikiMain {
 		table.getRecipes().values().stream().filter(r -> (!r.isRecycling() && !table.getItems().containsKey(r.getName())
 				&& !table.getFluids().containsKey(r.getName()))).forEach(recipe -> {
 					try {
-						ImageIO.write(table.getData().getIcon(recipe), "PNG",
+						ImageIO.write(table.getData().getWikiIcon(recipe), "PNG",
 								new File(folder, table.getWikiRecipeName(recipe.getName()) + ".png"));
 					} catch (IOException e) {
 						e.printStackTrace();
@@ -422,7 +422,7 @@ public class FactorioWikiMain {
 
 		table.getItems().values().stream().forEach(item -> {
 			try {
-				ImageIO.write(table.getData().getIcon(item), "PNG",
+				ImageIO.write(table.getData().getWikiIcon(item), "PNG",
 						new File(folder, table.getWikiItemName(item.getName()) + ".png"));
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -431,7 +431,7 @@ public class FactorioWikiMain {
 
 		table.getFluids().values().stream().forEach(fluid -> {
 			try {
-				ImageIO.write(table.getData().getIcon(fluid), "PNG",
+				ImageIO.write(table.getData().getWikiIcon(fluid), "PNG",
 						new File(folder, table.getWikiFluidName(fluid.getName()) + ".png"));
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -440,7 +440,7 @@ public class FactorioWikiMain {
 
 		table.getTechnologies().values().stream().filter(t -> !t.isBonus() || t.isFirstBonus()).forEach(tech -> {
 			try {
-				ImageIO.write(table.getData().getIcon(tech), "PNG",
+				ImageIO.write(table.getData().getWikiIcon(tech), "PNG",
 						new File(techIconFolder, table.getWikiTechnologyName(tech.getName()) + ".png"));
 			} catch (IOException e) {
 				e.printStackTrace();

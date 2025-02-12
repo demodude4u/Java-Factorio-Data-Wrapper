@@ -179,7 +179,7 @@ public class FactorioData {
 		}
 	}
 
-	public BufferedImage getIcon(DataPrototype prototype) {
+	public BufferedImage getWikiIcon(DataPrototype prototype) {
 		String name = prototype.getName();
 		if (prototype.lua().get("type").checkjstring().equals("technology")) {
 			name += ".tech"; // HACK
