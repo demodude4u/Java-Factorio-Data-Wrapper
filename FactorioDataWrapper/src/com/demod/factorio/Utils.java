@@ -102,14 +102,6 @@ public final class Utils {
 	}
 
 	public static void forEach(LuaTable table, BiConsumer<LuaValue, LuaValue> consumer) {
-//		LuaValue k = LuaValue.NIL;
-//		while (true) {
-//			Varargs n = table.next(k);
-//			if ((k = n.arg1()).isnil())
-//				break;
-//			LuaValue v = n.arg(2);
-//			consumer.accept(k, v);
-//		}
 		Object json = table.getJson();
 		if (json instanceof JSONObject) {
 			forEach((JSONObject) json, (k, v) -> consumer.accept(new LuaValue(k), new LuaValue(v)));
@@ -120,14 +112,6 @@ public final class Utils {
 	}
 
 	public static void forEach(LuaTable table, Consumer<LuaValue> consumer) {
-//		LuaValue k = LuaValue.NIL;
-//		while (true) {
-//			Varargs n = table.next(k);
-//			if ((k = n.arg1()).isnil())
-//				break;
-//			LuaValue v = n.arg(2);
-//			consumer.accept(v);
-//		}
 		Object json = table.getJson();
 		if (json instanceof JSONObject) {
 			forEach((JSONObject) json, (k, v) -> consumer.accept(new LuaValue(v)));
@@ -137,31 +121,6 @@ public final class Utils {
 	}
 
 	public static void forEachSorted(LuaValue table, BiConsumer<LuaValue, LuaValue> consumer) {
-//		Streams.stream(new Iterator<Entry<LuaValue, LuaValue>>() {
-//			LuaValue k = LuaValue.NIL;
-//			Varargs next = null;
-//
-//			@Override
-//			public boolean hasNext() {
-//				if (next == null) {
-//					next = table.next(k);
-//					k = next.arg1();
-//				}
-//				return !k.isnil();
-//			}
-//
-//			@Override
-//			public Entry<LuaValue, LuaValue> next() {
-//				if (next == null) {
-//					next = table.next(k);
-//					k = next.arg1();
-//				}
-//				Entry<LuaValue, LuaValue> ret = new SimpleImmutableEntry<>(k, next.arg(2));
-//				next = null;
-//				return ret;
-//			}
-//		}).sorted((p1, p2) -> p1.getKey().toString().compareTo(p2.getKey().toString()))
-//				.forEach(p -> consumer.accept(p.getKey(), p.getValue()));
 		Object json = table.getJson();
 		if (json instanceof JSONObject) {
 			Streams.stream(((JSONObject) json).keys()).sorted()
@@ -169,25 +128,6 @@ public final class Utils {
 		} else if (json instanceof JSONArray) {
 			forEach((JSONArray) json, (i, v) -> consumer.accept(new LuaValue(i), new LuaValue(v)));
 		}
-	}
-
-	private static boolean isLuaArray(LuaValue value) {
-//		if (value.istable()) {
-//			LuaValue k = LuaValue.NIL;
-//			int i = 0;
-//			while (true) {
-//				i++;
-//				Varargs n = value.next(k);
-//				if ((k = n.arg1()).isnil())
-//					break;
-//				if (!k.isnumber() || k.toint() != i) {
-//					return false;
-//				}
-//			}
-//			return true;
-//		}
-//		return false;
-		return value.getJson() instanceof JSONArray;
 	}
 
 	public static Color parseColor(LuaValue value) {
