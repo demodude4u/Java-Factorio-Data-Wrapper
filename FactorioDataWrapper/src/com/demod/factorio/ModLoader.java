@@ -107,6 +107,7 @@ public class ModLoader {
 		@Override
 		public Optional<InputStream> getResource(String path) {
 			path = path.replace("\\", "/");
+			path = path.replace("//", "/");
 			Optional<byte[]> resource = Optional.ofNullable(files.get(path));
 
 			if (!resource.isPresent() && lastResourceFolder.isPresent()) {
