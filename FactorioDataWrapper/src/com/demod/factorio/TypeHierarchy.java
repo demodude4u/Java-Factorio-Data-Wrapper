@@ -12,12 +12,9 @@ public class TypeHierarchy {
 	private final Set<String> roots = new LinkedHashSet<>();
 
 	public TypeHierarchy(JSONObject json) {
-		Utils.<Object>forEach(json, (t, p) -> {
-			if (p instanceof String) {
-				parents.put(t, (String) p);
-			} else {
-				roots.add(t);
-			}
+		Utils.forEach(json, (String name, JSONObject j) -> {
+			roots.add(name);
+			initParent(name, j);
 		});
 	}
 
@@ -27,6 +24,13 @@ public class TypeHierarchy {
 
 	public Set<String> getRoots() {
 		return roots;
+	}
+
+	private void initParent(String parent, JSONObject json) {
+		Utils.forEach(json, (String name, JSONObject j) -> {
+			parents.put(name, parent);
+			initParent(name, j);
+		});
 	}
 
 	public boolean isAssignable(String type, String subType) {
