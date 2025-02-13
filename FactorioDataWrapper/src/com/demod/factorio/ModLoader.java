@@ -88,6 +88,9 @@ public class ModLoader {
 						throw new RuntimeException(e);
 					}
 				});
+			} catch (Exception e) {
+				System.err.println("MODZIP " + file.getAbsolutePath());
+				throw e;
 			}
 
 			byte[] buf = files.get("/info.json");
