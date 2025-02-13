@@ -341,7 +341,7 @@ public class FactorioData {
 		File fileConfig = new File(folderData, "config.ini");
 		try (PrintWriter pw = new PrintWriter(fileConfig)) {
 			pw.println("[path]");
-			pw.println("read-data=__PATH__executable__/../../data");
+			pw.println("read-data=" + folderFactorio.getAbsolutePath());
 			pw.println("write-data=" + folderData.getAbsolutePath());
 		}
 
@@ -415,7 +415,7 @@ public class FactorioData {
 		}
 
 		modLoader = new ModLoader(modInclude);
-		modLoader.loadFolder(new File(folderFactorio, "data"));
+		modLoader.loadFolder(folderFactorio);
 		modLoader.loadFolder(folderMods);
 
 		TypeHierarchy typeHiearchy = new TypeHierarchy(Utils
