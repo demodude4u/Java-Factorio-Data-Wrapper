@@ -51,6 +51,7 @@ public class FactorioData {
 		return ret;
 	}
 
+	@SuppressWarnings("resource")
 	public static void factorioDataDump(File folderFactorio, File fileConfig, File folderMods) {
 		try {
 			ProcessBuilder pb = new ProcessBuilder(new File(folderFactorio, "bin/x64/factorio.exe").getAbsolutePath(),
@@ -179,6 +180,47 @@ public class FactorioData {
 		}
 	}
 
+	public BufferedImage getModImage(String path) {
+		return modImageCache.computeIfAbsent(path, p -> {
+			try {
+				BufferedImage image = loadImage(getModResource(path).get());
+				return image;
+			} catch (Exception e) {
+				System.err.println("MISSING MOD IMAGE: " + path);
+				e.printStackTrace();
+				throw new RuntimeException(e);
+			}
+		});
+	}
+
+	public ModLoader getModLoader() {
+		return modLoader;
+	}
+
+	public Optional<InputStream> getModResource(String path) {
+		String firstSegment = path.split("\\/")[0];
+		if (firstSegment.length() < 4) {
+			throw new IllegalArgumentException("Path is not valid: \"" + path + "\"");
+		}
+		String modName = firstSegment.substring(2, firstSegment.length() - 2);
+		Optional<Mod> mod = modLoader.getMod(modName);
+		if (!mod.isPresent()) {
+			throw new IllegalStateException("Mod does not exist: " + modName);
+		}
+		String modPath = path.replace(firstSegment, "");
+		try {
+			return mod.get().getResource(modPath);
+		} catch (IOException e) {
+			System.err.println(path);
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
+
+	public DataTable getTable() {
+		return dataTable;
+	}
+
 	public BufferedImage getWikiIcon(DataPrototype prototype) {
 		String name = prototype.getName();
 		if (prototype.lua().get("type").checkjstring().equals("technology")) {
@@ -266,47 +308,6 @@ public class FactorioData {
 		});
 	}
 
-	public BufferedImage getModImage(String path) {
-		return modImageCache.computeIfAbsent(path, p -> {
-			try {
-				BufferedImage image = loadImage(getModResource(path).get());
-				return image;
-			} catch (Exception e) {
-				System.err.println("MISSING MOD IMAGE: " + path);
-				e.printStackTrace();
-				throw new RuntimeException(e);
-			}
-		});
-	}
-
-	public ModLoader getModLoader() {
-		return modLoader;
-	}
-
-	public Optional<InputStream> getModResource(String path) {
-		String firstSegment = path.split("\\/")[0];
-		if (firstSegment.length() < 4) {
-			throw new IllegalArgumentException("Path is not valid: \"" + path + "\"");
-		}
-		String modName = firstSegment.substring(2, firstSegment.length() - 2);
-		Optional<Mod> mod = modLoader.getMod(modName);
-		if (!mod.isPresent()) {
-			throw new IllegalStateException("Mod does not exist: " + modName);
-		}
-		String modPath = path.replace(firstSegment, "");
-		try {
-			return mod.get().getResource(modPath);
-		} catch (IOException e) {
-			System.err.println(path);
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
-	}
-
-	public DataTable getTable() {
-		return dataTable;
-	}
-
 	public void initialize() throws JSONException, IOException {
 //		setupWorkingDirectory();//TODO do we still need this?
 
@@ -331,6 +332,11 @@ public class FactorioData {
 		if (!fileModList.exists()) {
 			Files.copy(FactorioData.class.getClassLoader().getResourceAsStream("mod-list.json"), fileModList.toPath());
 		}
+
+		// Prevent unnecessary changes so github doesn't get confused
+		File fileModSettings = new File(folderMods, "mod-settings.dat");
+		fileModList.setReadOnly();
+		fileModSettings.setReadOnly();
 
 		File fileModRendering = new File(folderMods, "mod-rendering.json");
 		if (!fileModRendering.exists()) {
