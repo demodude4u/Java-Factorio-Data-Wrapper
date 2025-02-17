@@ -26,20 +26,8 @@ import com.demod.factorio.prototype.ItemPrototype;
 import com.demod.factorio.prototype.RecipePrototype;
 import com.demod.factorio.prototype.TechPrototype;
 import com.demod.factorio.prototype.TilePrototype;
-import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Multimap;
 
 public class DataTable {
-	private static Multimap<String, String> entityItemNameMapping = ArrayListMultimap.create();
-	static {
-		entityItemNameMapping.put("curved-rail", "rail");
-		entityItemNameMapping.put("curved-rail", "rail");
-		entityItemNameMapping.put("curved-rail", "rail");
-		entityItemNameMapping.put("curved-rail", "rail");
-		entityItemNameMapping.put("straight-rail", "rail");
-	}
-
 	private final TypeHierarchy typeHierarchy;
 	private final LuaTable rawLua;
 
@@ -113,6 +101,57 @@ public class DataTable {
 		technologies.values().forEach(p -> p.setTable(this));
 		equipments.values().forEach(p -> p.setTable(this));
 		tiles.values().forEach(p -> p.setTable(this));
+
+		for (ItemPrototype item : items.values()) {
+			LuaValue luaPlaceResult = item.lua().get("place_result");
+			if (!luaPlaceResult.isnil()) {
+				EntityPrototype entity = entities.get(luaPlaceResult.tojstring());
+				entity.addPlacedBy(new ItemToPlace(item.getName(), 1));
+			}
+			LuaValue luaPlaceAsTile = item.lua().get("place_as_tile");
+			if (!luaPlaceAsTile.isnil()) {
+				TilePrototype tile = tiles.get(luaPlaceAsTile.get("result").tojstring());
+				tile.addPlacedBy(new ItemToPlace(item.getName(), 1));
+			}
+		}
+
+		for (EntityPrototype entity : entities.values()) {
+			List<ItemToPlace> placedBy = entity.getPlacedBy();
+			Optional<ItemToPlace> primaryItem;
+			if (placedBy.isEmpty()) {
+				primaryItem = Optional.empty();
+			} else if (placedBy.size() == 1) {
+				primaryItem = Optional.of(placedBy.get(0));
+			} else {
+				Optional<String> flaggedPrimaryItem = placedBy.stream().map(i -> items.get(i.getItem()))
+						.filter(i -> i.getFlags().contains("primary-place-result")).map(i -> i.getName()).findFirst();
+				if (flaggedPrimaryItem.isPresent()) {
+					primaryItem = placedBy.stream().filter(i -> i.getItem().equals(flaggedPrimaryItem.get())).findAny();
+				} else {
+					primaryItem = Optional.of(placedBy.get(0));
+				}
+			}
+			entity.setPrimaryItem(primaryItem);
+		}
+
+		for (TilePrototype tile : tiles.values()) {
+			List<ItemToPlace> placedBy = tile.getPlacedBy();
+			Optional<ItemToPlace> primaryItem;
+			if (placedBy.isEmpty()) {
+				primaryItem = Optional.empty();
+			} else if (placedBy.size() == 1) {
+				primaryItem = Optional.of(placedBy.get(0));
+			} else {
+				Optional<String> flaggedPrimaryItem = placedBy.stream().map(i -> items.get(i.getItem()))
+						.filter(i -> i.getFlags().contains("primary-place-result")).map(i -> i.getName()).findFirst();
+				if (flaggedPrimaryItem.isPresent()) {
+					primaryItem = placedBy.stream().filter(i -> i.getItem().equals(flaggedPrimaryItem.get())).findAny();
+				} else {
+					primaryItem = Optional.of(placedBy.get(0));
+				}
+			}
+			tile.setPrimaryItem(primaryItem);
+		}
 
 		for (RecipePrototype recipe : recipes.values()) {
 			for (String input : recipe.getInputs().keySet()) {
@@ -210,15 +249,6 @@ public class DataTable {
 
 	public Map<String, ItemPrototype> getItems() {
 		return items;
-	}
-
-	public List<ItemPrototype> getItemsForEntity(String entityName) {
-		Optional<ItemPrototype> item = getItem(entityName);
-		if (item.isPresent()) {
-			return ImmutableList.of(item.get());
-		}
-		return entityItemNameMapping.get(entityName).stream().map(this::getItem).map(Optional::get)
-				.collect(Collectors.toList());
 	}
 
 	public Optional<LuaValue> getRaw(String... path) {
