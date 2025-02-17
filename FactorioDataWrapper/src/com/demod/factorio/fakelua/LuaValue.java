@@ -78,6 +78,10 @@ public class LuaValue {
 		return Objects.hash(json);
 	}
 
+	public boolean isarray() {
+		return json instanceof JSONArray;
+	}
+
 	public boolean isboolean() {
 		return json instanceof Boolean;
 	}
@@ -90,7 +94,7 @@ public class LuaValue {
 		return json instanceof Number;
 	}
 
-	public boolean istable() {
+	public boolean isobject() {
 		return json instanceof JSONObject;
 	}
 
