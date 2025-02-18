@@ -11,7 +11,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.math.BigInteger;
@@ -33,6 +32,8 @@ import javax.imageio.ImageIO;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.demod.factorio.ModLoader.Mod;
 import com.demod.factorio.fakelua.LuaTable;
@@ -41,6 +42,8 @@ import com.demod.factorio.prototype.DataPrototype;
 import com.google.common.util.concurrent.Uninterruptibles;
 
 public class FactorioData {
+	private static final Logger LOGGER = LoggerFactory.getLogger(FactorioData.class);
+
 	private static FactorioData defaultInstance;
 
 	private static BufferedImage convertCustomImage(BufferedImage image) {
@@ -59,23 +62,23 @@ public class FactorioData {
 					"--dump-data");
 			pb.directory(folderFactorio);
 
-			System.out.println("Running command " + pb.command().stream().collect(Collectors.joining(",", "[", "]")));
+			LOGGER.debug("Running command " + pb.command().stream().collect(Collectors.joining(",", "[", "]")));
 
 			Process process = pb.start();
 
 			// Create separate threads to handle the output streams
 			ExecutorService executor = Executors.newFixedThreadPool(2);
-			executor.submit(() -> streamOutput(process.getInputStream(), System.out));
-			executor.submit(() -> streamOutput(process.getErrorStream(), System.err));
+			executor.submit(() -> streamLogging(process.getInputStream(), false));
+			executor.submit(() -> streamLogging(process.getErrorStream(), true));
 			executor.shutdown();
 
 			// Wait for Factorio to finish
 			boolean finished = process.waitFor(1, TimeUnit.MINUTES);
 			if (!finished) {
-				System.out.println("Factorio did not exit!");
+				LOGGER.error("Factorio did not exit!");
 				process.destroyForcibly();
 				process.onExit().get();
-				System.out.println("Factorio was force killed.");
+				LOGGER.warn("Factorio was force killed.");
 			}
 
 			int exitCode = process.exitValue();
@@ -83,10 +86,10 @@ public class FactorioData {
 				throw new IOException("Factorio command failed with exit code: " + exitCode);
 			}
 		} catch (Exception e) {
-			System.err.println("FAILED TO DUMP DATA FROM FACTORIO INSTALL!");
-			System.err.println("\t factorio: " + folderFactorio.getAbsolutePath());
-			System.err.println("\t config: " + fileConfig.getAbsolutePath());
-			System.err.println("\t mods: " + folderMods.getAbsolutePath());
+			LOGGER.error("FAILED TO DUMP DATA FROM FACTORIO INSTALL!");
+			LOGGER.error("\t factorio: " + folderFactorio.getAbsolutePath());
+			LOGGER.error("\t config: " + fileConfig.getAbsolutePath());
+			LOGGER.error("\t mods: " + folderMods.getAbsolutePath());
 			e.printStackTrace();
 			System.exit(-1);
 		}
@@ -113,12 +116,17 @@ public class FactorioData {
 		return image;
 	}
 
-	private static void streamOutput(InputStream inputStream, PrintStream out) {
+	private static void streamLogging(InputStream inputStream, boolean error) {
 		try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
 			String line;
 			while ((line = reader.readLine()) != null) {
-				out.println(line);
+				if (error) {
+					LOGGER.error(line);
+				} else {
+					LOGGER.debug(line);
+				}
 			}
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -186,7 +194,7 @@ public class FactorioData {
 				BufferedImage image = loadImage(getModResource(path).get());
 				return image;
 			} catch (Exception e) {
-				System.err.println("MISSING MOD IMAGE: " + path);
+				LOGGER.error("MISSING MOD IMAGE: " + path);
 				e.printStackTrace();
 				throw new RuntimeException(e);
 			}
@@ -211,7 +219,7 @@ public class FactorioData {
 		try {
 			return mod.get().getResource(modPath);
 		} catch (IOException e) {
-			System.err.println(path);
+			LOGGER.error(path);
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
@@ -237,7 +245,7 @@ public class FactorioData {
 			LuaValue iconsLua = prototype.lua().get("icons");
 
 			if (iconsLua.isnil()) {
-				System.err.println(prototype.lua().get("type").checkjstring() + " " + n + " has no icon.");
+				LOGGER.warn(prototype.lua().get("type").checkjstring() + " " + n + " has no icon.");
 				return new BufferedImage(defaultIconSize, defaultIconSize, BufferedImage.TYPE_INT_ARGB);
 			}
 
@@ -360,8 +368,9 @@ public class FactorioData {
 		boolean matchingDumpStamp = false;
 		String stamp = generateStamp();
 
-		System.out.println();
-		System.out.println(stamp);
+		LOGGER.debug("============================");
+		LOGGER.debug("============================");
+		LOGGER.debug(stamp);
 		if (fileDumpStamp.exists()) {
 			String compareStamp = Files.readString(fileDumpStamp.toPath());
 			if (stamp.equals(compareStamp)) {
@@ -378,7 +387,7 @@ public class FactorioData {
 			Uninterruptibles.sleepUninterruptibly(1, TimeUnit.SECONDS);
 
 			if (!fileDataRawDump.exists()) {
-				System.err.println("DATA DUMP FILE MISSING! " + fileDataRawDump.getAbsolutePath());
+				LOGGER.error("DATA DUMP FILE MISSING! " + fileDataRawDump.getAbsolutePath());
 				System.exit(-1);
 			}
 

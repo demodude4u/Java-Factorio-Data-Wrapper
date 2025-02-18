@@ -19,6 +19,8 @@ import java.util.stream.Collectors;
 import java.util.zip.ZipFile;
 
 import org.json.JSONException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.demod.factorio.ModInfo.Dependency;
 import com.demod.factorio.ModInfo.DependencyType;
@@ -83,13 +85,12 @@ public class ModLoader {
 
 					try (InputStream inputStream = zipFile.getInputStream(entry)) {
 						files.put(name, ByteStreams.toByteArray(inputStream));
-//						System.out.println("ZIP ENTRY " + file.getName() + ": " + entry.getName());// XXX
 					} catch (IOException e) {
 						throw new RuntimeException(e);
 					}
 				});
 			} catch (Exception e) {
-				System.err.println("MODZIP " + file.getAbsolutePath());
+				LOGGER.debug("MODZIP " + file.getAbsolutePath());
 				throw e;
 			}
 
@@ -115,7 +116,7 @@ public class ModLoader {
 
 			if (!resource.isPresent() && lastResourceFolder.isPresent()) {
 				path = lastResourceFolder.get() + path;
-				System.out.println("FRANKENPATH: " + path);
+				LOGGER.warn("FRANKENPATH: {}", path);
 				resource = Optional.ofNullable(files.get(path));
 			}
 
@@ -124,6 +125,8 @@ public class ModLoader {
 			return resource.map(ByteArrayInputStream::new);
 		}
 	}
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(ModLoader.class);
 
 	private final Set<String> modInclude;
 
@@ -188,7 +191,6 @@ public class ModLoader {
 						continue;
 					}
 					mods.put(mod.getInfo().getName(), mod);
-//					System.out.println("MOD FOLDER LOADED: " + mod.getInfo().getName());
 				} else {
 					loadFolder(file);
 				}
@@ -198,7 +200,6 @@ public class ModLoader {
 					continue;
 				}
 				mods.put(mod.getInfo().getName(), mod);
-//				System.out.println("MOD ZIP LOADED: " + mod.getInfo().getName());
 			}
 		}
 	}

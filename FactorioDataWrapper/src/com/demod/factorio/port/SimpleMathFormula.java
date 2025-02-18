@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.google.common.collect.ImmutableMap;
-
 /**
  * This is a port directly from factorio source code, for how formulas are
  * parsed and computed. Here is the source:
@@ -274,10 +272,6 @@ public final class SimpleMathFormula {
 			}
 			return result;
 		}
-	}
-
-	public static void main(String[] args) throws InputException {
-		System.out.println(Expression.parse("2^(L-8)*1000", 0).evaluate(ImmutableMap.of("L", 8.0)));
 	}
 
 	private SimpleMathFormula() {

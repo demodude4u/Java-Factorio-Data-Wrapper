@@ -1,10 +1,15 @@
 package com.demod.factorio.prototype;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.demod.factorio.DataTable;
 import com.demod.factorio.Utils;
 import com.demod.factorio.fakelua.LuaTable;
 
 public abstract class DataPrototype {
+	private static final Logger LOGGER = LoggerFactory.getLogger(DataPrototype.class);
+
 	private final LuaTable lua;
 	private final String name;
 	private final String type;
@@ -18,8 +23,7 @@ public abstract class DataPrototype {
 	}
 
 	public void debugPrint() {
-		System.out.println();
-		System.out.println(name);
+		LOGGER.debug(name);
 		Utils.debugPrintLua(lua.tovalue());
 	}
 

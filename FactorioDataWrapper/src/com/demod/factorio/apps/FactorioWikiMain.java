@@ -22,6 +22,8 @@ import javax.imageio.ImageIO;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.demod.factorio.Config;
 import com.demod.factorio.DataTable;
@@ -40,7 +42,6 @@ import com.google.common.io.Files;
 import com.google.common.primitives.Ints;
 
 public class FactorioWikiMain {
-
 	private static class WikiTypeMatch {
 		boolean item = false, recipe = false, entity = false, equipment = false, tile = false, fluid = false;
 		String entityType;
@@ -82,6 +83,8 @@ public class FactorioWikiMain {
 			return "???";
 		}
 	}
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(FactorioWikiMain.class);
 
 	public static final Map<String, Integer> wiki_ScienceOrdering = new LinkedHashMap<>();
 
@@ -548,7 +551,7 @@ public class FactorioWikiMain {
 					Map<String, List<EntityPrototype>> craftingCategories = table.getCraftingCategories();
 
 					if (!craftingCategories.containsKey(category)) {
-						System.out.println("recipe " + recipe.getName() + " with recipe category " + category
+						LOGGER.warn("recipe " + recipe.getName() + " with recipe category " + category
 								+ " has no producers");
 					} else {
 						item.put("producers",
@@ -635,7 +638,7 @@ public class FactorioWikiMain {
 							itemJson.put("trigger-object", pair(trigger_object, trigger_object_count));
 						}
 					} else {
-						System.err.println("Tech without unit and without research_trigger");
+						LOGGER.error("Tech without unit and without research_trigger");
 					}
 
 					if (!tech.getPrerequisites().isEmpty()) {
@@ -723,7 +726,7 @@ public class FactorioWikiMain {
 				leafs.put(type, name);
 				if (!table.getTypeHierarchy().getParents().containsKey(type)
 						&& !table.getTypeHierarchy().getRoots().contains(type)) {
-					System.err.println("MISSING PARENT FOR TYPE: " + type + " (" + name + ")");
+					LOGGER.error("MISSING PARENT FOR TYPE: " + type + " (" + name + ")");
 				}
 			});
 		});

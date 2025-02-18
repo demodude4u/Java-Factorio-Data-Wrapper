@@ -5,8 +5,12 @@ import java.io.IOException;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public final class Config {
+	private static final Logger LOGGER = LoggerFactory.getLogger(Config.class);
+
 	private static JSONObject config = null;
 
 	public static synchronized JSONObject get() {
@@ -21,9 +25,9 @@ public final class Config {
 			config = Utils.readJsonFromStream(new FileInputStream("config.json"));
 		} catch (JSONException | IOException e) {
 			e.printStackTrace();
-			System.err.println("################################");
-			System.err.println("Missing or bad config.json file!");
-			System.err.println("################################");
+			LOGGER.error("################################");
+			LOGGER.error("Missing or bad config.json file!");
+			LOGGER.error("################################");
 			System.exit(0);
 		}
 	}

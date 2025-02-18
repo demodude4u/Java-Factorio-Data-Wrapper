@@ -13,6 +13,8 @@ import java.util.stream.Collectors;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.demod.factorio.fakelua.LuaTable;
 import com.demod.factorio.fakelua.LuaValue;
@@ -28,6 +30,8 @@ import com.demod.factorio.prototype.TechPrototype;
 import com.demod.factorio.prototype.TilePrototype;
 
 public class DataTable {
+	private static final Logger LOGGER = LoggerFactory.getLogger(DataTable.class);
+
 	private final TypeHierarchy typeHierarchy;
 	private final LuaTable rawLua;
 
@@ -87,8 +91,8 @@ public class DataTable {
 						tiles.put(name, new TilePrototype(protoLua.checktable(), name, type));
 					}
 				} catch (Exception e) {
-					System.err.println(">>>>> EXCEPTION FOR " + name + " (" + type + ")");
-					System.err.println(protoLua.getJson());
+					LOGGER.error(">>>>> EXCEPTION FOR {} ({})", name, type);
+					LOGGER.error(protoLua.getJson().toString());
 					throw e;
 				}
 			});
@@ -324,7 +328,7 @@ public class DataTable {
 	private String getWikiName(String name, JSONObject nameMappingJson) {
 		String ret = nameMappingJson.optString(name, null);
 		if (ret == null) {
-			System.err.println("\"" + name + "\":\"" + getWikiDefaultName(name) + "\",");
+			LOGGER.warn("Wiki mapping not found for {} - \"{}\"", name, getWikiDefaultName(name));
 			nameMappingJson.put(name, ret = getWikiDefaultName(name));
 		}
 		return ret;
@@ -351,7 +355,7 @@ public class DataTable {
 		try {
 			expression = SimpleMathFormula.Expression.parse(countFormula, 0);
 		} catch (InputException e) {
-			System.err.println("COUNT FORMULA PARSE FAIL: " + countFormula);
+			LOGGER.error("COUNT FORMULA PARSE FAIL: {}", countFormula);
 			e.printStackTrace();
 			return l -> -1;
 		}

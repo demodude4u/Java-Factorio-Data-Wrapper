@@ -9,7 +9,6 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.awt.image.RescaleOp;
 import java.io.InputStream;
-import java.io.PrintStream;
 import java.lang.reflect.Field;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
@@ -19,17 +18,20 @@ import java.util.function.Consumer;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.demod.factorio.fakelua.LuaTable;
 import com.demod.factorio.fakelua.LuaValue;
 import com.google.common.collect.Streams;
 
 public final class Utils {
-
 	@FunctionalInterface
 	public static interface ThrowingBiConsumer<T, U> {
 		void accept(T t, U u) throws Throwable;
 	}
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(Utils.class);
 
 	@SuppressWarnings("unchecked")
 	public static <T> T convertLuaToJson(LuaValue value) {
@@ -51,7 +53,7 @@ public final class Utils {
 			} else if (v instanceof JSONObject) {
 				debugPrintJson(prefix + "[" + i + "].", (JSONObject) v);
 			} else {
-				System.out.println(prefix + i + " = " + v);
+				LOGGER.debug("{}{} = {}", prefix, i, v);
 			}
 		});
 	}
@@ -63,17 +65,13 @@ public final class Utils {
 			} else if (v instanceof JSONObject) {
 				debugPrintJson(prefix + k + ".", (JSONObject) v);
 			} else {
-				System.out.println(prefix + k + " = " + v);
+				LOGGER.debug("{}{} = {}", prefix, k, v);
 			}
 		});
 	}
 
 	public static void debugPrintLua(LuaValue value) {
-		debugPrintLua(value, System.out);
-	}
-
-	public static void debugPrintLua(LuaValue value, PrintStream ps) {
-		ps.println(((JSONObject) value.getJson()).toString(2));
+		LOGGER.debug(((JSONObject) value.getJson()).toString(2));
 	}
 
 	@SuppressWarnings("unchecked")
