@@ -188,6 +188,18 @@ public class FactorioData {
 		}
 	}
 
+	public File getFolderData() {
+		return folderData;
+	}
+
+	public File getFolderFactorio() {
+		return folderFactorio;
+	}
+
+	public File getFolderMods() {
+		return folderMods;
+	}
+
 	public BufferedImage getModImage(String path) {
 		return modImageCache.computeIfAbsent(path, p -> {
 			try {
