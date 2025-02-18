@@ -98,6 +98,10 @@ public class LuaValue {
 		return json instanceof JSONObject;
 	}
 
+	public boolean isjstring() {
+		return json instanceof String;
+	}
+
 	public int length() {
 		return checktable().length();
 	}
