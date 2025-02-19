@@ -104,7 +104,7 @@ public final class Utils {
 		if (json instanceof JSONObject) {
 			forEach((JSONObject) json, (k, v) -> consumer.accept(new LuaValue(k), new LuaValue(v)));
 		} else {
-			forEach((JSONArray) json, (i, v) -> consumer.accept(new LuaValue(i), new LuaValue(v)));
+			forEach((JSONArray) json, (i, v) -> consumer.accept(new LuaValue(i + 1), new LuaValue(v)));
 		}
 
 	}
@@ -124,7 +124,7 @@ public final class Utils {
 			Streams.stream(((JSONObject) json).keys()).sorted()
 					.forEach(k -> consumer.accept(new LuaValue(k), new LuaValue(((JSONObject) json).get(k))));
 		} else if (json instanceof JSONArray) {
-			forEach((JSONArray) json, (i, v) -> consumer.accept(new LuaValue(i), new LuaValue(v)));
+			forEach((JSONArray) json, (i, v) -> consumer.accept(new LuaValue(i + 1), new LuaValue(v)));
 		}
 	}
 
