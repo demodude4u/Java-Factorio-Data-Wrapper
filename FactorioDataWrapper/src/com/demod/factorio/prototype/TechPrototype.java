@@ -105,10 +105,14 @@ public class TechPrototype extends DataPrototype {
 		}
 
 		LuaValue maxLevelLua = lua.get("max_level");
-		if (!maxLevelLua.isnil()) {
+		if (maxLevelLua.isjstring()) {
 			String value = maxLevelLua.tojstring();
 			maxLevel = Optional.of(value);
 			maxLevelInfinite = value.equals("infinite");
+		} else if (maxLevelLua.isnumber()) {
+			int value = maxLevelLua.toint();
+			maxLevel = Optional.of(Integer.toString(value));
+			maxLevelInfinite = false;
 		} else {
 			maxLevel = Optional.empty();
 			maxLevelInfinite = false;
