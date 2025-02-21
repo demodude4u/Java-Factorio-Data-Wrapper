@@ -170,15 +170,23 @@ public final class Utils {
 		return new Point(value.get(1).checkint(), value.get(2).checkint());
 	}
 
-	public static Point2D.Double parsePoint2D(JSONObject json) {
-		return new Point2D.Double(json.getDouble("x"), json.getDouble("y"));
-	}
-
 	public static Point2D.Double parsePoint2D(LuaValue value) {
 		if (value.isnil()) {
 			return new Point2D.Double();
 		}
 		return new Point2D.Double(value.get(1).checkdouble(), value.get(2).checkdouble());
+	}
+
+	public static Point2D.Double parsePoint2D(Object object /* JSONObject or JSONArray */) {
+		if (object instanceof JSONObject) {
+			JSONObject json = (JSONObject) object;
+			return new Point2D.Double(json.getDouble("x"), json.getDouble("y"));
+		} else if (object instanceof JSONArray) {
+			JSONArray json = (JSONArray) object;
+			return new Point2D.Double(json.getDouble(0), json.getDouble(1));
+		} else {
+			throw new IllegalArgumentException("Expected JSONObject or JSONArray!");
+		}
 	}
 
 	public static Rectangle parseRectangle(JSONArray json) {
