@@ -21,6 +21,7 @@ import com.demod.factorio.fakelua.LuaValue;
 import com.demod.factorio.port.SimpleMathFormula;
 import com.demod.factorio.port.SimpleMathFormula.Expression;
 import com.demod.factorio.port.SimpleMathFormula.InputException;
+import com.demod.factorio.prototype.AchievementPrototype;
 import com.demod.factorio.prototype.EntityPrototype;
 import com.demod.factorio.prototype.EquipmentPrototype;
 import com.demod.factorio.prototype.FluidPrototype;
@@ -45,6 +46,7 @@ public class DataTable {
 	private final Map<String, TechPrototype> technologies = new LinkedHashMap<>();
 	private final Map<String, EquipmentPrototype> equipments = new LinkedHashMap<>();
 	private final Map<String, TilePrototype> tiles = new LinkedHashMap<>();
+	private final Map<String, AchievementPrototype> achievements = new LinkedHashMap<>();
 
 	private final Map<String, List<EntityPrototype>> craftingCategories = new LinkedHashMap<>();
 
@@ -89,6 +91,8 @@ public class DataTable {
 						equipments.put(name, new EquipmentPrototype(protoLua.checktable(), name, type));
 					} else if (typeHierarchy.isAssignable("tile", type)) {
 						tiles.put(name, new TilePrototype(protoLua.checktable(), name, type));
+					} else if (typeHierarchy.isAssignable("achievement", type)) {
+						achievements.put(name, new AchievementPrototype(protoLua.checktable(), name, type));
 					}
 				} catch (Exception e) {
 					LOGGER.error(">>>>> EXCEPTION FOR {} ({})", name, type);
@@ -105,6 +109,7 @@ public class DataTable {
 		technologies.values().forEach(p -> p.setTable(this));
 		equipments.values().forEach(p -> p.setTable(this));
 		tiles.values().forEach(p -> p.setTable(this));
+		achievements.values().forEach(p -> p.setTable(this));
 
 		for (ItemPrototype item : items.values()) {
 			LuaValue luaPlaceResult = item.lua().get("place_result");
@@ -209,6 +214,10 @@ public class DataTable {
 		Set<String> ret = new LinkedHashSet<>();
 		Utils.forEach(jsonArray, ret::add);
 		return ret;
+	}
+
+	public Map<String, AchievementPrototype> getAchievements() {
+		return achievements;
 	}
 
 	public Map<String, List<EntityPrototype>> getCraftingCategories() {
