@@ -135,8 +135,7 @@ public class FactorioData {
 
 	private final int defaultIconSize = 64; // TODO read from defines
 
-	private final Map<String, BufferedImage> modImageCache = new HashMap<>();
-
+	private final Map<String, BufferedImage> modImageCache = new ConcurrentHashMap<>();
 	private final Map<String, BufferedImage> modIconCache = new HashMap<>();
 
 	private DataTable dataTable = null;
