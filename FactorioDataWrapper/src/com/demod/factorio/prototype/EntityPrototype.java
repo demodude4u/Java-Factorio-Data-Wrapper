@@ -1,6 +1,5 @@
 package com.demod.factorio.prototype;
 
-import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -14,19 +13,12 @@ import com.demod.factorio.fakelua.LuaValue;
 
 public class EntityPrototype extends DataPrototype {
 
-	private final Rectangle2D.Double selectionBox;
 	private final List<String> flags = new ArrayList<>();
 	private final List<ItemToPlace> placedBy = new ArrayList<>();
 	private Optional<ItemToPlace> primaryItem = Optional.empty();
 
 	public EntityPrototype(LuaTable lua, String name, String type) {
 		super(lua, name, type);
-		LuaValue selectionBoxLua = lua.get("selection_box");
-		if (!selectionBoxLua.isnil()) {
-			selectionBox = Utils.parseRectangle(selectionBoxLua);
-		} else {
-			selectionBox = new Rectangle2D.Double();
-		}
 
 		Utils.forEach(lua.get("flags").opttable(new LuaTable(new JSONArray())), l -> {
 			flags.add(l.tojstring());
@@ -58,10 +50,6 @@ public class EntityPrototype extends DataPrototype {
 
 	public Optional<ItemToPlace> getPrimaryItem() {
 		return primaryItem;
-	}
-
-	public Rectangle2D.Double getSelectionBox() {
-		return selectionBox;
 	}
 
 	public void setPrimaryItem(Optional<ItemToPlace> primaryItem) {
