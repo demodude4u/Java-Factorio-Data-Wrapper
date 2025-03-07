@@ -17,12 +17,9 @@ import java.math.BigInteger;
 import java.nio.file.Files;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -134,10 +131,7 @@ public class FactorioData {
 		}
 	}
 
-	private final int defaultIconSize = 64; // TODO read from defines
-
-	private final Map<String, BufferedImage> modImageCache = new ConcurrentHashMap<>();
-	private final Map<String, BufferedImage> modIconCache = new HashMap<>();
+	private final int defaultIconSize = 64; // TODO read from define
 
 	private DataTable dataTable = null;
 
@@ -204,16 +198,14 @@ public class FactorioData {
 	}
 
 	public BufferedImage getModImage(String path) {
-		return modImageCache.computeIfAbsent(path, p -> {
-			try {
-				BufferedImage image = loadImage(getModResource(path).get());
-				return image;
-			} catch (Exception e) {
-				LOGGER.error("MISSING MOD IMAGE: " + path);
-				e.printStackTrace();
-				throw new RuntimeException(e);
-			}
-		});
+		try {
+			BufferedImage image = loadImage(getModResource(path).get());
+			return image;
+		} catch (Exception e) {
+			LOGGER.error("MISSING MOD IMAGE: " + path);
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
 	}
 
 	public ModLoader getModLoader() {
@@ -249,86 +241,84 @@ public class FactorioData {
 		if (prototype.lua().get("type").checkjstring().equals("technology")) {
 			name += ".tech"; // HACK
 		}
-		return modIconCache.computeIfAbsent(name, n -> {
-			LuaValue iconLua = prototype.lua().get("icon");
-			if (!iconLua.isnil()) {
-				int iconSize = prototype.lua().get("icon_size").optint(defaultIconSize);
+		LuaValue iconLua = prototype.lua().get("icon");
+		if (!iconLua.isnil()) {
+			int iconSize = prototype.lua().get("icon_size").optint(defaultIconSize);
 
-				// TODO skip this call if layer.getWidth() == layerIconSize
-				return getModImage(iconLua.tojstring()).getSubimage(0, 0, iconSize, iconSize);
+			// TODO skip this call if layer.getWidth() == layerIconSize
+			return getModImage(iconLua.tojstring()).getSubimage(0, 0, iconSize, iconSize);
+		}
+		LuaValue iconsLua = prototype.lua().get("icons");
+
+		if (iconsLua.isnil()) {
+			LOGGER.warn(prototype.lua().get("type").checkjstring() + " " + name + " has no icon.");
+			return new BufferedImage(defaultIconSize, defaultIconSize, BufferedImage.TYPE_INT_ARGB);
+		}
+
+		int sizeOfFirstLayer = iconsLua.get(1).get("icon_size").optint(defaultIconSize);
+
+		BufferedImage icon = new BufferedImage(sizeOfFirstLayer, sizeOfFirstLayer, BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g = icon.createGraphics();
+		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
+		AffineTransform pat = g.getTransform();
+		Utils.forEach(iconsLua.totableArray(), l -> {
+			BufferedImage layer = getModImage(l.get("icon").tojstring());
+			int layerIconSize = l.get("icon_size").optint(defaultIconSize);
+			// TODO skip this call if layer.getWidth() == layerIconSize
+			layer = layer.getSubimage(0, 0, layerIconSize, layerIconSize);
+
+			LuaValue tintLua = l.get("tint");
+			if (!tintLua.isnil()) {
+				layer = Utils.tintImage(layer, Utils.parseColor(tintLua));
 			}
-			LuaValue iconsLua = prototype.lua().get("icons");
 
-			if (iconsLua.isnil()) {
-				LOGGER.warn(prototype.lua().get("type").checkjstring() + " " + n + " has no icon.");
-				return new BufferedImage(defaultIconSize, defaultIconSize, BufferedImage.TYPE_INT_ARGB);
+			int expectedSize = 32; // items and recipes (and most other things)
+			if (prototype.lua().get("type").checkjstring().equals("technology"))
+				expectedSize = 128;
+
+			/*
+			 * All vanilla item and recipe icons are defined with icon size 64 (technologies
+			 * with 256). However, the game "expects" icons to have a size of 32 (or 128 for
+			 * technologies). Because these sizes differ, we observe the behavior that the
+			 * game does not apply shift and scale values directly. Instead, shift and scale
+			 * are multiplied by real_size / expected_size. In the case of items case, that
+			 * means we have to multiply them by 2, because 64 / 32 = 2; this value is
+			 * represented by the below variable.
+			 */
+			int scaleAndShiftScaling = sizeOfFirstLayer / expectedSize;
+
+			double scale = l.get("scale").optdouble(1.0);
+			// scale has to be multiplied by scaleAndShiftScaling, see above
+			if (!l.get("scale").isnil()) // but only if it was defined
+				scale *= scaleAndShiftScaling;
+
+			// move icon into the center
+			g.translate((icon.getWidth() / 2) - (layer.getWidth() * (scale)) / 2,
+					(icon.getHeight() / 2) - (layer.getHeight() * (scale)) / 2);
+
+			Point shift = Utils.parsePoint(l.get("shift"));
+			// shift has to be multiplied by scaleAndShiftScaling, see above
+			shift.x *= scaleAndShiftScaling;
+			shift.y *= scaleAndShiftScaling;
+			g.translate(shift.x, shift.y);
+
+			// HACK
+			// Overlay icon of equipment technology icons are outside bounds of base icon.
+			// So, move the overlay icon up. Do the same for mining productivity tech.
+			String path = l.get("icon").tojstring();
+			if (path.equals("__core__/graphics/icons/technology/constants/constant-mining-productivity.png")) {
+				g.translate(-8, -7);
+			} else if (path.equals("__core__/graphics/icons/technology/constants/constant-equipment.png")) {
+				g.translate(0, -20);
 			}
 
-			int sizeOfFirstLayer = iconsLua.get(1).get("icon_size").optint(defaultIconSize);
-
-			BufferedImage icon = new BufferedImage(sizeOfFirstLayer, sizeOfFirstLayer, BufferedImage.TYPE_INT_ARGB);
-			Graphics2D g = icon.createGraphics();
-			g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-			g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
-			AffineTransform pat = g.getTransform();
-			Utils.forEach(iconsLua.totableArray(), l -> {
-				BufferedImage layer = getModImage(l.get("icon").tojstring());
-				int layerIconSize = l.get("icon_size").optint(defaultIconSize);
-				// TODO skip this call if layer.getWidth() == layerIconSize
-				layer = layer.getSubimage(0, 0, layerIconSize, layerIconSize);
-
-				LuaValue tintLua = l.get("tint");
-				if (!tintLua.isnil()) {
-					layer = Utils.tintImage(layer, Utils.parseColor(tintLua));
-				}
-
-				int expectedSize = 32; // items and recipes (and most other things)
-				if (prototype.lua().get("type").checkjstring().equals("technology"))
-					expectedSize = 128;
-
-				/*
-				 * All vanilla item and recipe icons are defined with icon size 64 (technologies
-				 * with 256). However, the game "expects" icons to have a size of 32 (or 128 for
-				 * technologies). Because these sizes differ, we observe the behavior that the
-				 * game does not apply shift and scale values directly. Instead, shift and scale
-				 * are multiplied by real_size / expected_size. In the case of items case, that
-				 * means we have to multiply them by 2, because 64 / 32 = 2; this value is
-				 * represented by the below variable.
-				 */
-				int scaleAndShiftScaling = sizeOfFirstLayer / expectedSize;
-
-				double scale = l.get("scale").optdouble(1.0);
-				// scale has to be multiplied by scaleAndShiftScaling, see above
-				if (!l.get("scale").isnil()) // but only if it was defined
-					scale *= scaleAndShiftScaling;
-
-				// move icon into the center
-				g.translate((icon.getWidth() / 2) - (layer.getWidth() * (scale)) / 2,
-						(icon.getHeight() / 2) - (layer.getHeight() * (scale)) / 2);
-
-				Point shift = Utils.parsePoint(l.get("shift"));
-				// shift has to be multiplied by scaleAndShiftScaling, see above
-				shift.x *= scaleAndShiftScaling;
-				shift.y *= scaleAndShiftScaling;
-				g.translate(shift.x, shift.y);
-
-				// HACK
-				// Overlay icon of equipment technology icons are outside bounds of base icon.
-				// So, move the overlay icon up. Do the same for mining productivity tech.
-				String path = l.get("icon").tojstring();
-				if (path.equals("__core__/graphics/icons/technology/constants/constant-mining-productivity.png")) {
-					g.translate(-8, -7);
-				} else if (path.equals("__core__/graphics/icons/technology/constants/constant-equipment.png")) {
-					g.translate(0, -20);
-				}
-
-				g.scale(scale, scale);
-				g.drawImage(layer, 0, 0, null);
-				g.setTransform(pat);
-			});
-			g.dispose();
-			return icon;
+			g.scale(scale, scale);
+			g.drawImage(layer, 0, 0, null);
+			g.setTransform(pat);
 		});
+		g.dispose();
+		return icon;
 	}
 
 	public void initialize() throws JSONException, IOException {
