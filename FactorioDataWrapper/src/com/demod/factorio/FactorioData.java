@@ -22,6 +22,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -55,11 +56,11 @@ public class FactorioData {
 	}
 
 	@SuppressWarnings("resource")
-	public static void factorioDataDump(File folderFactorio, File factorioExecutable, File fileConfig, File folderMods) {
+	public static void factorioDataDump(File folderFactorio, File factorioExecutable, File fileConfig,
+			File folderMods) {
 		try {
-			ProcessBuilder pb = new ProcessBuilder(factorioExecutable.getAbsolutePath(),
-					"--config", fileConfig.getAbsolutePath(), "--mod-directory", folderMods.getAbsolutePath(),
-					"--dump-data");
+			ProcessBuilder pb = new ProcessBuilder(factorioExecutable.getAbsolutePath(), "--config",
+					fileConfig.getAbsolutePath(), "--mod-directory", folderMods.getAbsolutePath(), "--dump-data");
 			pb.directory(folderFactorio);
 
 			LOGGER.debug("Running command " + pb.command().stream().collect(Collectors.joining(",", "[", "]")));
