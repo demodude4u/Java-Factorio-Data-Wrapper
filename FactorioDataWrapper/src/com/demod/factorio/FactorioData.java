@@ -399,6 +399,7 @@ public class FactorioData {
 			Files.writeString(fileDumpStamp.toPath(), generateStamp());
 		}
 
+		LOGGER.info("Read Data: {}", fileDataRawDump.getAbsolutePath());
 		LuaTable lua = null;
 		try (FileInputStream fis = new FileInputStream(fileDataRawDump)) {
 			lua = new LuaTable(new JSONObject(new JSONTokener(fis)));
