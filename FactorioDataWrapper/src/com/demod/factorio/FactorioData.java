@@ -17,9 +17,9 @@ import java.math.BigInteger;
 import java.nio.file.Files;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -135,15 +135,19 @@ public class FactorioData {
 
 	private DataTable dataTable = null;
 
-	private ModLoader modLoader;
+	private Optional<ModLoader> modLoader;
 
-	public File folderFactorio;
-	private File folderData;
+	public Optional<File> folderFactorio;
 	public File folderMods;
+	private File folderData;
 
-	public File factorioExecutable;
+	public Optional<File> factorioExecutable;
 
 	private final JSONObject config;
+
+	private boolean hasFactorioInstall;
+
+	private List<String> mods;
 
 	public FactorioData(JSONObject config) {
 		this.config = config;
@@ -165,7 +169,7 @@ public class FactorioData {
 
 	private String generateStamp() {
 		try (StringWriter sw = new StringWriter(); PrintWriter pw = new PrintWriter(sw)) {
-			pw.println("Factorio Install: " + folderFactorio.getAbsolutePath());
+			pw.println("Factorio Install: " + folderFactorio.get().getAbsolutePath());
 			pw.println("Data Folder: " + folderData.getAbsolutePath());
 			pw.println("Mods Folder: " + folderMods.getAbsolutePath());
 			pw.println("mod-list.json MD5: " + fileMD5(new File(folderMods, "mod-list.json")));
@@ -189,7 +193,7 @@ public class FactorioData {
 		return folderData;
 	}
 
-	public File getFolderFactorio() {
+	public Optional<File> getFolderFactorio() {
 		return folderFactorio;
 	}
 
@@ -208,7 +212,7 @@ public class FactorioData {
 		}
 	}
 
-	public ModLoader getModLoader() {
+	public Optional<ModLoader> getModLoader() {
 		return modLoader;
 	}
 
@@ -218,7 +222,7 @@ public class FactorioData {
 			throw new IllegalArgumentException("Path is not valid: \"" + path + "\"");
 		}
 		String modName = firstSegment.substring(2, firstSegment.length() - 2);
-		Optional<Mod> mod = modLoader.getMod(modName);
+		Optional<Mod> mod = modLoader.get().getMod(modName);
 		if (!mod.isPresent()) {
 			throw new IllegalStateException("Mod does not exist: " + modName);
 		}
@@ -230,6 +234,10 @@ public class FactorioData {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
+	}
+
+	public List<String> getMods() {
+		return mods;
 	}
 
 	public DataTable getTable() {
@@ -321,23 +329,19 @@ public class FactorioData {
 		return icon;
 	}
 
+	public boolean hasFactorioInstall() {
+		return hasFactorioInstall;
+	}
+
 	public void initialize() throws JSONException, IOException {
 //		setupWorkingDirectory();//TODO do we still need this?
 
-		folderFactorio = new File(config.getString("factorio"));
-		factorioExecutable = new File(config.getString("executable"));
-		boolean forceDumpData = config.optBoolean("force-dump-data");
 		// Setup data folder
-
 		folderData = new File(config.optString("data", "data"));
 		folderData.mkdirs();
 
-		File fileConfig = new File(folderData, "config.ini");
-		try (PrintWriter pw = new PrintWriter(fileConfig)) {
-			pw.println("[path]");
-			pw.println("read-data=" + folderFactorio.getAbsolutePath());
-			pw.println("write-data=" + folderData.getAbsolutePath());
-		}
+		File folderScriptOutput = new File(folderData, "script-output");
+		File fileDataRawDump = new File(folderScriptOutput, "data-raw-dump.json");
 
 		folderMods = Optional.of(config.optString("mods", null)).map(File::new).orElse(new File(folderData, "mods"));
 		folderMods.mkdirs();
@@ -347,10 +351,14 @@ public class FactorioData {
 			Files.copy(FactorioData.class.getClassLoader().getResourceAsStream("mod-list.json"), fileModList.toPath());
 		}
 
-		// Prevent unnecessary changes so github doesn't get confused
-		File fileModSettings = new File(folderMods, "mod-settings.dat");
-		fileModList.setReadOnly();
-		fileModSettings.setReadOnly();
+		JSONObject jsonModList = new JSONObject(Files.readString(fileModList.toPath()));
+		mods = new ArrayList<>();
+		mods.add("core");
+		Utils.<JSONObject>forEach(jsonModList.getJSONArray("mods"), j -> {
+			if (j.getBoolean("enabled")) {
+				mods.add(j.getString("name"));
+			}
+		});
 
 		File fileModRendering = new File(folderMods, "mod-rendering.json");
 		if (!fileModRendering.exists()) {
@@ -358,45 +366,62 @@ public class FactorioData {
 					fileModRendering.toPath());
 		}
 
-		JSONObject jsonModList = new JSONObject(Files.readString(fileModList.toPath()));
-		Set<String> modInclude = new HashSet<>();
-		modInclude.add("core");
-		Utils.<JSONObject>forEach(jsonModList.getJSONArray("mods"), j -> {
-			if (j.getBoolean("enabled")) {
-				modInclude.add(j.getString("name"));
-			}
-		});
+		hasFactorioInstall = config.has("factorio") && config.has("executable");
 
-		File folderScriptOutput = new File(folderData, "script-output");
-		File fileDataRawDump = new File(folderScriptOutput, "data-raw-dump.json");
+		if (hasFactorioInstall) {
+			folderFactorio = Optional.of(new File(config.getString("factorio")));
+			factorioExecutable = Optional.of(new File(config.getString("executable")));
 
-		File fileDumpStamp = new File(folderData, "dumpStamp.txt");
-		boolean matchingDumpStamp = false;
-		String stamp = generateStamp();
-
-		LOGGER.debug("============================");
-		LOGGER.debug("============================");
-		LOGGER.debug(stamp);
-		if (fileDumpStamp.exists()) {
-			String compareStamp = Files.readString(fileDumpStamp.toPath());
-			if (stamp.equals(compareStamp)) {
-				matchingDumpStamp = true;
-			}
-		}
-
-		// Fetch data dump file from factorio.exe
-
-		if (!fileDataRawDump.exists() || !matchingDumpStamp || forceDumpData) {
-
-			factorioDataDump(folderFactorio, factorioExecutable, fileConfig, folderMods);
-
-			Uninterruptibles.sleepUninterruptibly(1, TimeUnit.SECONDS);
-			if (!fileDataRawDump.exists()) {
-				LOGGER.error("DATA DUMP FILE MISSING! " + fileDataRawDump.getAbsolutePath());
-				System.exit(-1);
+			File fileConfig = new File(folderData, "config.ini");
+			try (PrintWriter pw = new PrintWriter(fileConfig)) {
+				pw.println("[path]");
+				pw.println("read-data=" + folderFactorio.get().getAbsolutePath());
+				pw.println("write-data=" + folderData.getAbsolutePath());
 			}
 
-			Files.writeString(fileDumpStamp.toPath(), generateStamp());
+			// Prevent unnecessary changes so github doesn't get confused
+			File fileModSettings = new File(folderMods, "mod-settings.dat");
+			fileModList.setReadOnly();
+			fileModSettings.setReadOnly();
+
+			boolean forceDumpData = config.optBoolean("force-dump-data");
+
+			File fileDumpStamp = new File(folderData, "dumpStamp.txt");
+			boolean matchingDumpStamp = false;
+			String stamp = generateStamp();
+
+			LOGGER.debug("============================");
+			LOGGER.debug("============================");
+			LOGGER.debug(stamp);
+			if (fileDumpStamp.exists()) {
+				String compareStamp = Files.readString(fileDumpStamp.toPath());
+				if (stamp.equals(compareStamp)) {
+					matchingDumpStamp = true;
+				}
+			}
+
+			// Fetch data dump file from factorio.exe
+
+			if (!fileDataRawDump.exists() || !matchingDumpStamp || forceDumpData) {
+
+				factorioDataDump(folderFactorio.get(), factorioExecutable.get(), fileConfig, folderMods);
+
+				Uninterruptibles.sleepUninterruptibly(1, TimeUnit.SECONDS);
+				if (!fileDataRawDump.exists()) {
+					LOGGER.error("DATA DUMP FILE MISSING! " + fileDataRawDump.getAbsolutePath());
+					System.exit(-1);
+				}
+
+				Files.writeString(fileDumpStamp.toPath(), generateStamp());
+			}
+
+			modLoader = Optional.of(new ModLoader(mods));
+			modLoader.get().loadFolder(folderFactorio.get());
+			modLoader.get().loadFolder(folderMods);
+
+		} else {
+			folderFactorio = Optional.empty();
+			factorioExecutable = Optional.empty();
 		}
 
 		LOGGER.info("Read Data: {}", fileDataRawDump.getAbsolutePath());
@@ -407,10 +432,6 @@ public class FactorioData {
 			e.printStackTrace();
 			System.exit(-1);
 		}
-
-		modLoader = new ModLoader(modInclude);
-		modLoader.loadFolder(folderFactorio);
-		modLoader.loadFolder(folderMods);
 
 		TypeHierarchy typeHiearchy = new TypeHierarchy(Utils
 				.readJsonFromStream(FactorioData.class.getClassLoader().getResourceAsStream("type-hiearchy.json")));
@@ -423,23 +444,4 @@ public class FactorioData {
 		dataTable = new DataTable(typeHiearchy, lua, excludeDataJson, includeDataJson, wikiNamingJson);
 		dataTable.setData(this);
 	}
-
-	// XXX do we still need this?
-//	private static void setupWorkingDirectory() {
-//		String className = FactorioData.class.getName().replace('.', '/');
-//		String classJar = FactorioData.class.getResource("/" + className + ".class").toString();
-//		if (classJar.startsWith("jar:")) {
-//			try {
-//				File jarFolder = new File(
-//						FactorioData.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath())
-//						.getParentFile();
-//				// System.out.println("Jar Folder: " +
-//				// jarFolder.getAbsolutePath());
-//				System.setProperty("user.dir", jarFolder.getAbsolutePath());
-//			} catch (URISyntaxException e) {
-//				e.printStackTrace();
-//				System.exit(-1);
-//			}
-//		}
-//	}
 }

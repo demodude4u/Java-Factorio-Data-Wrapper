@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -132,8 +133,8 @@ public class ModLoader {
 
 	private final Map<String, Mod> mods = new LinkedHashMap<>();
 
-	public ModLoader(Set<String> modInclude) {
-		this.modInclude = modInclude;
+	public ModLoader(List<String> mods) {
+		this.modInclude = new HashSet<String>(mods);
 	}
 
 	public Optional<Mod> getMod(String name) {
