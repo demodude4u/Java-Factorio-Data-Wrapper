@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -24,6 +25,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
+import java.util.zip.ZipOutputStream;
 
 import javax.imageio.ImageIO;
 
@@ -208,7 +212,8 @@ public class FactorioData {
 		} catch (Exception e) {
 			LOGGER.error("MISSING MOD IMAGE: " + path);
 			e.printStackTrace();
-			throw new RuntimeException(e);
+			System.exit(-1);
+			return null;
 		}
 	}
 
@@ -342,6 +347,7 @@ public class FactorioData {
 
 		File folderScriptOutput = new File(folderData, "script-output");
 		File fileDataRawDump = new File(folderScriptOutput, "data-raw-dump.json");
+		File fileDataRawDumpZip = new File(folderScriptOutput, "data-raw-dump.zip");
 
 		folderMods = Optional.of(config.optString("mods", null)).map(File::new).orElse(new File(folderData, "mods"));
 		folderMods.mkdirs();
@@ -412,6 +418,15 @@ public class FactorioData {
 					System.exit(-1);
 				}
 
+				try (ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(fileDataRawDumpZip))) {
+					zos.putNextEntry(new ZipEntry(fileDataRawDump.getName()));
+					zos.write(Files.readAllBytes(fileDataRawDump.toPath()));
+					zos.closeEntry();
+				}
+				LOGGER.info("Write Data Zip: {}", fileDataRawDumpZip.getAbsolutePath());
+				fileDataRawDump.delete();
+				LOGGER.info("Delete Data: {}", fileDataRawDump.getAbsolutePath());
+
 				Files.writeString(fileDumpStamp.toPath(), generateStamp());
 			}
 
@@ -424,12 +439,24 @@ public class FactorioData {
 			factorioExecutable = Optional.empty();
 		}
 
-		LOGGER.info("Read Data: {}", fileDataRawDump.getAbsolutePath());
+		LOGGER.info("Read Data: {}", fileDataRawDumpZip.getAbsolutePath());
 		LuaTable lua = null;
-		try (FileInputStream fis = new FileInputStream(fileDataRawDump)) {
-			lua = new LuaTable(new JSONObject(new JSONTokener(fis)));
+
+		try (ZipInputStream zis = new ZipInputStream(new FileInputStream(fileDataRawDumpZip))) {
+			ZipEntry entry;
+			while ((entry = zis.getNextEntry()) != null) {
+				if (entry.getName().equals(fileDataRawDump.getName())) {
+					lua = new LuaTable(new JSONObject(new JSONTokener(zis)));
+					break;
+				}
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.exit(-1);
+		}
+		if (lua == null) {
+			LOGGER.error("{} not found in data zip! {}", fileDataRawDump.getName(),
+					fileDataRawDumpZip.getAbsolutePath());
 			System.exit(-1);
 		}
 
