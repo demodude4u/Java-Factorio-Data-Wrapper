@@ -408,8 +408,7 @@ public class FactorioData {
 
 			// Fetch data dump file from factorio.exe
 
-			if (!fileDataRawDump.exists() || !matchingDumpStamp || forceDumpData) {
-
+			if (!fileDataRawDumpZip.exists() || !matchingDumpStamp || forceDumpData) {
 				factorioDataDump(folderFactorio.get(), factorioExecutable.get(), fileConfig, folderMods);
 
 				Uninterruptibles.sleepUninterruptibly(1, TimeUnit.SECONDS);
@@ -439,7 +438,7 @@ public class FactorioData {
 			factorioExecutable = Optional.empty();
 		}
 
-		LOGGER.info("Read Data: {}", fileDataRawDumpZip.getAbsolutePath());
+		LOGGER.info("Read Data Zip: {}", fileDataRawDumpZip.getAbsolutePath());
 		LuaTable lua = null;
 
 		try (ZipInputStream zis = new ZipInputStream(new FileInputStream(fileDataRawDumpZip))) {
