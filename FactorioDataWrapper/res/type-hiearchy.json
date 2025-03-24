@@ -117,7 +117,8 @@
               "player-port": {},
               "power-switch": {},
               "programmable-speaker": {},
-              "pump": {},
+              "proxy-container": {},
+			  "pump": {},
               "radar": {},
               "rail": {
                   "curved-rail": {},
@@ -164,7 +165,7 @@
                   "car": {},
                   "rolling-stock": {
                       "artillery-wagon": {},
-                      "cargo-wagon": {},
+                      "cargo-wagon": {"infinity-cargo-wagon": {}},
                       "fluid-wagon": {},
                       "locomotive": {}
                   },
