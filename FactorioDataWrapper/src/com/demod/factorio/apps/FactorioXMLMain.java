@@ -19,6 +19,7 @@ import org.w3c.dom.ls.DOMImplementationLS;
 import org.w3c.dom.ls.LSOutput;
 import org.w3c.dom.ls.LSSerializer;
 
+import com.demod.factorio.Config;
 import com.demod.factorio.DataTable;
 import com.demod.factorio.FactorioData;
 import com.demod.factorio.ModInfo;
@@ -103,7 +104,9 @@ public class FactorioXMLMain {
 
 	public static void main(String[] args) throws JSONException, IOException, ParserConfigurationException,
 			ClassNotFoundException, InstantiationException, IllegalAccessException, ClassCastException {
-		DataTable table = FactorioData.getDefaultTable();
+		FactorioData data = new FactorioData(Config.get());
+		data.initialize(true);
+		DataTable table = data.getTable();
 		ModInfo baseInfo = new ModInfo(Utils.readJsonFromStream(
 				new FileInputStream(new File(table.getData().folderFactorio.get(), "data/base/info.json"))));
 

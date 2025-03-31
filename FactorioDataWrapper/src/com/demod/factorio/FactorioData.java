@@ -46,8 +46,6 @@ import com.google.common.util.concurrent.Uninterruptibles;
 public class FactorioData {
 	private static final Logger LOGGER = LoggerFactory.getLogger(FactorioData.class);
 
-	private static FactorioData defaultInstance;
-
 	private static BufferedImage convertCustomImage(BufferedImage image) {
 		BufferedImage ret = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g = ret.createGraphics();
@@ -96,19 +94,6 @@ public class FactorioData {
 			e.printStackTrace();
 			System.exit(-1);
 		}
-	}
-
-	public static synchronized DataTable getDefaultTable() {
-		if (defaultInstance == null) {
-			try {
-				defaultInstance = new FactorioData(Config.get());
-				defaultInstance.initialize();
-			} catch (JSONException | IOException e) {
-				e.printStackTrace();
-				System.exit(-1);
-			}
-		}
-		return defaultInstance.getTable();
 	}
 
 	private static BufferedImage loadImage(InputStream is) throws IOException {
@@ -338,7 +323,7 @@ public class FactorioData {
 		return hasFactorioInstall;
 	}
 
-	public void initialize() throws JSONException, IOException {
+	public void initialize(boolean wikiMode) throws JSONException, IOException {
 //		setupWorkingDirectory();//TODO do we still need this?
 
 		// Setup data folder
@@ -461,10 +446,17 @@ public class FactorioData {
 
 		TypeHierarchy typeHiearchy = new TypeHierarchy(Utils
 				.readJsonFromStream(FactorioData.class.getClassLoader().getResourceAsStream("type-hiearchy.json")));
-		JSONObject excludeDataJson = Utils
-				.readJsonFromStream(FactorioData.class.getClassLoader().getResourceAsStream("exclude-data.json"));
-		JSONObject includeDataJson = Utils
-				.readJsonFromStream(FactorioData.class.getClassLoader().getResourceAsStream("include-data.json"));
+		JSONObject excludeDataJson;
+		JSONObject includeDataJson;
+		if (wikiMode) {
+			excludeDataJson = Utils
+					.readJsonFromStream(FactorioData.class.getClassLoader().getResourceAsStream("exclude-data.json"));
+			includeDataJson = Utils
+					.readJsonFromStream(FactorioData.class.getClassLoader().getResourceAsStream("include-data.json"));
+		} else {
+			excludeDataJson = new JSONObject();
+			includeDataJson = new JSONObject();
+		}
 		JSONObject wikiNamingJson = Utils
 				.readJsonFromStream(FactorioData.class.getClassLoader().getResourceAsStream("wiki-naming.json"));
 		dataTable = new DataTable(typeHiearchy, lua, excludeDataJson, includeDataJson, wikiNamingJson);

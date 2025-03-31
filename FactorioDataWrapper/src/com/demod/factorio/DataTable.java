@@ -62,11 +62,12 @@ public class DataTable {
 		this.typeHierarchy = typeHierarchy;
 		this.rawLua = rawLua;
 
-		Set<String> excludedRecipesAndItems = asStringSet(excludeDataJson.getJSONArray("recipes-and-items"));
-		Set<String> excludedTechnologies = asStringSet(excludeDataJson.getJSONArray("technologies"));
-		Set<String> excludedFluids = asStringSet(excludeDataJson.getJSONArray("fluids"));
-		Set<String> excludedEntities = asStringSet(excludeDataJson.getJSONArray("entities"));
-		this.explicitelyIncludedEntities.addAll(asStringSet(includeDataJson.getJSONArray("entities")));
+		Set<String> excludedRecipesAndItems = asStringSet(
+				excludeDataJson.optJSONArray("recipes-and-items", new JSONArray()));
+		Set<String> excludedTechnologies = asStringSet(excludeDataJson.optJSONArray("technologies", new JSONArray()));
+		Set<String> excludedFluids = asStringSet(excludeDataJson.optJSONArray("fluids", new JSONArray()));
+		Set<String> excludedEntities = asStringSet(excludeDataJson.optJSONArray("entities", new JSONArray()));
+		this.explicitelyIncludedEntities.addAll(asStringSet(includeDataJson.optJSONArray("entities", new JSONArray())));
 
 		nameMappingTechnologies = wikiNamingJson.getJSONObject("technologies");
 		nameMappingItemsRecipes = wikiNamingJson.getJSONObject("items and recipes");
