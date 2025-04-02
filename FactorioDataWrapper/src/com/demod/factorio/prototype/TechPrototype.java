@@ -57,7 +57,6 @@ public class TechPrototype extends DataPrototype {
 	private final LinkedHashMap<String, Integer> ingredients = new LinkedHashMap<>();
 	private int count;
 	private final double time;
-	private final String order;
 	private final List<String> recipeUnlocks = new ArrayList<>();
 	private final Optional<String> maxLevel;
 	private final boolean maxLevelInfinite;
@@ -74,7 +73,6 @@ public class TechPrototype extends DataPrototype {
 		super(lua, name, type);
 
 		upgrade = lua.get("upgrade").optboolean(false);
-		order = lua.get("order").optjstring("");
 
 		Utils.forEach(lua.get("prerequisites").opttable(new LuaTable(new JSONArray())), l -> {
 			prerequisites.add(l.tojstring());
@@ -159,10 +157,6 @@ public class TechPrototype extends DataPrototype {
 
 	public Optional<String> getMaxLevel() {
 		return maxLevel;
-	}
-
-	public String getOrder() {
-		return order;
 	}
 
 	public List<String> getPrerequisites() {

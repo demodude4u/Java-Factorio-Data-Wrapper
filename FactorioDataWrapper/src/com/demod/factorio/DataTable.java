@@ -1,6 +1,7 @@
 package com.demod.factorio;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -22,10 +23,13 @@ import com.demod.factorio.port.SimpleMathFormula;
 import com.demod.factorio.port.SimpleMathFormula.Expression;
 import com.demod.factorio.port.SimpleMathFormula.InputException;
 import com.demod.factorio.prototype.AchievementPrototype;
+import com.demod.factorio.prototype.DataPrototype;
 import com.demod.factorio.prototype.EntityPrototype;
 import com.demod.factorio.prototype.EquipmentPrototype;
 import com.demod.factorio.prototype.FluidPrototype;
+import com.demod.factorio.prototype.ItemGroupPrototype;
 import com.demod.factorio.prototype.ItemPrototype;
+import com.demod.factorio.prototype.ItemSubGroupPrototype;
 import com.demod.factorio.prototype.RecipePrototype;
 import com.demod.factorio.prototype.TechPrototype;
 import com.demod.factorio.prototype.TilePrototype;
@@ -47,6 +51,8 @@ public class DataTable {
 	private final Map<String, EquipmentPrototype> equipments = new LinkedHashMap<>();
 	private final Map<String, TilePrototype> tiles = new LinkedHashMap<>();
 	private final Map<String, AchievementPrototype> achievements = new LinkedHashMap<>();
+	private final Map<String, ItemGroupPrototype> itemGroups = new LinkedHashMap<>();
+	private final Map<String, ItemSubGroupPrototype> itemSubGroups = new LinkedHashMap<>();
 
 	private final Map<String, List<EntityPrototype>> craftingCategories = new LinkedHashMap<>();
 
@@ -94,6 +100,10 @@ public class DataTable {
 						tiles.put(name, new TilePrototype(protoLua.checktable(), name, type));
 					} else if (typeHierarchy.isAssignable("achievement", type)) {
 						achievements.put(name, new AchievementPrototype(protoLua.checktable(), name, type));
+					} else if (typeHierarchy.isAssignable("item-group", type)) {
+						itemGroups.put(name, new ItemGroupPrototype(protoLua.checktable(), name, type));
+					} else if (typeHierarchy.isAssignable("item-subgroup", type)) {
+						itemSubGroups.put(name, new ItemSubGroupPrototype(protoLua.checktable(), name, type));
 					}
 				} catch (Exception e) {
 					LOGGER.error(">>>>> EXCEPTION FOR {} ({})", name, type);
@@ -103,14 +113,23 @@ public class DataTable {
 			});
 		});
 
-		items.values().forEach(p -> p.setTable(this));
-		recipes.values().forEach(p -> p.setTable(this));
-		entities.values().forEach(p -> p.setTable(this));
-		fluids.values().forEach(p -> p.setTable(this));
-		technologies.values().forEach(p -> p.setTable(this));
-		equipments.values().forEach(p -> p.setTable(this));
-		tiles.values().forEach(p -> p.setTable(this));
-		achievements.values().forEach(p -> p.setTable(this));
+		for (Map<String, ? extends DataPrototype> protos : Arrays.asList(items, recipes, entities, fluids, technologies,
+				equipments, tiles, achievements, itemGroups, itemSubGroups)) {
+			protos.values().forEach(p -> {
+
+				p.setTable(this);
+
+				if (!(p instanceof ItemSubGroupPrototype)) {
+					Optional<String> subgroup = p.getSubgroup();
+					if (subgroup.isPresent()) {
+						ItemSubGroupPrototype protoSubGroup = itemSubGroups.get(subgroup.get());
+						p.setGroup(protoSubGroup.getGroup());
+					} else {
+						p.setGroup(Optional.empty());
+					}
+				}
+			});
+		}
 
 		for (ItemPrototype item : items.values()) {
 			LuaValue luaPlaceResult = item.lua().get("place_result");
@@ -261,8 +280,24 @@ public class DataTable {
 		return Optional.ofNullable(items.get(name));
 	}
 
+	public Optional<ItemGroupPrototype> getItemGroup(String name) {
+		return Optional.ofNullable(itemGroups.get(name));
+	}
+
+	public Map<String, ItemGroupPrototype> getItemGroups() {
+		return itemGroups;
+	}
+
 	public Map<String, ItemPrototype> getItems() {
 		return items;
+	}
+
+	public Optional<ItemSubGroupPrototype> getItemSubgroup(String name) {
+		return Optional.ofNullable(itemSubGroups.get(name));
+	}
+
+	public Map<String, ItemSubGroupPrototype> getItemSubGroups() {
+		return itemSubGroups;
 	}
 
 	public Optional<LuaValue> getRaw(String... path) {
