@@ -381,9 +381,9 @@ public class FactorioData {
 			boolean matchingDumpStamp = false;
 			String stamp = generateStamp();
 
-			LOGGER.debug("============================");
-			LOGGER.debug("============================");
-			LOGGER.debug(stamp);
+//			LOGGER.debug("============================");
+//			LOGGER.debug("============================");
+//			LOGGER.debug(stamp);
 			if (fileDumpStamp.exists()) {
 				String compareStamp = Files.readString(fileDumpStamp.toPath());
 				if (stamp.equals(compareStamp)) {
