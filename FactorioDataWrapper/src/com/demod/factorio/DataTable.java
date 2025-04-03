@@ -84,26 +84,25 @@ public class DataTable {
 				String name = protoLua.get("name").tojstring();
 				try {
 					if (typeHierarchy.isAssignable("item", type) && !excludedRecipesAndItems.contains(name)) {
-						items.put(name, new ItemPrototype(protoLua.checktable(), name, type));
+						items.put(name, new ItemPrototype(protoLua.checktable()));
 					} else if (typeHierarchy.isAssignable("recipe", type) && !excludedRecipesAndItems.contains(name)) {
-						recipes.put(name, new RecipePrototype(protoLua.checktable(), name, type));
+						recipes.put(name, new RecipePrototype(protoLua.checktable()));
 					} else if (typeHierarchy.isAssignable("entity", type) && !excludedEntities.contains(name)) {
-						entities.put(name, new EntityPrototype(protoLua.checktable(), name, type));
+						entities.put(name, new EntityPrototype(protoLua.checktable()));
 					} else if (typeHierarchy.isAssignable("fluid", type) && !excludedFluids.contains(name)) {
-						fluids.put(name, new FluidPrototype(protoLua.checktable(), name, type));
+						fluids.put(name, new FluidPrototype(protoLua.checktable()));
 					} else if (typeHierarchy.isAssignable("technology", type) && !excludedTechnologies.contains(name)) {
-						technologies.put(name,
-								new TechPrototype(protoLua.checktable(), name, type, excludedRecipesAndItems));
+						technologies.put(name, new TechPrototype(protoLua.checktable(), excludedRecipesAndItems));
 					} else if (typeHierarchy.isAssignable("equipment", type)) {
-						equipments.put(name, new EquipmentPrototype(protoLua.checktable(), name, type));
+						equipments.put(name, new EquipmentPrototype(protoLua.checktable()));
 					} else if (typeHierarchy.isAssignable("tile", type)) {
-						tiles.put(name, new TilePrototype(protoLua.checktable(), name, type));
+						tiles.put(name, new TilePrototype(protoLua.checktable()));
 					} else if (typeHierarchy.isAssignable("achievement", type)) {
-						achievements.put(name, new AchievementPrototype(protoLua.checktable(), name, type));
+						achievements.put(name, new AchievementPrototype(protoLua.checktable()));
 					} else if (typeHierarchy.isAssignable("item-group", type)) {
-						itemGroups.put(name, new ItemGroupPrototype(protoLua.checktable(), name, type));
+						itemGroups.put(name, new ItemGroupPrototype(protoLua.checktable()));
 					} else if (typeHierarchy.isAssignable("item-subgroup", type)) {
-						itemSubGroups.put(name, new ItemSubGroupPrototype(protoLua.checktable(), name, type));
+						itemSubGroups.put(name, new ItemSubGroupPrototype(protoLua.checktable()));
 					}
 				} catch (Exception e) {
 					LOGGER.error(">>>>> EXCEPTION FOR {} ({})", name, type);

@@ -10,7 +10,7 @@ import com.demod.factorio.DataTable;
 import com.demod.factorio.Utils;
 import com.demod.factorio.fakelua.LuaTable;
 
-public abstract class DataPrototype implements Comparable<DataPrototype> {
+public class DataPrototype implements Comparable<DataPrototype> {
 	private static final Logger LOGGER = LoggerFactory.getLogger(DataPrototype.class);
 
 	public static final Comparator<DataPrototype> ORDER_COMPARE = new Comparator<DataPrototype>() {
@@ -61,11 +61,10 @@ public abstract class DataPrototype implements Comparable<DataPrototype> {
 
 	protected Optional<String> group;
 
-	public DataPrototype(LuaTable lua, String name, String type) {
+	public DataPrototype(LuaTable lua) {
 		this.lua = lua;
-		this.name = name;
-		this.type = type;
-
+		name = lua.get("name").tojstring();
+		type = lua.get("type").tojstring();
 		order = lua.get("order").optjstring("");
 		subgroup = Optional.ofNullable(lua.get("subgroup").optjstring(null));
 	}

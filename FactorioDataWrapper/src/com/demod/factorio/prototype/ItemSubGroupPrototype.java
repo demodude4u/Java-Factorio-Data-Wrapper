@@ -6,9 +6,14 @@ import com.demod.factorio.fakelua.LuaTable;
 
 public class ItemSubGroupPrototype extends DataPrototype {
 
-	public ItemSubGroupPrototype(LuaTable lua, String name, String type) {
-		super(lua, name, type);
+	public ItemSubGroupPrototype(LuaTable lua) {
+		super(lua);
 
 		group = Optional.of(lua.get("group").tojstring());
+	}
+
+	@Override
+	public void setGroup(Optional<String> group) {
+		// Do Nothing
 	}
 }

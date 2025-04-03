@@ -55,7 +55,7 @@ public class FactorioData {
 	}
 
 	@SuppressWarnings("resource")
-	public static void factorioDataDump(File folderFactorio, File factorioExecutable, File fileConfig,
+	public static synchronized void factorioDataDump(File folderFactorio, File factorioExecutable, File fileConfig,
 			File folderMods) {
 		try {
 			ProcessBuilder pb = new ProcessBuilder(factorioExecutable.getAbsolutePath(), "--config",

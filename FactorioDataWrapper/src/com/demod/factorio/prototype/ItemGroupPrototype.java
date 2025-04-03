@@ -8,8 +8,8 @@ public class ItemGroupPrototype extends DataPrototype {
 
 	private final Optional<String> orderInRecipe;
 
-	public ItemGroupPrototype(LuaTable lua, String name, String type) {
-		super(lua, name, type);
+	public ItemGroupPrototype(LuaTable lua) {
+		super(lua);
 
 		orderInRecipe = Optional.ofNullable(lua.get("order_in_recipe").optjstring(null));
 	}

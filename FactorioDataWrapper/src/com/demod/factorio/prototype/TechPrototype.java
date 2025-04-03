@@ -69,8 +69,8 @@ public class TechPrototype extends DataPrototype {
 	private Optional<IntUnaryOperator> bonusCountFormula = Optional.empty();
 	private Optional<String> bonusCountFormulaVisual = Optional.empty();
 
-	public TechPrototype(LuaTable lua, String name, String type, Set<String> excludedRecipesAndItems) {
-		super(lua, name, type);
+	public TechPrototype(LuaTable lua, Set<String> excludedRecipesAndItems) {
+		super(lua);
 
 		upgrade = lua.get("upgrade").optboolean(false);
 
