@@ -33,6 +33,8 @@ import com.demod.factorio.prototype.ItemSubGroupPrototype;
 import com.demod.factorio.prototype.RecipePrototype;
 import com.demod.factorio.prototype.TechPrototype;
 import com.demod.factorio.prototype.TilePrototype;
+import com.google.common.collect.ListMultimap;
+import com.google.common.collect.MultimapBuilder;
 
 public class DataTable {
 	private static final Logger LOGGER = LoggerFactory.getLogger(DataTable.class);
@@ -55,6 +57,9 @@ public class DataTable {
 	private final Map<String, ItemSubGroupPrototype> itemSubGroups = new LinkedHashMap<>();
 
 	private final Map<String, List<EntityPrototype>> craftingCategories = new LinkedHashMap<>();
+
+	private final ListMultimap<String, RecipePrototype> recipesByInput = MultimapBuilder.hashKeys().arrayListValues()
+			.build();
 
 	// probably bad code style
 	private final Set<String> explicitelyIncludedEntities = new LinkedHashSet<>();;
@@ -184,6 +189,7 @@ public class DataTable {
 		for (RecipePrototype recipe : recipes.values()) {
 			for (String input : recipe.getInputs().keySet()) {
 				worldInputs.add(input);
+				recipesByInput.put(input, recipe);
 			}
 		}
 		for (RecipePrototype recipe : recipes.values()) {
@@ -320,6 +326,10 @@ public class DataTable {
 
 	public Map<String, RecipePrototype> getRecipes() {
 		return recipes;
+	}
+
+	public List<RecipePrototype> getRecipesByInput(String name) {
+		return recipesByInput.get(name);
 	}
 
 	public Map<String, TechPrototype> getTechnologies() {
