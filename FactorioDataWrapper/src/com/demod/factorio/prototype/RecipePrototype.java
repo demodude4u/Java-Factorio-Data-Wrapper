@@ -18,8 +18,8 @@ public class RecipePrototype extends DataPrototype {
 	private final boolean handCraftable;
 	private final boolean recycling;
 
-	public RecipePrototype(LuaTable lua, String name, String type) {
-		super(lua, name, type);
+	public RecipePrototype(LuaTable lua) {
+		super(lua);
 
 		boolean hidden = lua.get("hidden").optboolean(false);
 

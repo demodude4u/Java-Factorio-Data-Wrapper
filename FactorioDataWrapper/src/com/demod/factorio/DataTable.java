@@ -1,6 +1,7 @@
 package com.demod.factorio;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -22,13 +23,18 @@ import com.demod.factorio.port.SimpleMathFormula;
 import com.demod.factorio.port.SimpleMathFormula.Expression;
 import com.demod.factorio.port.SimpleMathFormula.InputException;
 import com.demod.factorio.prototype.AchievementPrototype;
+import com.demod.factorio.prototype.DataPrototype;
 import com.demod.factorio.prototype.EntityPrototype;
 import com.demod.factorio.prototype.EquipmentPrototype;
 import com.demod.factorio.prototype.FluidPrototype;
+import com.demod.factorio.prototype.ItemGroupPrototype;
 import com.demod.factorio.prototype.ItemPrototype;
+import com.demod.factorio.prototype.ItemSubGroupPrototype;
 import com.demod.factorio.prototype.RecipePrototype;
 import com.demod.factorio.prototype.TechPrototype;
 import com.demod.factorio.prototype.TilePrototype;
+import com.google.common.collect.ListMultimap;
+import com.google.common.collect.MultimapBuilder;
 
 public class DataTable {
 	private static final Logger LOGGER = LoggerFactory.getLogger(DataTable.class);
@@ -47,8 +53,13 @@ public class DataTable {
 	private final Map<String, EquipmentPrototype> equipments = new LinkedHashMap<>();
 	private final Map<String, TilePrototype> tiles = new LinkedHashMap<>();
 	private final Map<String, AchievementPrototype> achievements = new LinkedHashMap<>();
+	private final Map<String, ItemGroupPrototype> itemGroups = new LinkedHashMap<>();
+	private final Map<String, ItemSubGroupPrototype> itemSubGroups = new LinkedHashMap<>();
 
 	private final Map<String, List<EntityPrototype>> craftingCategories = new LinkedHashMap<>();
+
+	private final ListMultimap<String, RecipePrototype> recipesByInput = MultimapBuilder.hashKeys().arrayListValues()
+			.build();
 
 	// probably bad code style
 	private final Set<String> explicitelyIncludedEntities = new LinkedHashSet<>();;
@@ -62,11 +73,12 @@ public class DataTable {
 		this.typeHierarchy = typeHierarchy;
 		this.rawLua = rawLua;
 
-		Set<String> excludedRecipesAndItems = asStringSet(excludeDataJson.getJSONArray("recipes-and-items"));
-		Set<String> excludedTechnologies = asStringSet(excludeDataJson.getJSONArray("technologies"));
-		Set<String> excludedFluids = asStringSet(excludeDataJson.getJSONArray("fluids"));
-		Set<String> excludedEntities = asStringSet(excludeDataJson.getJSONArray("entities"));
-		this.explicitelyIncludedEntities.addAll(asStringSet(includeDataJson.getJSONArray("entities")));
+		Set<String> excludedRecipesAndItems = asStringSet(
+				excludeDataJson.optJSONArray("recipes-and-items", new JSONArray()));
+		Set<String> excludedTechnologies = asStringSet(excludeDataJson.optJSONArray("technologies", new JSONArray()));
+		Set<String> excludedFluids = asStringSet(excludeDataJson.optJSONArray("fluids", new JSONArray()));
+		Set<String> excludedEntities = asStringSet(excludeDataJson.optJSONArray("entities", new JSONArray()));
+		this.explicitelyIncludedEntities.addAll(asStringSet(includeDataJson.optJSONArray("entities", new JSONArray())));
 
 		nameMappingTechnologies = wikiNamingJson.getJSONObject("technologies");
 		nameMappingItemsRecipes = wikiNamingJson.getJSONObject("items and recipes");
@@ -77,22 +89,25 @@ public class DataTable {
 				String name = protoLua.get("name").tojstring();
 				try {
 					if (typeHierarchy.isAssignable("item", type) && !excludedRecipesAndItems.contains(name)) {
-						items.put(name, new ItemPrototype(protoLua.checktable(), name, type));
+						items.put(name, new ItemPrototype(protoLua.checktable()));
 					} else if (typeHierarchy.isAssignable("recipe", type) && !excludedRecipesAndItems.contains(name)) {
-						recipes.put(name, new RecipePrototype(protoLua.checktable(), name, type));
+						recipes.put(name, new RecipePrototype(protoLua.checktable()));
 					} else if (typeHierarchy.isAssignable("entity", type) && !excludedEntities.contains(name)) {
-						entities.put(name, new EntityPrototype(protoLua.checktable(), name, type));
+						entities.put(name, new EntityPrototype(protoLua.checktable()));
 					} else if (typeHierarchy.isAssignable("fluid", type) && !excludedFluids.contains(name)) {
-						fluids.put(name, new FluidPrototype(protoLua.checktable(), name, type));
+						fluids.put(name, new FluidPrototype(protoLua.checktable()));
 					} else if (typeHierarchy.isAssignable("technology", type) && !excludedTechnologies.contains(name)) {
-						technologies.put(name,
-								new TechPrototype(protoLua.checktable(), name, type, excludedRecipesAndItems));
+						technologies.put(name, new TechPrototype(protoLua.checktable(), excludedRecipesAndItems));
 					} else if (typeHierarchy.isAssignable("equipment", type)) {
-						equipments.put(name, new EquipmentPrototype(protoLua.checktable(), name, type));
+						equipments.put(name, new EquipmentPrototype(protoLua.checktable()));
 					} else if (typeHierarchy.isAssignable("tile", type)) {
-						tiles.put(name, new TilePrototype(protoLua.checktable(), name, type));
+						tiles.put(name, new TilePrototype(protoLua.checktable()));
 					} else if (typeHierarchy.isAssignable("achievement", type)) {
-						achievements.put(name, new AchievementPrototype(protoLua.checktable(), name, type));
+						achievements.put(name, new AchievementPrototype(protoLua.checktable()));
+					} else if (typeHierarchy.isAssignable("item-group", type)) {
+						itemGroups.put(name, new ItemGroupPrototype(protoLua.checktable()));
+					} else if (typeHierarchy.isAssignable("item-subgroup", type)) {
+						itemSubGroups.put(name, new ItemSubGroupPrototype(protoLua.checktable()));
 					}
 				} catch (Exception e) {
 					LOGGER.error(">>>>> EXCEPTION FOR {} ({})", name, type);
@@ -102,14 +117,23 @@ public class DataTable {
 			});
 		});
 
-		items.values().forEach(p -> p.setTable(this));
-		recipes.values().forEach(p -> p.setTable(this));
-		entities.values().forEach(p -> p.setTable(this));
-		fluids.values().forEach(p -> p.setTable(this));
-		technologies.values().forEach(p -> p.setTable(this));
-		equipments.values().forEach(p -> p.setTable(this));
-		tiles.values().forEach(p -> p.setTable(this));
-		achievements.values().forEach(p -> p.setTable(this));
+		for (Map<String, ? extends DataPrototype> protos : Arrays.asList(items, recipes, entities, fluids, technologies,
+				equipments, tiles, achievements, itemGroups, itemSubGroups)) {
+			protos.values().forEach(p -> {
+
+				p.setTable(this);
+
+				if (!(p instanceof ItemSubGroupPrototype)) {
+					Optional<String> subgroup = p.getSubgroup();
+					if (subgroup.isPresent()) {
+						ItemSubGroupPrototype protoSubGroup = itemSubGroups.get(subgroup.get());
+						p.setGroup(protoSubGroup.getGroup());
+					} else {
+						p.setGroup(Optional.empty());
+					}
+				}
+			});
+		}
 
 		for (ItemPrototype item : items.values()) {
 			LuaValue luaPlaceResult = item.lua().get("place_result");
@@ -165,6 +189,7 @@ public class DataTable {
 		for (RecipePrototype recipe : recipes.values()) {
 			for (String input : recipe.getInputs().keySet()) {
 				worldInputs.add(input);
+				recipesByInput.put(input, recipe);
 			}
 		}
 		for (RecipePrototype recipe : recipes.values()) {
@@ -260,8 +285,24 @@ public class DataTable {
 		return Optional.ofNullable(items.get(name));
 	}
 
+	public Optional<ItemGroupPrototype> getItemGroup(String name) {
+		return Optional.ofNullable(itemGroups.get(name));
+	}
+
+	public Map<String, ItemGroupPrototype> getItemGroups() {
+		return itemGroups;
+	}
+
 	public Map<String, ItemPrototype> getItems() {
 		return items;
+	}
+
+	public Optional<ItemSubGroupPrototype> getItemSubgroup(String name) {
+		return Optional.ofNullable(itemSubGroups.get(name));
+	}
+
+	public Map<String, ItemSubGroupPrototype> getItemSubGroups() {
+		return itemSubGroups;
 	}
 
 	public Optional<LuaValue> getRaw(String... path) {
@@ -285,6 +326,10 @@ public class DataTable {
 
 	public Map<String, RecipePrototype> getRecipes() {
 		return recipes;
+	}
+
+	public List<RecipePrototype> getRecipesByInput(String name) {
+		return recipesByInput.get(name);
 	}
 
 	public Map<String, TechPrototype> getTechnologies() {

@@ -14,8 +14,8 @@ public class TilePrototype extends DataPrototype {
 	private final List<ItemToPlace> placedBy = new ArrayList<>();
 	private Optional<ItemToPlace> primaryItem = Optional.empty();
 
-	public TilePrototype(LuaTable lua, String name, String type) {
-		super(lua, name, type);
+	public TilePrototype(LuaTable lua) {
+		super(lua);
 
 		foundation = lua.get("is_foundation").optboolean(false);
 

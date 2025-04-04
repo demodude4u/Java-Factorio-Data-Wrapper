@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.demod.factorio.Config;
 import com.demod.factorio.DataTable;
 import com.demod.factorio.FactorioData;
 import com.demod.factorio.ModInfo;
@@ -52,9 +53,11 @@ public class FactorioJSONMain {
 	}
 
 	public static void main(String[] args) throws JSONException, IOException {
-		DataTable table = FactorioData.getDefaultTable();
+		FactorioData data = new FactorioData(Config.get());
+		data.initialize(true);
+		DataTable table = data.getTable();
 		ModInfo baseInfo = new ModInfo(Utils.readJsonFromStream(
-				new FileInputStream(new File(table.getData().folderFactorio, "data/base/info.json"))));
+				new FileInputStream(new File(table.getData().folderFactorio.get(), "data/base/info.json"))));
 
 		File outputFolder = new File("output/" + baseInfo.getVersion());
 		outputFolder.mkdirs();

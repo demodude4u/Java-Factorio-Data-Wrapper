@@ -11,8 +11,8 @@ import com.demod.factorio.fakelua.LuaTable;
 public class ItemPrototype extends DataPrototype {
 	private final List<String> flags = new ArrayList<>();
 
-	public ItemPrototype(LuaTable lua, String name, String type) {
-		super(lua, name, type);
+	public ItemPrototype(LuaTable lua) {
+		super(lua);
 
 		Utils.forEach(lua.get("flags").opttable(new LuaTable(new JSONArray())), l -> {
 			flags.add(l.tojstring());
