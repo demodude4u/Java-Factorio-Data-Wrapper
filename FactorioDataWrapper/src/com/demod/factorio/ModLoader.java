@@ -181,26 +181,31 @@ public class ModLoader {
 		return order.stream().map(this::getMod).map(Optional::get).collect(Collectors.toList());
 	}
 
-	public void loadFolder(File folder) throws IOException {
+	public void loadFolder(File folder) {
 		File[] files = folder.listFiles();
 		Objects.requireNonNull(files, folder.toString());
 		for (File file : files) {
-			if (file.isDirectory()) {
-				if (new File(file, "info.json").exists()) {
-					ModFolder mod = new ModFolder(file);
+			try {
+				if (file.isDirectory()) {
+					if (new File(file, "info.json").exists()) {
+						ModFolder mod = new ModFolder(file);
+						if (!modInclude.contains(mod.getInfo().getName())) {
+							continue;
+						}
+						mods.put(mod.getInfo().getName(), mod);
+					} else {
+						loadFolder(file);
+					}
+				} else if (file.getName().endsWith(".zip")) {
+					ModZip mod = new ModZip(file);
 					if (!modInclude.contains(mod.getInfo().getName())) {
 						continue;
 					}
 					mods.put(mod.getInfo().getName(), mod);
-				} else {
-					loadFolder(file);
 				}
-			} else if (file.getName().endsWith(".zip")) {
-				ModZip mod = new ModZip(file);
-				if (!modInclude.contains(mod.getInfo().getName())) {
-					continue;
-				}
-				mods.put(mod.getInfo().getName(), mod);
+			} catch (IOException e) {
+				LOGGER.error("Error loading mod from file: {}", file.getAbsolutePath(), e);
+				System.exit(-1);
 			}
 		}
 	}

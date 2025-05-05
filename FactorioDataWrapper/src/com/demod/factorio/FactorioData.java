@@ -24,6 +24,7 @@ import java.util.Optional;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -41,7 +42,6 @@ import com.demod.factorio.ModLoader.Mod;
 import com.demod.factorio.fakelua.LuaTable;
 import com.demod.factorio.fakelua.LuaValue;
 import com.demod.factorio.prototype.DataPrototype;
-import com.google.common.util.concurrent.Uninterruptibles;
 
 public class FactorioData {
 	private static final Logger LOGGER = LoggerFactory.getLogger(FactorioData.class);
@@ -124,7 +124,8 @@ public class FactorioData {
 
 	private DataTable dataTable = null;
 
-	private Optional<ModLoader> modLoader;
+	private Supplier<Optional<ModLoader>> modLoaderSupplier = null;
+	private Optional<ModLoader> modLoader = null;
 
 	public Optional<File> folderFactorio;
 	public File folderMods;
@@ -190,19 +191,20 @@ public class FactorioData {
 		return folderMods;
 	}
 
-	public BufferedImage getModImage(String path) {
-		try {
-			BufferedImage image = loadImage(getModResource(path).get());
-			return image;
-		} catch (Exception e) {
-			LOGGER.error("MISSING MOD IMAGE: " + path);
-			e.printStackTrace();
-			System.exit(-1);
-			return null;
+	private void initializeModLoader() {
+		if (modLoader == null && modLoaderSupplier != null) {
+			long startTime = System.nanoTime();
+			LOGGER.info(String.format("Loading mods... (%.2fs)", (System.nanoTime() - startTime) / 1e9));
+			modLoader = modLoaderSupplier.get();
+			LOGGER.info(String.format("Mod loading completed (%.2fs)", (System.nanoTime() - startTime) / 1e9));
 		}
 	}
 
 	public Optional<ModLoader> getModLoader() {
+		if (!hasFactorioInstall) {
+			return Optional.empty();
+		}
+		initializeModLoader();
 		return modLoader;
 	}
 
@@ -212,6 +214,7 @@ public class FactorioData {
 			throw new IllegalArgumentException("Path is not valid: \"" + path + "\"");
 		}
 		String modName = firstSegment.substring(2, firstSegment.length() - 2);
+		initializeModLoader();
 		Optional<Mod> mod = modLoader.get().getMod(modName);
 		if (!mod.isPresent()) {
 			throw new IllegalStateException("Mod does not exist: " + modName);
@@ -223,6 +226,19 @@ public class FactorioData {
 			LOGGER.error(path);
 			e.printStackTrace();
 			throw new RuntimeException(e);
+		}
+	}
+
+	public BufferedImage getModImage(String path) {
+		try {
+			initializeModLoader();
+			BufferedImage image = loadImage(getModResource(path).get());
+			return image;
+		} catch (Exception e) {
+			LOGGER.error("MISSING MOD IMAGE: " + path);
+			e.printStackTrace();
+			System.exit(-1);
+			return null;
 		}
 	}
 
@@ -324,7 +340,6 @@ public class FactorioData {
 	}
 
 	public void initialize(boolean wikiMode) throws JSONException, IOException {
-//		setupWorkingDirectory();//TODO do we still need this?
 
 		// Setup data folder
 		folderData = new File(config.optString("data", "data"));
@@ -381,9 +396,6 @@ public class FactorioData {
 			boolean matchingDumpStamp = false;
 			String stamp = generateStamp();
 
-//			LOGGER.debug("============================");
-//			LOGGER.debug("============================");
-//			LOGGER.debug(stamp);
 			if (fileDumpStamp.exists()) {
 				String compareStamp = Files.readString(fileDumpStamp.toPath());
 				if (stamp.equals(compareStamp)) {
@@ -394,13 +406,8 @@ public class FactorioData {
 			// Fetch data dump file from factorio.exe
 
 			if (!fileDataRawDumpZip.exists() || !matchingDumpStamp || forceDumpData) {
+				LOGGER.info("Starting data dump...");
 				factorioDataDump(folderFactorio.get(), factorioExecutable.get(), fileConfig, folderMods);
-
-				Uninterruptibles.sleepUninterruptibly(1, TimeUnit.SECONDS);
-				if (!fileDataRawDump.exists()) {
-					LOGGER.error("DATA DUMP FILE MISSING! " + fileDataRawDump.getAbsolutePath());
-					System.exit(-1);
-				}
 
 				try (ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(fileDataRawDumpZip))) {
 					zos.putNextEntry(new ZipEntry(fileDataRawDump.getName()));
@@ -414,13 +421,19 @@ public class FactorioData {
 				Files.writeString(fileDumpStamp.toPath(), generateStamp());
 			}
 
-			modLoader = Optional.of(new ModLoader(mods));
-			modLoader.get().loadFolder(folderFactorio.get());
-			modLoader.get().loadFolder(folderMods);
-
+			// Store initialization logic for later
+			File finalFolderFactorio = folderFactorio.get();
+			File finalFolderMods = folderMods;
+			modLoaderSupplier = () -> {
+				Optional<ModLoader> loader = Optional.of(new ModLoader(mods));
+				loader.get().loadFolder(finalFolderFactorio);
+				loader.get().loadFolder(finalFolderMods);
+				return loader;
+			};
 		} else {
 			folderFactorio = Optional.empty();
 			factorioExecutable = Optional.empty();
+			modLoaderSupplier = null;
 		}
 
 		LOGGER.info("Read Data Zip: {}", fileDataRawDumpZip.getAbsolutePath());
@@ -434,14 +447,6 @@ public class FactorioData {
 					break;
 				}
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.exit(-1);
-		}
-		if (lua == null) {
-			LOGGER.error("{} not found in data zip! {}", fileDataRawDump.getName(),
-					fileDataRawDumpZip.getAbsolutePath());
-			System.exit(-1);
 		}
 
 		TypeHierarchy typeHiearchy = new TypeHierarchy(Utils
