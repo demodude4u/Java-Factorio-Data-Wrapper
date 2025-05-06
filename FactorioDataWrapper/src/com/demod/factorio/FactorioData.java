@@ -193,10 +193,7 @@ public class FactorioData {
 
 	private void initializeModLoader() {
 		if (modLoader == null && modLoaderSupplier != null) {
-			long startTime = System.nanoTime();
-			LOGGER.info(String.format("Loading mods... (%.2fs)", (System.nanoTime() - startTime) / 1e9));
 			modLoader = modLoaderSupplier.get();
-			LOGGER.info(String.format("Mod loading completed (%.2fs)", (System.nanoTime() - startTime) / 1e9));
 		}
 	}
 
