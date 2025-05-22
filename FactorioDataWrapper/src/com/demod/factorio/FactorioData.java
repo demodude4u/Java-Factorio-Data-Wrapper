@@ -229,8 +229,10 @@ public class FactorioData {
 	public BufferedImage getModImage(String path) {
 		try {
 			initializeModLoader();
-			BufferedImage image = loadImage(getModResource(path).get());
-			return image;
+			try (InputStream is = getModResource(path).get()) {
+				BufferedImage image = loadImage(is);
+				return image;
+			}
 		} catch (Exception e) {
 			LOGGER.error("MISSING MOD IMAGE: " + path);
 			e.printStackTrace();
