@@ -365,12 +365,6 @@ public class FactorioData {
 			}
 		});
 
-		File fileModRendering = new File(folderMods, "mod-rendering.json");
-		if (!fileModRendering.exists()) {
-			Files.copy(FactorioData.class.getClassLoader().getResourceAsStream("mod-rendering.json"),
-					fileModRendering.toPath());
-		}
-
 		hasFactorioInstall = config.has("factorio") && config.has("executable");
 
 		if (hasFactorioInstall) {
