@@ -13,6 +13,13 @@ public final class Config {
 
 	private static JSONObject config = null;
 
+	private static String configPath = "config.json";
+
+	public static synchronized void setPath(String configPath) {
+		Config.configPath = configPath;
+		config = null;
+	}
+
 	public static synchronized JSONObject get() {
 		if (config == null) {
 			loadConfig();
@@ -22,7 +29,7 @@ public final class Config {
 
 	private static void loadConfig() {
 		try {
-			config = Utils.readJsonFromStream(new FileInputStream("config.json"));
+			config = Utils.readJsonFromStream(new FileInputStream(configPath));
 		} catch (JSONException | IOException e) {
 			e.printStackTrace();
 			LOGGER.error("################################");
