@@ -349,21 +349,23 @@ public class FactorioData {
 		File fileDataRawDumpZip = new File(folderScriptOutput, "data-raw-dump.zip");
 
 		folderMods = Optional.of(config.optString("mods", null)).map(File::new).orElse(new File(folderData, "mods"));
-		folderMods.mkdirs();
+		boolean hasMods = folderMods.exists();
 
 		File fileModList = new File(folderMods, "mod-list.json");
-		if (!fileModList.exists()) {
+		if (folderMods.exists() && !fileModList.exists()) {
 			Files.copy(FactorioData.class.getClassLoader().getResourceAsStream("mod-list.json"), fileModList.toPath());
 		}
 
-		JSONObject jsonModList = new JSONObject(Files.readString(fileModList.toPath()));
 		mods = new ArrayList<>();
 		mods.add("core");
-		Utils.<JSONObject>forEach(jsonModList.getJSONArray("mods"), j -> {
-			if (j.getBoolean("enabled")) {
-				mods.add(j.getString("name"));
-			}
-		});
+		if (hasMods) {
+			JSONObject jsonModList = new JSONObject(Files.readString(fileModList.toPath()));
+			Utils.<JSONObject>forEach(jsonModList.getJSONArray("mods"), j -> {
+				if (j.getBoolean("enabled")) {
+					mods.add(j.getString("name"));
+				}
+			});
+		}
 
 		hasFactorioInstall = config.has("factorio") && config.has("executable");
 
