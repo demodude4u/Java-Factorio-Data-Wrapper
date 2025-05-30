@@ -20,6 +20,10 @@ public final class Config {
 		config = null;
 	}
 
+	public static String getPath() {
+		return configPath;
+	}
+
 	public static synchronized JSONObject get() {
 		if (config == null) {
 			loadConfig();
