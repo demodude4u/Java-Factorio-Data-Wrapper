@@ -55,7 +55,7 @@ public class FactorioData {
 	}
 
 	@SuppressWarnings("resource")
-	public static synchronized void factorioDataDump(File folderFactorio, File factorioExecutable, File fileConfig,
+	public static synchronized boolean factorioDataDump(File folderFactorio, File factorioExecutable, File fileConfig,
 			File folderMods) {
 		try {
 			ProcessBuilder pb = new ProcessBuilder(factorioExecutable.getAbsolutePath(), "--config",
@@ -92,8 +92,9 @@ public class FactorioData {
 			LOGGER.error("\t config: {}", fileConfig.getAbsolutePath());
 			LOGGER.error("\t mods: " + folderMods.getAbsolutePath());
 			e.printStackTrace();
-			System.exit(-1);
+			return false;
 		}
+		return true;
 	}
 
 	private static BufferedImage loadImage(InputStream is) throws IOException {
@@ -338,7 +339,7 @@ public class FactorioData {
 		return hasFactorioInstall;
 	}
 
-	public void initialize(boolean wikiMode) throws JSONException, IOException {
+	public boolean initialize(boolean wikiMode) throws JSONException, IOException {
 
 		// Setup data folder
 		folderData = new File(config.optString("data", "data"));
@@ -402,7 +403,11 @@ public class FactorioData {
 
 			if (!fileDataRawDumpZip.exists() || !matchingDumpStamp || forceDumpData) {
 				LOGGER.info("Starting data dump...");
-				factorioDataDump(folderFactorio.get(), factorioExecutable.get(), fileConfig, folderMods);
+				boolean success = factorioDataDump(folderFactorio.get(), factorioExecutable.get(), fileConfig, folderMods);
+
+				if (!success) {
+					return false;
+				}
 
 				try (ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(fileDataRawDumpZip))) {
 					zos.putNextEntry(new ZipEntry(fileDataRawDump.getName()));
@@ -461,5 +466,7 @@ public class FactorioData {
 				.readJsonFromStream(FactorioData.class.getClassLoader().getResourceAsStream("wiki-naming.json"));
 		dataTable = new DataTable(typeHiearchy, lua, excludeDataJson, includeDataJson, wikiNamingJson);
 		dataTable.setData(this);
+
+		return true;
 	}
 }
