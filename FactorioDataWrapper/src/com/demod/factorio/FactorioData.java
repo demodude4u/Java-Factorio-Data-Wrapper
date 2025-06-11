@@ -46,6 +46,8 @@ import com.demod.factorio.prototype.DataPrototype;
 public class FactorioData {
 	private static final Logger LOGGER = LoggerFactory.getLogger(FactorioData.class);
 
+	private static final String DATA_ZIP_ENTRY_NAME = "dump.json";
+
 	private static BufferedImage convertCustomImage(BufferedImage image) {
 		BufferedImage ret = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g = ret.createGraphics();
@@ -134,14 +136,20 @@ public class FactorioData {
 
 	public Optional<File> factorioExecutable;
 
-	private final JSONObject config;
+	private final Optional<JSONObject> config;
+	private File dataZip = null;
 
 	private boolean hasFactorioInstall;
 
 	private List<String> mods;
 
 	public FactorioData(JSONObject config) {
-		this.config = config;
+		this.config = Optional.of(config);
+	}
+
+	public FactorioData(File dataZip) {
+		this.config = Optional.empty();
+		this.dataZip = dataZip;
 	}
 
 	private String fileMD5(File file) {
@@ -341,108 +349,114 @@ public class FactorioData {
 
 	public boolean initialize(boolean wikiMode) throws JSONException, IOException {
 
-		// Setup data folder
-		folderData = new File(config.optString("data", "data"));
-		folderData.mkdirs();
+		if (config.isPresent()) {
+			JSONObject config = this.config.get();
 
-		File folderScriptOutput = new File(folderData, "script-output");
-		File fileDataRawDump = new File(folderScriptOutput, "data-raw-dump.json");
-		File fileDataRawDumpZip = new File(folderScriptOutput, "data-raw-dump.zip");
+			// Setup data folder
+			folderData = new File(config.optString("data", "data"));
+			folderData.mkdirs();
 
-		folderMods = Optional.of(config.optString("mods", null)).map(File::new).orElse(new File(folderData, "mods"));
-		boolean hasMods = folderMods.exists();
+			File folderScriptOutput = new File(folderData, "script-output");
+			File fileDataRawDump = new File(folderScriptOutput, "data-raw-dump.json");
+			File fileDataRawDumpZip = new File(folderScriptOutput, "data-raw-dump.zip");
 
-		File fileModList = new File(folderMods, "mod-list.json");
-		if (folderMods.exists() && !fileModList.exists()) {
-			Files.copy(FactorioData.class.getClassLoader().getResourceAsStream("mod-list.json"), fileModList.toPath());
-		}
+			folderMods = Optional.of(config.optString("mods", null)).map(File::new).orElse(new File(folderData, "mods"));
+			boolean hasMods = folderMods.exists();
 
-		mods = new ArrayList<>();
-		mods.add("core");
-		if (hasMods) {
-			JSONObject jsonModList = new JSONObject(Files.readString(fileModList.toPath()));
-			Utils.<JSONObject>forEach(jsonModList.getJSONArray("mods"), j -> {
-				if (j.getBoolean("enabled")) {
-					mods.add(j.getString("name"));
-				}
-			});
-		}
-
-		hasFactorioInstall = config.has("factorio") && config.has("executable");
-
-		if (hasFactorioInstall) {
-			folderFactorio = Optional.of(new File(config.getString("factorio")));
-			factorioExecutable = Optional.of(new File(config.getString("executable")));
-
-			File fileConfig = new File(folderData, "config.ini");
-			try (PrintWriter pw = new PrintWriter(fileConfig)) {
-				pw.println("[path]");
-				pw.println("read-data=" + folderFactorio.get().getAbsolutePath());
-				pw.println("write-data=" + folderData.getAbsolutePath());
+			File fileModList = new File(folderMods, "mod-list.json");
+			if (folderMods.exists() && !fileModList.exists()) {
+				Files.copy(FactorioData.class.getClassLoader().getResourceAsStream("mod-list.json"), fileModList.toPath());
 			}
 
-			// Prevent unnecessary changes so github doesn't get confused
-			File fileModSettings = new File(folderMods, "mod-settings.dat");
-			fileModList.setReadOnly();
-			fileModSettings.setReadOnly();
-
-			boolean forceDumpData = config.optBoolean("force-dump-data");
-
-			File fileDumpStamp = new File(folderData, "dumpStamp.txt");
-			boolean matchingDumpStamp = false;
-			String stamp = generateStamp();
-
-			if (fileDumpStamp.exists()) {
-				String compareStamp = Files.readString(fileDumpStamp.toPath());
-				if (stamp.equals(compareStamp)) {
-					matchingDumpStamp = true;
-				}
+			mods = new ArrayList<>();
+			mods.add("core");
+			if (hasMods) {
+				JSONObject jsonModList = new JSONObject(Files.readString(fileModList.toPath()));
+				Utils.<JSONObject>forEach(jsonModList.getJSONArray("mods"), j -> {
+					if (j.getBoolean("enabled")) {
+						mods.add(j.getString("name"));
+					}
+				});
 			}
 
-			// Fetch data dump file from factorio.exe
+			hasFactorioInstall = config.has("factorio") && config.has("executable");
 
-			if (!fileDataRawDumpZip.exists() || !matchingDumpStamp || forceDumpData) {
-				LOGGER.info("Starting data dump...");
-				boolean success = factorioDataDump(folderFactorio.get(), factorioExecutable.get(), fileConfig, folderMods);
+			if (hasFactorioInstall) {
+				folderFactorio = Optional.of(new File(config.getString("factorio")));
+				factorioExecutable = Optional.of(new File(config.getString("executable")));
 
-				if (!success) {
-					return false;
+				File fileConfig = new File(folderData, "config.ini");
+				try (PrintWriter pw = new PrintWriter(fileConfig)) {
+					pw.println("[path]");
+					pw.println("read-data=" + folderFactorio.get().getAbsolutePath());
+					pw.println("write-data=" + folderData.getAbsolutePath());
 				}
 
-				try (ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(fileDataRawDumpZip))) {
-					zos.putNextEntry(new ZipEntry(fileDataRawDump.getName()));
-					zos.write(Files.readAllBytes(fileDataRawDump.toPath()));
-					zos.closeEntry();
-				}
-				LOGGER.info("Write Data Zip: {}", fileDataRawDumpZip.getAbsolutePath());
-				fileDataRawDump.delete();
-				LOGGER.info("Delete Data: {}", fileDataRawDump.getAbsolutePath());
+				// Prevent unnecessary changes so github doesn't get confused
+				File fileModSettings = new File(folderMods, "mod-settings.dat");
+				fileModList.setReadOnly();
+				fileModSettings.setReadOnly();
 
-				Files.writeString(fileDumpStamp.toPath(), generateStamp());
+				boolean forceDumpData = config.optBoolean("force-dump-data");
+
+				File fileDumpStamp = new File(folderData, "dumpStamp.txt");
+				boolean matchingDumpStamp = false;
+				String stamp = generateStamp();
+
+				if (fileDumpStamp.exists()) {
+					String compareStamp = Files.readString(fileDumpStamp.toPath());
+					if (stamp.equals(compareStamp)) {
+						matchingDumpStamp = true;
+					}
+				}
+
+				// Fetch data dump file from factorio.exe
+
+				if (!fileDataRawDumpZip.exists() || !matchingDumpStamp || forceDumpData) {
+					LOGGER.info("Starting data dump...");
+					boolean success = factorioDataDump(folderFactorio.get(), factorioExecutable.get(), fileConfig, folderMods);
+
+					if (!success) {
+						return false;
+					}
+
+					try (ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(fileDataRawDumpZip))) {
+						zos.putNextEntry(new ZipEntry(DATA_ZIP_ENTRY_NAME));
+						zos.write(Files.readAllBytes(fileDataRawDump.toPath()));
+						zos.closeEntry();
+					}
+					LOGGER.info("Write Data Zip: {}", fileDataRawDumpZip.getAbsolutePath());
+					fileDataRawDump.delete();
+					LOGGER.info("Delete Data: {}", fileDataRawDump.getAbsolutePath());
+
+					Files.writeString(fileDumpStamp.toPath(), generateStamp());
+				}
+
+				// Store initialization logic for later
+				File finalFolderFactorio = folderFactorio.get();
+				File finalFolderMods = folderMods;
+				modLoaderSupplier = () -> {
+					Optional<ModLoader> loader = Optional.of(new ModLoader(mods));
+					loader.get().loadFolder(finalFolderFactorio);
+					loader.get().loadFolder(finalFolderMods);
+					return loader;
+				};
+			} else {
+				folderFactorio = Optional.empty();
+				factorioExecutable = Optional.empty();
+				modLoaderSupplier = null;
 			}
 
-			// Store initialization logic for later
-			File finalFolderFactorio = folderFactorio.get();
-			File finalFolderMods = folderMods;
-			modLoaderSupplier = () -> {
-				Optional<ModLoader> loader = Optional.of(new ModLoader(mods));
-				loader.get().loadFolder(finalFolderFactorio);
-				loader.get().loadFolder(finalFolderMods);
-				return loader;
-			};
-		} else {
-			folderFactorio = Optional.empty();
-			factorioExecutable = Optional.empty();
-			modLoaderSupplier = null;
+			dataZip = fileDataRawDumpZip;
 		}
 
-		LOGGER.info("Read Data Zip: {}", fileDataRawDumpZip.getAbsolutePath());
+		LOGGER.info("Read Data Zip: {}", dataZip.getAbsolutePath());
 		LuaTable lua = null;
 
-		try (ZipInputStream zis = new ZipInputStream(new FileInputStream(fileDataRawDumpZip))) {
+		try (ZipInputStream zis = new ZipInputStream(new FileInputStream(dataZip))) {
 			ZipEntry entry;
 			while ((entry = zis.getNextEntry()) != null) {
-				if (entry.getName().equals(fileDataRawDump.getName())) {
+				if (entry.getName().equals(DATA_ZIP_ENTRY_NAME)) {
 					lua = new LuaTable(new JSONObject(new JSONTokener(zis)));
 					break;
 				}
