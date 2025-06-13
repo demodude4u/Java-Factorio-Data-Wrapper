@@ -53,11 +53,11 @@ public class FactorioJSONMain {
 	}
 
 	public static void main(String[] args) throws JSONException, IOException {
-		FactorioData data = new FactorioData(Config.get());
+		FactorioData data = FactorioData.fromConfig(Config.get());
 		data.initialize(true);
 		DataTable table = data.getTable();
 		ModInfo baseInfo = new ModInfo(Utils.readJsonFromStream(
-				new FileInputStream(new File(table.getData().folderFactorio.get(), "data/base/info.json"))));
+				new FileInputStream(new File(table.getData().getFolderFactorio().get(), "data/base/info.json"))));
 
 		File outputFolder = new File("output/" + baseInfo.getVersion());
 		outputFolder.mkdirs();

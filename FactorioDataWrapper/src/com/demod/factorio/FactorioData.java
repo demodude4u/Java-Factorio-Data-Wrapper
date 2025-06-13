@@ -123,33 +123,55 @@ public class FactorioData {
 		}
 	}
 
-	private final int defaultIconSize = 64; // TODO read from define
+	private static final int defaultIconSize = 64; // TODO read from define
+
+	private final File folderMods;
+	private final File folderData;
+	private final Optional<File> folderFactorio;
+	private final Optional<File> factorioExecutable;
+	private final boolean hasFactorioInstall;
+	private final boolean forceDumpData;
 
 	private DataTable dataTable = null;
 
 	private Supplier<Optional<ModLoader>> modLoaderSupplier = null;
 	private Optional<ModLoader> modLoader = null;
-
-	public Optional<File> folderFactorio;
-	public File folderMods;
-	private File folderData;
-
-	public Optional<File> factorioExecutable;
-
-	private final Optional<JSONObject> config;
-	private File dataZip = null;
-
-	private boolean hasFactorioInstall;
-
+	
+	private File dataZip;
 	private List<String> mods;
 
-	public FactorioData(JSONObject config) {
-		this.config = Optional.of(config);
+	public FactorioData(File folderData, File folderMods, Optional<File> folderFactorio,
+			Optional<File> factorioExecutable, boolean forceDumpData) {
+		this.folderData = folderData;
+		this.folderMods = folderMods;
+		this.folderFactorio = folderFactorio;
+		this.factorioExecutable = factorioExecutable;
+		this.forceDumpData = forceDumpData;
+
+		hasFactorioInstall = folderFactorio.isPresent() && factorioExecutable.isPresent();
+
+		dataZip = null;
 	}
 
 	public FactorioData(File dataZip) {
-		this.config = Optional.empty();
+		this.folderData = null;
+		this.folderMods = null;
+		this.folderFactorio = null;
+		this.factorioExecutable = null;
+		this.forceDumpData = false;
+		hasFactorioInstall = false;
+
 		this.dataZip = dataZip;
+	}
+
+	public static FactorioData fromConfig(JSONObject config) {
+		File folderData = new File(config.optString("data", "data"));
+		File folderMods = Optional.ofNullable(config.optString("mods", null)).map(File::new).orElse(new File(folderData, "mods"));
+		Optional<File> folderFactorio = Optional.of(new File(config.getString("factorio")));
+		Optional<File> factorioExecutable = Optional.of(new File(config.getString("executable")));
+		boolean forceDumpData = config.optBoolean("force-dump-data");
+
+		return new FactorioData(folderData, folderMods, folderFactorio, factorioExecutable, forceDumpData);
 	}
 
 	private String fileMD5(File file) {
@@ -349,18 +371,15 @@ public class FactorioData {
 
 	public boolean initialize(boolean wikiMode) throws JSONException, IOException {
 
-		if (config.isPresent()) {
-			JSONObject config = this.config.get();
+		if (dataZip == null) {
 
 			// Setup data folder
-			folderData = new File(config.optString("data", "data"));
 			folderData.mkdirs();
 
 			File folderScriptOutput = new File(folderData, "script-output");
 			File fileDataRawDump = new File(folderScriptOutput, "data-raw-dump.json");
 			File fileDataRawDumpZip = new File(folderScriptOutput, "data-raw-dump.zip");
 
-			folderMods = Optional.of(config.optString("mods", null)).map(File::new).orElse(new File(folderData, "mods"));
 			boolean hasMods = folderMods.exists();
 
 			File fileModList = new File(folderMods, "mod-list.json");
@@ -379,11 +398,9 @@ public class FactorioData {
 				});
 			}
 
-			hasFactorioInstall = config.has("factorio") && config.has("executable");
+			
 
 			if (hasFactorioInstall) {
-				folderFactorio = Optional.of(new File(config.getString("factorio")));
-				factorioExecutable = Optional.of(new File(config.getString("executable")));
 
 				File fileConfig = new File(folderData, "config.ini");
 				try (PrintWriter pw = new PrintWriter(fileConfig)) {
@@ -396,8 +413,6 @@ public class FactorioData {
 				File fileModSettings = new File(folderMods, "mod-settings.dat");
 				fileModList.setReadOnly();
 				fileModSettings.setReadOnly();
-
-				boolean forceDumpData = config.optBoolean("force-dump-data");
 
 				File fileDumpStamp = new File(folderData, "dumpStamp.txt");
 				boolean matchingDumpStamp = false;
@@ -442,8 +457,6 @@ public class FactorioData {
 					return loader;
 				};
 			} else {
-				folderFactorio = Optional.empty();
-				factorioExecutable = Optional.empty();
 				modLoaderSupplier = null;
 			}
 
