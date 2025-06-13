@@ -33,6 +33,7 @@ import org.slf4j.LoggerFactory;
 import com.demod.factorio.Config;
 import com.demod.factorio.DataTable;
 import com.demod.factorio.FactorioData;
+import com.demod.factorio.FactorioEnvionment;
 import com.demod.factorio.ModInfo;
 import com.demod.factorio.ModLoader;
 import com.demod.factorio.TotalRawCalculator;
@@ -158,6 +159,8 @@ public class FactorioWikiMain {
 	}
 
 	public static void main(String[] args) throws JSONException, IOException {
+		JSONObject config = Config.get();
+		FactorioEnvionment.buildAndInitialize(config, false);
 		FactorioData data = FactorioData.fromConfig(Config.get());
 		data.initialize(true);
 		DataTable table = data.getTable();
