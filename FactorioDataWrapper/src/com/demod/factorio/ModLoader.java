@@ -12,6 +12,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 import javax.imageio.ImageIO;
@@ -65,6 +66,9 @@ public class ModLoader {
 			return name.substring(firstSlash);
 		}
 
+		private File fileZip;
+		private volatile boolean loaded = false;
+
 		private final Map<String, byte[]> files = new LinkedHashMap<>();
 
 		private ModInfo info;
@@ -72,30 +76,25 @@ public class ModLoader {
 		private volatile Optional<String> lastResourceFolder = Optional.empty();
 
 		public ModZip(File file) throws FileNotFoundException, IOException {
+			this.fileZip = file;
+
 			try (ZipFile zipFile = new ZipFile(file)) {
 				zipFile.stream().forEach(entry -> {
 					String name = stripDirectoryName(entry.getName());
 					if (name.equals(entry.getName())) {
 						throw new RuntimeException(file.getName() + " missing the inner directory for the mod files.");
 					}
-
-					try (InputStream inputStream = zipFile.getInputStream(entry)) {
-						files.put(name, ByteStreams.toByteArray(inputStream));
-					} catch (IOException e) {
-						throw new RuntimeException(e);
-					}
 				});
+
+				ZipEntry entryInfo = zipFile.getEntry("info.json");
+				if (entryInfo == null) {
+					throw new FileNotFoundException(file.getName() + " does not contain info.json");
+				}
+				info = new ModInfo(Utils.readJsonFromStream(zipFile.getInputStream(entryInfo)));
+
 			} catch (Exception e) {
 				LOGGER.debug("MODZIP " + file.getAbsolutePath());
 				throw e;
-			}
-
-			byte[] buf = files.get("/info.json");
-			if (buf == null) {
-				throw new FileNotFoundException(file.getName() + " does not contain info.json");
-			}
-			try (ByteArrayInputStream bais = new ByteArrayInputStream(buf)) {
-				info = new ModInfo(Utils.readJsonFromStream(bais));
 			}
 		}
 
@@ -106,6 +105,10 @@ public class ModLoader {
 
 		@Override
 		public Optional<InputStream> getResource(String path) {
+			if (!loaded) {
+				load();
+			}
+
 			path = path.replace("\\", "/");
 			path = path.replace("//", "/");
 			Optional<byte[]> resource = Optional.ofNullable(files.get(path));
@@ -120,13 +123,50 @@ public class ModLoader {
 
 			return resource.map(ByteArrayInputStream::new);
 		}
+
+		private void load() {
+			if (loaded) {
+				return;
+			}
+			loaded = true;
+
+			try (ZipFile zipFile = new ZipFile(fileZip)) {
+				zipFile.stream().forEach(entry -> {
+					String name = stripDirectoryName(entry.getName());
+					if (name.equals(entry.getName())) {
+						throw new RuntimeException(fileZip.getName() + " missing the inner directory for the mod files.");
+					}
+
+					try (InputStream inputStream = zipFile.getInputStream(entry)) {
+						files.put(name, ByteStreams.toByteArray(inputStream));
+					} catch (IOException e) {
+						throw new RuntimeException(e);
+					}
+				});
+			} catch (Exception e) {
+				LOGGER.error("MODZIP " + fileZip.getAbsolutePath(), e);
+				System.exit(-1);
+			}
+		}
 	}
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ModLoader.class);
 
+	private final File factorioInstall;
+	private final File folderMods;
+
 	private final Map<String, Mod> mods = new LinkedHashMap<>();
 
 	public ModLoader(File factorioInstall, File folderMods) {
+		this.factorioInstall = factorioInstall;
+		this.folderMods = folderMods;
+
+		reload();
+	}
+
+	public void reload() {
+		mods.clear();
+
 		loadFolder(new File(factorioInstall, "data"));
 		loadFolder(folderMods);
 	}
