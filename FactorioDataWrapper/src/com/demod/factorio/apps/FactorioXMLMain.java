@@ -1,7 +1,5 @@
 package com.demod.factorio.apps;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Map;
@@ -22,8 +20,7 @@ import org.w3c.dom.ls.LSSerializer;
 import com.demod.factorio.Config;
 import com.demod.factorio.DataTable;
 import com.demod.factorio.FactorioData;
-import com.demod.factorio.ModInfo;
-import com.demod.factorio.Utils;
+import com.demod.factorio.FactorioEnvironment;
 import com.demod.factorio.prototype.RecipePrototype;
 
 public class FactorioXMLMain {
@@ -104,12 +101,10 @@ public class FactorioXMLMain {
 
 	public static void main(String[] args) throws JSONException, IOException, ParserConfigurationException,
 			ClassNotFoundException, InstantiationException, IllegalAccessException, ClassCastException {
-		FactorioData data = FactorioData.fromConfig(Config.get());
-		data.initialize(true);
+		FactorioEnvironment env = FactorioEnvironment.buildAndInitialize(Config.get(), false);
+		FactorioData data = env.getFactorioData();
 		DataTable table = data.getTable();
-		ModInfo baseInfo = new ModInfo(Utils.readJsonFromStream(
-				new FileInputStream(new File(table.getData().getFolderFactorio().get(), "data/base/info.json"))));
 
-		generateRecipesXML(table.getRecipes(), table, "recipes-normal-" + baseInfo.getVersion() + ".xml");
+		generateRecipesXML(table.getRecipes(), table, "recipes-normal-" + env.getVersion() + ".xml");
 	}
 }

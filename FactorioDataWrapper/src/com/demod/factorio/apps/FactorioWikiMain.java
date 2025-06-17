@@ -8,7 +8,6 @@ import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Collection;
@@ -33,7 +32,7 @@ import org.slf4j.LoggerFactory;
 import com.demod.factorio.Config;
 import com.demod.factorio.DataTable;
 import com.demod.factorio.FactorioData;
-import com.demod.factorio.FactorioEnvionment;
+import com.demod.factorio.FactorioEnvironment;
 import com.demod.factorio.ModInfo;
 import com.demod.factorio.ModLoader;
 import com.demod.factorio.TotalRawCalculator;
@@ -160,16 +159,13 @@ public class FactorioWikiMain {
 
 	public static void main(String[] args) throws JSONException, IOException {
 		JSONObject config = Config.get();
-		FactorioEnvionment.buildAndInitialize(config, false);
-		FactorioData data = FactorioData.fromConfig(Config.get());
-		data.initialize(true);
+		FactorioEnvironment env = FactorioEnvironment.buildAndInitialize(config, false);
+		FactorioData data = env.getFactorioData();
 		DataTable table = data.getTable();
-		baseInfo = new ModInfo(Utils.readJsonFromStream(
-				new FileInputStream(new File(table.getData().getFolderFactorio().get(), "data/base/info.json"))));
-
+		
 		String outputPath = Config.get().optString("output", "output");
 
-		folder = new File(outputPath + File.separator + baseInfo.getVersion());
+		folder = new File(outputPath + File.separator + env.getVersion());
 		folder.mkdirs();
 
 		Map<String, WikiTypeMatch> wikiTypes = generateWikiTypes(table);
@@ -186,7 +182,7 @@ public class FactorioWikiMain {
 		// Output icons outside of versions because these are a lot of icons and they
 		// dont change so often. No need to spam the repository with them.
 		File icons = new File(outputPath, "icons");
-		wiki_GenerateIcons(table, icons, new File(icons, "technology"));
+		wiki_GenerateIcons(table, env.getModLoader(), icons, new File(icons, "technology"));
 
 		Desktop.getDesktop().open(folder);
 	}

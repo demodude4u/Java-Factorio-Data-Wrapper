@@ -2,8 +2,6 @@ package com.demod.factorio;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,6 +14,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Optional;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -24,7 +23,6 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 import org.slf4j.Logger;
@@ -82,6 +80,36 @@ public class FactorioData {
 		return true;
 	}
 
+	public static Optional<String> getVersionFromInstall(File factorioExecutable) {
+		try {
+			ProcessBuilder pb = new ProcessBuilder(factorioExecutable.getAbsolutePath(), "--version");
+			Process process = pb.start();
+
+			try (BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
+				String line;
+				while ((line = reader.readLine()) != null) {
+					if (line.startsWith("Version:")) {
+						String[] parts = line.split(" ");
+						if (parts.length > 1) {
+							return Optional.of(parts[1]); // Extract version number
+						}
+					}
+				}
+
+			} finally {
+				int exitCode = process.waitFor();
+				if (exitCode != 0) {
+					throw new IOException("Factorio command failed with exit code: " + exitCode);
+				}
+			}
+		} catch (Exception e) {
+			LOGGER.error("Failed to retrieve Factorio version from executable: {}", factorioExecutable.getAbsolutePath(), e);
+			System.exit(-1);
+			return Optional.empty();
+		}
+		return Optional.empty();
+	}
+
 	private static void streamLogging(InputStream inputStream, boolean error) {
 		try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
 			String line;
@@ -120,19 +148,6 @@ public class FactorioData {
 			System.exit(0);
 			return null;
 		}
-	}
-
-	public static String getVersionFromInstall(File factorioInstall) {
-		ModInfo baseInfo;
-		try {
-			baseInfo = new ModInfo(Utils.readJsonFromStream(
-					new FileInputStream(new File(factorioInstall, "data/base/info.json"))));
-		} catch (JSONException | FileNotFoundException e) {
-			LOGGER.error("Failed to read base mod info.json from Factorio install: {}", factorioInstall.getAbsolutePath(), e);
-			System.exit(-1);
-			return null;
-		}
-		return baseInfo.getVersion();
 	}
 
 	private static String generateStamp(File factorioInstall, File folderMods) {
@@ -235,6 +250,12 @@ public class FactorioData {
 				return false;
 			}
 
+			Optional<String> version = getVersionFromInstall(factorioInstall);
+			if (version.isEmpty()) {
+				LOGGER.error("Failed to get Factorio version from install.");
+				return false;
+			}
+
 			try (ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(targetDataZip))) {
 				zos.putNextEntry(new ZipEntry(DATA_ZIP_ENTRY_DUMP));
 				zos.write(Files.readAllBytes(fileDataRawDump.toPath()));
@@ -245,7 +266,7 @@ public class FactorioData {
 				zos.closeEntry();
 
 				zos.putNextEntry(new ZipEntry(DATA_ZIP_ENTRY_VERSION));
-				zos.write(getVersionFromInstall(factorioInstall).getBytes());
+				zos.write(version.get().getBytes());
 				zos.closeEntry();
 			} catch (IOException e) {
 				LOGGER.error("Failed to write data zip", e);

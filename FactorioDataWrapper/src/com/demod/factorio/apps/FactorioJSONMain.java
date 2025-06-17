@@ -2,7 +2,6 @@ package com.demod.factorio.apps;
 
 import java.awt.Desktop;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -12,7 +11,7 @@ import org.json.JSONObject;
 import com.demod.factorio.Config;
 import com.demod.factorio.DataTable;
 import com.demod.factorio.FactorioData;
-import com.demod.factorio.ModInfo;
+import com.demod.factorio.FactorioEnvironment;
 import com.demod.factorio.Utils;
 import com.demod.factorio.prototype.RecipePrototype;
 
@@ -53,17 +52,16 @@ public class FactorioJSONMain {
 	}
 
 	public static void main(String[] args) throws JSONException, IOException {
-		FactorioData data = FactorioData.fromConfig(Config.get());
-		data.initialize(true);
+		FactorioEnvironment env = FactorioEnvironment.buildAndInitialize(Config.get(), true);
+		FactorioData data = env.getFactorioData();
 		DataTable table = data.getTable();
-		ModInfo baseInfo = new ModInfo(Utils.readJsonFromStream(
-				new FileInputStream(new File(table.getData().getFolderFactorio().get(), "data/base/info.json"))));
+		
 
-		File outputFolder = new File("output/" + baseInfo.getVersion());
+		File outputFolder = new File("output/" + env.getVersion());
 		outputFolder.mkdirs();
 
 		try (PrintWriter pw = new PrintWriter(
-				new File(outputFolder, "json-recipes-" + baseInfo.getVersion() + ".txt"))) {
+				new File(outputFolder, "json-recipes-" + env.getVersion() + ".txt"))) {
 			json_Recipes(table, pw);
 		}
 

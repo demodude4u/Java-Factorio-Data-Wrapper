@@ -180,9 +180,10 @@ public class ModLoader {
 	}
 
 	private void loadFolder(File folder) {
-		File[] files = folder.listFiles();
-		Objects.requireNonNull(files, folder.toString());
-		for (File file : files) {
+		if (!folder.exists()) {
+			return;
+		}
+		for (File file : folder.listFiles()) {
 			try {
 				if (file.isDirectory()) {
 					if (new File(file, "info.json").exists()) {
