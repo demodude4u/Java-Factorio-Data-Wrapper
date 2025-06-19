@@ -80,7 +80,7 @@ public class FactorioData {
 		return true;
 	}
 
-	public static Optional<String> getVersionFromInstall(File factorioExecutable) {
+	public static Optional<String> getVersionFromExecutable(File factorioExecutable) {
 		try {
 			ProcessBuilder pb = new ProcessBuilder(factorioExecutable.getAbsolutePath(), "--version");
 			Process process = pb.start();
@@ -150,9 +150,14 @@ public class FactorioData {
 		}
 	}
 
-	private static String generateStamp(File factorioInstall, File factorioExecutable, File folderMods) {
+	private static Optional<String> generateStamp(File factorioExecutable, File folderMods) {
+		Optional<String> version = getVersionFromExecutable(factorioExecutable);
+		if (version.isEmpty()) {
+			return Optional.empty();
+		}
+
 		try (StringWriter sw = new StringWriter(); PrintWriter pw = new PrintWriter(sw)) {
-			pw.println("Factorio Version: " + getVersionFromInstall(factorioExecutable));
+			pw.println("Factorio Version: " + version.get());
 			pw.println("mod-list.json MD5: " + fileMD5(new File(folderMods, "mod-list.json")));
 			pw.println("mod-settings.dat MD5: " + fileMD5(new File(folderMods, "mod-settings.dat")));
 			pw.println("Mod Zips:");
@@ -164,11 +169,12 @@ public class FactorioData {
 				}
 			}
 			pw.flush();
-			return sw.toString();
+			return Optional.of(sw.toString());
+
 		} catch (IOException e) {
 			LOGGER.error("Failed to generate stamp for Factorio data zip", e);
 			System.exit(-1);
-			return null;
+			return Optional.empty();
 		}
 	}
 
@@ -200,7 +206,7 @@ public class FactorioData {
 		File fileConfig = new File(folderData, "config.ini");
 		try (PrintWriter pw = new PrintWriter(fileConfig)) {
 			pw.println("[path]");
-			pw.println("read-data=" + factorioInstall.getAbsolutePath());
+			pw.println("read-data=" + new File(factorioInstall, "data").getAbsolutePath());
 			pw.println("write-data=" + folderData.getAbsolutePath());
 		} catch (IOException e) {
 			LOGGER.error("Failed to write config.ini", e);
@@ -212,7 +218,11 @@ public class FactorioData {
 		fileModList.setReadOnly();
 		fileModSettings.setReadOnly();
 
-		String stamp = generateStamp(factorioInstall, factorioExecutable, folderMods);
+		Optional<String> stamp = generateStamp(factorioExecutable, folderMods);
+		if (stamp.isEmpty()) {
+			LOGGER.error("Failed to generate stamp for Factorio data zip.");
+			return false;
+		}
 
 		boolean needBuild = forceBuild;
 
@@ -228,7 +238,7 @@ public class FactorioData {
 					try (InputStream is = zipFile.getInputStream(entryStamp)) {
 						byte[] existingStampBytes = is.readAllBytes();
 						String existingStamp = new String(existingStampBytes);
-						if (!existingStamp.equals(stamp)) {
+						if (!existingStamp.equals(stamp.get())) {
 							needBuild = true;
 						}
 					} catch (IOException e) {
@@ -250,7 +260,7 @@ public class FactorioData {
 				return false;
 			}
 
-			Optional<String> version = getVersionFromInstall(factorioInstall);
+			Optional<String> version = getVersionFromExecutable(factorioExecutable);
 			if (version.isEmpty()) {
 				LOGGER.error("Failed to get Factorio version from install.");
 				return false;
@@ -262,7 +272,7 @@ public class FactorioData {
 				zos.closeEntry();
 
 				zos.putNextEntry(new ZipEntry(DATA_ZIP_ENTRY_STAMP));
-				zos.write(stamp.getBytes());
+				zos.write(stamp.get().getBytes());
 				zos.closeEntry();
 
 				zos.putNextEntry(new ZipEntry(DATA_ZIP_ENTRY_VERSION));
