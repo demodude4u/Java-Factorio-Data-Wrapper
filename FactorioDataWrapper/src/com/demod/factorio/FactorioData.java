@@ -150,9 +150,9 @@ public class FactorioData {
 		}
 	}
 
-	private static String generateStamp(File factorioInstall, File folderMods) {
+	private static String generateStamp(File factorioInstall, File factorioExecutable, File folderMods) {
 		try (StringWriter sw = new StringWriter(); PrintWriter pw = new PrintWriter(sw)) {
-			pw.println("Factorio Version: " + getVersionFromInstall(factorioInstall));
+			pw.println("Factorio Version: " + getVersionFromInstall(factorioExecutable));
 			pw.println("mod-list.json MD5: " + fileMD5(new File(folderMods, "mod-list.json")));
 			pw.println("mod-settings.dat MD5: " + fileMD5(new File(folderMods, "mod-settings.dat")));
 			pw.println("Mod Zips:");
@@ -212,7 +212,7 @@ public class FactorioData {
 		fileModList.setReadOnly();
 		fileModSettings.setReadOnly();
 
-		String stamp = generateStamp(factorioInstall, folderMods);
+		String stamp = generateStamp(factorioInstall, factorioExecutable, folderMods);
 
 		boolean needBuild = forceBuild;
 
