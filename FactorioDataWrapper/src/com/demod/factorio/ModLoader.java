@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
@@ -86,8 +85,12 @@ public class ModLoader {
 					}
 				});
 
-				ZipEntry entryInfo = zipFile.getEntry("info.json");
+				ZipEntry entryInfo = zipFile.stream().filter(e -> stripDirectoryName(e.getName()).equals("/info.json")).findFirst().orElse(null);
 				if (entryInfo == null) {
+					LOGGER.debug("ZIP FILE: " + file.getAbsolutePath());
+					zipFile.stream().forEach(e -> {
+						LOGGER.debug(e.getName());
+					});
 					throw new FileNotFoundException(file.getName() + " does not contain info.json");
 				}
 				info = new ModInfo(Utils.readJsonFromStream(zipFile.getInputStream(entryInfo)));
