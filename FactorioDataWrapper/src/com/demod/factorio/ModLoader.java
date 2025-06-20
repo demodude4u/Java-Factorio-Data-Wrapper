@@ -72,8 +72,6 @@ public class ModLoader {
 
 		private ModInfo info;
 
-		private volatile Optional<String> lastResourceFolder = Optional.empty();
-
 		public ModZip(File file) throws FileNotFoundException, IOException {
 			this.fileZip = file;
 
@@ -115,14 +113,6 @@ public class ModLoader {
 			path = path.replace("\\", "/");
 			path = path.replace("//", "/");
 			Optional<byte[]> resource = Optional.ofNullable(files.get(path));
-
-			if (!resource.isPresent() && lastResourceFolder.isPresent()) {
-				path = lastResourceFolder.get() + path;
-				LOGGER.warn("FRANKENPATH: {}", path);
-				resource = Optional.ofNullable(files.get(path));
-			}
-
-			lastResourceFolder = Optional.of(path.substring(0, path.lastIndexOf("/")));
 
 			return resource.map(ByteArrayInputStream::new);
 		}
