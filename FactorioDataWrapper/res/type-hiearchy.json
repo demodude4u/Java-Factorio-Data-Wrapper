@@ -161,6 +161,7 @@
               },
               "unit": {},
               "unit-spawner": {},
+              "valve": {},
               "vehicle": {
                   "car": {},
                   "rolling-stock": {
