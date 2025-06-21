@@ -105,7 +105,7 @@ public class ModLoader {
 		}
 
 		@Override
-		public Optional<InputStream> getResource(String path) {
+		public synchronized Optional<InputStream> getResource(String path) {
 			if (!loaded) {
 				load();
 			}
@@ -117,7 +117,7 @@ public class ModLoader {
 			return resource.map(ByteArrayInputStream::new);
 		}
 
-		private void load() {
+		private synchronized void load() {
 			if (loaded) {
 				return;
 			}
