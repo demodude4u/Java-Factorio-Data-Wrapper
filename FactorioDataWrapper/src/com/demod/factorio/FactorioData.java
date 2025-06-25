@@ -32,14 +32,26 @@ import com.demod.factorio.fakelua.LuaTable;
 
 public class FactorioData {
 	private static final Logger LOGGER = LoggerFactory.getLogger(FactorioData.class);
+
+	public static final String EXEC_WINDOWS = "bin\\x64\\factorio.exe";
+	public static final String EXEC_LINUX = "bin/x64/factorio";
+	public static final String EXEC_MACOS = "MacOS/factorio";
 	
 	private static final String DATA_ZIP_ENTRY_DUMP = "dump.json";
 	private static final String DATA_ZIP_ENTRY_STAMP = "stamp.txt";
 	private static final String DATA_ZIP_ENTRY_VERSION = "version.txt";
 
 	@SuppressWarnings("resource")
-	private static synchronized boolean factorioDataDump(File factorioInstall, File factorioExecutable, File fileConfig,
+	private static synchronized boolean factorioDataDump(File factorioInstall, Optional<File> factorioExecutableOverride, File fileConfig,
 			File folderMods) {
+
+		File factorioExecutable;
+		if (factorioExecutableOverride.isPresent()) {
+			factorioExecutable = factorioExecutableOverride.get();
+		} else {
+			factorioExecutable = getFactorioExecutable(factorioInstall);
+		}
+
 		try {
 			ProcessBuilder pb = new ProcessBuilder(factorioExecutable.getAbsolutePath(), "--config",
 					fileConfig.getAbsolutePath(), "--mod-directory", folderMods.getAbsolutePath(), "--dump-data");
@@ -80,7 +92,15 @@ public class FactorioData {
 		return true;
 	}
 
-	public static Optional<String> getVersionFromExecutable(File factorioExecutable) {
+	public static Optional<String> getVersionFromInstall(File factorioInstall, Optional<File> factorioExecutableOverride) {
+		
+		File factorioExecutable;
+		if (factorioExecutableOverride.isPresent()) {
+			factorioExecutable = factorioExecutableOverride.get();
+		} else {
+			factorioExecutable = getFactorioExecutable(factorioInstall);
+		}
+
 		try {
 			ProcessBuilder pb = new ProcessBuilder(factorioExecutable.getAbsolutePath(), "--version");
 			Process process = pb.start();
@@ -150,8 +170,9 @@ public class FactorioData {
 		}
 	}
 
-	private static Optional<String> generateStamp(File factorioExecutable, File folderMods) {
-		Optional<String> version = getVersionFromExecutable(factorioExecutable);
+	private static Optional<String> generateStamp(File factorioInstall, Optional<File> factorioExecutableOverride, File folderMods) {
+
+		Optional<String> version = getVersionFromInstall(factorioInstall, factorioExecutableOverride);
 		if (version.isEmpty()) {
 			return Optional.empty();
 		}
@@ -186,7 +207,22 @@ public class FactorioData {
 		return version;
 	}
 
-	public static boolean buildDataZip(File targetDataZip, File folderData, File folderMods, File factorioInstall, File factorioExecutable, boolean forceBuild) {
+	public static File getFactorioExecutable(File factorioInstall) {
+		String osName = System.getProperty("os.name").toLowerCase();
+		if (osName.contains("win")) {
+			return new File(factorioInstall, EXEC_WINDOWS);
+		} else if (osName.contains("mac")) {
+			return new File(factorioInstall, EXEC_MACOS);
+		} else if (osName.contains("nix") || osName.contains("nux")) {
+			return new File(factorioInstall, EXEC_LINUX);
+		} else {
+			LOGGER.error("Unsupported operating system: {}", osName);
+			System.exit(-1);
+			return null;
+		}
+	}
+
+	public static boolean buildDataZip(File targetDataZip, File folderData, File folderMods, File factorioInstall, Optional<File> factorioExecutableOverride, boolean forceBuild) {
 
 		folderData.mkdirs();
 
@@ -218,7 +254,7 @@ public class FactorioData {
 		fileModList.setReadOnly();
 		fileModSettings.setReadOnly();
 
-		Optional<String> stamp = generateStamp(factorioExecutable, folderMods);
+		Optional<String> stamp = generateStamp(factorioInstall, factorioExecutableOverride, folderMods);
 		if (stamp.isEmpty()) {
 			LOGGER.error("Failed to generate stamp for Factorio data zip.");
 			return false;
@@ -255,12 +291,12 @@ public class FactorioData {
 		if (needBuild) {
 			LOGGER.info("Starting data dump...");
 
-			if (!factorioDataDump(factorioInstall, factorioExecutable, fileConfig, folderMods)) {
+			if (!factorioDataDump(factorioInstall, factorioExecutableOverride, fileConfig, folderMods)) {
 				LOGGER.error("Failed to dump data from Factorio install.");
 				return false;
 			}
 
-			Optional<String> version = getVersionFromExecutable(factorioExecutable);
+			Optional<String> version = getVersionFromInstall(factorioInstall, factorioExecutableOverride);
 			if (version.isEmpty()) {
 				LOGGER.error("Failed to get Factorio version from install.");
 				return false;
