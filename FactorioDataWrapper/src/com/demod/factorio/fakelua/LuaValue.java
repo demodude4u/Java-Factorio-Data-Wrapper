@@ -9,10 +9,21 @@ public class LuaValue {
 
 	public static final LuaValue NIL = new LuaValue(null);
 
+	private final String debugPath;
 	private final Object json;
 
 	public LuaValue(Object json) {
+		this.debugPath = "";
 		this.json = json;
+	}
+
+	LuaValue(String debugPath, Object json) {
+		this.debugPath = debugPath;
+		this.json = json;
+	}
+
+	public String getDebugPath() {
+		return debugPath;
 	}
 
 	public boolean checkboolean() {
@@ -37,9 +48,9 @@ public class LuaValue {
 
 	public LuaTable checktable() {
 		if (json instanceof JSONObject) {
-			return new LuaTable((JSONObject) json);
+			return new LuaTable(debugPath, (JSONObject) json);
 		} else {
-			return new LuaTable((JSONArray) json);
+			return new LuaTable(debugPath, (JSONArray) json);
 		}
 	}
 
@@ -156,11 +167,11 @@ public class LuaValue {
 	}
 
 	public LuaTable totableArray() {
-		return opttable(new LuaTable(new JSONArray()));
+		return opttable(new LuaTable(debugPath, new JSONArray()));
 	}
 
 	public LuaTable totableObject() {
-		return opttable(new LuaTable(new JSONObject()));
+		return opttable(new LuaTable(debugPath, new JSONObject()));
 	}
 
 }
