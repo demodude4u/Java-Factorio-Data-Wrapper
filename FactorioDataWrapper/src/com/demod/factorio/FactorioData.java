@@ -353,7 +353,7 @@ public class FactorioData {
 			}
 			try (InputStream is = zipFile.getInputStream(entryVersion)) {
 				version = new String(is.readAllBytes());
-				LOGGER.info("Factorio Version: {}", version);
+				// LOGGER.info("Factorio Version: {}", version);
 			} catch (IOException e) {
 				LOGGER.error("Failed to read version.txt from data zip", e);
 				return false;
