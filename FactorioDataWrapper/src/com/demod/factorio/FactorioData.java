@@ -212,6 +212,10 @@ public class FactorioData {
 		if (osName.contains("win")) {
 			return new File(factorioInstall, EXEC_WINDOWS);
 		} else if (osName.contains("mac")) {
+			File steamAppBundle = new File(factorioInstall, "factorio.app/Contents/MacOS/factorio");
+			if (steamAppBundle.exists()) {
+				return steamAppBundle;
+			}
 			return new File(factorioInstall, EXEC_MACOS);
 		} else if (osName.contains("nix") || osName.contains("nux")) {
 			return new File(factorioInstall, EXEC_LINUX);
