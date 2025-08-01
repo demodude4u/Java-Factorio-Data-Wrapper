@@ -37,8 +37,8 @@ public class FactorioEnvironment {
         File folderMods = new File(folder, "mods");
 
         File dataZip = new File(folder, "factorio-data.zip");
-        if (!FactorioData.buildDataZip(dataZip, folderData, folderMods, factorioInstall, factorioExecutableOverride, false)) {
-            throw new RuntimeException("Failed to build Factorio data zip");
+        if (!FactorioData.generateDumpAndVersion(folderData, folderMods, factorioInstall, factorioExecutableOverride)) {
+            throw new RuntimeException("Failed to dump factorio data and version");
         }
 
         FactorioData factorioData = new FactorioData(dataZip);

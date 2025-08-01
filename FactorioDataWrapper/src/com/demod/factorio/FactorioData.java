@@ -2,18 +2,12 @@ package com.demod.factorio;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileOutputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.math.BigInteger;
 import java.nio.file.Files;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.Optional;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -21,7 +15,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
-import java.util.zip.ZipOutputStream;
 
 import org.json.JSONObject;
 import org.json.JSONTokener;
@@ -42,7 +35,7 @@ public class FactorioData {
 	private static final String DATA_ZIP_ENTRY_VERSION = "version.txt";
 
 	@SuppressWarnings("resource")
-	private static synchronized boolean factorioDataDump(File factorioInstall, Optional<File> factorioExecutableOverride, File fileConfig,
+	private static synchronized boolean executeFactorioDumpData(File factorioInstall, Optional<File> factorioExecutableOverride, File fileConfig,
 			File folderMods) {
 
 		File factorioExecutable;
@@ -146,57 +139,36 @@ public class FactorioData {
 		}
 	}
 
-	private final File dataZip;
+	private final boolean hasZip;
+	private final File fileDataZip;
+	private final File fileDataJson;
 
 	private boolean initialized = false;
 	private DataTable dataTable = null;
 	private String version = null;
 
-	public FactorioData(File dataZip) {
-		this.dataZip = dataZip;
+	public FactorioData(File fileDataZip) {
+		this.hasZip = true;
+		this.fileDataZip = fileDataZip;
+		fileDataJson = null;
 	}
 
-	private static String fileMD5(File file) {
-		if (!file.exists()) {
-			return "<none>";
-		}
+	public FactorioData(File fileDataJson, File fileVersion) {
+		this.hasZip = true;
+		this.fileDataZip = null;
+		this.fileDataJson = fileDataJson;
 		try {
-			return new BigInteger(1, MessageDigest.getInstance("MD5").digest(Files.readAllBytes(file.toPath())))
-					.toString(16);
-		} catch (NoSuchAlgorithmException | IOException e) {
-			e.printStackTrace();
-			System.exit(0);
-			return null;
+			this.version = Files.readString(fileVersion.toPath()).trim();
+		} catch (IOException e) {
+			LOGGER.error("Failed to read version file: {}", fileVersion.getAbsolutePath(), e);
 		}
 	}
 
-	private static Optional<String> generateStamp(File factorioInstall, Optional<File> factorioExecutableOverride, File folderMods) {
-
-		Optional<String> version = getVersionFromInstall(factorioInstall, factorioExecutableOverride);
-		if (version.isEmpty()) {
-			return Optional.empty();
-		}
-
-		try (StringWriter sw = new StringWriter(); PrintWriter pw = new PrintWriter(sw)) {
-			pw.println("Factorio Version: " + version.get());
-			pw.println("mod-list.json MD5: " + fileMD5(new File(folderMods, "mod-list.json")));
-			pw.println("mod-settings.dat MD5: " + fileMD5(new File(folderMods, "mod-settings.dat")));
-			pw.println("Mod Zips:");
-			File[] files = folderMods.listFiles();
-			Arrays.sort(files, Comparator.comparing(File::getName));
-			for (File file : files) {
-				if (file.getName().endsWith(".zip")) {
-					pw.println("\t" + file.getName());
-				}
-			}
-			pw.flush();
-			return Optional.of(sw.toString());
-
-		} catch (IOException e) {
-			LOGGER.error("Failed to generate stamp for Factorio data zip", e);
-			System.exit(-1);
-			return Optional.empty();
-		}
+	public FactorioData(File fileDataJson, String version) {
+		this.hasZip = false;
+		this.fileDataZip = null;
+		this.fileDataJson = fileDataJson;
+		this.version = version;
 	}
 
 	public DataTable getTable() {
@@ -226,14 +198,16 @@ public class FactorioData {
 		}
 	}
 
-	public static boolean buildDataZip(File targetDataZip, File folderData, File folderMods, File factorioInstall, Optional<File> factorioExecutableOverride, boolean forceBuild) {
-
+	public static boolean generateDumpAndVersion(File folderData, File folderMods, File factorioInstall, Optional<File> factorioExecutableOverride) {
 		folderData.mkdirs();
 
+		File fileModSettings = new File(folderMods, "mod-settings.dat");
 		File folderScriptOutput = new File(folderData, "script-output");
 		File fileDataRawDump = new File(folderScriptOutput, "data-raw-dump.json");
-
+		File fileVersion = new File(folderScriptOutput, "version.txt");
 		File fileModList = new File(folderMods, "mod-list.json");
+		File fileConfig = new File(folderData, "config.ini");
+		
 		if (!fileModList.exists()) {
 			try {
 				Files.copy(FactorioData.class.getClassLoader().getResourceAsStream("mod-list.json"), fileModList.toPath());
@@ -243,7 +217,6 @@ public class FactorioData {
 			}
 		}
 
-		File fileConfig = new File(folderData, "config.ini");
 		try (PrintWriter pw = new PrintWriter(fileConfig)) {
 			pw.println("[path]");
 			pw.println("read-data=" + new File(factorioInstall, "data").getAbsolutePath());
@@ -253,76 +226,40 @@ public class FactorioData {
 			return false;
 		}
 
+		if (fileDataRawDump.exists()) {
+			if (!fileDataRawDump.delete()) {
+				LOGGER.error("Failed to delete old data dump file: {}", fileDataRawDump.getAbsolutePath());
+				return false;
+			}
+		}
+
+		LOGGER.info("Starting data dump...");
+
 		// Prevent unnecessary changes so github doesn't get confused
-		File fileModSettings = new File(folderMods, "mod-settings.dat");
 		fileModList.setReadOnly();
 		fileModSettings.setReadOnly();
 
-		Optional<String> stamp = generateStamp(factorioInstall, factorioExecutableOverride, folderMods);
-		if (stamp.isEmpty()) {
-			LOGGER.error("Failed to generate stamp for Factorio data zip.");
+		if (!executeFactorioDumpData(factorioInstall, factorioExecutableOverride, fileConfig, folderMods)) {
+			LOGGER.error("Failed to dump data from Factorio install.");
 			return false;
 		}
 
-		boolean needBuild = forceBuild;
-
-		if (!targetDataZip.exists()) {
-			needBuild = true;
-		
-		} else {
-			try (ZipFile zipFile = new ZipFile(targetDataZip)) {
-				ZipEntry entryStamp = zipFile.getEntry(DATA_ZIP_ENTRY_STAMP);
-				if (entryStamp == null) {
-					needBuild = true;
-				} else {
-					try (InputStream is = zipFile.getInputStream(entryStamp)) {
-						byte[] existingStampBytes = is.readAllBytes();
-						String existingStamp = new String(existingStampBytes);
-						if (!existingStamp.equals(stamp.get())) {
-							needBuild = true;
-						}
-					} catch (IOException e) {
-						LOGGER.error("Error reading stamp from zip file", e);
-						needBuild = true;
-					}
-				}
-			} catch (IOException e) {
-				LOGGER.error("Error opening data zip file", e);
-				needBuild = true;
-			}
+		if (!fileDataRawDump.exists()) {
+			LOGGER.error("Data dump file does not exist: {}", fileDataRawDump.getAbsolutePath());
+			return false;
 		}
 
-		if (needBuild) {
-			LOGGER.info("Starting data dump...");
+		Optional<String> version = getVersionFromInstall(factorioInstall, factorioExecutableOverride);
+		if (version.isEmpty()) {
+			LOGGER.error("Failed to get Factorio version from install.");
+			return false;
+		}
 
-			if (!factorioDataDump(factorioInstall, factorioExecutableOverride, fileConfig, folderMods)) {
-				LOGGER.error("Failed to dump data from Factorio install.");
-				return false;
-			}
-
-			Optional<String> version = getVersionFromInstall(factorioInstall, factorioExecutableOverride);
-			if (version.isEmpty()) {
-				LOGGER.error("Failed to get Factorio version from install.");
-				return false;
-			}
-
-			try (ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(targetDataZip))) {
-				zos.putNextEntry(new ZipEntry(DATA_ZIP_ENTRY_DUMP));
-				zos.write(Files.readAllBytes(fileDataRawDump.toPath()));
-				zos.closeEntry();
-
-				zos.putNextEntry(new ZipEntry(DATA_ZIP_ENTRY_STAMP));
-				zos.write(stamp.get().getBytes());
-				zos.closeEntry();
-
-				zos.putNextEntry(new ZipEntry(DATA_ZIP_ENTRY_VERSION));
-				zos.write(version.get().getBytes());
-				zos.closeEntry();
-			} catch (IOException e) {
-				LOGGER.error("Failed to write data zip", e);
-				return false;
-			}
-			LOGGER.info("Write Data Zip: {}", targetDataZip.getAbsolutePath());
+		try {
+			Files.writeString(fileVersion.toPath(), version.get());
+		} catch (IOException e) {
+			LOGGER.error("Failed to write version.txt", e);
+			return false;
 		}
 
 		return true;
@@ -334,37 +271,50 @@ public class FactorioData {
 		}
 		initialized = true;
 
-		LOGGER.info("Read Data Zip: {}", dataZip.getAbsolutePath());
 		LuaTable lua = null;
+		
+		if (hasZip) {
+			LOGGER.info("Read Data Zip: {}", fileDataZip.getAbsolutePath());
 
-		try (ZipFile zipFile = new ZipFile(dataZip)) {
-			ZipEntry entryDump = zipFile.getEntry(DATA_ZIP_ENTRY_DUMP);
-			if (entryDump == null) {
-				LOGGER.error("Data zip does not contain dump.json entry!");
-				return false;
-			}
-			try (InputStream is = zipFile.getInputStream(entryDump)) {
-				lua = new LuaTable(new JSONObject(new JSONTokener(is)));
-			} catch (IOException e) {
-				LOGGER.error("Failed to read dump.json from data zip", e);
-				return false;
-			}
+			try (ZipFile zipFile = new ZipFile(fileDataZip)) {
+				ZipEntry entryDump = zipFile.getEntry(DATA_ZIP_ENTRY_DUMP);
+				if (entryDump == null) {
+					LOGGER.error("Data zip does not contain dump.json entry!");
+					return false;
+				}
+				try (InputStream is = zipFile.getInputStream(entryDump)) {
+					lua = new LuaTable(new JSONObject(new JSONTokener(is)));
+				} catch (IOException e) {
+					LOGGER.error("Failed to read dump.json from data zip", e);
+					return false;
+				}
 
-			ZipEntry entryVersion = zipFile.getEntry(DATA_ZIP_ENTRY_VERSION);
-			if (entryVersion == null) {
-				LOGGER.error("Data zip does not contain version.txt entry!");
-				return false;
-			}
-			try (InputStream is = zipFile.getInputStream(entryVersion)) {
-				version = new String(is.readAllBytes());
-				// LOGGER.info("Factorio Version: {}", version);
+				ZipEntry entryVersion = zipFile.getEntry(DATA_ZIP_ENTRY_VERSION);
+				if (entryVersion == null) {
+					LOGGER.error("Data zip does not contain version.txt entry!");
+					return false;
+				}
+				try (InputStream is = zipFile.getInputStream(entryVersion)) {
+					version = new String(is.readAllBytes());
+					// LOGGER.info("Factorio Version: {}", version);
+				} catch (IOException e) {
+					LOGGER.error("Failed to read version.txt from data zip", e);
+					return false;
+				}
 			} catch (IOException e) {
-				LOGGER.error("Failed to read version.txt from data zip", e);
+				LOGGER.error("Failed to open data zip", e);
 				return false;
 			}
-		} catch (IOException e) {
-			LOGGER.error("Failed to open data zip", e);
-			return false;
+		
+		} else {
+			LOGGER.info("Read Data JSON: {}", fileDataJson.getAbsolutePath());
+
+			try (FileInputStream fis = new FileInputStream(fileDataJson)) {
+				lua = new LuaTable(new JSONObject(new JSONTokener(fis)));
+			} catch (IOException e) {
+				LOGGER.error("Failed to read {}", fileDataJson.getAbsolutePath(), e);
+				return false;
+			}
 		}
 
 		TypeHierarchy typeHiearchy = new TypeHierarchy(Utils
