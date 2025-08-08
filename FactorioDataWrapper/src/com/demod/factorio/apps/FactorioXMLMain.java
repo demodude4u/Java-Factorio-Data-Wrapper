@@ -2,13 +2,15 @@ package com.demod.factorio.apps;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -17,7 +19,6 @@ import org.w3c.dom.ls.DOMImplementationLS;
 import org.w3c.dom.ls.LSOutput;
 import org.w3c.dom.ls.LSSerializer;
 
-import com.demod.factorio.Config;
 import com.demod.factorio.DataTable;
 import com.demod.factorio.FactorioData;
 import com.demod.factorio.FactorioEnvironment;
@@ -99,9 +100,9 @@ public class FactorioXMLMain {
 		writer.write(doc, output);
 	}
 
-	public static void main(String[] args) throws JSONException, IOException, ParserConfigurationException,
-			ClassNotFoundException, InstantiationException, IllegalAccessException, ClassCastException {
-		FactorioEnvironment env = FactorioEnvironment.buildAndInitialize(Config.get(), false);
+	public static void main(String[] args) throws Exception {
+		JSONObject jsonConfig = new JSONObject(Files.readString(Path.of("config.json")));
+		FactorioEnvironment env = FactorioEnvironment.buildAndInitialize(jsonConfig, false);
 		FactorioData data = env.getFactorioData();
 		DataTable table = data.getTable();
 

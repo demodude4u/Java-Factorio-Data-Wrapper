@@ -9,7 +9,8 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -29,7 +30,6 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.demod.factorio.Config;
 import com.demod.factorio.DataTable;
 import com.demod.factorio.FactorioData;
 import com.demod.factorio.FactorioEnvironment;
@@ -45,7 +45,6 @@ import com.demod.factorio.prototype.TechPrototype;
 import com.google.common.collect.LinkedHashMultimap;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Streams;
-import com.google.common.io.Files;
 import com.google.common.primitives.Ints;
 
 public class FactorioWikiMain {
@@ -158,12 +157,12 @@ public class FactorioWikiMain {
 	}
 
 	public static void main(String[] args) throws JSONException, IOException {
-		JSONObject config = Config.get();
-		FactorioEnvironment env = FactorioEnvironment.buildAndInitialize(config, false);
+		JSONObject jsonConfig = new JSONObject(Files.readString(Path.of("config.json")));
+		FactorioEnvironment env = FactorioEnvironment.buildAndInitialize(jsonConfig, false);
 		FactorioData data = env.getFactorioData();
 		DataTable table = data.getTable();
-		
-		String outputPath = Config.get().optString("output", "output");
+
+		String outputPath = jsonConfig.optString("output", "output");
 
 		folder = new File(outputPath + File.separator + env.getVersion());
 		folder.mkdirs();
@@ -764,8 +763,7 @@ public class FactorioWikiMain {
 	}
 
 	private static void write(JSONObject json, String name) throws JSONException, IOException {
-		Files.write(json.toString(2), new File(folder, name + "-" + baseInfo.getVersion() + ".json"),
-				StandardCharsets.UTF_8);
+		Files.writeString(new File(folder, name + "-" + baseInfo.getVersion() + ".json").toPath(), json.toString(2));
 	}
 
 	public static BufferedImage getWikiIcon(DataPrototype prototype, ModLoader modLoader) {

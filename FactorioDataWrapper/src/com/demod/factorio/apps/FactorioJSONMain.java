@@ -4,11 +4,12 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.demod.factorio.Config;
 import com.demod.factorio.DataTable;
 import com.demod.factorio.FactorioData;
 import com.demod.factorio.FactorioEnvironment;
@@ -52,7 +53,8 @@ public class FactorioJSONMain {
 	}
 
 	public static void main(String[] args) throws JSONException, IOException {
-		FactorioEnvironment env = FactorioEnvironment.buildAndInitialize(Config.get(), true);
+		JSONObject jsonConfig = new JSONObject(Files.readString(Path.of("config.json")));
+		FactorioEnvironment env = FactorioEnvironment.buildAndInitialize(jsonConfig, true);
 		FactorioData data = env.getFactorioData();
 		DataTable table = data.getTable();
 		

@@ -31,7 +31,6 @@ public class FactorioData {
 	public static final String EXEC_MACOS = "MacOS/factorio";
 	
 	private static final String DATA_ZIP_ENTRY_DUMP = "dump.json";
-	private static final String DATA_ZIP_ENTRY_STAMP = "stamp.txt";
 	private static final String DATA_ZIP_ENTRY_VERSION = "version.txt";
 
 	@SuppressWarnings("resource")
