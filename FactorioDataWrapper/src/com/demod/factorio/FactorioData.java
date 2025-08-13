@@ -273,7 +273,7 @@ public class FactorioData {
 		LuaTable lua = null;
 		
 		if (hasZip) {
-			LOGGER.info("Read Data Zip: {}", fileDataZip.getAbsolutePath());
+			LOGGER.info("Read Dump Data: {}", fileDataZip.getName());
 
 			try (ZipFile zipFile = new ZipFile(fileDataZip)) {
 				ZipEntry entryDump = zipFile.getEntry(DATA_ZIP_ENTRY_DUMP);
