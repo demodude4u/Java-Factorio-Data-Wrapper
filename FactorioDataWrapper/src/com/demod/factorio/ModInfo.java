@@ -67,7 +67,7 @@ public class ModInfo {
 		}
 
 		public boolean isRequired() {
-			return this.prefix == DepPrefix.REQUIRED;
+			return this.prefix == DepPrefix.REQUIRED || this.prefix == DepPrefix.DOES_NOT_AFFECT_LOAD_ORDER;
 		}
 	}
 
