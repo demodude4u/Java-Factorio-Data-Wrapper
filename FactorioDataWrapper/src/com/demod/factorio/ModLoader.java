@@ -1,30 +1,25 @@
 package com.demod.factorio;
 
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
+import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
+
+import javax.imageio.ImageIO;
 
 import org.json.JSONException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.demod.factorio.ModInfo.Dependency;
-import com.demod.factorio.ModInfo.DependencyType;
 import com.google.common.io.ByteStreams;
 
 public class ModLoader {
@@ -70,37 +65,37 @@ public class ModLoader {
 			return name.substring(firstSlash);
 		}
 
+		private File fileZip;
+		private volatile boolean loaded = false;
+
 		private final Map<String, byte[]> files = new LinkedHashMap<>();
 
 		private ModInfo info;
 
-		private volatile Optional<String> lastResourceFolder = Optional.empty();
-
 		public ModZip(File file) throws FileNotFoundException, IOException {
+			this.fileZip = file;
+
 			try (ZipFile zipFile = new ZipFile(file)) {
 				zipFile.stream().forEach(entry -> {
 					String name = stripDirectoryName(entry.getName());
 					if (name.equals(entry.getName())) {
 						throw new RuntimeException(file.getName() + " missing the inner directory for the mod files.");
 					}
-
-					try (InputStream inputStream = zipFile.getInputStream(entry)) {
-						files.put(name, ByteStreams.toByteArray(inputStream));
-					} catch (IOException e) {
-						throw new RuntimeException(e);
-					}
 				});
+
+				ZipEntry entryInfo = zipFile.stream().filter(e -> stripDirectoryName(e.getName()).equals("/info.json")).findFirst().orElse(null);
+				if (entryInfo == null) {
+					LOGGER.debug("ZIP FILE: " + file.getAbsolutePath());
+					zipFile.stream().forEach(e -> {
+						LOGGER.debug(e.getName());
+					});
+					throw new FileNotFoundException(file.getName() + " does not contain info.json");
+				}
+				info = new ModInfo(Utils.readJsonFromStream(zipFile.getInputStream(entryInfo)));
+
 			} catch (Exception e) {
 				LOGGER.debug("MODZIP " + file.getAbsolutePath());
 				throw e;
-			}
-
-			byte[] buf = files.get("/info.json");
-			if (buf == null) {
-				throw new FileNotFoundException(file.getName() + " does not contain info.json");
-			}
-			try (ByteArrayInputStream bais = new ByteArrayInputStream(buf)) {
-				info = new ModInfo(Utils.readJsonFromStream(bais));
 			}
 		}
 
@@ -110,31 +105,63 @@ public class ModLoader {
 		}
 
 		@Override
-		public Optional<InputStream> getResource(String path) {
+		public synchronized Optional<InputStream> getResource(String path) {
+			if (!loaded) {
+				load();
+			}
+
 			path = path.replace("\\", "/");
 			path = path.replace("//", "/");
 			Optional<byte[]> resource = Optional.ofNullable(files.get(path));
 
-			if (!resource.isPresent() && lastResourceFolder.isPresent()) {
-				path = lastResourceFolder.get() + path;
-				LOGGER.warn("FRANKENPATH: {}", path);
-				resource = Optional.ofNullable(files.get(path));
-			}
-
-			lastResourceFolder = Optional.of(path.substring(0, path.lastIndexOf("/")));
-
 			return resource.map(ByteArrayInputStream::new);
+		}
+
+		private synchronized void load() {
+			if (loaded) {
+				return;
+			}
+			loaded = true;
+
+			try (ZipFile zipFile = new ZipFile(fileZip)) {
+				zipFile.stream().forEach(entry -> {
+					String name = stripDirectoryName(entry.getName());
+					if (name.equals(entry.getName())) {
+						throw new RuntimeException(fileZip.getName() + " missing the inner directory for the mod files.");
+					}
+
+					try (InputStream inputStream = zipFile.getInputStream(entry)) {
+						files.put(name, ByteStreams.toByteArray(inputStream));
+					} catch (IOException e) {
+						throw new RuntimeException(e);
+					}
+				});
+			} catch (Exception e) {
+				LOGGER.error("MODZIP " + fileZip.getAbsolutePath(), e);
+				System.exit(-1);
+			}
 		}
 	}
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ModLoader.class);
 
-	private final Set<String> modInclude;
+	private final File factorioInstall;
+	private final File folderMods;
 
 	private final Map<String, Mod> mods = new LinkedHashMap<>();
 
-	public ModLoader(List<String> mods) {
-		this.modInclude = new HashSet<String>(mods);
+	public ModLoader(File factorioInstall, File folderMods) {
+		this.factorioInstall = factorioInstall;
+		this.folderMods = folderMods;
+
+		reload();
+	}
+
+	public void reload() {
+		mods.clear();
+
+		loadFolder(new File(factorioInstall, "data"));
+		loadFolder(folderMods);
 	}
 
 	public Optional<Mod> getMod(String name) {
@@ -145,62 +172,21 @@ public class ModLoader {
 		return mods;
 	}
 
-	public List<Mod> getModsInLoadOrder() {
-		LinkedList<Mod> work = new LinkedList<>();
-		mods.values().stream().sorted((m1, m2) -> m1.getInfo().getName().compareTo(m2.getInfo().getName()))
-				.forEach(n -> work.add(n));
-		List<String> order = new ArrayList<>();
-		while (!work.isEmpty()) {
-			Iterator<Mod> iter = work.iterator();
-			while (iter.hasNext()) {
-				Mod mod = iter.next();
-				boolean missingDep = false;
-				for (Dependency dependency : mod.getInfo().getDependencies()) {
-					String depName = dependency.getName();
-					if (getMod(depName).isPresent()) {
-						if (!order.contains(depName)
-								&& dependency.getType() != DependencyType.DOES_NOT_AFFECT_LOAD_ORDER) {
-							missingDep = true;
-							break;
-						}
-					} else if (!dependency.isOptional() && dependency.getType() != DependencyType.INCOMPATIBLE) {
-						throw new InternalError("MISSING DEPENDENCY FOR " + mod.getInfo().getName() + " : " + depName);
-					}
-				}
-				if (!missingDep) {
-					order.add(mod.getInfo().getName());
-					iter.remove();
-				}
-			}
+	private void loadFolder(File folder) {
+		if (!folder.exists()) {
+			return;
 		}
-		// Make sure core loads first
-		if (order.contains("core") && order.indexOf("core") != 0) {
-			order.remove("core");
-			order.add(0, "core");
-		}
-		return order.stream().map(this::getMod).map(Optional::get).collect(Collectors.toList());
-	}
-
-	public void loadFolder(File folder) {
-		File[] files = folder.listFiles();
-		Objects.requireNonNull(files, folder.toString());
-		for (File file : files) {
+		for (File file : folder.listFiles()) {
 			try {
 				if (file.isDirectory()) {
 					if (new File(file, "info.json").exists()) {
 						ModFolder mod = new ModFolder(file);
-						if (!modInclude.contains(mod.getInfo().getName())) {
-							continue;
-						}
 						mods.put(mod.getInfo().getName(), mod);
 					} else {
 						loadFolder(file);
 					}
 				} else if (file.getName().endsWith(".zip")) {
 					ModZip mod = new ModZip(file);
-					if (!modInclude.contains(mod.getInfo().getName())) {
-						continue;
-					}
 					mods.put(mod.getInfo().getName(), mod);
 				}
 			} catch (IOException e) {
@@ -208,5 +194,55 @@ public class ModLoader {
 				System.exit(-1);
 			}
 		}
+	}
+
+	public Optional<InputStream> getModResource(String path) {
+		String firstSegment = path.split("\\/")[0];
+		if (firstSegment.length() < 4) {
+			throw new IllegalArgumentException("Path is not valid: \"" + path + "\"");
+		}
+		String modName = firstSegment.substring(2, firstSegment.length() - 2);
+		Optional<Mod> mod = getMod(modName);
+		if (!mod.isPresent()) {
+			throw new IllegalStateException("Mod does not exist: " + modName);
+		}
+		String modPath = path.replace(firstSegment, "");
+		try {
+			return mod.get().getResource(modPath);
+		} catch (IOException e) {
+			LOGGER.error(path);
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
+
+	public BufferedImage getModImage(String path) {
+		try {
+			try (InputStream is = getModResource(path).get()) {
+				BufferedImage image = loadImage(is);
+				return image;
+			}
+		} catch (Exception e) {
+			LOGGER.error("MISSING MOD IMAGE: " + path);
+			e.printStackTrace();
+			System.exit(-1);
+			return null;
+		}
+	}
+
+	private BufferedImage loadImage(InputStream is) throws IOException {
+		BufferedImage image = ImageIO.read(is);
+		if (image.getType() == BufferedImage.TYPE_CUSTOM) {
+			image = convertCustomImage(image);
+		}
+		return image;
+	}
+
+	private BufferedImage convertCustomImage(BufferedImage image) {
+		BufferedImage ret = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g = ret.createGraphics();
+		g.drawImage(image, 0, 0, null);
+		g.dispose();
+		return ret;
 	}
 }

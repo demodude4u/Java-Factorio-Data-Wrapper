@@ -2,10 +2,15 @@ package com.demod.factorio.apps;
 
 import java.awt.Color;
 import java.awt.Desktop;
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.RenderingHints;
+import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -25,20 +30,21 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.demod.factorio.Config;
 import com.demod.factorio.DataTable;
 import com.demod.factorio.FactorioData;
+import com.demod.factorio.FactorioEnvironment;
 import com.demod.factorio.ModInfo;
+import com.demod.factorio.ModLoader;
 import com.demod.factorio.TotalRawCalculator;
 import com.demod.factorio.Utils;
 import com.demod.factorio.fakelua.LuaValue;
+import com.demod.factorio.prototype.DataPrototype;
 import com.demod.factorio.prototype.EntityPrototype;
 import com.demod.factorio.prototype.RecipePrototype;
 import com.demod.factorio.prototype.TechPrototype;
 import com.google.common.collect.LinkedHashMultimap;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Streams;
-import com.google.common.io.Files;
 import com.google.common.primitives.Ints;
 
 public class FactorioWikiMain {
@@ -151,15 +157,14 @@ public class FactorioWikiMain {
 	}
 
 	public static void main(String[] args) throws JSONException, IOException {
-		FactorioData data = FactorioData.fromConfig(Config.get());
-		data.initialize(true);
+		JSONObject jsonConfig = new JSONObject(Files.readString(Path.of("config.json")));
+		FactorioEnvironment env = FactorioEnvironment.buildAndInitialize(jsonConfig, false);
+		FactorioData data = env.getFactorioData();
 		DataTable table = data.getTable();
-		baseInfo = new ModInfo(Utils.readJsonFromStream(
-				new FileInputStream(new File(table.getData().getFolderFactorio().get(), "data/base/info.json"))));
 
-		String outputPath = Config.get().optString("output", "output");
+		String outputPath = jsonConfig.optString("output", "output");
 
-		folder = new File(outputPath + File.separator + baseInfo.getVersion());
+		folder = new File(outputPath + File.separator + env.getVersion());
 		folder.mkdirs();
 
 		Map<String, WikiTypeMatch> wikiTypes = generateWikiTypes(table);
@@ -176,7 +181,7 @@ public class FactorioWikiMain {
 		// Output icons outside of versions because these are a lot of icons and they
 		// dont change so often. No need to spam the repository with them.
 		File icons = new File(outputPath, "icons");
-		wiki_GenerateIcons(table, icons, new File(icons, "technology"));
+		wiki_GenerateIcons(table, env.getModLoader(), icons, new File(icons, "technology"));
 
 		Desktop.getDesktop().open(folder);
 	}
@@ -411,14 +416,14 @@ public class FactorioWikiMain {
 		return json;
 	}
 
-	private static void wiki_GenerateIcons(DataTable table, File folder, File techIconFolder) {
+	private static void wiki_GenerateIcons(DataTable table, ModLoader modLoader, File folder, File techIconFolder) {
 		folder.mkdirs();
 		techIconFolder.mkdirs();
 
 		table.getRecipes().values().stream().filter(r -> (!r.isRecycling() && !table.getItems().containsKey(r.getName())
 				&& !table.getFluids().containsKey(r.getName()))).forEach(recipe -> {
 					try {
-						ImageIO.write(table.getData().getWikiIcon(recipe), "PNG",
+						ImageIO.write(getWikiIcon(recipe, modLoader), "PNG",
 								new File(folder, table.getWikiRecipeName(recipe.getName()) + ".png"));
 					} catch (IOException e) {
 						e.printStackTrace();
@@ -427,7 +432,7 @@ public class FactorioWikiMain {
 
 		table.getItems().values().stream().forEach(item -> {
 			try {
-				ImageIO.write(table.getData().getWikiIcon(item), "PNG",
+				ImageIO.write(getWikiIcon(item, modLoader), "PNG",
 						new File(folder, table.getWikiItemName(item.getName()) + ".png"));
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -436,7 +441,7 @@ public class FactorioWikiMain {
 
 		table.getFluids().values().stream().forEach(fluid -> {
 			try {
-				ImageIO.write(table.getData().getWikiIcon(fluid), "PNG",
+				ImageIO.write(getWikiIcon(fluid, modLoader), "PNG",
 						new File(folder, table.getWikiFluidName(fluid.getName()) + ".png"));
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -445,7 +450,7 @@ public class FactorioWikiMain {
 
 		table.getTechnologies().values().stream().filter(t -> !t.isBonus() || t.isFirstBonus()).forEach(tech -> {
 			try {
-				ImageIO.write(table.getData().getWikiIcon(tech), "PNG",
+				ImageIO.write(getWikiIcon(tech, modLoader), "PNG",
 						new File(techIconFolder, table.getWikiTechnologyName(tech.getName()) + ".png"));
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -758,7 +763,93 @@ public class FactorioWikiMain {
 	}
 
 	private static void write(JSONObject json, String name) throws JSONException, IOException {
-		Files.write(json.toString(2), new File(folder, name + "-" + baseInfo.getVersion() + ".json"),
-				StandardCharsets.UTF_8);
+		Files.writeString(new File(folder, name + "-" + baseInfo.getVersion() + ".json").toPath(), json.toString(2));
+	}
+
+	public static BufferedImage getWikiIcon(DataPrototype prototype, ModLoader modLoader) {
+		int defaultIconSize = 64;
+
+		String name = prototype.getName();
+		if (prototype.lua().get("type").checkjstring().equals("technology")) {
+			name += ".tech"; // HACK
+		}
+		LuaValue iconLua = prototype.lua().get("icon");
+		if (!iconLua.isnil()) {
+			int iconSize = prototype.lua().get("icon_size").optint(defaultIconSize);
+
+			// TODO skip this call if layer.getWidth() == layerIconSize
+			return modLoader.getModImage(iconLua.tojstring()).getSubimage(0, 0, iconSize, iconSize);
+		}
+		LuaValue iconsLua = prototype.lua().get("icons");
+
+		if (iconsLua.isnil()) {
+			LOGGER.warn(prototype.lua().get("type").checkjstring() + " " + name + " has no icon.");
+			return new BufferedImage(defaultIconSize, defaultIconSize, BufferedImage.TYPE_INT_ARGB);
+		}
+
+		int sizeOfFirstLayer = iconsLua.get(1).get("icon_size").optint(defaultIconSize);
+
+		BufferedImage icon = new BufferedImage(sizeOfFirstLayer, sizeOfFirstLayer, BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g = icon.createGraphics();
+		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
+		AffineTransform pat = g.getTransform();
+		Utils.forEach(iconsLua.totableArray(), l -> {
+			BufferedImage layer = modLoader.getModImage(l.get("icon").tojstring());
+			int layerIconSize = l.get("icon_size").optint(defaultIconSize);
+			// TODO skip this call if layer.getWidth() == layerIconSize
+			layer = layer.getSubimage(0, 0, layerIconSize, layerIconSize);
+
+			LuaValue tintLua = l.get("tint");
+			if (!tintLua.isnil()) {
+				layer = Utils.tintImage(layer, Utils.parseColor(tintLua));
+			}
+
+			int expectedSize = 32; // items and recipes (and most other things)
+			if (prototype.lua().get("type").checkjstring().equals("technology"))
+				expectedSize = 128;
+
+			/*
+			 * All vanilla item and recipe icons are defined with icon size 64 (technologies
+			 * with 256). However, the game "expects" icons to have a size of 32 (or 128 for
+			 * technologies). Because these sizes differ, we observe the behavior that the
+			 * game does not apply shift and scale values directly. Instead, shift and scale
+			 * are multiplied by real_size / expected_size. In the case of items case, that
+			 * means we have to multiply them by 2, because 64 / 32 = 2; this value is
+			 * represented by the below variable.
+			 */
+			int scaleAndShiftScaling = sizeOfFirstLayer / expectedSize;
+
+			double scale = l.get("scale").optdouble(1.0);
+			// scale has to be multiplied by scaleAndShiftScaling, see above
+			if (!l.get("scale").isnil()) // but only if it was defined
+				scale *= scaleAndShiftScaling;
+
+			// move icon into the center
+			g.translate((icon.getWidth() / 2) - (layer.getWidth() * (scale)) / 2,
+					(icon.getHeight() / 2) - (layer.getHeight() * (scale)) / 2);
+
+			Point shift = Utils.parsePoint(l.get("shift"));
+			// shift has to be multiplied by scaleAndShiftScaling, see above
+			shift.x *= scaleAndShiftScaling;
+			shift.y *= scaleAndShiftScaling;
+			g.translate(shift.x, shift.y);
+
+			// HACK
+			// Overlay icon of equipment technology icons are outside bounds of base icon.
+			// So, move the overlay icon up. Do the same for mining productivity tech.
+			String path = l.get("icon").tojstring();
+			if (path.equals("__core__/graphics/icons/technology/constants/constant-mining-productivity.png")) {
+				g.translate(-8, -7);
+			} else if (path.equals("__core__/graphics/icons/technology/constants/constant-equipment.png")) {
+				g.translate(0, -20);
+			}
+
+			g.scale(scale, scale);
+			g.drawImage(layer, 0, 0, null);
+			g.setTransform(pat);
+		});
+		g.dispose();
+		return icon;
 	}
 }

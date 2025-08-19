@@ -4,14 +4,31 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class LuaTable {
+	private final String debugPath;
 	private final Object json;
 
 	public LuaTable(JSONArray json) {
+		this.debugPath = "";
 		this.json = json;
 	}
 
 	public LuaTable(JSONObject json) {
+		this.debugPath = "";
 		this.json = json;
+	}
+
+	LuaTable(String debugPath, JSONArray json) {
+		this.debugPath = debugPath;
+		this.json = json;
+	}
+
+	LuaTable(String debugPath, JSONObject json) {
+		this.debugPath = debugPath;
+		this.json = json;
+	}
+
+	public String getDebugPath() {
+		return debugPath;
 	}
 
 	public LuaValue get(int index) {
@@ -22,7 +39,7 @@ public class LuaTable {
 		if (value == null) {
 			return LuaValue.NIL;
 		}
-		return new LuaValue(value);
+		return new LuaValue(debugPath + "[" + index + "]", value);
 	}
 
 	public LuaValue get(String key) {
@@ -33,7 +50,7 @@ public class LuaTable {
 		if (value == null) {
 			return LuaValue.NIL;
 		}
-		return new LuaValue(value);
+		return new LuaValue(debugPath + "[" + key + "]", value);
 	}
 
 	public Object getJson() {
@@ -62,6 +79,6 @@ public class LuaTable {
 	}
 
 	public LuaValue tovalue() {
-		return new LuaValue(json);
+		return new LuaValue(debugPath, json);
 	}
 }
