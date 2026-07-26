@@ -57,6 +57,7 @@ public class DataTable {
 	private final Map<String, ItemSubGroupPrototype> itemSubGroups = new LinkedHashMap<>();
 
 	private final Map<String, List<EntityPrototype>> craftingCategories = new LinkedHashMap<>();
+	private final Set<String> characterCraftingCategories = new LinkedHashSet<>();
 
 	private final ListMultimap<String, RecipePrototype> recipesByInput = MultimapBuilder.hashKeys().arrayListValues()
 			.build();
@@ -116,6 +117,12 @@ public class DataTable {
 				}
 			});
 		});
+
+		LuaValue characterCraftingCategoriesLua = entities.get("character").lua().get("crafting_categories");
+		if (!characterCraftingCategoriesLua.isnil()) {
+			Utils.forEach(characterCraftingCategoriesLua.checktable(),
+					categoryLua -> characterCraftingCategories.add(categoryLua.tojstring()));
+		}
 
 		for (Map<String, ? extends DataPrototype> protos : Arrays.asList(items, recipes, entities, fluids, technologies,
 				equipments, tiles, achievements, itemGroups, itemSubGroups)) {
@@ -247,6 +254,10 @@ public class DataTable {
 
 	public Map<String, List<EntityPrototype>> getCraftingCategories() {
 		return craftingCategories;
+	}
+
+	public Set<String> getCharacterCraftingCategories() {
+		return characterCraftingCategories;
 	}
 
 	public FactorioData getData() {
