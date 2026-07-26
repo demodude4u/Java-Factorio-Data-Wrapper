@@ -14,6 +14,7 @@ public class RecipePrototype extends DataPrototype {
 	private final String category;
 	private final Map<String, Integer> inputs = new LinkedHashMap<>();
 	private final Map<String, Double> outputs = new LinkedHashMap<>();
+	private final boolean decomposable;
 	private final double energyRequired;
 	private final boolean handCraftable;
 	private final boolean recycling;
@@ -47,6 +48,7 @@ public class RecipePrototype extends DataPrototype {
 		}
 
 		energyRequired = lua.get("energy_required").optdouble(0.5);
+		decomposable = lua.get("allow_decomposition").optboolean(true);
 		category = lua.get("category").optjstring("crafting");
 		// FIXME get these from the character prototype
 		handCraftable = category.equals("crafting") || category.equals("electronics") || category.equals("pressing")
@@ -57,6 +59,10 @@ public class RecipePrototype extends DataPrototype {
 
 	public String getCategory() {
 		return category;
+	}
+
+	public boolean isDecomposable() {
+		return decomposable;
 	}
 
 	public double getEnergyRequired() {
