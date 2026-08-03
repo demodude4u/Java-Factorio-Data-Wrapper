@@ -10,7 +10,7 @@ import org.json.JSONObject;
 
 public class ModInfo {
 	public static final Pattern DEPENDENCY_REGEX = Pattern
-			.compile("^(?:(\\?|\\(\\?\\)|!|~) *)?(.+?)(?: *([<>=]=?) *([0-9.]+))?$");
+			.compile("^(?:(\\?|\\(\\?\\)|!|~|\\+) *)?(.+?)(?: *([<>=]=?) *([0-9.]+))?$");
 
 	public static class Dependency {
 		private final DepPrefix prefix;
@@ -67,7 +67,8 @@ public class ModInfo {
 		}
 
 		public boolean isRequired() {
-			return this.prefix == DepPrefix.REQUIRED || this.prefix == DepPrefix.DOES_NOT_AFFECT_LOAD_ORDER;
+			return this.prefix == DepPrefix.REQUIRED || this.prefix == DepPrefix.DOES_NOT_AFFECT_LOAD_ORDER
+					|| this.prefix == DepPrefix.REQUIRED_LOAD_AFTER;
 		}
 	}
 
@@ -81,6 +82,8 @@ public class ModInfo {
 		HIDDEN_OPTIONAL,
 		// ~ for a dependency that does not affect load order
 		DOES_NOT_AFFECT_LOAD_ORDER,
+		// + for a required dependency that loads after the mod declaring it (Factorio 2.1)
+		REQUIRED_LOAD_AFTER,
 		// no prefix for a hard requirement for the other mod.
 		REQUIRED,;
 
@@ -97,6 +100,8 @@ public class ModInfo {
 				return HIDDEN_OPTIONAL;
 			case "~":
 				return DOES_NOT_AFFECT_LOAD_ORDER;
+			case "+":
+				return REQUIRED_LOAD_AFTER;
 			default:
 				throw new RuntimeException("Invalid dependency symbol: " + symbol);
 			}
